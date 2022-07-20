@@ -33,9 +33,7 @@
 
     AtrL["You do not have enough gold\n\nto make any more purchases."] =
         "Du hast nicht genug Gold\n\num mehr zu kaufen."
-    AtrL[
-            "You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."
-        ] =
+    AtrL["You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."] =
         "Du kannst maximal 40 Einzelstacks (x1)\nfür diesen Gegenstand haben.\n\nDu hast bereits %d dieser Auktionen und\nversuchst %d weitere einzustellen."
 
     -- tooltip lines
@@ -142,12 +140,11 @@
     AtrL["Scanning is entirely optional."] = "Scannen ist optional"
     AtrL["SCAN_EXPLANATION"] =
         "Scannen des Auktionshauses erstellt eine Datenbank, die Auctionator für zwei Zwecke nutzt: Als Preisvorschlag, " ..
-        "wenn dieses Item gerade nicht als Auktion vorhanden ist und im Tooltip, wenn du gerade nicht am Auktionshaus bist." ..
+            "wenn dieses Item gerade nicht als Auktion vorhanden ist und im Tooltip, wenn du gerade nicht am Auktionshaus bist." ..
             "<br/><br/>" ..
-                "Das Scannen dauert meist um die 10 Sekunden, kann aber je nach Serverlast und anderen Auktionsaddons länger dauern. " ..
-                    "Achtung: Blizzard erlaubt Scans nur alle 15 Minuten." ..
-                        "<br/><br/>" ..
-                            "Warnung: Bei einer schwachen Internetleitung kann der Scan dich von WoW trennen!"
+            "Das Scannen dauert meist um die 10 Sekunden, kann aber je nach Serverlast und anderen Auktionsaddons länger dauern. " ..
+            "Achtung: Blizzard erlaubt Scans nur alle 15 Minuten." .. "<br/><br/>" ..
+            "Warnung: Bei einer schwachen Internetleitung kann der Scan dich von WoW trennen!"
 
     AtrL["Start Scanning"] = "Scan starten"
     AtrL["Scanning"] = "Scannen" -- shows "Scanning ......." during process
@@ -182,19 +179,14 @@
     --     descriptive texts
     AtrL["If this option is checked, ALL your bags will be opened when you first open the Auctionator panel."] =
         "Wenn diese Option aktiviert ist, werden ALLE deine Taschen geöffnet, wenn du im Auktionshaus bist."
-    AtrL[
-            "If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."
-        ] = "Wenn diese Option aktiviert ist, wird jede neue Auktion mit dieser Dauer gestartet."
-    AtrL[
-            "If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."
-        ] =
+    AtrL["If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."] =
+        "Wenn diese Option aktiviert ist, wird jede neue Auktion mit dieser Dauer gestartet."
+    AtrL["If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."] =
         "Wenn diese Option aktiviert ist, kannst du mit alt-Klick auf ein Item dieses in den Verkaufsbereich legen und den Scan starten."
-    AtrL[
-            "If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."
-        ] = "Wenn diese Option aktiviert ist, startet das Auktionsfenster im KAUFEN-Tab."
-    AtrL[
-            "If this option is checked, the Auctionator SELL panel will display first whenever you open the Auction House window."
-        ] = "Wenn diese Option aktiviert ist, startet das Auktionsfenster im VERKAUFEN-Tab."
+    AtrL["If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."] =
+        "Wenn diese Option aktiviert ist, startet das Auktionsfenster im KAUFEN-Tab."
+    AtrL["If this option is checked, the Auctionator SELL panel will display first whenever you open the Auction House window."] =
+        "Wenn diese Option aktiviert ist, startet das Auktionsfenster im VERKAUFEN-Tab."
     AtrL["Only include items in the scanning database that are this level or higher"] =
         "Betrachte nur Items, die diese Level oder ein höheres haben."
 

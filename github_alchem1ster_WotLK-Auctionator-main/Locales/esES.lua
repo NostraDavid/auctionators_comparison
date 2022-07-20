@@ -5,13 +5,11 @@
 
     AtrL["SCAN_EXPLANATION"] =
         "El escaneo de la casa de subastas construye una base de datos de precios que el Subastador usa para dos objetivos: para mostrar información sobre el artículo " ..
-        "si usted no está en la Casa de Subastas y para recomendar un precio si se pone un artículo para el cual no hay ninguna " ..
-            "subasta en ese momento." ..
-                "<br/><br/>" ..
-                    "El escaneo tarda aproximadamente 10 segundos, pero puede tomar mucho más tiempo si se realiza después de aplicar un parche de Warcraft." ..
-                        "Recuerde que Blizzard sólo permite explorar el servidor una vez cada 15 minutos." ..
-                            "<br/><br/>" ..
-                                "Advertencia: si usted tiene una mala conexión, el escaneo puede causar la desconección del servidor."
+            "si usted no está en la Casa de Subastas y para recomendar un precio si se pone un artículo para el cual no hay ninguna " ..
+            "subasta en ese momento." .. "<br/><br/>" ..
+            "El escaneo tarda aproximadamente 10 segundos, pero puede tomar mucho más tiempo si se realiza después de aplicar un parche de Warcraft." ..
+            "Recuerde que Blizzard sólo permite explorar el servidor una vez cada 15 minutos." .. "<br/><br/>" ..
+            "Advertencia: si usted tiene una mala conexión, el escaneo puede causar la desconección del servidor."
 
     -- New Vars
 
@@ -114,17 +112,11 @@
     AtrL["History"] = "Historial"
     AtrL["If this option is checked, ALL your bags will be opened when you first open the Auctionator panel."] =
         "Si esta opción está seleccionada, TODAS sus bolsas serán abiertas cuando al abrir el Subastador."
-    AtrL[
-            "If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."
-        ] =
+    AtrL["If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."] =
         "Si esta opción está seleccionada, cada vez usted cree una nueva subasta la duración de la subasta será reinicializada a la duración por defecto que usted haya seleccionado."
-    AtrL[
-            "If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."
-        ] =
+    AtrL["If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."] =
         "Si esta opción está seleccionada, clickear en un artículo de sus bolsas con la tecla Alt cambiará al panel del Subastador, colocará este en el área de Artículo de Subasta y comenzará el escaneo."
-    AtrL[
-            "If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."
-        ] =
+    AtrL["If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."] =
         "Si esta opción está seleccionada, el panel de COMPRA del Subastador se mostrará siempre primero cada vez que usted abra la ventana de la Casa de Subastas."
     AtrL["Ignore any ERROR message to the contrary below."] = "Ignorar mensaje de error abajo."
     AtrL["in about %d minutes"] = "en aproximadamente %d minutos"
@@ -244,9 +236,7 @@
     AtrL["You can stack at most %d of these items"] = "Usted puede crear como máximo un pack de %d de estos artículos"
     AtrL["You do not have enough gold\n\nto make any more purchases."] =
         "Usted no tiene bastante oro\n\npara hacer más compras."
-    AtrL[
-            "You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."
-        ] =
+    AtrL["You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."] =
         "Usted puede tener como máximo la 40 packs (x1)\nen subasta para este artículo.\n\nUsted ya tiene %d subastas y\ntrata de fijar %d más."
     AtrL["You may have no more than\n\n%d items on a shopping list."] =
         "Usted no puede tener más de \n\n%d artículos en una lista de compra."

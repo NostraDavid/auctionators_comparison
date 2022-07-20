@@ -6,14 +6,13 @@ function AtrBuildLTable_svSE()
 
     AtrL["SCAN_EXPLANATION"] =
         "Att skanna Auktionshuset skapar en databas av priser som Auctionator anv\168\97nder till tv� saker: " ..
-        "att visa pris i din Tooltip n�r du �r borta fr�n Auktionshuset och att " ..
+            "att visa pris i din Tooltip n�r du �r borta fr�n Auktionshuset och att " ..
             "rekommendera ett pris n�r du l�gger ut ett item som inte finns utauktionerat f�rtillf�llet." ..
-                "<br/><br/>" ..
-                    "En skanning brukar ta ungef�r 10 sekunder, men kan ta l�ngre tid om din server �r v�ldigt belastad, " ..
-                        "eller om du har andra Auktion addons ig�ng. " ..
-                            "Notera att Blizzard till�ter en 1 skanning var 15:e minut." ..
-                                "<br/><br/>" ..
-                                    "Sist, men inte minst, en varning. Om du har l�ngsam internetuppkoppling s� kan du bli desconnectad fr�n servern vid en skanning."
+            "<br/><br/>" ..
+            "En skanning brukar ta ungef�r 10 sekunder, men kan ta l�ngre tid om din server �r v�ldigt belastad, " ..
+            "eller om du har andra Auktion addons ig�ng. " ..
+            "Notera att Blizzard till�ter en 1 skanning var 15:e minut." .. "<br/><br/>" ..
+            "Sist, men inte minst, en varning. Om du har l�ngsam internetuppkoppling s� kan du bli desconnectad fr�n servern vid en skanning."
 
     AtrL["About Auctionator"] = "Om Auctionator"
     AtrL["Active Items"] = "Aktiva Items"
@@ -60,7 +59,8 @@ function AtrBuildLTable_svSE()
     AtrL["Drag an item you want to sell to this area."] = "Dra ett item du vill s�lja hit."
     AtrL["Enable alt-key shortcut"] = "Aktivera ALT-genv�g"
     AtrL["for each stack of %d"] = "f�r varje trave av %d"
-    AtrL["For information on the latest version browse to"] = "F�r information g�llande senaste versionen, g� till"
+    AtrL["For information on the latest version browse to"] =
+        "F�r information g�llande senaste versionen, g� till"
     AtrL["for your stack of"] = "f�r din trave av"
     AtrL["for your stack of %d"] = "f�r din trave av %d"
     AtrL["Full Scan"] = "Full Skanning"
@@ -69,21 +69,13 @@ function AtrBuildLTable_svSE()
     AtrL["History"] = "Historik"
     AtrL["If this option is checked, ALL your bags will be opened when you first open the Auctionator panel."] =
         "Om detta alternativ �r bockat, s� kommer ALLA dina bags �ppnas n�r du �ppnar Auctionator-panelen."
-    AtrL[
-            "If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."
-        ] =
+    AtrL["If this option is checked, every time you initiate a new auction the auction duration will be reset to the default duration you've selected."] =
         "Om detta alternativ �r bockat, varje g�ng du startar en ny auktion, s� kommer varaktighetstiden �terst�llas till den standardtiden du har valt."
-    AtrL[
-            "If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."
-        ] =
+    AtrL["If this option is checked, holding the Alt key down while clicking an item in your bags will switch to the Auctionator panel, place the item in the Auction Item area, and start the scan."] =
         "Om detta alternativ �r bockat, att h�lla ner ALT-tangenten medans du klickar p� ett item i dina bags, g�r s� att du skickas till Auctionator-panelen och ditt item placeras i Auktionera Item-omr�det, samt startar en skanning."
-    AtrL[
-            "If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."
-        ] =
+    AtrL["If this option is checked, the Auctionator BUY panel will display first whenever you open the Auction House window."] =
         "Om detta alternativ �r bockat, s� kommer Auctionator's K�P-flik att �ppnas f�rst varje g�ng som du �ppnar rutan f�r Auktionshuset."
-    AtrL[
-            "If this option is checked, the Auctionator SELL panel will display first whenever you open the Auction House window."
-        ] =
+    AtrL["If this option is checked, the Auctionator SELL panel will display first whenever you open the Auction House window."] =
         "Om detta alternativ �r bockat, s� kommer Auctionator's S�LJ-flik att �ppnas f�rst varje g�ng som du �ppnar rutan f�r Auktionshuset."
     AtrL["Ignore any ERROR message to the contrary below."] =
         "Ignorera alla Felmeddelanden i strid mot det h�r nedanf�r."
@@ -129,9 +121,7 @@ function AtrBuildLTable_svSE()
     AtrL["Scanning auctions: page %d"] = "Skannar auktioner: sida %d"
     AtrL["Scanning is entirely optional."] = "Skanning �r helt valfritt."
     AtrL["Search"] = "S�k"
-    AtrL[
-            "Select an item from the list on the left\n or type the name of an item to start a scan.\n\nItem names must match exactly."
-        ] =
+    AtrL["Select an item from the list on the left\n or type the name of an item to start a scan.\n\nItem names must match exactly."] =
         "V�lj ett item fr�n listan till v�nster\n eller skriv namnet p� ett item f�r att starta en skanning.\n\nItemnamn m�ste matcha helt."
     AtrL["Sell"] = "S�lj"
     AtrL["Set a default duration"] = "V�lj en standard varaktighetstid"
@@ -175,7 +165,7 @@ function AtrBuildLTable_svSE()
     AtrL["your most recent posting"] = "din senaste postning"
     AtrL["yours"] = "din"
 
-    --untranslated
+    -- untranslated
 
     AtrL["%d of %d bought so far"] = ""
     AtrL["As many as possible"] = ""
@@ -258,7 +248,6 @@ function AtrBuildLTable_svSE()
     AtrL["Uncommon items"] = ""
     AtrL["undercutting configuration saved"] = ""
     AtrL["You do not have enough gold\n\nto make any more purchases."] = ""
-    AtrL[
-            "You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."
-        ] = ""
+    AtrL["You may have at most 40 single-stack (x1)\nauctions posted for this item.\n\nYou already have %d such auctions and\nyou are trying to post %d more."] =
+        ""
 end
