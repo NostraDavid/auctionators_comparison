@@ -1,951 +1,998 @@
-
 -- Zirco's utilities
 
 -- This module should contain no globals as it is intended to be "linked" in to each of Zirco's addons
 
+local addonName, addonTable = ...
+local zc = {}
 
-local addonName, addonTable = ...;
-local zc = {};
-
-addonTable.zc = zc;
+addonTable.zc = zc
 
 -----------------------------------------
 
-function zc.RGBtoHEX (r,g,b)
+function zc.RGBtoHEX(r, g, b)
+	local hex = ""
 
-	local hex = "";
-
-	return string.format ("%02x%02x%02x", r * 255, g * 255, b * 255);
-
+	return string.format("%02x%02x%02x", r * 255, g * 255, b * 255)
 end
 
 -----------------------------------------
 
-function zc.EnableDisable (elem, b)
-
+function zc.EnableDisable(elem, b)
 	if (b) then
-		elem:Enable();
+		elem:Enable()
 	else
-		elem:Disable();
+		elem:Disable()
 	end
 end
 
 -----------------------------------------
 
-function zc.ShowHide (elem, b)
-
+function zc.ShowHide(elem, b)
 	if (b) then
-		elem:Show();
+		elem:Show()
 	else
-		elem:Hide();
+		elem:Hide()
 	end
 end
 
 -----------------------------------------
 
-function zc.SetTextIf (elem, b, t1, t2)
-
+function zc.SetTextIf(elem, b, t1, t2)
 	if (b) then
-		elem:SetText(t1);
+		elem:SetText(t1)
 	else
-		elem:SetText(t2);
+		elem:SetText(t2)
 	end
 end
 
 -----------------------------------------
 
-function zc.Val (val, ifNilVal)
-
+function zc.Val(val, ifNilVal)
 	if (val == nil) then
-		return ifNilVal;
+		return ifNilVal
 	end
 
-	return val;
+	return val
 end
 
 -----------------------------------------
 
-function zc.Min (a, b)
-
+function zc.Min(a, b)
 	if (a == nil) then
-		return b;
+		return b
 	end
 
 	if (b == nil) then
-		return a;
+		return a
 	end
 
-	return math.min (tonumber (a), tonumber (b));
+	return math.min(tonumber(a), tonumber(b))
 end
 
 -----------------------------------------
 
-function zc.Max (a, b)
-
+function zc.Max(a, b)
 	if (a == nil) then
-		return b;
+		return b
 	end
 
 	if (b == nil) then
-		return a;
+		return a
 	end
 
-	return math.max (tonumber (a), tonumber (b));
+	return math.max(tonumber(a), tonumber(b))
 end
 
 -----------------------------------------
 
-function zc.If (b, x, y)
-
+function zc.If(b, x, y)
 	if (b ~= nil and b ~= false) then
-		return x;
+		return x
 	end
 
-	return y;
+	return y
 end
 
 -----------------------------------------
 
-function zc.PrintKeysSorted (t)
+function zc.PrintKeysSorted(t)
+	local ta = {}
 
-	local ta = {};
-
-	for a,v in pairs (t) do
-		table.insert (ta, a);
+	for a, v in pairs(t) do
+		table.insert(ta, a)
 	end
 
-	table.sort (ta, function (a,b) return (a:lower() < b:lower()); end);
+	table.sort(
+		ta,
+		function(a, b)
+			return (a:lower() < b:lower())
+		end
+	)
 
 	for x = 1, #ta do
-		zc.msg_pink (x.."   "..ta[x]);
+		zc.msg_pink(x .. "   " .. ta[x])
 	end
-
 end
 
 -----------------------------------------
 
-function zc.UTF8_Truncate (s, newlen)
-
+function zc.UTF8_Truncate(s, newlen)
 	if (s:len() <= newlen) then
-		return s;
+		return s
 	end
 
-	local x, c;
+	local x, c
 
 	for x = newlen, 1, -1 do
+		c = s:byte(x + 1)
 
-		c = s:byte(x+1);
-
-		if (bit.band (c, 0xC0) == 0x80) then
-			return s:sub (1, x-1);
+		if (bit.band(c, 0xC0) == 0x80) then
+			return s:sub(1, x - 1)
 		end
-
 	end
-
 end
 
 -----------------------------------------
 
-function zc.GetArrayElemOrFirst (a, x)
-
+function zc.GetArrayElemOrFirst(a, x)
 	if (a and #a > 0) then
 		if (x == nil or x < 1 or x > #a) then
-			x = 1;
+			x = 1
 		end
 
-		return a[x];
+		return a[x]
 	end
 
-	return nil;
+	return nil
 end
 
 -----------------------------------------
 
-function zc.GetArrayElemOrNil (a, x)
-
+function zc.GetArrayElemOrNil(a, x)
 	if (a and #a > 0) then
 		if (x == nil or x < 1 or x > #a) then
-			return nil;
+			return nil
 		end
 
-		return a[x];
+		return a[x]
 	end
 
-	return nil;
+	return nil
 end
 
 -----------------------------------------
 
-function zc.padstring (s, n, c)
-	while (string.len (s) < n) do
-		s = c..s;
+function zc.padstring(s, n, c)
+	while (string.len(s) < n) do
+		s = c .. s
 	end
 
-	return s;
+	return s
 end
-
 
 -----------------------------------------
 
-local encTable = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-				  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
-				  "0","1","2","3","4","5","6","7","8","9",
-				  "-", "_" };
+local encTable = {
+	"A",
+	"B",
+	"C",
+	"D",
+	"E",
+	"F",
+	"G",
+	"H",
+	"I",
+	"J",
+	"K",
+	"L",
+	"M",
+	"N",
+	"O",
+	"P",
+	"Q",
+	"R",
+	"S",
+	"T",
+	"U",
+	"V",
+	"W",
+	"X",
+	"Y",
+	"Z",
+	"a",
+	"b",
+	"c",
+	"d",
+	"e",
+	"f",
+	"g",
+	"h",
+	"i",
+	"j",
+	"k",
+	"l",
+	"m",
+	"n",
+	"o",
+	"p",
+	"q",
+	"r",
+	"s",
+	"t",
+	"u",
+	"v",
+	"w",
+	"x",
+	"y",
+	"z",
+	"0",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"-",
+	"_"
+}
 
-
-local decTable;
+local decTable
 
 -----------------------------------------
 
 local function BuildDecTable()
-
 	if (decTable == nil) then
-		decTable = {};
-		local i;
-		for i = 1,64 do
-			decTable[encTable[i]] = i-1;
+		decTable = {}
+		local i
+		for i = 1, 64 do
+			decTable[encTable[i]] = i - 1
 		end
 	end
-
 end
 
 -----------------------------------------
 
-function zc.enc64 (n)
-
+function zc.enc64(n)
 	if (n == 0) then
-		return encTable[1];
+		return encTable[1]
 	end
 
-	local k = n;
-	local x;
-	local result = "";
+	local k = n
+	local x
+	local result = ""
 
 	while k ~= 0 do
-		x = bit.band (k, 63);
-		result = encTable[x+1]..result;
-		k = bit.rshift (k, 6);
+		x = bit.band(k, 63)
+		result = encTable[x + 1] .. result
+		k = bit.rshift(k, 6)
 	end
 
-	return result;
+	return result
 end
 
 -----------------------------------------
 
-function zc.dec64 (s)
-
+function zc.dec64(s)
 	if (s == nil or s == "") then
-		return 0;
+		return 0
 	end
 
-	BuildDecTable();
+	BuildDecTable()
 
-	local result = 0;
-	local len = string.len (s);
-	local x;
+	local result = 0
+	local len = string.len(s)
+	local x
 
 	for x = 1, len do
-		result = result * 64;
-		result = result + decTable[string.sub(s,x,x)];
+		result = result * 64
+		result = result + decTable[string.sub(s, x, x)]
 	end
 
-	return result;
+	return result
 end
 
 -----------------------------------------
 
-function ZF (s)
-	BuildDecTable();
+function ZF(s)
+	BuildDecTable()
 
-	local s2 = "";
-	local n;
+	local s2 = ""
+	local n
 
 	for n = 1, s:len() do
-		local c = s:sub(n,n);
-		local x = decTable[c];
+		local c = s:sub(n, n)
+		local x = decTable[c]
 
 		if (x == nil) then
-			s2 = s2..c;
+			s2 = s2 .. c
 		else
-			if		(x < 32) then x = x + 32;
-			else	x = x - 32;
-			end;
-			s2 = s2..encTable[x+1];
+			if (x < 32) then
+				x = x + 32
+			else
+				x = x - 32
+			end
+			s2 = s2 .. encTable[x + 1]
 		end
 	end
 
-	return s2;
-
+	return s2
 end
 
 -----------------------------------------
 
 function zc.words(str)
 	local t = {}
-	local function helper(word) table.insert(t, word) return "" end
-	if (not str:gsub("%w+", helper):find"%S") then
-		if (#t == 1) then return t[1]; end;
-		if (#t == 2) then return t[1],t[2]; end;
-		if (#t == 3) then return t[1],t[2],t[3]; end;
-		if (#t == 4) then return t[1],t[2],t[3],t[4]; end;
-		if (#t == 5) then return t[1],t[2],t[3],t[4],t[5]; end;
-		return t;
+	local function helper(word)
+		table.insert(t, word)
+		return ""
+	end
+	if (not str:gsub("%w+", helper):find "%S") then
+		if (#t == 1) then
+			return t[1]
+		end
+		if (#t == 2) then
+			return t[1], t[2]
+		end
+		if (#t == 3) then
+			return t[1], t[2], t[3]
+		end
+		if (#t == 4) then
+			return t[1], t[2], t[3], t[4]
+		end
+		if (#t == 5) then
+			return t[1], t[2], t[3], t[4], t[5]
+		end
+		return t
 	end
 end
 
 -----------------------------------------
 
-local gDeferredCalls = {};
+local gDeferredCalls = {}
 
 -----------------------------------------
 
-function zc.AddDeferredCall (seconds, funcname, param1, param2, tag)	-- tag is optional.  if present used to overwrite prior call with same tag
+function zc.AddDeferredCall(seconds, funcname, param1, param2, tag) -- tag is optional.  if present used to overwrite prior call with same tag
+	local now = time()
 
-	local now = time();
+	local cfdEntry = {}
 
-	local cfdEntry = {};
-
-	cfdEntry.funcname	= funcname;
-	cfdEntry.param1		= param1;
-	cfdEntry.param2		= param2;
-	cfdEntry.when		= now + seconds;
-	cfdEntry.tag		= "";
+	cfdEntry.funcname = funcname
+	cfdEntry.param1 = param1
+	cfdEntry.param2 = param2
+	cfdEntry.when = now + seconds
+	cfdEntry.tag = ""
 
 	if (tag) then
-		cfdEntry.tag = tag;
+		cfdEntry.tag = tag
 
 		for i = 1, #gDeferredCalls do
 			if (gDeferredCalls[i].tag == tag) then
-				gDeferredCalls[i] = cfdEntry;		-- overwrite
-				return;
+				gDeferredCalls[i] = cfdEntry -- overwrite
+				return
 			end
 		end
 	end
 
-	table.insert (gDeferredCalls, cfdEntry);
+	table.insert(gDeferredCalls, cfdEntry)
 end
-
 
 -----------------------------------------
 
-function zc.CheckDeferredCall ()
-
-	local now = time();
-	local i;
+function zc.CheckDeferredCall()
+	local now = time()
+	local i
 
 	for i = 1, #gDeferredCalls do
 		if (gDeferredCalls[i].when < now) then
-			local fcn = getglobal(gDeferredCalls[i].funcname);
-			local p1 = gDeferredCalls[i].param1;
-			local p2 = gDeferredCalls[i].param2;
-			table.remove (gDeferredCalls, i);
-			if (type(fcn) == 'function') then
-				fcn(p1, p2);
+			local fcn = getglobal(gDeferredCalls[i].funcname)
+			local p1 = gDeferredCalls[i].param1
+			local p2 = gDeferredCalls[i].param2
+			table.remove(gDeferredCalls, i)
+			if (type(fcn) == "function") then
+				fcn(p1, p2)
 			end
 
-			return;		-- only do one
+			return -- only do one
 		end
 	end
-
 end
 
 -----------------------------------------
 
-function zc.periodic (elem, name, period, elapsed)
+function zc.periodic(elem, name, period, elapsed)
+	local t = elem[name] or 0
 
-	local t = elem[name] or 0;
-
-	t = t + elapsed;
+	t = t + elapsed
 
 	if (t > period) then
-		elem[name] = 0;
-		return true;
+		elem[name] = 0
+		return true
 	end
 
-	elem[name] = t;
-	return false;
-end
-
-
------------------------------------------
-
-function zc.tableIsEmpty (t)
-
-	local n, v;
-	for n, v in pairs (t) do
-		return false;
-	end
-
-	return true;
+	elem[name] = t
+	return false
 end
 
 -----------------------------------------
 
-function zc.PrintTable (t, indent)
+function zc.tableIsEmpty(t)
+	local n, v
+	for n, v in pairs(t) do
+		return false
+	end
 
+	return true
+end
+
+-----------------------------------------
+
+function zc.PrintTable(t, indent)
 	if (not indent) then
-		indent = 0;
+		indent = 0
 	end
 
 	local x
-	local padding = "";
-	for x = 1,indent do
-		padding = padding.."  ";
+	local padding = ""
+	for x = 1, indent do
+		padding = padding .. "  "
 	end
 
-	zc.msg ("-------");
+	zc.msg("-------")
 
-	for n, v in pairs (t) do
+	for n, v in pairs(t) do
 		if (type(v) == "table") then
-			zc.msg (padding..n, "TABLE");
-			zc.PrintTable(v, indent+1);
+			zc.msg(padding .. n, "TABLE")
+			zc.PrintTable(v, indent + 1)
 		elseif (type(v) == "userdata") then
-			zc.msg (padding..n, "userdata");
+			zc.msg(padding .. n, "userdata")
 		else
-			zc.msg (padding..n, v);
+			zc.msg(padding .. n, v)
 		end
 	end
-
 end
 
 -----------------------------------------
 
-function zc.ItemIDfromLink (itemLink)
-
+function zc.ItemIDfromLink(itemLink)
 	if (itemLink == nil) then
-		return 0,0,0;
+		return 0, 0, 0
 	end
 
 	local found, _, itemString = string.find(itemLink, "^|c%x+|H(.+)|h%[.*%]")
 	local _, itemId, _, _, _, _, _, suffixId, uniqueId = strsplit(":", itemString)
 
-	return itemId, suffixId, uniqueId;
-
+	return itemId, suffixId, uniqueId
 end
 
 -----------------------------------------
 
-function zc.BoolToString (b)
+function zc.BoolToString(b)
 	if (b) then
-		return "true";
+		return "true"
 	end
 
-	return "false";
+	return "false"
 end
 
 -----------------------------------------
 
-function zc.BoolToNum (b)
+function zc.BoolToNum(b)
 	if (b) then
-		return 1;
+		return 1
 	end
 
-	return 0;
+	return 0
 end
 
 -----------------------------------------
 
-function zc.NumToBool (n)
+function zc.NumToBool(n)
 	if (n == 0) then
-		return false;
+		return false
 	end
 
-	return true;
+	return true
 end
 
 -----------------------------------------
 
-function zc.pluralizeIf (word, count)
-
+function zc.pluralizeIf(word, count)
 	if (count and count == 1) then
-		return word;
+		return word
 	else
-		return zc.pluralize(word);
+		return zc.pluralize(word)
 	end
 end
 
 -----------------------------------------
 
-function zc.pluralize (word)
-
-	return word.."s";
-
+function zc.pluralize(word)
+	return word .. "s"
 end
 
 -----------------------------------------
 
-function zc.round (v)
-	return math.floor (v + 0.5);
+function zc.round(v)
+	return math.floor(v + 0.5)
 end
 
 -----------------------------------------
 
-function zc.msg_red (...)		zc.msg_color (1,  0,  0, ...);	end
-function zc.msg_pink (...)		zc.msg_color (1, .6, .6, ...);	end
-function zc.msg_yellow (...)		zc.msg_color (1,  1,  0, ...);	end
-
------------------------------------------
-
-function zc.msg_color (r, g, b, ...)
-
-	local options = {};
-	options.r = r;
-	options.g = g;
-	options.b = b;
-
-	zc.msg_ex (options, ...);
+function zc.msg_red(...)
+	zc.msg_color(1, 0, 0, ...)
 end
-
-
------------------------------------------
-
-function zc.msg_str (...)
-
-	local options = {};
-	options.str = true;
-
-	return zc.msg_ex (options, ...);
+function zc.msg_pink(...)
+	zc.msg_color(1, .6, .6, ...)
+end
+function zc.msg_yellow(...)
+	zc.msg_color(1, 1, 0, ...)
 end
 
 -----------------------------------------
 
-function zc.msg_atr (...)
+function zc.msg_color(r, g, b, ...)
+	local options = {}
+	options.r = r
+	options.g = g
+	options.b = b
 
-	zc.msg_yellow ("|cff00ffff<Auctionator>|r", ...);
+	zc.msg_ex(options, ...)
 end
-
 
 -----------------------------------------
 
-function zc.HSV2RGB (h, s, v)
+function zc.msg_str(...)
+	local options = {}
+	options.str = true
 
-	local r, g, b;
+	return zc.msg_ex(options, ...)
+end
 
-	local hi = math.floor(h/60) % 6;
-	local f  = h/60 - math.floor(h/60);
-	local p  = v * (1-s);
-	local q  = v * (1-(f*s));
-	local t  = v * (1-((1-f)*s));
+-----------------------------------------
 
-	if (hi == 0) then	return v, t, p;			end
-	if (hi == 1) then	return q, v, p;			end
-	if (hi == 2) then	return p, v, t;			end
-	if (hi == 3) then	return p, q, v;			end
-	if (hi == 4) then	return t, p, v;			end
-	if (hi == 5) then	return v, p, q;			end
+function zc.msg_atr(...)
+	zc.msg_yellow("|cff00ffff<Auctionator>|r", ...)
+end
+
+-----------------------------------------
+
+function zc.HSV2RGB(h, s, v)
+	local r, g, b
+
+	local hi = math.floor(h / 60) % 6
+	local f = h / 60 - math.floor(h / 60)
+	local p = v * (1 - s)
+	local q = v * (1 - (f * s))
+	local t = v * (1 - ((1 - f) * s))
+
+	if (hi == 0) then
+		return v, t, p
+	end
+	if (hi == 1) then
+		return q, v, p
+	end
+	if (hi == 2) then
+		return p, v, t
+	end
+	if (hi == 3) then
+		return p, q, v
+	end
+	if (hi == 4) then
+		return t, p, v
+	end
+	if (hi == 5) then
+		return v, p, q
+	end
 
 	return
 end
 
 -----------------------------------------
 
-function zc.md (...)
-
+function zc.md(...)
 	if (Atr_IsDev) then
+		local funcnames = zc.printstack({silent = true})
 
-		local funcnames = zc.printstack ( { silent=true } );
+		local fname = string.lower(funcnames[2])
 
-		local fname = string.lower (funcnames[2]);
-
-		if (zc.StringStartsWith (fname, "atr_")) then
-			fname = fname:sub (5);
+		if (zc.StringStartsWith(fname, "atr_")) then
+			fname = fname:sub(5)
 		end
 
-		local color = "ffffff";
+		local color = "ffffff"
 
-		local n = fname:len();
+		local n = fname:len()
 
 		if (n > 3) then
+			local x = fname:byte(math.floor(n / 2)) - string.byte("a")
+			local y = fname:byte(n) - string.byte("a")
 
-			local x = fname:byte(math.floor (n/2)) - string.byte("a");
-			local y = fname:byte(n) - string.byte("a");
-
-			local hue = 0;
+			local hue = 0
 			if (x > 0) then
-				hue = math.floor ( (x/26) * 360 );
+				hue = math.floor((x / 26) * 360)
 			end
 
-			local sat = 0.5;
+			local sat = 0.5
 			if (y > 0) then
-				sat = 0.3 + (y/26) * 0.7;
+				sat = 0.3 + (y / 26) * 0.7
 			end
 
-			local r, g, b = zc.HSV2RGB (hue, sat, 1);
+			local r, g, b = zc.HSV2RGB(hue, sat, 1)
 
-			r = math.floor (r * 255);
-			g = math.floor (g * 255);
-			b = math.floor (b * 255);
+			r = math.floor(r * 255)
+			g = math.floor(g * 255)
+			b = math.floor(b * 255)
 
---			zc.msg (hue, sat, r, g, b);
-			color = string.format ("%02x%02x%02x", r, g, b);
+			--			zc.msg (hue, sat, r, g, b);
+			color = string.format("%02x%02x%02x", r, g, b)
 		end
 
-		zc.msg ("|cff00ffff<".."|cff"..color..fname.."|cff00ffff>|r", ...);
+		zc.msg("|cff00ffff<" .. "|cff" .. color .. fname .. "|cff00ffff>|r", ...)
 	end
 end
 
 -----------------------------------------
 
-function zc.msg (...)
+function zc.msg(...)
+	local options = {}
 
-	local options = {};
-
-	zc.msg_ex (options, ...);
+	zc.msg_ex(options, ...)
 end
 
 -----------------------------------------
 
-function zc.msg_ex (options, ...)
-
+function zc.msg_ex(options, ...)
 	if (not DEFAULT_CHAT_FRAME) then
-		return;
+		return
 	end
 
-	local msg = "";
+	local msg = ""
 
-	local i;
-	local num = select("#", ...);
+	local i
+	local num = select("#", ...)
 
 	for i = 1, num do
+		local v = select(i, ...)
 
-		local v = select (i, ...);
-
-		if		(type(v) == "boolean")	then	m = zc.BoolToString(v);
-		elseif	(type(v) == "table")	then	m = "<table>";
-		elseif	(type(v) == "function")	then	m = "<function>";
-		elseif	(v == nil)				then	m = "<nil>";
-		else									m = v;
+		if (type(v) == "boolean") then
+			m = zc.BoolToString(v)
+		elseif (type(v) == "table") then
+			m = "<table>"
+		elseif (type(v) == "function") then
+			m = "<function>"
+		elseif (v == nil) then
+			m = "<nil>"
+		else
+			m = v
 		end
 
-		msg = msg.." "..m;
-
+		msg = msg .. " " .. m
 	end
 
 	if (options.str) then
-		return msg;
+		return msg
 	end
 
 	if (options.r ~= nil) then
-		DEFAULT_CHAT_FRAME:AddMessage (msg, options.r, options.g, options.b);
+		DEFAULT_CHAT_FRAME:AddMessage(msg, options.r, options.g, options.b)
 	else
-		DEFAULT_CHAT_FRAME:AddMessage (msg);
+		DEFAULT_CHAT_FRAME:AddMessage(msg)
 	end
 end
 
-
-
 -----------------------------------------
 
-function zc.val2gsc (v)
+function zc.val2gsc(v)
 	local rv = zc.round(v)
 
-	local g = math.floor (rv/10000);
+	local g = math.floor(rv / 10000)
 
-	rv = rv - g*10000;
+	rv = rv - g * 10000
 
-	local s = math.floor (rv/100);
+	local s = math.floor(rv / 100)
 
-	rv = rv - s*100;
+	rv = rv - s * 100
 
-	local c = rv;
+	local c = rv
 
 	return g, s, c
 end
 
 -----------------------------------------
 
-function zc.priceToString (val)
+function zc.priceToString(val)
+	local gold, silver, copper = zc.val2gsc(val)
 
-	local gold, silver, copper  = zc.val2gsc(val);
-
-	local st = "";
-
+	local st = ""
 
 	if (gold ~= 0) then
-		st = gold.."g ";
+		st = gold .. "g "
 	end
 
-
 	if (st ~= "") then
-		st = st..format("%02is ", silver);
+		st = st .. format("%02is ", silver)
 	elseif (silver ~= 0) then
-		st = st..silver.."s ";
+		st = st .. silver .. "s "
 	end
-
 
 	if (st ~= "") then
-		st = st..format("%02ic", copper);
+		st = st .. format("%02ic", copper)
 	elseif (copper ~= 0) then
-		st = st..copper.."c";
+		st = st .. copper .. "c"
 	end
 
-	return st;
+	return st
 end
 
 -----------------------------------------
 
-local goldicon		= "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:4:0|t"
-local silvericon	= "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:4:0|t"
-local coppericon	= "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:4:0|t"
+local goldicon = "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:4:0|t"
+local silvericon = "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:4:0|t"
+local coppericon = "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:4:0|t"
 
 -----------------------------------------
 
-function zc.priceToMoneyString (val, noZeroCoppers)
+function zc.priceToMoneyString(val, noZeroCoppers)
+	local gold, silver, copper = zc.val2gsc(val)
 
-	local gold, silver, copper  = zc.val2gsc(val);
-
-	local st = "";
+	local st = ""
 
 	if (gold ~= 0) then
-		st = gold..goldicon.."  ";
+		st = gold .. goldicon .. "  "
 	end
 
-
 	if (st ~= "") then
-		st = st..format("%02i%s  ", silver, silvericon);
+		st = st .. format("%02i%s  ", silver, silvericon)
 	elseif (silver ~= 0) then
-		st = st..silver..silvericon.."  ";
+		st = st .. silver .. silvericon .. "  "
 	end
 
 	if (noZeroCoppers and copper == 0) then
-		return st;
+		return st
 	end
 
 	if (st ~= "") then
-		st = st..format("%02i%s", copper, coppericon);
+		st = st .. format("%02i%s", copper, coppericon)
 	elseif (copper ~= 0) then
-		st = st..copper..coppericon;
+		st = st .. copper .. coppericon
 	end
 
-	return st;
-
+	return st
 end
 
 -----------------------------------------
 
-function zc.StringSame (s1, s2)
+function zc.StringSame(s1, s2)
 	if (s1 == nil and s2 == nil) then
-		return true;
+		return true
 	end
 
 	if (s1 == nil or s2 == nil) then
-		return false;
+		return false
 	end
 
-	if (s1 == s2) then		-- maybe will fix german umlaut problem?
-		return true;
+	if (s1 == s2) then -- maybe will fix german umlaut problem?
+		return true
 	end
 
-	return (string.lower (s1) == string.lower (s2));
+	return (string.lower(s1) == string.lower(s2))
 end
 
 -----------------------------------------
 
-function zc.StringContains (s, sub)
+function zc.StringContains(s, sub)
 	if (sub == nil or sub == "") then
-		return false;
+		return false
 	end
 
-	local start, stop = string.find (string.lower(s), string.lower(sub), 1, true);
+	local start, stop = string.find(string.lower(s), string.lower(sub), 1, true)
 
-	return (start ~= nil);
+	return (start ~= nil)
 end
 
 -----------------------------------------
 
-function zc.StringEndsWith (s, sub)
-
+function zc.StringEndsWith(s, sub)
 	if (sub == nil or sub == "") then
-		return false;
+		return false
 	end
 
-	local i = string.len(s) - string.len(sub);
+	local i = string.len(s) - string.len(sub)
 
 	if (i < 0) then
-		return false;
+		return false
 	end
 
-	local sEnd = string.sub (s, i+1);
+	local sEnd = string.sub(s, i + 1)
 
-	return (string.lower (sEnd) == string.lower (sub));
-
+	return (string.lower(sEnd) == string.lower(sub))
 end
 
 -----------------------------------------
 
-function zc.StringStartsWith (s, sub)
-
+function zc.StringStartsWith(s, sub)
 	if (s == nil or sub == nil or sub == "") then
-		return false;
+		return false
 	end
 
-	local sublen = string.len (sub);
+	local sublen = string.len(sub)
 
-	if (string.len (s) < sublen) then
-		return false;
+	if (string.len(s) < sublen) then
+		return false
 	end
 
-	return (string.lower (string.sub(s, 1, sublen)) == string.lower(sub));
-
+	return (string.lower(string.sub(s, 1, sublen)) == string.lower(sub))
 end
 
 -----------------------------------------
 
-function zc.CopyDeep (src)
+function zc.CopyDeep(src)
+	local result = {}
 
-	local result = {};
-
-	for n, v in pairs (src) do
+	for n, v in pairs(src) do
 		if (type(v) == "table") then
-			result[n] = zc.CopyDeep(v);
+			result[n] = zc.CopyDeep(v)
 		else
-			result[n] = v;
+			result[n] = v
 		end
 	end
 
-	return result;
-
+	return result
 end
 
 -----------------------------------------
 
-function zc.printableLink (link)
-
+function zc.printableLink(link)
 	if (link == nil) then
-		return "nil";
+		return "nil"
 	end
 
-	local printable = gsub(link, "\124", "\124\124");
+	local printable = gsub(link, "\124", "\124\124")
 
-	return printable;
+	return printable
 end
 
 -----------------------------------------
 
-function zc.printmem ()
+function zc.printmem()
+	local cmem = math.floor(collectgarbage("count"))
 
-	local cmem = math.floor(collectgarbage ("count"))
-
-	UpdateAddOnMemoryUsage();
-	local mem = GetAddOnMemoryUsage("Auctionator");
-	zc.msg_atr (math.floor(mem).." KB  (total LUA: "..cmem.." KB)");
+	UpdateAddOnMemoryUsage()
+	local mem = GetAddOnMemoryUsage("Auctionator")
+	zc.msg_atr(math.floor(mem) .. " KB  (total LUA: " .. cmem .. " KB)")
 end
 
 -----------------------------------------
 
-function zc.printstack (options)
-
-	local cstr		= "";
-	local funcnames	= {};
+function zc.printstack(options)
+	local cstr = ""
+	local funcnames = {}
 
 	if (options == nil) then
-		options = {};
+		options = {}
 	end
 
 	if (options.prefix) then
-		cstr = options.prefix;
+		cstr = options.prefix
 	end
 
-	local s = debugstack (2);
+	local s = debugstack(2)
 
-	local lines = { strsplit("\n", s) };
+	local lines = {strsplit("\n", s)}
 
-	local x = 1;
+	local x = 1
 
-	local v;
-	for a,v in pairs(lines) do
+	local v
+	for a, v in pairs(lines) do
+		local filename = nil
+		local funcname = nil
 
-		local filename = nil;
-		local funcname = nil;
-
-		local a,b = string.find (v, "\\[^\\]*:");
+		local a, b = string.find(v, "\\[^\\]*:")
 
 		if (a) then
-			filename = string.sub (v,a+1,b-1);
-			filename = string.gsub (filename, "\.lua", "");
+			filename = string.sub(v, a + 1, b - 1)
+			filename = string.gsub(filename, ".lua", "")
 		end
 
-		local a,b = string.find (v, "in function `.*\'");
+		local a, b = string.find(v, "in function `.*'")
 		if (a) then
-			funcname = string.sub (v,a+13,b-1);
-			table.insert (funcnames, funcname);
+			funcname = string.sub(v, a + 13, b - 1)
+			table.insert(funcnames, funcname)
 		end
 
 		if (options.verbose) then
 			if (filename ~= nil and funcname ~= nil) then
-				local colwid = math.floor((100 - string.len(funcname)) / 2);
-				local fs = "%-"..colwid.."s (%s)";
-				zc.msg_color (.5, 1, .5, string.format (fs, funcname, filename));
+				local colwid = math.floor((100 - string.len(funcname)) / 2)
+				local fs = "%-" .. colwid .. "s (%s)"
+				zc.msg_color(.5, 1, .5, string.format(fs, funcname, filename))
 			else
-				zc.msg (v);
+				zc.msg(v)
 			end
 		elseif (not options.silent) then
 			if (funcname) then
 				if (x == 2) then
-					cstr = cstr.." > |cFFFFaa88"..funcname;
+					cstr = cstr .. " > |cFFFFaa88" .. funcname
 				else
-					cstr = cstr.." > "..funcname;
+					cstr = cstr .. " > " .. funcname
 				end
-				x = x + 1;
+				x = x + 1
 			end
 		end
 	end
 
 	if (not options.verbose and not options.silent) then
-		zc.msg (cstr);
+		zc.msg(cstr)
 	end
 
-	return funcnames;
-
+	return funcnames
 end
-
-
 
 -----------------------------------------
 
-function zc.tallyAdd (ttable, value)
-
+function zc.tallyAdd(ttable, value)
 	if (ttable[value]) then
-		ttable[value] = ttable[value] + 1;
+		ttable[value] = ttable[value] + 1
 	else
-		ttable[value] = 1;
+		ttable[value] = 1
 	end
 end
 
-
 -----------------------------------------
 
-function zc.tallyPrint (ttable, options)
+function zc.tallyPrint(ttable, options)
+	local sortedTable = {}
+	local total = 0
 
-	local sortedTable = {};
-	local total = 0;
+	local n = 1
+	for value, count in pairs(ttable) do
+		sortedTable[n] = {}
+		sortedTable[n].value = value
+		sortedTable[n].count = count
 
-	local n = 1;
-	for value,count in pairs(ttable) do
+		total = total + count
 
-		sortedTable[n] = {};
-		sortedTable[n].value	= value;
-		sortedTable[n].count	= count;
-
-		total = total + count;
-
-		n = n + 1;
+		n = n + 1
 	end
 
-
-	if		(options.sortByValue and options.sortDesc) then			table.sort (sortedTable, function(x,y) return x.value > y.value; end);
-	elseif	(options.sortByValue and not options.sortDesc) then		table.sort (sortedTable, function(x,y) return x.value < y.value; end);
-	elseif	(options.sortDesc) then									table.sort (sortedTable, function(x,y) return x.count > y.count; end);
-	else															table.sort (sortedTable, function(x,y) return x.count < y.count; end);
+	if (options.sortByValue and options.sortDesc) then
+		table.sort(
+			sortedTable,
+			function(x, y)
+				return x.value > y.value
+			end
+		)
+	elseif (options.sortByValue and not options.sortDesc) then
+		table.sort(
+			sortedTable,
+			function(x, y)
+				return x.value < y.value
+			end
+		)
+	elseif (options.sortDesc) then
+		table.sort(
+			sortedTable,
+			function(x, y)
+				return x.count > y.count
+			end
+		)
+	else
+		table.sort(
+			sortedTable,
+			function(x, y)
+				return x.count < y.count
+			end
+		)
 	end
-
 
 	for n = 1, #sortedTable do
-
 		if (not options.printCount or n < options.printCount) then
-			zc.msg_pink (sortedTable[n].count.."    "..sortedTable[n].value);
+			zc.msg_pink(sortedTable[n].count .. "    " .. sortedTable[n].value)
 		end
 	end
 
-	zc.msg_yellow ("Total: "..total);
+	zc.msg_yellow("Total: " .. total)
 end
