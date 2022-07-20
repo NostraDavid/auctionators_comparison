@@ -1,144 +1,130 @@
-
-local addonName, addonTable = ...; 
-local zc = addonTable.zc;
-local zz = zc.md;
+local addonName, addonTable = ...
+local zc = addonTable.zc
+local zz = zc.md
 local _
 
 -----------------------------------------
 
-local origGetSellValue		= GetSellValue;
-local origGetAuctionBuyout	= GetAuctionBuyout;
+local origGetSellValue = GetSellValue
+local origGetAuctionBuyout = GetAuctionBuyout
 
 -----------------------------------------
 
-function GetSellValue (item)		-- Tekkub's API
-	
-	return Atr_GetSellValue(item);
+function GetSellValue(item) -- Tekkub's API
+    return Atr_GetSellValue(item)
 end
 
 -----------------------------------------
 
-function GetAuctionBuyout (item)		-- Tekkub's API
-	
-	return Atr_GetAuctionBuyout(item);
+function GetAuctionBuyout(item) -- Tekkub's API
+    return Atr_GetAuctionBuyout(item)
 end
 
 -----------------------------------------
 
-function Atr_GetSellValue (item)		-- Just like Tekkub's API but for when you want to be sure you're calling Auctionator's version of it
+function Atr_GetSellValue(item) -- Just like Tekkub's API but for when you want to be sure you're calling Auctionator's version of it
+    local sellval = select(11, GetItemInfo(item))
 
-	local sellval = select (11, GetItemInfo(item));
+    if (sellval ~= nil) then
+        return sellval
+    end
 
-	if (sellval ~= nil) then
-		return sellval;
-	end
-	
-	if (origGetSellValue) then
-		return origGetSellValue(item);
-	end
-	
-	return 0;
-end
+    if (origGetSellValue) then
+        return origGetSellValue(item)
+    end
 
-
------------------------------------------
-
-function Atr_GetAuctionBuyout (item)  -- Just like Tekkub's API but for when you want to be sure you're calling Auctionator's version of it
-
-	local sellval;
-
-	if (type(item) == "string") then
-		sellval = Atr_GetAuctionPrice(item);
-	end
-	
-	if (sellval == nil) then
-		local name = GetItemInfo(item);
-		if (name) then
-			sellval = Atr_GetAuctionPrice(name);
-		end
-	end
-
-	
-	if (sellval) then
-		return sellval;
-	end
-
-	if (origGetAuctionBuyout) then
-		return origGetAuctionBuyout(item);
-	end
-	
-	return nil;
+    return 0
 end
 
 -----------------------------------------
 
-function Atr_GetDisenchantValue (item)
+function Atr_GetAuctionBuyout(item) -- Just like Tekkub's API but for when you want to be sure you're calling Auctionator's version of it
+    local sellval
 
-	local itemName, itemLink, itemRarity, itemLevel, _, itemType = GetItemInfo (item);
+    if (type(item) == "string") then
+        sellval = Atr_GetAuctionPrice(item)
+    end
 
-	if (itemLink) then
-		return Atr_CalcDisenchantPrice (itemType, itemRarity, itemLevel);
-	end
-	
-	return nil;
+    if (sellval == nil) then
+        local name = GetItemInfo(item)
+        if (name) then
+            sellval = Atr_GetAuctionPrice(name)
+        end
+    end
+
+    if (sellval) then
+        return sellval
+    end
+
+    if (origGetAuctionBuyout) then
+        return origGetAuctionBuyout(item)
+    end
+
+    return nil
 end
 
 -----------------------------------------
 
-function Atr_SearchAH (shoppingListName, items)
+function Atr_GetDisenchantValue(item)
+    local itemName, itemLink, itemRarity, itemLevel, _, itemType = GetItemInfo(item)
 
-	if (shoppingListName == nil) then
-		shoppingListName = "Unknown"
-	end
+    if (itemLink) then
+        return Atr_CalcDisenchantPrice(itemType, itemRarity, itemLevel)
+    end
 
-	local slist = Atr_SList.create (shoppingListName, false, true)
-
-	local i;
-	for i = 1, #items do
-		slist:AddItem ("\""..items[i].."\"")
-	end
-
-	if (not Atr_IsTabSelected(SELL_TAB)) then
-		Atr_SelectPane (SELL_TAB);
-	end
-
-	Atr_SetSearchText ("{ "..shoppingListName.." }");
-	Atr_Search_Onclick ();
-
+    return nil
 end
 
 -----------------------------------------
 
-local DBupdateCallbacks = {};
+function Atr_SearchAH(shoppingListName, items)
+    if (shoppingListName == nil) then
+        shoppingListName = "Unknown"
+    end
 
------------------------------------------
+    local slist = Atr_SList.create(shoppingListName, false, true)
 
-function Atr_RegisterFor_DBupdated (cbFunc)
+    local i
+    for i = 1, #items do
+        slist:AddItem('"' .. items[i] .. '"')
+    end
 
-	table.insert (DBupdateCallbacks, cbFunc);
+    if (not Atr_IsTabSelected(SELL_TAB)) then
+        Atr_SelectPane(SELL_TAB)
+    end
 
+    Atr_SetSearchText("{ " .. shoppingListName .. " }")
+    Atr_Search_Onclick()
 end
 
 -----------------------------------------
 
-function Atr_Broadcast_DBupdated (num, kind, binfo)
+local DBupdateCallbacks = {}
 
-	local n;
-	
-	for n = 1,#DBupdateCallbacks do
-		local cbFunc = DBupdateCallbacks[n]
-		if (type(cbFunc) == "function") then
-			cbFunc(num, kind, binfo)
-		end
-	end
+-----------------------------------------
 
+function Atr_RegisterFor_DBupdated(cbFunc)
+    table.insert(DBupdateCallbacks, cbFunc)
+end
+
+-----------------------------------------
+
+function Atr_Broadcast_DBupdated(num, kind, binfo)
+    local n
+
+    for n = 1, #DBupdateCallbacks do
+        local cbFunc = DBupdateCallbacks[n]
+        if (type(cbFunc) == "function") then
+            cbFunc(num, kind, binfo)
+        end
+    end
 end
 
 -----------------------------------------
 --[[
 function Atr_TestListener (num, kind, binfo)
 	zz (num, "items found", kind)
-	
+
 	if (type(binfo) == "table") then
 		local z;
 		for z = 1,#binfo do
@@ -149,4 +135,4 @@ end
 
 
 Atr_RegisterFor_DBupdated (Atr_TestListener)
-]]--
+]] --

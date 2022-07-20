@@ -130,7 +130,7 @@ function addon:GetItemPriceInfo(itemLink)
 		end
 	end
 
-	local PriceAfterAHCut = itemPrice * 0.95	
+	local PriceAfterAHCut = itemPrice * 0.95
 	local priceText = string.format("%s|cFF%s %s   |   %s|r", changeIndicator,
 	(numAvailable and numAvailable ~= 0) and "FFFFFF" or "FF0000",
 	gAtrZC.priceToMoneyString(itemPrice), gAtrZC.priceToMoneyString(PriceAfterAHCut))
@@ -146,7 +146,7 @@ end
 --[[ 	Data Display	 ]]--
 function addon:SetToolipPriceInfo(tip, priceText)
 	if not priceText or not tip then return end
-	
+
 	if tip.AddLine then
 		local aucPriceLine = tip:NumLines()
 		_G[tip:GetName() .. "TextRight"..aucPriceLine]:SetText(priceText)
@@ -199,9 +199,9 @@ hooksecurefunc(AtrScan, "CondenseAndSort", function(self)
 					sorted.owner = (sorted.owner and "Multiple Sellers" or sd.owner)
 					-- sorted.owner = (sorted.owner and sorted.owner..", " or "") .. sd.owner
 				end
-			end		
+			end
 		--end
-		
+
 
 	end
 end)
