@@ -229,4 +229,3 @@ AtrL["Spanish translation courtesy of %s"] = "Traducción a español por cortes�
 
 
 end
- 
