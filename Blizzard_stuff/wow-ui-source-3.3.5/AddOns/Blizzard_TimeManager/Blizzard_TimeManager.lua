@@ -393,7 +393,7 @@ function TimeManager_ToggleTimeFormat()
 	-- TimeManagerClockButton_OnUpdate will pick up the clock change
 	if ( CalendarFrame_UpdateTimeFormat ) then
 		-- update the Calendar's time format if it's available
-		CalendarFrame_UpdateTimeFormat();	
+		CalendarFrame_UpdateTimeFormat();
 	end
 end
 
@@ -765,4 +765,3 @@ function StopwatchPlayPauseButton_OnClick(self)
 		PlaySound("igMainMenuOptionCheckBoxOn");
 	end
 end
-

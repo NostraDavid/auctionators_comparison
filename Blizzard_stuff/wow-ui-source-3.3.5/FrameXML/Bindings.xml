@@ -205,7 +205,7 @@
 			ActionButtonUp(12);
 		end
 	</Binding>
-	
+
 	<Binding name="SHAPESHIFTBUTTON1">
 		ShapeshiftBar_ChangeForm(1)
 	</Binding>
@@ -672,7 +672,7 @@
 		if ( WorldMapFrame:IsShown() ) then
 			WorldMapFrame_ToggleWindowSize();
 		end
-	</Binding>	
+	</Binding>
 	<Binding name="TOGGLESOCIAL">
 		ToggleFriendsFrame();
 	</Binding>

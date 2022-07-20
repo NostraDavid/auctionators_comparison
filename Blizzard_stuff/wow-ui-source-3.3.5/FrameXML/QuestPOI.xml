@@ -1,35 +1,35 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-	
+
 	<Script file="QuestPOI.lua"/>
-	
-	<Button name="QuestPOITemplate" hidden="true" virtual="true">					
+
+	<Button name="QuestPOITemplate" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="32" y="32"/>
 		</Size>
 		<HitRectInsets>
 			<AbsInset left="8" right="8" top="8" bottom="8"/>
-		</HitRectInsets>		
+		</HitRectInsets>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture file="Interface\WorldMap\UI-QuestPoi-IconGlow.tga" alphaMode="ADD" hidden="true" parentKey="selectionGlow">
 					<Size>
 						<AbsDimension x="50" y="50"/>
-					</Size>										
+					</Size>
 					<Anchors>
 						<Anchor point="CENTER">
 							<Offset>
 								<AbsDimension x="0" y="0"/>
-							</Offset>								
+							</Offset>
 						</Anchor>
 					</Anchors>
-				</Texture>				
+				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
 				<Texture name="$parentIconNumber" file="Interface\WorldMap\UI-QuestPoi-NumberIcons.tga" parentKey="number">
 					<Size>
 						<AbsDimension x="32" y="32"/>
-					</Size>			
+					</Size>
 					<Anchors>
 						<Anchor point="CENTER">
 							<Offset>
@@ -70,8 +70,8 @@
 		<PushedTexture file="Interface\WorldMap\UI-QuestPoi-NumberIcons.tga" alphaMode="BLEND" parentKey="pushedTexture">
 			<TexCoords left="0.750" right=".875" top="0.875" bottom="1" />
 		</PushedTexture>
-	</Button>	
-	<Button name="QuestPOICompletedTemplate" hidden="true" virtual="true">					
+	</Button>
+	<Button name="QuestPOICompletedTemplate" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="32" y="32"/>
 		</Size>
@@ -83,15 +83,15 @@
 				<Texture file="Interface\WorldMap\UI-QuestPoi-IconGlow.tga" alphaMode="ADD" hidden="true" parentKey="selectionGlow">
 					<Size>
 						<AbsDimension x="50" y="50"/>
-					</Size>										
+					</Size>
 					<Anchors>
 						<Anchor point="CENTER">
 							<Offset>
 								<AbsDimension x="0" y="0"/>
-							</Offset>								
+							</Offset>
 						</Anchor>
 					</Anchors>
-				</Texture>				
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>

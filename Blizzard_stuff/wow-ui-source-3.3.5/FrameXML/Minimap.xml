@@ -158,7 +158,7 @@
 								if( GameTooltip:IsOwned(self) ) then
 									MinimapMailFrameUpdate();
 								end
-							</OnEnter>							
+							</OnEnter>
 							<OnLeave function="GameTooltip_Hide"/>
 						</Scripts>
 					</Frame>
@@ -557,9 +557,9 @@
 									<OnEvent function="MiniMapLFG_UpdateIsShown"/>
 									<OnEnter function="MiniMapLFGFrame_OnEnter"/>
 									<OnLeave function="MiniMapLFGFrame_OnLeave"/>
-								</Scripts>						
+								</Scripts>
 								<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
-							</Button>	
+							</Button>
 							<Button name="MinimapZoomIn">
 								<Size>
 									<AbsDimension x="32" y="32"/>
@@ -573,7 +573,7 @@
 								</Anchors>
 								<HitRectInsets>
 									<AbsInset left="4" right="4" top="2" bottom="6"/>
-								</HitRectInsets>								
+								</HitRectInsets>
 								<Scripts>
 									<OnClick function="Minimap_ZoomInClick"/>
 									<OnEnter>
@@ -602,7 +602,7 @@
 								</Anchors>
 								<HitRectInsets>
 									<AbsInset left="4" right="4" top="2" bottom="6"/>
-								</HitRectInsets>								
+								</HitRectInsets>
 								<Scripts>
 									<OnClick function="Minimap_ZoomOutClick"/>
 									<OnEnter>
@@ -695,7 +695,7 @@
 			<Frame name="MiniMapInstanceDifficulty" hidden="true">
 				<Size>
 					<AbsDimension x="38" y="46"/>
-				</Size>			
+				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -708,14 +708,14 @@
 						<Texture name="$parentTexture" file="Interface\Minimap\UI-DungeonDifficulty-Button">
 							<Size>
 								<AbsDimension x="64" y="46"/>
-							</Size>							
+							</Size>
 							<Anchors>
 								<Anchor point="CENTER">
 									<Offset>
 										<AbsDimension x="0" y="0"/>
 									</Offset>
 								</Anchor>
-							</Anchors>							
+							</Anchors>
 							<TexCoords left="0.0" right="0.25" top="0.0703125" bottom="0.4140625"/>
 						</Texture>
 						<FontString name="$parentText" inherits="GameFontNormalSmall" justifyH="CENTER">
@@ -725,7 +725,7 @@
 										<AbsDimension x="-1" y="-7"/>
 									</Offset>
 								</Anchor>
-							</Anchors>						
+							</Anchors>
 						</FontString>
 					</Layer>
 				</Layers>

@@ -3,7 +3,7 @@ function OpenStackSplitFrame(maxStack, parent, anchor, anchorTo)
 	if ( StackSplitFrame.owner ) then
 		StackSplitFrame.owner.hasStackSplit = 0;
 	end
-	
+
 	if ( not maxStack ) then
 		maxStack = 0;
 	end
@@ -124,7 +124,7 @@ function StackSplitFrame_OnKeyDown(self,key)
 		--Running bindings not used by the StackSplit frame allows players to retain control of their characters.
 		RunBinding(GetBindingAction(key));
 	end
-	
+
 	self.down = self.down or {};
 	self.down[key] = true;
 end
@@ -135,7 +135,7 @@ function StackSplitFrame_OnKeyUp(self,key)
 		--If we don't run the up bindings as well, interesting things happen (like you never stop moving)
 		RunBinding(GetBindingAction(key), "up");
 	end
-	
+
 	if ( self.down ) then
 		self.down[key] = nil;
 	end
@@ -169,7 +169,7 @@ end
 
 function StackSplitFrameOkay_Click()
 	StackSplitFrame:Hide();
-	
+
 	if ( StackSplitFrame.owner ) then
 		StackSplitFrame.owner.SplitStack(StackSplitFrame.owner, StackSplitFrame.split);
 	end
@@ -179,14 +179,14 @@ function StackSplitFrameCancel_Click()
 	StackSplitFrame:Hide();
 end
 
-function StackSplitFrame_OnHide (self)	
+function StackSplitFrame_OnHide (self)
 	for key in next, (self.down or {}) do
 		if ( GetBindingAction(key) ) then
 			RunBinding(GetBindingAction(key), "up");
 		end
 		self.down[key] = nil;
 	end
-	
+
 	if ( StackSplitFrame.owner ) then
 		StackSplitFrame.owner.hasStackSplit = 0;
 	end

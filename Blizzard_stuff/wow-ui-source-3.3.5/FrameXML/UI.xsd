@@ -219,7 +219,7 @@
 				<xs:element name="PostClick" type="ScriptType"/>
 				<xs:element name="OnDoubleClick" type="ScriptType"/>
 				<xs:element name="OnValueChanged" type="ScriptType"/>
-				<xs:element name="OnMinMaxChanged" type="ScriptType"/>				
+				<xs:element name="OnMinMaxChanged" type="ScriptType"/>
 				<xs:element name="OnUpdateModel" type="ScriptType"/>
 				<xs:element name="OnAnimFinished" type="ScriptType"/>
 				<xs:element name="OnEnterPressed" type="ScriptType"/>
@@ -572,7 +572,7 @@
 				<xs:attribute name="historyLines" type="xs:int" default="0"/>
 				<xs:attribute name="autoFocus" type="xs:boolean" default="true"/>
 				<xs:attribute name="ignoreArrows" type="xs:boolean" default="false"/>
-				<xs:attribute name="countInvisibleLetters" type="xs:boolean" default="false"/>								
+				<xs:attribute name="countInvisibleLetters" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

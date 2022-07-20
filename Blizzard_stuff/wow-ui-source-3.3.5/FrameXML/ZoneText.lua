@@ -76,7 +76,7 @@ function ZoneText_OnLoad(self)
 end
 
 function ZoneText_OnEvent(self, event, ...)
-	local showZoneText = false;	
+	local showZoneText = false;
 	local zoneText = GetZoneText();
 	if ( (zoneText ~= self.zoneText) or (event == "ZONE_CHANGED_NEW_AREA") ) then
 		self.zoneText = zoneText;
@@ -85,7 +85,7 @@ function ZoneText_OnEvent(self, event, ...)
 		SetZoneText( showZoneText );
 		FadingFrame_Show( self );
 	end
-	
+
 	local subzoneText = GetSubZoneText();
 	if ( subzoneText == "" and not showZoneText) then
 		subzoneText = zoneText;

@@ -82,7 +82,7 @@
 						<Offset>
 							<AbsDimension x="0" y="0"/>
 						</Offset>
-					</Anchor>                   
+					</Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>

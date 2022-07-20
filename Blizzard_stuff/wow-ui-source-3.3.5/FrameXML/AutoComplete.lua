@@ -55,7 +55,7 @@ AUTOCOMPLETE_LIST_TEMPLATES = {
 		exclude = AUTOCOMPLETE_FLAG_BNET,
 	},
 }
-		
+
 AUTOCOMPLETE_LIST = {};
 local AUTOCOMPLETE_LIST = AUTOCOMPLETE_LIST;
 	AUTOCOMPLETE_LIST.ALL				= AUTOCOMPLETE_LIST_TEMPLATES.ALL;
@@ -83,9 +83,9 @@ AUTOCOMPLETE_DEFAULT_Y_OFFSET = 3;
 function AutoComplete_OnLoad(self)
 	self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 	self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
-	
+
 	self.maxHeight = AUTOCOMPLETE_MAX_BUTTONS * AutoCompleteButton1:GetHeight();
-	
+
 	AutoCompleteInstructions:SetText("|cffbbbbbb"..PRESS_TAB.."|r");
 end
 
@@ -104,7 +104,7 @@ function AutoComplete_Update(parent, text, cursorPosition)
 		if(self.parent ~= parent) then
 			AutoComplete_SetSelectedIndex(self, 0);
 		end
-		
+
 		if ( parent:GetBottom() - self.maxHeight <= (AUTOCOMPLETE_DEFAULT_Y_OFFSET + 10) ) then	--10 is a magic number from the offset of AutoCompleteButton1.
 			attachPoint = "ABOVE";
 		else
@@ -120,7 +120,7 @@ function AutoComplete_Update(parent, text, cursorPosition)
 			end
 			self.attachPoint = attachPoint;
 		end
-		
+
 		self.parent = parent;
 		--We ask for one more result than we need so that we know whether or not results are continued
 		AutoComplete_UpdateResults(self,
@@ -185,7 +185,7 @@ function AutoComplete_UpdateResults(self, ...)
 		button:SetText(CONTINUED);
 		button:Disable();
 		self.numResults = numReturns - 1;
-	else 
+	else
 		self.numResults = numReturns;
 	end
 end
@@ -238,7 +238,7 @@ function AutoCompleteEditBox_AddHighlightedText(editBox, text)
 	if ( nameToShow ) then
 		--We're going to be setting the text programatically which will clear the userInput flag on the editBox. So we want to manually update the dropdown before we change the text.
 		AutoComplete_Update(editBox, editBoxText, utf8Position);
-		
+
 		local newText = string.gsub(editBoxText, editBox.autoCompleteRegex or AUTOCOMPLETE_SIMPLE_REGEX,
 			--DEBUG FIXME - This likely won't work with X-server whispers.
 			string.format(editBox.autoCompleteFormatRegex or AUTOCOMPLETE_SIMPLE_FORMAT_REGEX, nameToShow,
@@ -267,23 +267,23 @@ function AutoCompleteEditBox_OnEscapePressed(self)
 		return true;
 	end
 	return false;
-end	
+end
 
 function AutoCompleteButton_OnClick(self)
 	local autoComplete = self:GetParent();
 	local editBox = autoComplete.parent;
 	local editBoxText = editBox:GetText();
-	
+
 	--The following is used to replace "/whisper ar message here" with "/whisper Arenai message here"
 	local newText = string.gsub(editBoxText, editBox.autoCompleteRegex or AUTOCOMPLETE_SIMPLE_REGEX,
 		string.format(editBox.autoCompleteFormatRegex or AUTOCOMPLETE_SIMPLE_FORMAT_REGEX, self:GetText(),
 			string.match(editBoxText, editBox.autoCompleteRegex or AUTOCOMPLETE_SIMPLE_REGEX)),
 			1)
-	
+
 	if ( editBox.addSpaceToAutoComplete ) then
 		newText = newText.." ";
 	end
-	
+
 	editBox:SetText(newText);
 	--When we change the text, we move to the end, so we'll be consistent and move to the end if we don't change it as well.
 	editBox:SetCursorPosition(strlen(newText));

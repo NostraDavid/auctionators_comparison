@@ -31,7 +31,7 @@ function MailFrame_OnLoad(self)
 	self:RegisterEvent("MAIL_SEND_INFO_UPDATE");
 	self:RegisterEvent("MAIL_SEND_SUCCESS");
 	self:RegisterEvent("MAIL_FAILED");
-	self:RegisterEvent("MAIL_SUCCESS");	
+	self:RegisterEvent("MAIL_SUCCESS");
 	self:RegisterEvent("CLOSE_INBOX_ITEM");
 	self:RegisterEvent("MAIL_LOCK_SEND_ITEMS");
 	self:RegisterEvent("MAIL_UNLOCK_SEND_ITEMS");
@@ -137,7 +137,7 @@ function InboxFrame_Update()
 	local index = ((InboxFrame.pageNum - 1) * INBOXITEMS_TO_DISPLAY) + 1;
 	local packageIcon, stationeryIcon, sender, subject, money, CODAmount, daysLeft, itemCount, wasRead, x, y, z, isGM, firstItemQuantity;
 	local icon, button, expireTime, senderText, subjectText, buttonIcon;
-	
+
 	if ( totalItems > numItems ) then
 		if ( not InboxFrame.maxShownMails ) then
 			InboxFrame.maxShownMails = numItems;
@@ -147,12 +147,12 @@ function InboxFrame_Update()
 	else
 		InboxFrame.overflowMails = nil;
 	end
-	
+
 	for i=1, INBOXITEMS_TO_DISPLAY do
 		if ( index <= numItems ) then
 			-- Setup mail item
 			packageIcon, stationeryIcon, sender, subject, money, CODAmount, daysLeft, itemCount, wasRead, x, y, z, isGM, firstItemQuantity = GetInboxHeaderInfo(index);
-			
+
 			-- Set icon
 			if ( packageIcon ) and ( not isGM ) then
 				icon = packageIcon;
@@ -160,7 +160,7 @@ function InboxFrame_Update()
 				icon = stationeryIcon;
 			end
 
-			
+
 			-- If no sender set it to "Unknown"
 			if ( not sender ) then
 				sender = UNKNOWN;
@@ -177,7 +177,7 @@ function InboxFrame_Update()
 			subjectText:SetText(subject);
 			senderText = _G["MailItem"..i.."Sender"];
 			senderText:SetText(sender);
-			
+
 			-- If hasn't been read color the button yellow
 			if ( wasRead ) then
 				senderText:SetTextColor(0.75, 0.75, 0.75);
@@ -266,7 +266,7 @@ function InboxFrame_OnClick(self, index)
 		PlaySound("igSpellBookOpen");
 	else
 		InboxFrame.openMailID = 0;
-		HideUIPanel(OpenMailFrame);		
+		HideUIPanel(OpenMailFrame);
 	end
 	InboxFrame_Update();
 end
@@ -313,14 +313,14 @@ end
 function InboxNextPage()
 	PlaySound("igMainMenuOptionCheckBoxOn");
 	InboxFrame.pageNum = InboxFrame.pageNum + 1;
-	InboxGetMoreMail();	
+	InboxGetMoreMail();
 	InboxFrame_Update();
 end
 
 function InboxPrevPage()
 	PlaySound("igMainMenuOptionCheckBoxOn");
 	InboxFrame.pageNum = InboxFrame.pageNum - 1;
-	InboxGetMoreMail();	
+	InboxGetMoreMail();
 	InboxFrame_Update();
 end
 
@@ -350,7 +350,7 @@ function OpenMailFrame_OnHide()
 			isAuctionTempInvoice = true;
 		end
 	end
-	
+
 	-- If mail contains no items, then delete it on close
 	local packageIcon, stationeryIcon, sender, subject, money, CODAmount, daysLeft, itemCount, wasRead, wasReturned, textCreated  = GetInboxHeaderInfo(InboxFrame.openMailID);
 	if ( money == 0 and not itemCount and textCreated and not isAuctionTempInvoice ) then
@@ -486,7 +486,7 @@ function OpenMail_Update()
 				-- Position amount paid
 				OpenMailInvoiceAmountReceived:SetPoint("TOPRIGHT", "OpenMailInvoiceSalePrice", "TOPRIGHT", 0, 0);
 				-- Update purchase price
-				MoneyFrame_Update("OpenMailTransactionAmountMoneyFrame", bid);	
+				MoneyFrame_Update("OpenMailTransactionAmountMoneyFrame", bid);
 				-- Position buy line
 				OpenMailArithmeticLine:SetPoint("TOP", "OpenMailInvoicePurchaser", "BOTTOMLEFT", 125, 0);
 				-- Not used for a purchase invoice
@@ -527,7 +527,7 @@ function OpenMail_Update()
 				OpenMailSalePriceMoneyFrame:Show();
 				OpenMailInvoiceNotYetSent:Hide();
 				OpenMailInvoiceMoneyDelay:Hide();
-			elseif (invoiceType == "seller_temp_invoice") then 
+			elseif (invoiceType == "seller_temp_invoice") then
 				if ( bid == buyout ) then
 					buyMode = "("..BUYOUT..")";
 				else
@@ -541,7 +541,7 @@ function OpenMail_Update()
 				-- Position amount to be received
 				OpenMailInvoiceAmountReceived:SetPoint("TOPRIGHT", "OpenMailInvoiceSalePrice", "TOPRIGHT", 0, 0);
 				-- Update purchase price
-				MoneyFrame_Update("OpenMailTransactionAmountMoneyFrame", bid+deposit-consignment);	
+				MoneyFrame_Update("OpenMailTransactionAmountMoneyFrame", bid+deposit-consignment);
 				-- Position buy line
 				OpenMailArithmeticLine:SetPoint("TOP", "OpenMailInvoicePurchaser", "BOTTOMLEFT", 125, 0);
 				-- How long they have to wait to get the money
@@ -856,7 +856,7 @@ function SendMailFrame_Update()
 	else
 		-- If no itemname see if the subject is the name of the previously held item, if so clear the subject
 		if ( SendMailSubjectEditBox:GetText() == SendMailFrame.previousItem ) then
-			SendMailSubjectEditBox:SetText("");	
+			SendMailSubjectEditBox:SetText("");
 		end
 		SendMailFrame.previousItem = "";
 
@@ -865,8 +865,8 @@ function SendMailFrame_Update()
 		SendMailCODButtonText:SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b);
 	end
 	-- Update the cost
-	MoneyFrame_Update("SendMailCostMoneyFrame", GetSendMailPrice());	
-	
+	MoneyFrame_Update("SendMailCostMoneyFrame", GetSendMailPrice());
+
 	-- Color the postage text
 	if ( GetSendMailPrice() > GetMoney() ) then
 		SetMoneyFrameColor("SendMailCostMoneyFrame", "red");
@@ -919,14 +919,14 @@ function SendMailFrame_Update()
 	SendStationeryBackgroundLeft:SetTexCoord(0, 1.0, 0, min(scrollHeight, 256) / 256);
 	SendStationeryBackgroundRight:SetHeight(min(scrollHeight, 256));
 	SendStationeryBackgroundRight:SetTexCoord(0, 1.0, 0, min(scrollHeight, 256) / 256);
-	
+
 	-- Set Items
 	for i=1, ATTACHMENTS_MAX_SEND do
 		if (cursory >= 0) then
 			_G["SendMailAttachment"..i]:Enable();
 			_G["SendMailAttachment"..i]:Show();
 			_G["SendMailAttachment"..i]:SetPoint("TOPLEFT", "SendMailFrame", "BOTTOMLEFT", indentx + (tabx * cursorx), indenty + (taby * cursory));
-			
+
 			cursorx = cursorx + 1;
 			if (cursorx >= ATTACHMENTS_PER_ROW_SEND) then
 				cursory = cursory - 1;
@@ -979,14 +979,14 @@ function SendMailFrame_CanSend()
 			if ( ENABLE_COLORBLIND_MODE ~= "1" ) then
 				SendMailErrorCoin:Show();
 			end
-			SendMailErrorText:Show();			
+			SendMailErrorText:Show();
 		else
 			SendMailErrorText:Hide();
 			SendMailErrorCoin:Hide();
 			checks = checks + 1;
 		end
 	end
-	
+
 	if ( checks == checksRequired ) then
 		SendMailMailButton:Enable();
 	else
@@ -1041,7 +1041,7 @@ function StationeryPopupFrame_Update()
 			_G["StationeryPopupButton"..i.."Icon"]:SetTexture("");
 			button:Hide();
 		end
-		
+
 		if ( index == StationeryPopupFrame.selectedIndex ) then
 			button:SetChecked(1);
 		else

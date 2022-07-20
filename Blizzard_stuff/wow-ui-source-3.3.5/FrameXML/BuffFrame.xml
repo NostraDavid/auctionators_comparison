@@ -54,7 +54,7 @@
 						<Anchor point="CENTER"/>
 					</Anchors>
 					<TexCoords left="0.296875" right="0.5703125" top="0" bottom="0.515625"/>
-				</Texture>	
+				</Texture>
 				<FontString parentKey="symbol" inherits="TextStatusBarText">
 					<Anchors>
 						<Anchor point="TOPLEFT">
@@ -114,7 +114,7 @@
 			<OnUpdate function="BuffFrame_OnUpdate"/>
 		</Scripts>
 	</Frame>
-	
+
 	<Button name="ConsolidatedBuffs" parent="UIParent" inherits="AuraButtonTemplate" hidden="true">
 		<Anchors>
 			<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT">
@@ -141,7 +141,7 @@
 	<Frame name="ConsolidatedBuffsTooltip" frameStrata="TOOLTIP" clampedToScreen="true" hidden="true">
 		<Anchors>
 			<Anchor point="TOPLEFT" />
-		</Anchors>	
+		</Anchors>
 		<Size>
 			<AbsDimension x="60" y="60"/>
 		</Size>
@@ -167,7 +167,7 @@
 							<AbsDimension x="16" y="-16"/>
 						</Offset>
 					</Anchor>
-				</Anchors>			
+				</Anchors>
 			</Frame>
 		</Frames>
 		<Scripts>
@@ -221,5 +221,5 @@
 		<Scripts>
 			<OnUpdate function="TemporaryEnchantFrame_OnUpdate"/>
 		</Scripts>
-	</Frame>	
+	</Frame>
 </Ui>

@@ -54,7 +54,7 @@ function SetItemButtonTextureVertexColor(button, r, g, b)
 	if ( not button ) then
 		return;
 	end
-	
+
 	_G[button:GetName().."IconTexture"]:SetVertexColor(r, g, b);
 end
 
@@ -77,7 +77,7 @@ function SetItemButtonDesaturated(button, desaturated, r, g, b)
 		g = 0.5;
 		b = 0.5;
 	end
-	
+
 	icon:SetVertexColor(r, g, b);
 end
 
@@ -85,7 +85,7 @@ function SetItemButtonNormalTextureVertexColor(button, r, g, b)
 	if ( not button ) then
 		return;
 	end
-	
+
 	_G[button:GetName().."NormalTexture"]:SetVertexColor(r, g, b);
 end
 
@@ -93,7 +93,7 @@ function SetItemButtonNameFrameVertexColor(button, r, g, b)
 	if ( not button ) then
 		return;
 	end
-	
+
 	_G[button:GetName().."NameFrame"]:SetVertexColor(r, g, b);
 end
 
@@ -101,7 +101,7 @@ function SetItemButtonSlotVertexColor(button, r, g, b)
 	if ( not button ) then
 		return;
 	end
-	
+
 	_G[button:GetName().."SlotTexture"]:SetVertexColor(r, g, b);
 end
 

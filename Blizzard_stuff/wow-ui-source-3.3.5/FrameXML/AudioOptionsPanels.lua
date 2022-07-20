@@ -142,7 +142,7 @@ function AudioOptionsSoundPanelHardwareDropDown_OnLoad (self)
 	UIDropDownMenu_SetSelectedValue(self, selectedDriverIndex);
 	UIDropDownMenu_Initialize(self, AudioOptionsSoundPanelHardwareDropDown_Initialize);
 
-	self.SetValue = 
+	self.SetValue =
 		function (self, value)
 			self.value = value;
 			BlizzardOptionsPanel_SetCVarSafe(self.cvar, value);
@@ -210,8 +210,8 @@ VoicePanelOptions = {
 	VoiceActivationSensitivity = { text = "VOICE_ACTIVATION_SENSITIVITY", minValue = 0, maxValue = 1, valueStep = 0.02 },
 }
 
-local AudioOptionsVoicePanelDisableList = 
-{	
+local AudioOptionsVoicePanelDisableList =
+{
 	AudioOptionsVoicePanelChatMode1Label = NORMAL_FONT_COLOR,
 	AudioOptionsVoicePanelAudioLabel = NORMAL_FONT_COLOR,
 	AudioOptionsVoicePanelAudioDescription = HIGHLIGHT_FONT_COLOR,
@@ -223,7 +223,7 @@ local AudioOptionsVoicePanelDisableList =
 	AudioOptionsVoicePanelAmbienceFadeLabel = NORMAL_FONT_COLOR,
 };
 
-local AudioOptionsVoicePanelFrameMicrophoneList = 
+local AudioOptionsVoicePanelFrameMicrophoneList =
 {
 	AudioOptionsVoicePanelMicrophoneVolumeLabel = NORMAL_FONT_COLOR,
 	AudioOptionsVoicePanelMicTestText = NORMAL_FONT_COLOR,
@@ -387,7 +387,7 @@ function AudioOptionsVoicePanelKeyBindingButton_Refresh ()
 end
 
 function AudioOptionsVoicePanelKeyBindingButton_SetTooltip ()
-	local textWidth = AudioOptionsVoicePanelChatMode1KeyBindingButtonHiddenText:GetWidth();	
+	local textWidth = AudioOptionsVoicePanelChatMode1KeyBindingButtonHiddenText:GetWidth();
 	if ( textWidth > 135 ) then
 		AudioOptionsVoicePanelChatMode1KeyBindingButton.tooltip = AudioOptionsVoicePanelChatMode1KeyBindingButtonHiddenText:GetText();
 	else
@@ -455,7 +455,7 @@ function AudioOptionsVoicePanelKeyBindingButton_CancelBinding ()
 	self:SetScript("OnKeyUp", nil);
 	AudioOptionsVoicePanelBindingOutput:SetAlpha(1.0)
 	AudioOptionsVoicePanelBindingOutput.fade = 0;
-	UIFrameFadeIn(AudioOptionsVoicePanelBindingOutput, 0); 
+	UIFrameFadeIn(AudioOptionsVoicePanelBindingOutput, 0);
 	PUSH_TO_TALK_BUTTON = "";
 	PUSH_TO_TALK_MODIFIER = "";
 end
@@ -476,7 +476,7 @@ function AudioOptionsVoicePanelKeyBindingButton_OnClick (self, button)
 				self:SetScript("OnKeyUp", AudioOptionsVoicePanelKeyBindingButton_OnKeyUp);
 				AudioOptionsVoicePanelBindingOutput:SetAlpha(1.0)
 				AudioOptionsVoicePanelBindingOutput.fade = 0;
-				UIFrameFadeIn(AudioOptionsVoicePanelBindingOutput, 0); 
+				UIFrameFadeIn(AudioOptionsVoicePanelBindingOutput, 0);
 				AudioOptionsVoicePanelBindingOutputTextConflict:SetText("");
 				PUSH_TO_TALK_BUTTON = "";
 				PUSH_TO_TALK_MODIFIER = "";
@@ -573,7 +573,7 @@ function AudioOptionsVoicePanelInputDeviceDropDown_OnLoad (self)
 	UIDropDownMenu_SetSelectedValue(self, selectedDriverIndex);
 	UIDropDownMenu_Initialize(self, AudioOptionsVoicePanelInputDeviceDropDown_Initialize);
 
-	self.SetValue = 
+	self.SetValue =
 		function (self, value)
 			self.value = value;
 			AudioOptionsVoicePanel_SetInputDevice(value);
@@ -638,11 +638,11 @@ function RecordLoopbackSoundButton_OnUpdate (self)
 			local isRecording = VoiceChat_IsRecordingLoopbackSound();
 			if ( isRecording == 0 ) then
 				RecordLoopbackSoundButton:Enable();
-				RecordLoopbackSoundButtonTexture:SetVertexColor(1, 0, 0);	
+				RecordLoopbackSoundButtonTexture:SetVertexColor(1, 0, 0);
 				self.clicked = nil;
 			else
 				RecordLoopbackSoundButton:Disable();
-				RecordLoopbackSoundButtonTexture:SetVertexColor(0.5, 0.5, 0.5);								
+				RecordLoopbackSoundButtonTexture:SetVertexColor(0.5, 0.5, 0.5);
 			end
 		end
 	end
@@ -686,7 +686,7 @@ function AudioOptionsVoicePanelChatModeDropDown_OnLoad (self)
 	UIDropDownMenu_SetSelectedValue(self, voiceChatMode);
 	UIDropDownMenu_Initialize(self, AudioOptionsVoicePanelChatModeDropDown_Initialize);
 
-	self.SetValue = 
+	self.SetValue =
 		function (self, value)
 			self.value = value;
 			BlizzardOptionsPanel_SetCVarSafe(self.cvar, value);
@@ -764,7 +764,7 @@ function AudioOptionsVoicePanelOutputDeviceDropDown_OnLoad (self)
 	UIDropDownMenu_SetSelectedValue(self, selectedDriverIndex);
 	UIDropDownMenu_Initialize(self, AudioOptionsVoicePanelOutputDeviceDropDown_Initialize);
 
-	self.SetValue = 
+	self.SetValue =
 		function (self, value)
 			self.value = value;
 			AudioOptionsVoicePanel_SetOutputDevice(value);
@@ -788,7 +788,7 @@ end
 
 function AudioOptionsVoicePanelOutputDeviceDropDown_Initialize(self)
 	local selectedValue = UIDropDownMenu_GetSelectedValue(self);
-	local num = Sound_ChatSystem_GetNumOutputDrivers();	
+	local num = Sound_ChatSystem_GetNumOutputDrivers();
 	local info = UIDropDownMenu_CreateInfo();
 	if ( num == 0 ) then
 		UIDropDownMenu_SetText(self, "");

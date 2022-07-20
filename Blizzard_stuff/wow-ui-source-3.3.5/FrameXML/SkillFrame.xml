@@ -212,7 +212,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<!--	Replace once code is ready...	
+			<!--	Replace once code is ready...
 			<CheckButton name="SkillSortButton" inherits="OptionsSmallCheckButtonTemplate">
 				<Size>
 					<AbsDimension x="25" y="25"/>
@@ -285,7 +285,7 @@
 								<Anchor point="RIGHT" relativeTo="SkillFrameExpandTabRight" relativePoint="LEFT"/>
 							</Anchors>
 						</Texture>
-						
+
 					</Layer>
 				</Layers>
 				<Frames>

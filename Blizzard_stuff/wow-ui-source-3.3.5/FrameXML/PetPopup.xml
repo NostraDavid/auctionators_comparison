@@ -88,7 +88,7 @@
 					<OnEscapePressed function="PetPopup_Cancel"/>
 				</Scripts>
 				<FontString inherits="ChatFontNormal"/>
-			</EditBox>			
+			</EditBox>
 			<Button name="PetRenamePopupAcceptButton" inherits="PetPopupButtonTemplate">
 				<Anchors>
 					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM">

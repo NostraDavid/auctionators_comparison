@@ -14,14 +14,14 @@ function AlternatePowerBar_Initialize(self)
 		self.powerName = ADDITIONAL_POWER_BAR_NAME;
 		self.powerIndex = ADDITIONAL_POWER_BAR_INDEX;
 	end
-	
+
 	self:RegisterEvent("UNIT_"..self.powerName);
 	self:RegisterEvent("UNIT_MAX"..self.powerName);
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
 	self:RegisterEvent("UNIT_DISPLAYPOWER");
-	
+
 	SetTextStatusBarText(self, _G[self:GetName().."Text"])
-	
+
 	local info = PowerBarColor[self.powerName];
 	self:SetStatusBarColor(info.r, info.g, info.b);
 end

@@ -25,7 +25,7 @@ function ComboFrame_Update()
 			UIFrameFadeIn(ComboFrame, COMBOFRAME_FADE_IN);
 		end
 
-		
+
 		for i=1, MAX_COMBO_POINTS do
 			local fadeInfo = {};
 			comboPoint = _G["ComboPoint" .. i];

@@ -67,7 +67,7 @@ function OptionsList_DisplayButton (button, element)
 	-- Do display things
 	button:Show();
 	button.element = element;
-	
+
 	if (element.parent) then
 		button:SetNormalFontObject(GameFontHighlightSmall);
 		button:SetHighlightFontObject(GameFontHighlightSmall);
@@ -78,14 +78,14 @@ function OptionsList_DisplayButton (button, element)
 		button.text:SetPoint("LEFT", 8, 2);
 	end
 	button.text:SetText(element.name);
-	
+
 	if (element.hasChildren) then
 		if (element.collapsed) then
 			button.toggle:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-UP");
 			button.toggle:SetPushedTexture("Interface\\Buttons\\UI-PlusButton-DOWN");
 		else
 			button.toggle:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-UP");
-			button.toggle:SetPushedTexture("Interface\\Buttons\\UI-MinusButton-DOWN");		
+			button.toggle:SetPushedTexture("Interface\\Buttons\\UI-MinusButton-DOWN");
 		end
 		button.toggle:Show();
 	else
@@ -403,4 +403,3 @@ function OptionsFrame_AddCategory (self, panel)
 	tinsert(self.categoryList, panel);
 	self.categoryFrame:update();
 end
-

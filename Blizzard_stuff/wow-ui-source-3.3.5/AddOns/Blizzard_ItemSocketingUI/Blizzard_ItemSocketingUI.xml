@@ -273,7 +273,7 @@
 										self:SetBackdrop(nil);
 									</OnLoad>
 								</Scripts>
-							</GameTooltip>							
+							</GameTooltip>
 						</Frames>
 					</Frame>
 				</ScrollChild>

@@ -1114,7 +1114,7 @@
 										ScrollingEdit_OnTextChanged(self, self:GetParent());
 										CalendarEventSetDescription(self:GetText());
 										CalendarCreateEventCreateButton_Update();
-									</OnTextChanged> 
+									</OnTextChanged>
 									<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
 									<OnUpdate>
 										ScrollingEdit_OnUpdate(self, elapsed, self:GetParent());
@@ -1806,4 +1806,3 @@
 		</Scripts>
 	</Frame>
 </Ui>
-

@@ -24,20 +24,20 @@
 								<AbsDimension x="12" y="-28"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 				</Texture>
 				<Texture name="$parentMiniBorderRight" file="Interface\WorldMap\UI-WorldMapSmall-Right.tga" hidden="true">
 					<Size>
 						<AbsDimension x="128" y="512"/>
 					</Size>
 					<Anchors>
-						<Anchor point="LEFT" relativeTo="$parentMiniBorderLeft" relativePoint="RIGHT"> 
+						<Anchor point="LEFT" relativeTo="$parentMiniBorderLeft" relativePoint="RIGHT">
 							<Offset>
 								<AbsDimension x="0" y="0"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
-				</Texture>				
+					</Anchors>
+				</Texture>
 				<Texture name="$parentTexture1">
 					<Size>
 						<AbsDimension x="256" y="256"/>
@@ -203,7 +203,7 @@
 								<AbsDimension x="4" y="-13"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 				</Texture>
 				<Texture name="$parentTexture14" hidden="true">
 					<Size>
@@ -227,7 +227,7 @@
 								<AbsDimension x="220" y="-201"/>
 							</Offset>
 						</Anchor>
-					</Anchors>						
+					</Anchors>
 				</Texture>
 				<Texture name="$parentTexture16" hidden="true">
 					<Size>
@@ -239,7 +239,7 @@
 								<AbsDimension x="187" y="-59"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 				</Texture>
 				<Texture name="$parentTexture17" hidden="true">
 					<Size>
@@ -251,7 +251,7 @@
 								<AbsDimension x="220" y="-62"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 				</Texture>
 				<Texture name="$parentTexture18" hidden="true">
 					<Size>
@@ -263,9 +263,9 @@
 								<AbsDimension x="12" y="-223"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 					<Color r="0" g="0" b="0"/>
-				</Texture>				
+				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>
@@ -281,14 +281,14 @@
 			<Frame name="WorldMapPositioningGuide">
 				<Size>
 					<AbsDimension x="1024" y="768" />
-				</Size>			
+				</Size>
 				<Anchors>
 					<Anchor point="CENTER">
 						<Offset>
 							<AbsDimension x="0" y="0" />
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 			</Frame>
 			<Frame name="WorldMapZoneMinimapDropDown" inherits="UIDropDownMenuTemplate">
 				<Anchors>
@@ -499,7 +499,7 @@
 							<AbsDimension x="-16" y="4"/>
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 				<Scripts>
 					<OnClick function="WorldMapFrame_ToggleWindowSize" />
 				</Scripts>
@@ -517,7 +517,7 @@
 							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 				<Scripts>
 					<OnClick function="WorldMapFrame_ToggleWindowSize" />
 				</Scripts>
@@ -569,7 +569,7 @@
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="WorldMapDetailTile3" relativePoint="TOPRIGHT"/>
 							</Anchors>
-						</Texture>	
+						</Texture>
 						<Texture name="WorldMapDetailTile5">
 							<Size>
 								<AbsDimension x="256" y="256"/>
@@ -633,7 +633,7 @@
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="WorldMapDetailTile11" relativePoint="TOPRIGHT"/>
 							</Anchors>
-						</Texture>	
+						</Texture>
 					</Layer>
 					<Layer level="ARTWORK">
 						<Texture name="WorldMapHighlight" alphaMode="ADD" hidden="true">
@@ -682,7 +682,7 @@
 							<AbsDimension x="0" y="0"/>
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
 						<Texture name="WorldMapBlobFrameTexture" setAllPoints="true" />
@@ -968,11 +968,11 @@
 										WorldMapQuestSelectBar:SetVertexColor(1, 0.824, 0);
 									</OnLoad>
 								</Scripts>
-							</Frame>							
+							</Frame>
 							<Frame name="WorldMapQuestHighlightedFrame" hidden="false">
 								<Size>
 									<AbsDimension x="301" y="50"/>
-								</Size>									
+								</Size>
 								<Layers>
 									<Layer level="ARTWORK">
 										<Texture name="WorldMapQuestHighlightBar" file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD"/>
@@ -983,8 +983,8 @@
 										WorldMapQuestHighlightBar:SetVertexColor(0.243, 0.570, 1);
 									</OnLoad>
 								</Scripts>
-							</Frame>					
-						</Frames>						
+							</Frame>
+						</Frames>
 					</Frame>
 				</ScrollChild>
 			</ScrollFrame>
@@ -1004,7 +1004,7 @@
 						<Texture name="WorldMapQuestDetailScrollFrameTrack" hidden="true">
 							<Size>
 								<AbsDimension x="22" y="201"/>
-							</Size>				
+							</Size>
 							<Anchors>
 								<Anchor point="TOPRIGHT">
 									<Offset>
@@ -1015,7 +1015,7 @@
 							<Color r="0" g="0" b="0" a="0.4" />
 						</Texture>
 					</Layer>
-				</Layers>		
+				</Layers>
 				<ScrollChild>
 					<Frame name="WorldMapQuestDetailScrollChildFrame">
 						<Size>
@@ -1032,7 +1032,7 @@
 					<AbsDimension x="323" y="199"/>
 				</Size>
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="WorldMapQuestDetailScrollFrame" relativePoint="RIGHT"> 
+					<Anchor point="LEFT" relativeTo="WorldMapQuestDetailScrollFrame" relativePoint="RIGHT">
 						<Offset>
 							<AbsDimension x="30" y="0"/>
 						</Offset>
@@ -1043,7 +1043,7 @@
 						<Texture name="WorldMapQuestRewardScrollFrameTrack" hidden="true">
 							<Size>
 								<AbsDimension x="22" y="201"/>
-							</Size>				
+							</Size>
 							<Anchors>
 								<Anchor point="TOPRIGHT">
 									<Offset>
@@ -1054,7 +1054,7 @@
 							<Color r="0" g="0" b="0" a="0.4" />
 						</Texture>
 					</Layer>
-				</Layers>				
+				</Layers>
 				<ScrollChild>
 					<Frame name="WorldMapQuestRewardScrollChildFrame">
 						<Size>
@@ -1080,7 +1080,7 @@
 							PlaySound("igMainMenuOptionCheckBoxOn");
 						else
 							PlaySound("igMainMenuOptionCheckBoxOff");
-						end					
+						end
 						WorldMapTrackQuest_Toggle(isChecked);
 					</OnClick>
 					<OnEnter>
@@ -1091,7 +1091,7 @@
 						WorldMapTooltip:Hide();
 					</OnLeave>
 				</Scripts>
-			</CheckButton>			
+			</CheckButton>
 			<CheckButton name="WorldMapQuestShowObjectives" inherits="OptionsCheckButtonTemplate">
 				<Size x="24" y="24"/>
 				<Scripts>
@@ -1135,7 +1135,7 @@
 	</Frame>
 	<GameTooltip name="WorldMapCompareTooltip1" clampedToScreen="true" frameStrata="TOOLTIP" hidden="true" parent="WorldMapFrame" inherits="ShoppingTooltipTemplate"/>
 	<GameTooltip name="WorldMapCompareTooltip2" clampedToScreen="true" frameStrata="TOOLTIP" hidden="true" parent="WorldMapFrame" inherits="ShoppingTooltipTemplate"/>
-	<GameTooltip name="WorldMapCompareTooltip3" clampedToScreen="true" frameStrata="TOOLTIP" hidden="true" parent="WorldMapFrame" inherits="ShoppingTooltipTemplate"/>		
+	<GameTooltip name="WorldMapCompareTooltip3" clampedToScreen="true" frameStrata="TOOLTIP" hidden="true" parent="WorldMapFrame" inherits="ShoppingTooltipTemplate"/>
 	<GameTooltip name="WorldMapTooltip" frameStrata="TOOLTIP" hidden="true" parent="WorldMapFrame" inherits="GameTooltipTemplate">
 		<Scripts>
 			<OnLoad>
@@ -1149,12 +1149,12 @@
 		<Size x="1" y="1"/>
 		<Anchors>
 			<Anchor point="TOPLEFT"/>
-		</Anchors>		
+		</Anchors>
 	</Frame>
 	<Button name="WorldMapTitleButton" parent="WorldMapFrame">
 		<Size>
 			<AbsDimension x="544" y="22" />
-		</Size>				
+		</Size>
 		<Anchors>
 			<Anchor point="TOPLEFT" relativeTo="$parentMiniBorderLeft">
 				<Offset>
@@ -1168,5 +1168,5 @@
 			<OnDragStart function="WorldMapTitleButton_OnDragStart" />
 			<OnDragStop function="WorldMapTitleButton_OnDragStop" />
 		</Scripts>
-	</Button>	
+	</Button>
 </Ui>

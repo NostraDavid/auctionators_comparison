@@ -1023,7 +1023,7 @@
 								else
 									GuildBankTabInfoEditBox:ClearFocus();
 								end
-							</OnMouseUp> 
+							</OnMouseUp>
 						</Scripts>
 						<ScrollChild>
 							<EditBox name="GuildBankTabInfoEditBox" letters="500" multiLine="true" autoFocus="false">

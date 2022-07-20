@@ -367,7 +367,7 @@
 							<OnEnter>
 								GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 								GameTooltip:SetText(self.tooltip, nil, nil, nil, nil, 1);
-							</OnEnter>						
+							</OnEnter>
 							<OnLeave function="GameTooltip_Hide"/>
 						</Scripts>
 					</Frame>

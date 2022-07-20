@@ -167,12 +167,12 @@
 				<FontString name="$parentTitle" inherits="GameFontNormal" justifyH="LEFT"  justifyV="TOP" spacing="2" parentKey="title">
 					<Size>
 						<AbsDimension x="240" y="0"/>
-					</Size>					
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
 								<AbsDimension x="34" y="-8"/>
-							</Offset>						
+							</Offset>
 						</Anchor>
 					</Anchors>
 					<Color r="1" g="0.82" b="0" />
@@ -183,33 +183,33 @@
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="TOPRIGHT" />
-					</Anchors> 
+					</Anchors>
 				</Texture>
 				<FontString name="$parentDashes" inherits="GameFontNormal" justifyH="LEFT"  justifyV="BOTTOM" spacing="2" parentKey="dashes">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 							<Offset>
 								<AbsDimension x="0" y="-4"/>
-							</Offset>						
+							</Offset>
 						</Anchor>
 					</Anchors>
-					<Color r="0.8" g="0.8" b="0.8" />				
+					<Color r="0.8" g="0.8" b="0.8" />
 				</FontString>
 				<FontString name="$parentObjectives" inherits="GameFontNormal" justifyH="LEFT"  justifyV="BOTTOM" spacing="2" parentKey="objectives">
 					<Size>
 						<AbsDimension x="232" y="0"/>
-					</Size>					
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 							<Offset>
 								<AbsDimension x="8" y="-4"/>
-							</Offset>						
+							</Offset>
 						</Anchor>
 					</Anchors>
 					<Color r="0.8" g="0.8" b="0.8" />
-				</FontString>				
+				</FontString>
 			</Layer>
-		</Layers>		
+		</Layers>
 		<Scripts>
 			<OnEnter function="WorldMapQuestFrame_OnEnter" />
 			<OnLeave function="WorldMapQuestFrame_OnLeave" />

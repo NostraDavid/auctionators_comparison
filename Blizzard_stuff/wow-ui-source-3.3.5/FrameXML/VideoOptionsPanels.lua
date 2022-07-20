@@ -186,15 +186,15 @@ function VideoOptionsResolutionPanelResolutionDropDown_OnLoad(self)
 	UIDropDownMenu_Initialize(self, VideoOptionsResolutionPanelResolutionDropDown_Initialize);
 	UIDropDownMenu_SetSelectedID(self, value, 1);
 
-	self.SetValue = 
-		function (self, value) 
+	self.SetValue =
+		function (self, value)
 			SetScreenResolution(value);
 		end;
 	self.GetValue =
 		function (self)
 			return GetCurrentResolution();
 		end
-	self.RefreshValue = 
+	self.RefreshValue =
 		function (self)
 			local value = GetCurrentResolution();
 			UIDropDownMenu_Initialize(self, VideoOptionsResolutionPanelResolutionDropDown_Initialize);
@@ -205,7 +205,7 @@ function VideoOptionsResolutionPanelResolutionDropDown_OnLoad(self)
 end
 
 function VideoOptionsResolutionPanelResolutionDropDown_Initialize()
-	VideoOptionsResolutionPanelResolutionDropDown_LoadResolutions(GetScreenResolutions());	
+	VideoOptionsResolutionPanelResolutionDropDown_LoadResolutions(GetScreenResolutions());
 end
 
 function VideoOptionsResolutionPanelResolutionDropDown_LoadResolutions(...)
@@ -253,14 +253,14 @@ function VideoOptionsResolutionPanelRefreshDropDown_OnLoad(self)
 	UIDropDownMenu_SetSelectedValue(self, value);
 
 	self.SetValue =
-		function (self, value) 
+		function (self, value)
 			BlizzardOptionsPanel_SetCVarSafe(self.cvar, value);
 		end;
 	self.GetValue =
 		function (self)
 			return BlizzardOptionsPanel_GetCVarSafe(self.cvar);
 		end
-	self.RefreshValue = 
+	self.RefreshValue =
 		function (self)
 			local value = BlizzardOptionsPanel_GetCVarSafe(self.cvar);
 			UIDropDownMenu_Initialize(self, VideoOptionsResolutionPanelRefreshDropDown_Initialize);
@@ -323,7 +323,7 @@ function VideoOptionsResolutionPanelMultiSampleDropDown_OnLoad(self)
 	UIDropDownMenu_Initialize(self, VideoOptionsResolutionPanelMultiSampleDropDown_Initialize);
 	UIDropDownMenu_SetSelectedID(self, value);
 
-	self.SetValue = 
+	self.SetValue =
 		function (self, value)
 			SetMultisampleFormat(value);
 		end;
@@ -331,7 +331,7 @@ function VideoOptionsResolutionPanelMultiSampleDropDown_OnLoad(self)
 		function (self)
 			return GetCurrentMultisampleFormat();
 		end
-	self.RefreshValue = 
+	self.RefreshValue =
 		function (self)
 			local value = GetCurrentMultisampleFormat();
 			UIDropDownMenu_Initialize(self, VideoOptionsResolutionPanelMultiSampleDropDown_Initialize);
@@ -353,7 +353,7 @@ function VideoOptionsResolutionPanel_GetMultisampleFormats(...)
 		colorBits, depthBits, multiSample = select(i, ...);
 		info.text = format(MULTISAMPLING_FORMAT_STRING, colorBits, depthBits, multiSample);
 		info.func = VideoOptionsResolutionPanelMultiSampleDropDown_OnClick;
-		
+
 		if ( index == UIDropDownMenu_GetSelectedID(VideoOptionsResolutionPanelMultiSampleDropDown) ) then
 			info.checked = 1;
 			UIDropDownMenu_SetText(VideoOptionsResolutionPanelMultiSampleDropDown, info.text);
@@ -479,7 +479,7 @@ function VideoOptionsEffectsPanel_SetVideoQualityLabels (quality)
 end
 
 function VideoOptionsEffectsPanel_GetVideoQuality ()
-	for quality, controls in ipairs(GraphicsQualityLevels) do 
+	for quality, controls in ipairs(GraphicsQualityLevels) do
 		local mismatch = false;
 		for control, value in next, controls do
 			control = _G[control];
@@ -587,7 +587,7 @@ end
 
 function VideoOptionsStereoPanel_OnEvent(self, event, ...)
 	BlizzardOptionsPanel_OnEvent(self, event, ...);
-	
+
 	if ( event == "PLAYER_ENTERING_WORLD" ) then
 		-- don't allow systems that don't support features to enable them
 		local anisotropic, pixelShaders, vertexShaders, trilinear, buffering, maxAnisotropy, hardwareCursor = GetVideoCaps();

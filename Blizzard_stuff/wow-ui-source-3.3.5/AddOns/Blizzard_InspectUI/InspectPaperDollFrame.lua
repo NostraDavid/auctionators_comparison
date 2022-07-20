@@ -52,11 +52,11 @@ end
 
 function InspectPaperDollFrame_SetLevel()
 	local unit, level = InspectFrame.unit, UnitLevel(InspectFrame.unit);
-	
+
 	if ( level == -1 ) then
 		level = "??";
 	end
-		
+
 	InspectLevelText:SetFormattedText(PLAYER_LEVEL,level, UnitRace(unit), UnitClass(unit));
 end
 

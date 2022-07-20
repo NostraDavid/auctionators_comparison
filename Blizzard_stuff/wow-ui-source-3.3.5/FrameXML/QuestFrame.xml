@@ -31,7 +31,7 @@
                     </Anchors>
                 </Texture>
             </Layer>
-		</Layers> 
+		</Layers>
  		<Frames>
 			<Frame name="QuestNpcNameFrame">
 				<Size>
@@ -345,7 +345,7 @@
 							<Frame name="QuestDetailScrollChildFrame">
 								<Size>
 									<AbsDimension x="300" y="334"/>
-								</Size>								
+								</Size>
 							</Frame>
 						</ScrollChild>
 					</ScrollFrame>

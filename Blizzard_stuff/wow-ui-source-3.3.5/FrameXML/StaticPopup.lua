@@ -58,7 +58,7 @@ StaticPopupDialogs["CONFIRM_GLYPH_PLACEMENT"] = {
 	exclusive = 1,
 }
 
-StaticPopupDialogs["CONFIRM_RESET_VIDEO_SETTINGS"] = { 
+StaticPopupDialogs["CONFIRM_RESET_VIDEO_SETTINGS"] = {
 	text = CONFIRM_RESET_SETTINGS,
 	button1 = ALL_SETTINGS,
 	button3 = CURRENT_SETTINGS,
@@ -77,7 +77,7 @@ StaticPopupDialogs["CONFIRM_RESET_VIDEO_SETTINGS"] = {
 	whileDead = 1,
 }
 
-StaticPopupDialogs["CONFIRM_RESET_AUDIO_SETTINGS"] = { 
+StaticPopupDialogs["CONFIRM_RESET_AUDIO_SETTINGS"] = {
 	text = CONFIRM_RESET_SETTINGS,
 	button1 = ALL_SETTINGS,
 	button3 = CURRENT_SETTINGS,
@@ -96,7 +96,7 @@ StaticPopupDialogs["CONFIRM_RESET_AUDIO_SETTINGS"] = {
 	whileDead = 1,
 }
 
-StaticPopupDialogs["CONFIRM_RESET_INTERFACE_SETTINGS"] = { 
+StaticPopupDialogs["CONFIRM_RESET_INTERFACE_SETTINGS"] = {
 	text = CONFIRM_RESET_INTERFACE_SETTINGS,
 	button1 = ALL_SETTINGS,
 	button3 = CURRENT_SETTINGS,
@@ -122,13 +122,13 @@ StaticPopupDialogs["CONFIRM_PURCHASE_TOKEN_ITEM"] = {
 		BuyMerchantItem(MerchantFrame.itemIndex, MerchantFrame.count);
 	end,
 	OnCancel = function()
-	
+
 	end,
 	OnShow = function()
-	
+
 	end,
 	OnHide = function()
-	
+
 	end,
 	timeout = 0,
 	hideOnEscape = 1,
@@ -164,7 +164,7 @@ StaticPopupDialogs["CONFIRM_REFUND_TOKEN_ITEM"] = {
 		end
 	end,
 	OnHide = function()
-		MerchantFrame_ResetRefundItem();	
+		MerchantFrame_ResetRefundItem();
 	end,
 	timeout = 0,
 	hideOnEscape = 1,
@@ -183,7 +183,7 @@ StaticPopupDialogs["CONFIRM_REFUND_MAX_HONOR"] = {
 		ClearCursor();
 	end,
 	OnShow = function()
-	
+
 	end,
 	OnHide = function()
 		MerchantFrame_ResetRefundItem();
@@ -204,7 +204,7 @@ StaticPopupDialogs["CONFIRM_REFUND_MAX_ARENA_POINTS"] = {
 		ClearCursor();
 	end,
 	OnShow = function()
-	
+
 	end,
 	OnHide = function()
 		MerchantFrame_ResetRefundItem();
@@ -225,7 +225,7 @@ StaticPopupDialogs["CONFIRM_REFUND_MAX_HONOR_AND_ARENA"] = {
 		ClearCursor();
 	end,
 	OnShow = function()
-	
+
 	end,
 	OnHide = function()
 		MerchantFrame_ResetRefundItem();
@@ -242,13 +242,13 @@ StaticPopupDialogs["CONFIRM_HIGH_COST_ITEM"] = {
 		BuyMerchantItem(MerchantFrame.itemIndex, MerchantFrame.count);
 	end,
 	OnCancel = function()
-	
+
 	end,
 	OnShow = function(self)
 		MoneyFrame_Update(self.moneyFrame, MerchantFrame.price*MerchantFrame.count);
 	end,
 	OnHide = function()
-	
+
 	end,
 	timeout = 0,
 	hideOnEscape = 1,
@@ -263,7 +263,7 @@ StaticPopupDialogs["CONFIRM_COMPLETE_EXPENSIVE_QUEST"] = {
 		GetQuestReward(QuestInfoFrame.itemChoice);
 		PlaySound("igQuestListComplete");
 	end,
-	OnCancel = function() 
+	OnCancel = function()
 		DeclineQuest();
 		PlaySound("igQuestCancel");
 	end,
@@ -285,7 +285,7 @@ StaticPopupDialogs["CONFIRM_ACCEPT_PVP_QUEST"] = {
 	OnAccept = function()
 		AcceptQuest();
 	end,
-	OnCancel = function() 
+	OnCancel = function()
 		DeclineQuest();
 		PlaySound("igQuestCancel");
 	end,
@@ -577,7 +577,7 @@ StaticPopupDialogs["BFMGR_INVITED_TO_ENTER"] = {
 	button2 = CANCEL,
 	OnShow = function(self)
 		self.timeleft = select(4, GetWorldPVPQueueStatus(1));
-	end,	
+	end,
 	OnAccept = function(self, data)
 		BattlefieldMgrEntryInviteResponse(1,1);
 	end,
@@ -1270,11 +1270,11 @@ StaticPopupDialogs["SKINNED"] = {
 	timeout = 0,
 	whileDead = 1,
 	interruptCinematic = 1,
-	notClosableByLogout = 1,	
+	notClosableByLogout = 1,
 };
 StaticPopupDialogs["SKINNED_REPOP"] = {
 	text = DEATH_CORPSE_SKINNED,
-	button1 = DEATH_RELEASE,	
+	button1 = DEATH_RELEASE,
 	button2 = DECLINE,
 	OnAccept = function(self)
 		StaticPopup_Hide("RESURRECT");
@@ -1286,7 +1286,7 @@ StaticPopupDialogs["SKINNED_REPOP"] = {
 	whileDead = 1,
 	interruptCinematic = 1,
 	notClosableByLogout = 1,
-	hideOnEscape = 1	
+	hideOnEscape = 1
 };
 StaticPopupDialogs["TRADE"] = {
 	text = TRADE_WITH_QUESTION,
@@ -1363,7 +1363,7 @@ StaticPopupDialogs["CHAT_CHANNEL_INVITE"] = {
 			i = i + 1;
 		end
 		DEFAULT_CHAT_FRAME.channelList[i] = name;
-		DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;	
+		DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;
 	end,
 	EditBoxOnEnterPressed = function(self, data)
 		local name = data;
@@ -1380,7 +1380,7 @@ StaticPopupDialogs["CHAT_CHANNEL_INVITE"] = {
 			i = i + 1;
 		end
 		DEFAULT_CHAT_FRAME.channelList[i] = name;
-		DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;	
+		DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;
 		StaticPopupDialogs["CHAT_CHANNEL_INVITE"].inviteAccepted = 1;
 		self:GetParent():Hide();
 	end,
@@ -1431,7 +1431,7 @@ function ChatChannelPasswordHandler(self, data)
 		i = i + 1;
 	end
 	DEFAULT_CHAT_FRAME.channelList[i] = name;
-	DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;	
+	DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;
 	StaticPopupDialogs["CHAT_CHANNEL_INVITE"].inviteAccepted = 1;
 end
 
@@ -1693,7 +1693,7 @@ StaticPopupDialogs["ABANDON_QUEST"] = {
 		if ( QuestLogDetailFrame:IsShown() ) then
 			HideUIPanel(QuestLogDetailFrame);
 		end
-		PlaySound("igQuestLogAbandonQuest");		
+		PlaySound("igQuestLogAbandonQuest");
 	end,
 	timeout = 0,
 	whileDead = 1,
@@ -1709,7 +1709,7 @@ StaticPopupDialogs["ABANDON_QUEST_WITH_ITEMS"] = {
 		if ( QuestLogDetailFrame:IsShown() ) then
 			HideUIPanel(QuestLogDetailFrame);
 		end
-		PlaySound("igQuestLogAbandonQuest");		
+		PlaySound("igQuestLogAbandonQuest");
 	end,
 	timeout = 0,
 	whileDead = 1,
@@ -2442,7 +2442,7 @@ StaticPopupDialogs["INSTANCE_LOCK"] = {
 		self.extraFrame:Show()
 		self.extraFrame:SetScript("OnEnter", InstanceLock_OnEnter)
 		self.extraFrame:SetScript("OnLeave", GameTooltip_Hide)
-		
+
 	end,
 	OnHide = function(self)
 		self.extraFrame:SetScript("OnEnter", nil)
@@ -2697,7 +2697,7 @@ StaticPopupDialogs["WOW_MOUSE_NOT_FOUND"] = {
 	text = WOW_MOUSE_NOT_FOUND,
 	button1 = OKAY,
 	OnHide = function(self)
-		SetCVar("enableWoWMouse", "0");	
+		SetCVar("enableWoWMouse", "0");
 		if ( InterfaceOptionsFrame:IsShown() ) then
 			InterfaceOptionsMousePanelWoWMouse:Click();
 		end
@@ -2903,7 +2903,7 @@ function StaticPopup_Resize(dialog, which)
 	local text = _G[dialog:GetName().."Text"];
 	local editBox = _G[dialog:GetName().."EditBox"];
 	local button1 = _G[dialog:GetName().."Button1"];
-	
+
 	local maxHeightSoFar, maxWidthSoFar = (dialog.maxHeightSoFar or 0), (dialog.maxWidthSoFar or 0);
 	local width = 320;
 	if ( info.button3 ) then
@@ -2918,11 +2918,11 @@ function StaticPopup_Resize(dialog, which)
 		dialog:SetWidth(width);
 		dialog.maxWidthSoFar = width;
 	end
-	
+
 	local height = 32 + text:GetHeight() + 8 + button1:GetHeight();
 	if ( info.hasEditBox ) then
 		if ( info.hasWideEditBox  ) then
-		
+
 		end
 		height = height + 8 + editBox:GetHeight();
 	elseif ( info.hasMoneyFrame ) then
@@ -3078,7 +3078,7 @@ function StaticPopup_Show(which, text_arg1, text_arg2, data)
 		alertIcon:SetTexture(STATICPOPUP_TEXTURE_ALERT);
 	elseif ( info.showAlertGear ) then
 		alertIcon:SetTexture(STATICPOPUP_TEXTURE_ALERTGEAR);
-	else		
+	else
 		alertIcon:SetTexture();
 	end
 
@@ -3256,20 +3256,20 @@ function StaticPopup_Show(which, text_arg1, text_arg2, data)
 
 	editBox.autoCompleteParams = info.autoCompleteParams;
 	wideEditBox.autoCompleteParams = info.autoCompleteParams;
-	
+
 	editBox.autoCompleteRegex = info.autoCompleteRegex;
 	wideEditBox.autoCompleteRegex = info.autoCompleteRegex;
-	
+
 	editBox.autoCompleteFormatRegex = info.autoCompleteFormatRegex;
 	wideEditBox.autoCompleteFormatRegex = info.autoCompleteFormatRegex;
-	
+
 	editBox.addHighlightedText = true;
 	wideEditBox.autoCompleteFormatRegex = true;
-	
+
 	-- Finally size and show the dialog
 	StaticPopup_SetUpPosition(dialog);
 	dialog:Show();
-	
+
 	StaticPopup_Resize(dialog, which);
 
 	if ( info.sound ) then
@@ -3445,7 +3445,7 @@ function StaticPopup_OnHide(self)
 	PlaySound("igMainMenuClose");
 
 	StaticPopup_CollapseTable();
-	
+
 	local dialog = StaticPopupDialogs[self.which];
 	local OnHide = dialog.OnHide;
 	if ( OnHide ) then
@@ -3525,7 +3525,7 @@ end
 function StaticPopup_Visible(which)
 	for index = 1, STATICPOPUP_NUMDIALOGS, 1 do
 		local frame = _G["StaticPopup"..index];
-		if( frame:IsShown() and (frame.which == which) ) then 
+		if( frame:IsShown() and (frame.which == which) ) then
 			return frame:GetName();
 		end
 	end
@@ -3556,7 +3556,7 @@ end
 function StaticPopup_SetUpPosition(dialog)
 	if ( not tContains(StaticPopup_DisplayedFrames, dialog) ) then
 		local lastFrame = StaticPopup_DisplayedFrames[#StaticPopup_DisplayedFrames];
-		if ( lastFrame ) then	
+		if ( lastFrame ) then
 			dialog:SetPoint("TOP", lastFrame, "BOTTOM", 0, 0);
 		else
 			dialog:SetPoint("TOP", UIParent, "TOP", 0, -135);
@@ -3605,7 +3605,7 @@ end
 
 function StaticPopup_HideExclusive()
 	for _, frame in pairs(StaticPopup_DisplayedFrames) do
-		if ( frame:IsShown() and frame.exclusive ) then	
+		if ( frame:IsShown() and frame.exclusive ) then
 			local standardDialog = StaticPopupDialogs[frame.which];
 			if ( standardDialog ) then
 				frame:Hide();

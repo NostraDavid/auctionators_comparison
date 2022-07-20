@@ -212,8 +212,8 @@ end
 
 function ENV.UnitHasVehicleUI(unit)
 	unit = tostring(unit);
-	return UnitHasVehicleUI(unit) and 
-		(UnitCanAssist("player", unit:gsub("(%D+)(%d*)", "%1pet%2")) and true) or 
+	return UnitHasVehicleUI(unit) and
+		(UnitCanAssist("player", unit:gsub("(%D+)(%d*)", "%1pet%2")) and true) or
 		(UnitCanAssist("player", unit) and false);
 end
 

@@ -85,7 +85,7 @@ function UnitFrame_Update (self)
 	else
 		self.name:SetText(GetUnitName(self.unit));
 	end
-	
+
 	UnitFramePortrait_Update(self);
 	UnitFrameHealthBar_Update(self.healthbar, self.unit);
 	UnitFrameManaBar_Update(self.manabar, self.unit);
@@ -100,7 +100,7 @@ end
 
 function UnitFrame_OnEvent(self, event, ...)
 	local arg1 = ...
-	
+
 	local unit = self.unit;
 	if ( event == "UNIT_NAME_UPDATE" ) then
 		if ( arg1 == unit ) then
@@ -137,7 +137,7 @@ function UnitFrame_OnLeave ()
 	if ( SHOW_NEWBIE_TIPS == "1" ) then
 		GameTooltip:Hide();
 	else
-		GameTooltip:FadeOut();	
+		GameTooltip:FadeOut();
 	end
 end
 
@@ -176,7 +176,7 @@ function UnitFrameManaBar_UpdateType (manaBar)
 		end
 	end
 	manaBar.powerType = powerType;
-	
+
 	-- Update the manabar text
 	if ( not unitFrame.noTextPrefix ) then
 		SetTextStatusBarTextPrefix(manaBar, prefix);
@@ -203,11 +203,11 @@ function UnitFrameHealthBar_Initialize (unit, statusbar, statustext, frequentUpd
 
 	statusbar.unit = unit;
 	SetTextStatusBarText(statusbar, statustext);
-	
+
 	statusbar.frequentUpdates = frequentUpdates;
 	if ( frequentUpdates ) then
 		statusbar:RegisterEvent("VARIABLES_LOADED");
-	end	
+	end
 	if ( GetCVarBool("predictedHealth") and frequentUpdates ) then
 		statusbar:SetScript("OnUpdate", UnitFrameHealthBar_OnUpdate);
 	else
@@ -258,10 +258,10 @@ function UnitFrameHealthBar_Update(statusbar, unit)
 	if ( not statusbar or statusbar.lockValues ) then
 		return;
 	end
-	
+
 	if ( unit == statusbar.unit ) then
 		local maxValue = UnitHealthMax(unit);
-		
+
 		-- Safety check to make sure we never get an empty bar.
 		statusbar.forceHideText = false;
 		if ( maxValue == 0 ) then
@@ -319,7 +319,7 @@ function UnitFrameManaBar_Initialize (unit, statusbar, statustext, frequentUpdat
 	end
 	statusbar.unit = unit;
 	SetTextStatusBarText(statusbar, statustext);
-	
+
 	statusbar.frequentUpdates = frequentUpdates;
 	if ( frequentUpdates ) then
 		statusbar:RegisterEvent("VARIABLES_LOADED");

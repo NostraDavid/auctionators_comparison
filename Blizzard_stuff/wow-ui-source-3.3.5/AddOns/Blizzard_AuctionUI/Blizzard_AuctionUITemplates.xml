@@ -710,7 +710,7 @@
 								<AbsDimension x="279" y="0"/>
 							</Offset>
 						</Anchor>
-					</Anchors>					
+					</Anchors>
 				</FontString>
 				<Texture name="$parentLeft" file="Interface\AuctionFrame\UI-AuctionItemNameFrame">
 					<Size>

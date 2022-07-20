@@ -15,12 +15,12 @@ function ToggleSpellBook(bookType)
 	if ( not HasPetSpells() and bookType == BOOKTYPE_PET ) then
 		return;
 	end
-	
+
 	local isShown = SpellBookFrame:IsShown();
 	if ( isShown and (SpellBookFrame.bookType ~= bookType) ) then
 		SpellBookFrame.suppressCloseSound = true;
 	end
-	
+
 	HideUIPanel(SpellBookFrame);
 	if ( (not isShown or (SpellBookFrame.bookType ~= bookType)) ) then
 		SpellBookFrame.bookType = bookType;
@@ -46,7 +46,7 @@ function SpellBookFrame_OnLoad(self)
 	SPELLBOOK_PAGENUMBERS[7] = 1;
 	SPELLBOOK_PAGENUMBERS[8] = 1;
 	SPELLBOOK_PAGENUMBERS[BOOKTYPE_PET] = 1;
-	
+
 	-- Set to the first tab by default
 	SpellBookSkillLineTab_OnClick(nil, 1);
 
@@ -75,7 +75,7 @@ end
 
 function SpellBookFrame_OnShow(self)
 	SpellBookFrame_Update(1);
-	
+
 	-- If there are tabs waiting to flash, then flash them... yeah..
 	if ( self.flashTabs ) then
 		UIFrameFlash(SpellBookTabFlashFrame, 0.5, 0.5, 30, nil);
@@ -93,7 +93,7 @@ function SpellBookFrame_Update(showing)
 	SpellBookFrameTabButton1:Hide();
 	SpellBookFrameTabButton2:Hide();
 	SpellBookFrameTabButton3:Hide();
-	
+
 	-- Setup skillline tabs
 	if ( showing ) then
 		SpellBookSkillLineTab_OnClick(nil, SpellBookFrame.selectedSkillLine);
@@ -154,11 +154,11 @@ function SpellBookFrame_HideSpells ()
 	for i = 1, SPELLS_PER_PAGE do
 		_G["SpellButton" .. i]:Hide();
 	end
-	
+
 	for i = 1, MAX_SKILLLINE_TABS do
 		_G["SpellBookSkillLineTab" .. i]:Hide();
 	end
-	
+
 	SpellBookPrevPageButton:Hide();
 	SpellBookNextPageButton:Hide();
 	SpellBookPageText:Hide();
@@ -168,7 +168,7 @@ function SpellBookFrame_ShowSpells ()
 	for i = 1, SPELLS_PER_PAGE do
 		_G["SpellButton" .. i]:Show();
 	end
-	
+
 	SpellBookPrevPageButton:Show();
 	SpellBookNextPageButton:Show();
 	SpellBookPageText:Show();
@@ -282,12 +282,12 @@ function SpellBookFrame_OnHide(self)
 
 	-- Hide multibar slots
 	MultiActionBar_HideAllGrids();
-	
+
 	-- Do this last, it can cause taint.
 	UpdateMicroButtons();
 end
 
-function SpellButton_OnLoad(self) 
+function SpellButton_OnLoad(self)
 	self:RegisterForDrag("LeftButton");
 	self:RegisterForClicks("LeftButtonUp", "RightButtonUp");
 end
@@ -328,7 +328,7 @@ function SpellButton_OnHide(self)
 	self:UnregisterEvent("TRADE_SKILL_CLOSE");
 	self:UnregisterEvent("PET_BAR_UPDATE");
 end
- 
+
 function SpellButton_OnEnter(self)
 	local id = SpellBook_GetSpellID(self:GetID());
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
@@ -339,7 +339,7 @@ function SpellButton_OnEnter(self)
 	end
 end
 
-function SpellButton_OnClick(self, button) 
+function SpellButton_OnClick(self, button)
 	local id = SpellBook_GetSpellID(self:GetID());
 	if ( id > MAX_SPELLS ) then
 		return;
@@ -352,7 +352,7 @@ function SpellButton_OnClick(self, button)
 	end
 end
 
-function SpellButton_OnModifiedClick(self, button) 
+function SpellButton_OnModifiedClick(self, button)
 	local id = SpellBook_GetSpellID(self:GetID());
 	if ( id > MAX_SPELLS ) then
 		return;
@@ -388,7 +388,7 @@ function SpellButton_OnModifiedClick(self, button)
 	end
 end
 
-function SpellButton_OnDrag(self) 
+function SpellButton_OnDrag(self)
 	local id = SpellBook_GetSpellID(self:GetID());
 	if ( id > MAX_SPELLS or not _G[self:GetName().."IconTexture"]:IsShown() ) then
 		return;
@@ -399,7 +399,7 @@ end
 
 function SpellButton_UpdateSelection(self)
 	local temp, texture, offset, numSpells = SpellBook_GetTabInfo(SpellBookFrame.selectedSkillLine);
-	
+
 	local id, displayID = SpellBook_GetSpellID(self:GetID());
 	if ( (SpellBookFrame.bookType ~= BOOKTYPE_PET) and (not displayID or displayID > (offset + numSpells)) ) then
 		self:SetChecked("false");
@@ -533,7 +533,7 @@ function SpellBookPrevPageButton_OnClick()
 	SpellBook_UpdatePageArrows();
 	SpellBookPageText:SetFormattedText(PAGE_NUMBER, pageNum);
 	UpdateSpells();
-	
+
 end
 
 function SpellBookNextPageButton_OnClick()
@@ -550,7 +550,7 @@ function SpellBookNextPageButton_OnClick()
 	SpellBook_UpdatePageArrows();
 	SpellBookPageText:SetFormattedText(PAGE_NUMBER, pageNum);
 	UpdateSpells();
-	
+
 end
 
 function SpellBookSkillLineTab_OnClick(self, id)
@@ -632,14 +632,14 @@ local maxShines = 1;
 shineGet = {}
 function SpellBook_GetAutoCastShine ()
 	local shine = shineGet[1];
-	
+
 	if ( shine ) then
 		tremove(shineGet, 1);
 	else
 		shine = CreateFrame("FRAME", "AutocastShine" .. maxShines, SpellBookFrame, "SpellBookShineTemplate");
 		maxShines = maxShines + 1;
 	end
-	
+
 	return shine;
 end
 
@@ -647,7 +647,7 @@ function SpellBook_ReleaseAutoCastShine (shine)
 	if ( not shine ) then
 		return;
 	end
-	
+
 	shine:Hide();
 	AutoCastShine_AutoCastStop(shine);
 	tinsert(shineGet, shine);

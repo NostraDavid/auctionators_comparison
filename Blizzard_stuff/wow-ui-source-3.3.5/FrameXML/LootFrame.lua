@@ -14,7 +14,7 @@ end
 function LootFrame_OnEvent(self, event, ...)
 	if ( event == "LOOT_OPENED" ) then
 		local autoLoot = ...;
-		
+
 		self.page = 1;
 		LootFrame_Show(self);
 		if ( not self:IsShown()) then
@@ -22,7 +22,7 @@ function LootFrame_OnEvent(self, event, ...)
 		end
 	elseif ( event == "LOOT_SLOT_CLEARED" ) then
 		local arg1 = ...;
-		
+
 		if ( not self:IsShown() ) then
 			return;
 		end
@@ -54,7 +54,7 @@ function LootFrame_OnEvent(self, event, ...)
 		return;
 	elseif ( event == "LOOT_SLOT_CHANGED" ) then
 		local arg1 = ...;
-		
+
 		if ( not self:IsShown() ) then
 			return;
 		end
@@ -89,10 +89,10 @@ function LootFrame_UpdateButton(index)
 	if ( numLootItems > LOOTFRAME_NUMBUTTONS ) then
 		numLootToShow = numLootToShow - 1;
 	end
-	
+
 	local button = _G["LootButton"..index];
 		local slot = (numLootToShow * (LootFrame.page - 1)) + index;
-		if ( slot <= numLootItems ) then	
+		if ( slot <= numLootItems ) then
 			if ( (LootSlotIsItem(slot) or LootSlotIsCoin(slot)) and index <= numLootToShow ) then
 				local texture, item, quantity, quality, locked = GetLootSlotInfo(slot);
 				local color = ITEM_QUALITY_COLORS[quality];
@@ -164,16 +164,16 @@ end
 function LootFrame_Show(self)
 	ShowUIPanel(self);
 	self.numLootItems = GetNumLootItems();
-	
+
 	if ( GetCVar("lootUnderMouse") == "1" ) then
-		-- position loot window under mouse cursor		
+		-- position loot window under mouse cursor
 		local x, y = GetCursorPosition();
 		x = x / self:GetEffectiveScale();
 		y = y / self:GetEffectiveScale();
 
 		local posX = x - 175;
 		local posY = y + 25;
-		
+
 		if (self.numLootItems > 0) then
 			posX = x - 40;
 			posY = y + 55;
@@ -189,7 +189,7 @@ function LootFrame_Show(self)
 		self:GetCenter();
 		self:Raise();
 	end
-	
+
 	LootFrame_Update();
 	LootFramePortraitOverlay:SetTexture("Interface\\TargetingFrame\\TargetDead");
 end
@@ -212,7 +212,7 @@ end
 function LootButton_OnClick(self, button)
 	-- Close any loot distribution confirmation windows
 	StaticPopup_Hide("CONFIRM_LOOT_DISTRIBUTION");
-	
+
 	LootFrame.selectedLootButton = self:GetName();
 	LootFrame.selectedSlot = self.slot;
 	LootFrame.selectedQuality = self.quality;
@@ -237,7 +237,7 @@ end
 function GroupLootDropDown_Initialize()
 	local candidate;
 	local info = UIDropDownMenu_CreateInfo();
-	
+
 	if ( UIDROPDOWNMENU_MENU_LEVEL == 2 ) then
 		local lastIndex = UIDROPDOWNMENU_MENU_VALUE + 5 - 1;
 		for i=UIDROPDOWNMENU_MENU_VALUE, lastIndex do
@@ -254,7 +254,7 @@ function GroupLootDropDown_Initialize()
 		end
 		return;
 	end
-	
+
 	if ( GetNumRaidMembers() > 0 ) then
 		-- In a raid
 		info.isTitle = 1;
@@ -347,12 +347,12 @@ function GroupLootFrame_OnShow(self)
 		self:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11 } } );
 		_G[self:GetName().."Corner"]:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Gold-Corner");
 		_G[self:GetName().."Decoration"]:Show();
-	else 
+	else
 		self:SetBackdrop({bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background", edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border", tile = true, tileSize = 32, edgeSize = 32, insets = { left = 11, right = 12, top = 12, bottom = 11 } } );
 		_G[self:GetName().."Corner"]:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Corner");
 		_G[self:GetName().."Decoration"]:Hide();
 	end
-	
+
 	local id = self:GetID();
 	_G["GroupLootFrame"..id.."IconFrameIcon"]:SetTexture(texture);
 	_G["GroupLootFrame"..id.."Name"]:SetText(name);
@@ -364,7 +364,7 @@ function GroupLootFrame_OnShow(self)
 	else
 		_G["GroupLootFrame"..id.."IconFrameCount"]:Hide();
 	end
-	
+
 	if ( canNeed ) then
 		GroupLootFrame_EnableLootButton(self.needButton);
 		self.needButton.reason = nil;

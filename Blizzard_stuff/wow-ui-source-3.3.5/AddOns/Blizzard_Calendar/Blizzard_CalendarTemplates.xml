@@ -512,7 +512,7 @@
 	</Button>
 	<Button name="CalendarMassInviteArenaButtonTemplate" inherits="CalendarEventButtonTemplate" virtual="true">
 		<Scripts>
-			<OnLoad>	
+			<OnLoad>
 				CalendarMassInviteArenaButton_OnLoad(self);
 			</OnLoad>
 			<OnClick>
@@ -666,7 +666,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-			</Layer>		
+			</Layer>
 		</Layers>
 		<Scripts>
 			<OnLoad>

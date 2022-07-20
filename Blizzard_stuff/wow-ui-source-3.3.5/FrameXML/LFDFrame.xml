@@ -529,7 +529,7 @@
 			</OnEvent>
 			<OnShow>
 				LFDDungeonReadyPopup_Update();
-				
+
 				--Request new lock info (which comes with which rewards we're getting) in case the rewards changed.
 				RequestLFDPlayerLockInfo();
 				RequestLFDPartyLockInfo();
@@ -852,7 +852,7 @@
 		<Scripts>
 			<OnLoad>
 				self:RegisterEvent("LFG_QUEUE_STATUS_UPDATE");
-				
+
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
 				self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
 			</OnLoad>
@@ -1080,9 +1080,9 @@
 										_G[myName.."ScrollBackground"]:SetParent(_G[myName.."ScrollBar"]);
 										_G[myName.."ScrollBackgroundTopLeft"]:SetParent(_G[myName.."ScrollBar"]);
 										_G[myName.."ScrollBackgroundBottomRight"]:SetParent(_G[myName.."ScrollBar"]);
-										
+
 										_G[myName.."ScrollBar"]:SetPoint("BOTTOMLEFT", self, "BOTTOMRIGHT", 6, 14);
-										
+
 										self.scrollBarHideable = true;
 										ScrollFrame_OnLoad(self);
 									</OnLoad>
@@ -1175,7 +1175,7 @@
 														</Anchor>
 													</Anchors>
 												</FontString>
-														
+
 												<!--Texture file="Interface\LFGFrame\UI-LFG-BACKGROUND-QUESTPAPER" setAllPoints="true"/-->
 											</Layer>
 										</Layers>
@@ -1654,7 +1654,7 @@
 								<Scripts>
 									<OnClick>
 										StaticPopup_Hide("LFG_OFFER_CONTINUE");
-										PartyLFGStartBackfill();											
+										PartyLFGStartBackfill();
 									</OnClick>
 								</Scripts>
 							</Button>

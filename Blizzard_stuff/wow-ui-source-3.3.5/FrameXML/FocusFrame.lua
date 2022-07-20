@@ -120,14 +120,14 @@ function FocusFrame_HealthUpdate (self, elapsed, unit)
 			local alpha = 255;
 			local counter = self.statusCounter + elapsed;
 			local sign    = self.statusSign;
-	
+
 			if ( counter > 0.5 ) then
 				sign = -sign;
 				self.statusSign = sign;
 			end
 			counter = mod(counter, 0.5);
 			self.statusCounter = counter;
-	
+
 			if ( sign == 1 ) then
 				alpha = (127  + (counter * 256)) / 255;
 			else
@@ -275,7 +275,7 @@ function SetFocusSpellbarAspect()
 		frameBorderShield:ClearAllPoints();
 		frameBorderShield:SetPoint("TOP", FocusFrameSpellBar, "TOP", -6, 20);
 	end
-	
+
 	local frameFlash = _G[FocusFrameSpellBar:GetName().."Flash"];
 	if ( frameFlash ) then
 		frameFlash:SetTexture("Interface\\CastingBar\\UI-CastingBar-Flash-Small");
@@ -290,7 +290,7 @@ function Focus_Spellbar_OnLoad (self)
 	self:RegisterEvent("PLAYER_FOCUS_CHANGED");
 	self:RegisterEvent("CVAR_UPDATE");
 	self:RegisterEvent("VARIABLES_LOADED");
-	
+
 	CastingBarFrame_OnLoad(self, "focus", false, false);
 
 	local barIcon = _G[self:GetName().."Icon"];
@@ -300,17 +300,17 @@ function Focus_Spellbar_OnLoad (self)
 
 	SetFocusSpellbarAspect();
 	self.showShield = true;
-	
+
 	_G[self:GetName().."Text"]:SetWidth(130);
 	-- check to see if the castbar should be shown
 	if ( GetCVar("showTargetCastbar") == "0") then
-		self.showCastbar = false;	
+		self.showCastbar = false;
 	end
 end
 
 function Focus_Spellbar_OnEvent (self, event, ...)
 	local arg1 = ...
-	
+
 	--	Check for target specific events
 	if ( (event == "VARIABLES_LOADED") or ((event == "CVAR_UPDATE") and (arg1 == "SHOW_TARGET_CASTBAR")) ) then
 		if ( GetCVar("showTargetCastbar") == "0") then
@@ -318,7 +318,7 @@ function Focus_Spellbar_OnEvent (self, event, ...)
 		else
 			self.showCastbar = true;
 		end
-		
+
 		if ( not self.showCastbar ) then
 			self:Hide();
 		elseif ( self.casting or self.channeling ) then
@@ -426,7 +426,7 @@ function FocusFrame_SetFullSize(fullSize)
 				--Save off the old dimensions so that we can set them back later (the or stops it from overwriting if there are already values)
 				frame.oldHeight = frame.oldHeight or frame:GetHeight();
 				frame.oldWidth = frame.oldWidth or frame:GetWidth();
-				
+
 				frame:SetHeight(equivFrame:GetHeight());
 				frame:SetWidth(equivFrame:GetWidth());
 			end
@@ -443,17 +443,17 @@ function FocusFrame_SetFullSize(fullSize)
 				end
 			end
 		end
-		
+
 		for i=1, MAX_FOCUS_DEBUFFS do
 			_G["FocusFrameDebuff"..i]:SetHeight(21);
 			_G["FocusFrameDebuff"..i]:SetWidth(21);
 		end
-		
+
 		TargetofFocusFrame:SetPoint("BOTTOMRIGHT", -35, -10);
-		
+
 		FocusFrameFlash:SetTexture("Interface\\TargetingFrame\\UI-FocusFrame-Large-Flash");
 		FocusFrameFlash:SetTexCoord(0.0, 0.945, 0.0, 0.73125);
-		
+
 		FocusFrameTextureFrameSmall:Hide();
 		FocusFrameTextureFrameFullSize:Show();
 	elseif ( not fullSize and FocusFrame.fullSize ) then
@@ -466,7 +466,7 @@ function FocusFrame_SetFullSize(fullSize)
 			if ( frame.oldWidth ) then
 				frame:SetWidth(frame.oldWidth);
 			end
-			
+
 			if ( frame.oldAnchors ) then
 				frame:ClearAllPoints();
 				for i=1, #frame.oldAnchors do
@@ -474,17 +474,17 @@ function FocusFrame_SetFullSize(fullSize)
 				end
 			end
 		end
-		
+
 		for i=1, MAX_FOCUS_DEBUFFS do
 			_G["FocusFrameDebuff"..i]:SetHeight(15);
 			_G["FocusFrameDebuff"..i]:SetWidth(15);
 		end
-		
+
 		TargetofFocusFrame:SetPoint("BOTTOMRIGHT", 14, -9);
-		
+
 		FocusFrameFlash:SetTexture("Interface\\TargetingFrame\\UI-TargetingFrame-Flash");
 		FocusFrameFlash:SetTexCoord(0.55078125, 0, 0.400390625, 0.52734375);
-		
+
 		FocusFrameTextureFrameSmall:Show();
 		FocusFrameTextureFrameFullSize:Hide();
 	end

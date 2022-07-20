@@ -143,18 +143,18 @@ function PVPBannerCustomization_Left (self)
 	local texture;
 	if ( id == 1 ) then
 		texture = PVPBannerFrameStandardEmblem;
-		if ( texture.id == 1 ) then 
+		if ( texture.id == 1 ) then
 			texture.id = MAX_TEAM_EMBLEMS;
-		else 
+		else
 			texture.id = texture.id - 1;
 		end
 		texture:SetTexture("Interface\\PVPFrame\\Icons\\PVP-Banner-Emblem-"..texture.id);
 		PVPBannerFrameStandardEmblemWatermark:SetTexture("Interface\\PVPFrame\\Icons\\PVP-Banner-Emblem-"..texture.id);
 	else
 		texture = PVPBannerFrameStandardBorder;
-		if ( texture.id == 1 ) then 
+		if ( texture.id == 1 ) then
 			texture.id = MAX_TEAM_BORDERS;
-		else 
+		else
 			texture.id = texture.id - 1;
 		end
 		texture:SetTexture("Interface\\PVPFrame\\PVP-Banner-"..PVPBannerFrame.teamSize.."-Border-"..texture.id);
@@ -168,16 +168,16 @@ function PVPBannerCustomization_Right (self)
 	local texture;
 	if ( id == 1 ) then
 		texture = PVPBannerFrameStandardEmblem;
-		if ( texture.id == MAX_TEAM_EMBLEMS ) then 
+		if ( texture.id == MAX_TEAM_EMBLEMS ) then
 			texture.id = 1;
-		else 
+		else
 			texture.id = texture.id + 1;
 		end
 		texture:SetTexture("Interface\\PVPFrame\\Icons\\PVP-Banner-Emblem-"..texture.id);
 		PVPBannerFrameStandardEmblemWatermark:SetTexture("Interface\\PVPFrame\\Icons\\PVP-Banner-Emblem-"..texture.id);
 	else
 		texture = PVPBannerFrameStandardBorder;
-		if ( texture.id == MAX_TEAM_BORDERS ) then 
+		if ( texture.id == MAX_TEAM_BORDERS ) then
 			texture.id = 1;
 		else
 			texture.id = texture.id + 1;
@@ -193,7 +193,7 @@ function PVPBannerFrame_SaveBanner (self)
 	local bgColor = {r = 0, g = 0, b = 0};
 	local borderColor = {r = 0, g = 0, b = 0};
 	local iconColor = {r = 0, g = 0, b = 0};
-	
+
 	local color = {bgColor, borderColor, iconColor};
 
 	-- Get color values

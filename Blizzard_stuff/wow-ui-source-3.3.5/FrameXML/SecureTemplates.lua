@@ -97,7 +97,7 @@ function SecureButton_GetButtonSuffix(button)
 	elseif ( button == "Button7" ) then
 		return "7";
 	elseif ( button == "Button8" ) then
-		return "8";    
+		return "8";
 	elseif ( button == "Button9" ) then
 		return "9";
 	elseif ( button == "Button10" ) then
@@ -117,7 +117,7 @@ function SecureButton_GetButtonSuffix(button)
 	elseif ( button == "Button17" ) then
 		return "17";
 	elseif ( button == "Button18" ) then
-		return "18";    
+		return "18";
 	elseif ( button == "Button19" ) then
 		return "19";
 	elseif ( button == "Button20" ) then
@@ -137,7 +137,7 @@ function SecureButton_GetButtonSuffix(button)
 	elseif ( button == "Button27" ) then
 		return "27";
 	elseif ( button == "Button28" ) then
-		return "28";    
+		return "28";
 	elseif ( button == "Button29" ) then
 		return "29";
 	elseif ( button == "Button30" ) then
@@ -184,13 +184,13 @@ function SecureButton_GetModifiedUnit(self, button)
 			unit = gsub(unit, "^([^%d]+)([%d]+)[pP][eE][tT]", "%1pet%2");
 			unit = gsub(unit, "^[pP][lL][aA][yY][eE][rR][pP][eE][tT]", "pet");
 		end
-		
+
 		local noPet, hadPet = unit:gsub("[pP][eE][tT](%d)", "%1");
 		if ( hadPet == 0 ) then
 			noPet, hadPet = unit:gsub("^[pP][eE][tT]", "player");
 		end
 		local noPetNoTarget, hadTarget = noPet:gsub("[tT][aA][rR][gG][eE][tT]", "");
-		if ( UnitHasVehicleUI(noPetNoTarget) and 
+		if ( UnitHasVehicleUI(noPetNoTarget) and
 				SecureButton_GetModifiedAttribute(self, "toggleForVehicle", button) and
 				(noPetNoTarget == noPetNoTarget:gsub("^[mM][oO][uU][sS][eE][oO][vV][eE][rR]", "")
 				                               :gsub("^[fF][oO][cC][uU][sS]", "")
@@ -204,7 +204,7 @@ function SecureButton_GetModifiedUnit(self, button)
 				unit = unit:gsub("^[pP][lL][aA][yY][eE][rR]", "pet"):gsub("^([%a]+)([%d]+)", "%1pet%2");
 			end
 		end
-		
+
 		return unit;
 	end
 	if ( SecureButton_GetModifiedAttribute(self, "checkselfcast", button) ) then
@@ -319,8 +319,8 @@ SECURE_ACTIONS.pet =
             CastPetAction(action, unit);
         end
     end;
-   
-SECURE_ACTIONS.multispell = 
+
+SECURE_ACTIONS.multispell =
     function (self, unit, button)
         local action = ActionButton_CalculateAction(self, button);
         local spell = SecureButton_GetModifiedAttribute(self, "spell", button);
@@ -523,7 +523,7 @@ function SecureActionButton_OnClick(self, button, down)
         end
         if ( type(handler) == 'function' ) then
             -- TODO actiontype is ignored by internal handlers, presently left in to facilitate multi-purpose custom handlers; would we rather remove it entirely?
-            if atRisk then 
+            if atRisk then
                 forceinsecure();
             end
             handler(self, unit, button, actionType);

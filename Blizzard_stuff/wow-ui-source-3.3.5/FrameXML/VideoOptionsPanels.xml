@@ -14,12 +14,12 @@
 				else
 					PlaySound("igMainMenuOptionCheckBoxOff");
 				end
-				BlizzardOptionsPanel_CheckButton_OnClick(self);			
+				BlizzardOptionsPanel_CheckButton_OnClick(self);
 				VideoOptionsFrameApply:Enable();
 			</OnClick>
 		</Scripts>
 	</CheckButton>
-	
+
 	<!-- Resolution Panel -->
 
 	<Frame name="VideoOptionsResolutionPanel" hidden="false" parent="VideoOptionsFramePanelContainer">
@@ -55,7 +55,7 @@
 		</Layers>
 		<Scripts>
 			<OnLoad function="VideoOptionsResolutionPanel_OnLoad"/>
-		</Scripts>	
+		</Scripts>
 		<Frames>
 			<Frame name="$parentResolutionDropDown" inherits="UIDropDownMenuTemplate" enableMouse="true">
 				<Anchors>
@@ -77,7 +77,7 @@
 				<Scripts>
 					<OnLoad>
 						self.type = CONTROLTYPE_DROPDOWN;
-						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());					
+						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 						VideoOptionsResolutionPanelResolutionDropDown_OnLoad(self);
 					</OnLoad>
 					<OnEnter>
@@ -107,7 +107,7 @@
 				<Scripts>
 					<OnLoad>
 						self.type = CONTROLTYPE_DROPDOWN;
-						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());						
+						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 						VideoOptionsResolutionPanelRefreshDropDown_OnLoad(self);
 					</OnLoad>
 					<OnEnter>
@@ -137,7 +137,7 @@
 				<Scripts>
 					<OnLoad>
 						self.type = CONTROLTYPE_DROPDOWN;
-						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());	
+						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 						VideoOptionsResolutionPanelMultiSampleDropDown_OnLoad(self);
 					</OnLoad>
 					<OnEnter>
@@ -200,7 +200,7 @@
 						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 					</OnLoad>
 				</Scripts>
-			</CheckButton>				
+			</CheckButton>
 			<CheckButton name="$parentTripleBuffer" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentVSync" relativePoint="BOTTOMLEFT">
@@ -268,7 +268,7 @@
 						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 					</OnLoad>
 				</Scripts>
-			</CheckButton>	
+			</CheckButton>
 			<CheckButton name="$parentMaximized" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentWindowed" relativePoint="BOTTOMLEFT">
@@ -284,7 +284,7 @@
 						BlizzardOptionsPanel_SetupDependentControl(VideoOptionsResolutionPanelWindowed, self);
 					</OnLoad>
 				</Scripts>
-			</CheckButton>			
+			</CheckButton>
 			<CheckButton name="$parentDisableResize" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentMaximized" relativePoint="BOTTOMLEFT">
@@ -302,7 +302,7 @@
 						end
 					</OnLoad>
 				</Scripts>
-			</CheckButton>		
+			</CheckButton>
 			<Frame name="$parentBrightness" inherits="OptionsBoxTemplate">
 				<Size x="380" y="96"/>
 				<Anchors>
@@ -329,7 +329,7 @@
 						_G[self:GetName().."Title"]:SetText(OPTIONS_BRIGHTNESS);
 					</OnLoad>
 				</Scripts>
-			</Frame>			
+			</Frame>
 			<CheckButton name="$parentDesktopGamma" inherits="OptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentBrightness" relativePoint="TOPLEFT">
@@ -358,7 +358,7 @@
 						VideoOptionsFrameApply:Enable();
 					</OnClick>
 				</Scripts>
-			</CheckButton>		
+			</CheckButton>
 			<Slider name="$parentGammaSlider" inherits="OptionsSliderTemplate">
 				<Size x="154" y="17"/>
 				<Anchors>
@@ -389,10 +389,10 @@
 						VideoOptionsFrameApply:Enable();
 					</OnValueChanged>
 				</Scripts>
-			</Slider>	
+			</Slider>
 		</Frames>
-	</Frame>	
-	
+	</Frame>
+
 	<!-- Effects Panel -->
 
 	<Frame name="VideoOptionsEffectsPanel" parent="VideoOptionsFramePanelContainer" hidden="true">
@@ -428,7 +428,7 @@
 		</Layers>
 		<Scripts>
 			<OnLoad function="VideoOptionsEffectsPanel_OnLoad"/>
-		</Scripts>	
+		</Scripts>
 		<Frames>
 			<Frame name="$parentQuality" inherits="OptionsBoxTemplate">
 				<Size x="380" y="88"/>
@@ -466,7 +466,7 @@
 						_G[self:GetName().."Title"]:Hide();
 					</OnLoad>
 				</Scripts>
-			</Frame>		
+			</Frame>
 			<Slider name="$parentQualitySlider" inherits="OptionsSliderTemplate">
 				<Size x="348" y="17"/>
 				<Anchors>
@@ -507,7 +507,7 @@
 						end
 					</OnValueChanged>
 				</Scripts>
-			</Slider>	
+			</Slider>
 			<Slider name="$parentViewDistance" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -529,7 +529,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>		
+			</Slider>
 			<Slider name="$parentTerrainDetail" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -552,7 +552,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>			
+			</Slider>
 			<Slider name="$parentParticleDensity" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -575,7 +575,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>		
+			</Slider>
 			<Slider name="$parentShadowQuality" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -598,7 +598,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>			
+			</Slider>
 			<Slider name="$parentEnvironmentDetail" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -620,7 +620,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>		
+			</Slider>
 			<Slider name="$parentClutterDensity" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -642,7 +642,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>		
+			</Slider>
 			<Slider name="$parentClutterRadius" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -664,7 +664,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>					
+			</Slider>
 			<Slider name="$parentTextureResolution" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -692,7 +692,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>	
+			</Slider>
 			<Slider name="$parentTextureFiltering" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -714,7 +714,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>				
+			</Slider>
 			<Slider name="$parentWeatherIntensity" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -736,7 +736,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>	
+			</Slider>
 			<Slider name="$parentPlayerTexture" inherits="OptionsSliderTemplate">
 				<Size x="112" y="17"/>
 				<Anchors>
@@ -758,7 +758,7 @@
 					</OnLoad>
 					<OnValueChanged function="VideoOptionsEffectsPanelSlider_OnValueChanged"/>
 				</Scripts>
-			</Slider>	
+			</Slider>
 			<Frame name="$parentShaders" inherits="OptionsBoxTemplate">
 				<Size x="380" y="76"/>
 				<Anchors>
@@ -773,7 +773,7 @@
 						_G[self:GetName().."Title"]:SetText("");
 					</OnLoad>
 				</Scripts>
-			</Frame>	
+			</Frame>
 			<CheckButton name="$parentSpecularLighting" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentShaders" relativePoint="TOPLEFT">
@@ -788,7 +788,7 @@
 						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 					</OnLoad>
 				</Scripts>
-			</CheckButton>	
+			</CheckButton>
 			<CheckButton name="$parentFullScreenGlow" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentSpecularLighting" relativePoint="BOTTOMLEFT">
@@ -803,7 +803,7 @@
 						BlizzardOptionsPanel_RegisterControl(self, self:GetParent());
 					</OnLoad>
 				</Scripts>
-			</CheckButton>		
+			</CheckButton>
 			<CheckButton name="$parentDeathEffect" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentShaders">
@@ -835,7 +835,7 @@
 				</Scripts>
 			</CheckButton>
 		</Frames>
-	</Frame>	
+	</Frame>
 	<Frame name="VideoOptionsStereoPanel" parent="VideoOptionsFramePanelContainer" hidden="true">
 		<Layers>
 			<Layer level="ARTWORK">
@@ -871,8 +871,8 @@
 			<OnLoad>
 				VideoOptionsStereoPanel_OnLoad(self);
 			</OnLoad>
-		</Scripts>	
-		<Frames>		
+		</Scripts>
+		<Frames>
 			<CheckButton name="$parentEnabled" inherits="VideoOptionsSmallCheckButtonTemplate">
 				<Anchors>
 					<Anchor point="TOP">
@@ -960,8 +960,7 @@
 						VideoOptionsFrameApply:Enable();
 					</OnValueChanged>
 				</Scripts>
-			</Slider>		
+			</Slider>
 		</Frames>
 	</Frame>
 </Ui>
-

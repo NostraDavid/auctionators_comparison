@@ -191,7 +191,7 @@
 									MacOptionsFrameCheckButton3:SetChecked(0);
 									MacOptionsFrame_DisableCheckBox(MacOptionsFrameCheckButton3);
 								end
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<CheckButton name="MacOptionsFrameCheckButton3" inherits="OptionsCheckButtonTemplate">
@@ -209,7 +209,7 @@
 								else
 									PlaySound("igMainMenuOptionCheckBoxOff");
 								end
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<CheckButton name="MacOptionsFrameCheckButton2" inherits="OptionsCheckButtonTemplate">
@@ -228,7 +228,7 @@
 									PlaySound("igMainMenuOptionCheckBoxOff");
 								end
 								MacOptionsFrame_UpdateTime();
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<CheckButton name="MacOptionsFrameCheckButton4" inherits="OptionsCheckButtonTemplate">
@@ -250,7 +250,7 @@
 									PlaySound("igMainMenuOptionCheckBoxOff");
 									MiniMapRecordingButton:Hide();
 								end
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<CheckButton name="MacOptionsFrameCheckButton5" inherits="OptionsCheckButtonTemplate">
@@ -268,7 +268,7 @@
 								else
 									PlaySound("igMainMenuOptionCheckBoxOff");
 								end
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<CheckButton name="MacOptionsFrameCheckButton6" inherits="OptionsCheckButtonTemplate">
@@ -286,7 +286,7 @@
 								else
 									PlaySound("igMainMenuOptionCheckBoxOff");
 								end
-							</OnClick>	
+							</OnClick>
 						</Scripts>
 					</CheckButton>
 					<Button name="MacOptionsButtonCompress" inherits="GameMenuButtonTemplate" text="MOVIE_RECORDING_COMPRESSDIALOG">
@@ -443,7 +443,7 @@
 				</Frames>
 			</Frame>
 			<!-- End of iTunes Remote section -->
-			
+
 			<Button name="MacOptionsFrameCancel" inherits="OptionsButtonTemplate" text="CANCEL">
 				<Size>
 					<AbsDimension x="100" y="21"/>
@@ -676,7 +676,7 @@
 				MovieRecording_SearchUncompressedMovie(false);
 			</OnHide>
 		</Scripts>
-	</Frame>	
+	</Frame>
 	<Frame name="MacOptionsCancelFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent">
 		<Size>
 			<AbsDimension x="656" y="148"/>

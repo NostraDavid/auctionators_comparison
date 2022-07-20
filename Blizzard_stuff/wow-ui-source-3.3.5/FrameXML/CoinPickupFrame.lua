@@ -29,7 +29,7 @@ function OpenCoinPickupFrame(multiplier, maxMoney, parent)
 			CoinPickupText:SetPoint("RIGHT", -38, 18);
 			CoinPickupFrame.colorBlind = true;
 		end
-		
+
 		if ( multiplier == 1 ) then
 			CoinPickupFrame.symbol = COPPER_AMOUNT_SYMBOL;
 		elseif ( multiplier == COPPER_PER_SILVER ) then
@@ -43,8 +43,8 @@ function OpenCoinPickupFrame(multiplier, maxMoney, parent)
 			CoinPickupText:SetPoint("RIGHT", -38, 18);
 			CoinPickupFrame.colorBlind = nil;
 		end
-		
-		
+
+
 		if ( multiplier == 1 ) then
 			CoinPickupCopperIcon:Show();
 		else
@@ -63,7 +63,7 @@ function OpenCoinPickupFrame(multiplier, maxMoney, parent)
 			CoinPickupGoldIcon:Hide();
 		end
 	end
-	
+
 	CoinPickupFrame.owner = parent;
 	CoinPickupFrame.money = 1;
 	CoinPickupFrame.typing = 0;
@@ -180,7 +180,7 @@ function CoinPickupFrame_OnKeyDown(self, key)
 		--Running bindings not used by the CoinPickup frame allows players to retain control of their characters.
 		RunBinding(GetBindingAction(key));
 	end
-	
+
 	COINFRAME_BINDING_CACHE[key] = true;
 end
 
@@ -189,7 +189,7 @@ function CoinPickupFrame_OnKeyUp(self, key)
 		--If we don't run the up bindings as well, interesting things happen (like you never stop moving)
 		RunBinding(GetBindingAction(key), "up");
 	end
-	
+
 	COINFRAME_BINDING_CACHE[key] = nil;
 end
 
@@ -236,13 +236,13 @@ function CoinPickupFrame_OnHide()
 	if ( CoinPickupFrame.owner ) then
 		CoinPickupFrame.owner.hasPickup = 0;
 	end
-	
+
 	for key in next, COINFRAME_BINDING_CACHE do
 		if ( GetBindingAction(key) ) then
 			RunBinding(GetBindingAction(key), "up");
 		end
 		COINFRAME_BINDING_CACHE[key] = nil;
 	end
-	
+
 	PlaySound("MONEYFRAMECLOSE");
 end

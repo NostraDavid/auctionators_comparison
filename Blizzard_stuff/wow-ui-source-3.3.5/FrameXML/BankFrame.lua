@@ -9,7 +9,7 @@ function BankFrameBaseButton_OnLoad (self)
 	self.UpdateTooltip = BankFrameItemButton_OnEnter;
 end
 
-function BankFrameItemButton_OnLoad (self) 
+function BankFrameItemButton_OnLoad (self)
 	BankFrameBaseButton_OnLoad (self);
 	self.SplitStack = function(button, split)
 		SplitContainerItem(BANK_CONTAINER, button:GetID(), split);
@@ -50,7 +50,7 @@ function BankFrameItemButton_Update (button)
 			questTexture:Show();
 		elseif ( questId or isQuestItem ) then
 			questTexture:SetTexture(TEXTURE_ITEM_QUEST_BORDER);
-			questTexture:Show();		
+			questTexture:Show();
 		else
 			questTexture:Hide();
 		end
@@ -65,7 +65,7 @@ function BankFrameItemButton_Update (button)
 		texture:SetTexture(slotTextureName);
 		SetItemButtonCount(button,0);
 		texture:Show();
-	else 
+	else
 		texture:Hide();
 		SetItemButtonCount(button,0);
 	end
@@ -83,11 +83,11 @@ function BankFrame_UpdateCooldown(container, button)
 	end
 end
 
-function BankFrameItemButton_UpdateLocked (button) 
+function BankFrameItemButton_UpdateLocked (button)
 	local inventoryID = button:GetInventorySlot();
 	if ( IsInventoryItemLocked(inventoryID) ) then
 		SetItemButtonDesaturated(button, 1, 0.5, 0.5, 0.5);
-	else 
+	else
 		if ( button.isBag and ((button:GetID() - 4) > GetNumBankSlots()) ) then
 			return;
 		end
@@ -100,12 +100,12 @@ function BankFrame_OnLoad (self)
 	self:RegisterEvent("BANKFRAME_CLOSED");
 end
 
-function UpdateBagSlotStatus () 
+function UpdateBagSlotStatus ()
 	local purchaseFrame = BankFramePurchaseInfo;
 	if( purchaseFrame == nil ) then
 		return;
 	end
-	
+
 	local numSlots,full = GetNumBankSlots();
 	local button;
 	for i=1, NUM_BANKBAGSLOTS, 1 do
@@ -138,7 +138,7 @@ function UpdateBagSlotStatus ()
 	end
 end
 
-function CloseBankBagFrames () 
+function CloseBankBagFrames ()
 	for i=NUM_BAG_SLOTS+1, (NUM_BAG_SLOTS + NUM_BANKBAGSLOTS), 1 do
 		CloseBag(i);
 	end
@@ -189,7 +189,7 @@ function BankFrame_OnShow (self)
 		button = _G["BankFrameItem"..i];
 		BankFrameItemButton_Update(button);
 	end
-	
+
 	for i=1, NUM_BANKBAGSLOTS, 1 do
 		button = _G["BankFrameBag"..i];
 		BankFrameItemButton_Update(button);
@@ -235,7 +235,7 @@ function BankFrameItemButtonGeneric_OnModifiedClick (self, button)
 	end
 end
 
-function UpdateBagButtonHighlight (id) 
+function UpdateBagButtonHighlight (id)
 	local texture = _G["BankFrameBag"..(id - NUM_BAG_SLOTS).."HighlightFrameTexture"];
 	if ( not texture ) then
 		return;
@@ -252,7 +252,7 @@ function UpdateBagButtonHighlight (id)
 	texture:Hide();
 end
 
-function BankFrameItemButtonBag_OnClick (self, button) 
+function BankFrameItemButtonBag_OnClick (self, button)
 	local inventoryID = self:GetInventorySlot();
 	local hadItem = PutItemInBag(inventoryID);
 	local id = self:GetID();

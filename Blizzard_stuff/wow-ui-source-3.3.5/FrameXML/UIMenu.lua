@@ -16,7 +16,7 @@ function UIMenu_Initialize(self)
 		button:SetWidth(UIMENU_BUTTON_WIDTH);
 		button:SetHeight(UIMENU_BUTTON_HEIGHT);
 		button:Hide();
-		
+
 		local shortcutString = _G[button:GetName().."ShortcutText"];
 		shortcutString:Hide();
 	end
@@ -133,7 +133,7 @@ end
 
 function UIMenuButton_OnLeave(self)
 	UIMenu_StartCounting(self:GetParent());
-	
+
 	local nested = self.nested;
 	if ( nested ) then
 		UIMenu_StartCounting(_G[nested]);

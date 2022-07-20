@@ -36,7 +36,7 @@ end
 function InspectPVPFrame_Update()
 	for i=1, MAX_ARENA_TEAMS do
 		GetInspectArenaTeamData(i);
-	end	
+	end
 	InspectPVPFrame_SetFaction();
 	InspectPVPHonor_Update();
 	InspectPVPTeam_Update();
@@ -75,12 +75,12 @@ function InspectPVPTeam_Update()
 			teamName, teamSize, teamRating, teamPlayed, teamWins,  playerPlayed, playerRating, background.r, background.g, background.b, emblem, emblemColor.r, emblemColor.g, emblemColor.b, border, borderColor.r, borderColor.g, borderColor.b = GetInspectArenaTeamData(value.index);
 			teamLoss = teamPlayed - teamWins;
 			if ( teamPlayed ~= 0 ) then
-				playerPlayedPct =  floor( ( playerPlayed / teamPlayed ) * 100 );		
+				playerPlayedPct =  floor( ( playerPlayed / teamPlayed ) * 100 );
 			else
 				playerPlayedPct =  floor( ( playerPlayed / 1 ) * 100 );
 			end
 
-			-- Set button elements to variables 
+			-- Set button elements to variables
 			button = _G["InspectPVPTeam"..buttonIndex];
 			buttonName = "InspectPVPTeam"..buttonIndex;
 			data = buttonName.."Data";
@@ -95,7 +95,7 @@ function InspectPVPTeam_Update()
 			_G[data.."Games"]:SetText(teamPlayed);
 			_G[data.."Wins"]:SetText(teamWins);
 			_G[data.."Loss"]:SetText(teamLoss);
-			
+
 			_G[data.."Played"]:SetText(playerRating);
 			_G[data.."Played"]:SetVertexColor(1.0, 1.0, 1.0);
 			_G[data.."PlayedLabel"]:SetText(RATING);
@@ -123,14 +123,14 @@ function InspectPVPTeam_Update()
 			_G[buttonName.."Background"]:SetVertexColor(0, 0, 0);
 			_G[buttonName.."Background"]:SetAlpha(1);
 			_G[buttonName.."TeamType"]:Hide();
-			
+
 		end
 	end
 
 	-- show unused teams
 	for index, value in pairs(ARENA_TEAMS) do
 		if ( not value.index ) then
-			-- Set button elements to variables 
+			-- Set button elements to variables
 			buttonIndex = buttonIndex + 1;
 			button = _G["InspectPVPTeam"..buttonIndex];
 			buttonName = "InspectPVPTeam"..buttonIndex;
@@ -155,20 +155,20 @@ end
 -- PVP Honor Data
 function InspectPVPHonor_Update()
 	local todayHK, todayHonor, yesterdayHK, yesterdayHonor, lifetimeHK, lifetimeRank = GetInspectHonorData();
-	
+
 	-- Yesterday's values
 	InspectPVPHonorYesterdayKills:SetText(yesterdayHK);
 	InspectPVPHonorYesterdayHonor:SetText(yesterdayHonor);
-	
+
 	-- Lifetime values
 	InspectPVPHonorLifetimeKills:SetText(lifetimeHK);
 	InspectPVPFrameHonorPoints:SetText("");
 	InspectPVPFrameArenaPoints:SetText("");
 
 	-- Hide Point Values
-	InspectPVPFrameHonorPoints:Hide();	
+	InspectPVPFrameHonorPoints:Hide();
 	InspectPVPFrameArenaPoints:Hide();
-	
+
 	-- This session's values
 	InspectPVPHonorTodayKills:SetText(todayHK);
 	InspectPVPHonorTodayHonor:SetText(todayHonor);

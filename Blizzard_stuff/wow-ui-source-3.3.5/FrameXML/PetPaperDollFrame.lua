@@ -69,7 +69,7 @@ function PetPaperDollFrame_UpdateTabs()
 		PetPaperDollFrame_UpdateIsAvailable(); --But we still need to update the tabs on the CharacterFrame (bug 150500)
 		return;
 	end
-		
+
 	local currVal, currRef = 1, tabPoints[1];
 
 	--PetPaperDollFrameTab1:ClearAllPoints()	--Never moved, just hidden
@@ -84,7 +84,7 @@ function PetPaperDollFrame_UpdateTabs()
 	else
 		PetPaperDollFrameTab1:Hide();
 	end
-	
+
 	if ( GetNumCompanions("CRITTER") > 0 ) then
 		PetPaperDollFrameTab2:Show();
 		PetPaperDollFrameTab2:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset);
@@ -94,7 +94,7 @@ function PetPaperDollFrame_UpdateTabs()
 	else
 		PetPaperDollFrameTab2:Hide();
 	end
-	
+
 	if ( GetNumCompanions("MOUNT") > 0 ) then
 		PetPaperDollFrameTab3:Show();
 		PetPaperDollFrameTab3:SetPoint(currRef.point, currRef.relativeTo, currRef.relativePoint, currRef.xoffset, currRef.yoffset);
@@ -102,9 +102,9 @@ function PetPaperDollFrame_UpdateTabs()
 	else
 		PetPaperDollFrameTab3:Hide();
 	end
-	
+
 	PetPaperDollFrame_UpdateIsAvailable();
-	
+
 	local selectedTab = PanelTemplates_GetSelectedTab(PetPaperDollFrame);
 	if ( (not PetPaperDollFrame.selectedTab) or (not PetPaperDollFrame_BeenViewed) or (not _G["PetPaperDollFrameTab"..selectedTab]:IsShown()) ) then
 		if ( PetPaperDollFrameTab1:IsShown() ) then
@@ -119,7 +119,7 @@ function PetPaperDollFrame_UpdateTabs()
 			end
 		end
 	end
-	
+
 	if ( currVal == 2 ) then --Only 1 tab shown, so no reason to make it visible.
 		PetPaperDollFrameTab1:Hide();
 		PetPaperDollFrameTab2:Hide();
@@ -221,7 +221,7 @@ function PetPaperDollFrame_SetTab(id)
 		PetPaperDollFrame_UpdateCompanionPreview();
 		PetNameText:SetText(MOUNTS);
 	end
-	
+
 	for i=1,3 do
 		if ( i == id ) then
 			PanelTemplates_SelectTab(_G["PetPaperDollFrameTab"..i]);
@@ -265,7 +265,7 @@ end
 
 function CompanionButton_OnDrag(self)
 	local offset;
-	
+
 	if ( PetPaperDollFrameCompanionFrame.mode=="CRITTER" ) then
 		offset = (PetPaperDollFrameCompanionFrame.pageCritter or 0)*NUM_COMPANIONS_PER_PAGE;
 	elseif ( PetPaperDollFrameCompanionFrame.mode=="MOUNT" ) then
@@ -307,7 +307,7 @@ function CompanionButton_OnClick(self, button)
 			PetPaperDollFrame_UpdateCompanionPreview();
 		end
 	end
-	
+
 	PetPaperDollFrame_UpdateCompanions();
 end
 
@@ -338,7 +338,7 @@ function CompanionButton_OnEnter(self)
 	else
 		self.UpdateTooltip = nil;
 	end
-	
+
 	GameTooltip:Show()
 end
 
@@ -348,7 +348,7 @@ function PetPaperDollFrame_SetCompanionPage(num)
 	elseif ( PetPaperDollFrameCompanionFrame.mode == "MOUNT" ) then
 		PetPaperDollFrameCompanionFrame.pageMount = num;
 	end
-	
+
 	num = num + 1;	--For easier usage
 	local maxpage = ceil(GetNumCompanions(PetPaperDollFrameCompanionFrame.mode)/NUM_COMPANIONS_PER_PAGE);
 	CompanionPageNumber:SetFormattedText(MERCHANT_PAGE_NUMBER,num, maxpage);
@@ -370,7 +370,7 @@ function PetPaperDollFrame_UpdateCompanions()
 	local button, iconTexture, id;
 	local creatureID, creatureName, spellID, icon, active;
 	local offset, selected;
-	
+
 	if ( PetPaperDollFrameCompanionFrame.mode == "CRITTER" ) then
 		offset = (PetPaperDollFrameCompanionFrame.pageCritter or 0)*NUM_COMPANIONS_PER_PAGE;
 		selected = PetPaperDollFrame_FindCompanionIndex(PetPaperDollFrameCompanionFrame.idCritter);
@@ -397,14 +397,14 @@ function PetPaperDollFrame_UpdateCompanions()
 		else
 			button:SetChecked(false);
 		end
-		
+
 		if ( active ) then
 			_G["CompanionButton"..i.."ActiveTexture"]:Show();
 		else
 			_G["CompanionButton"..i.."ActiveTexture"]:Hide();
 		end
 	end
-	
+
 	if ( selected > 0 ) then
 		creatureID, creatureName, spellID, icon, active = GetCompanionInfo(PetPaperDollFrameCompanionFrame.mode, selected);
 		if ( active and creatureID ) then
@@ -438,7 +438,7 @@ end
 
 function PetPaperDollFrame_UpdateCompanionPreview()
 	local selected = PetPaperDollFrame_FindCompanionIndex();
-	
+
 	if (selected > 0) then
 		local creatureID, creatureName = GetCompanionInfo(PetPaperDollFrameCompanionFrame.mode, selected);
 		CompanionModelFrame:SetCreature(creatureID);
@@ -505,11 +505,11 @@ function PetPaperDollFrame_SetResistances()
 		end
 		text = _G["PetMagicResText"..i];
 		frame = _G["PetMagicResFrame"..i];
-		
+
 		base, resistance, positive, negative = UnitResistance("pet", frame:GetID());
 
 		frame.tooltip = _G["RESISTANCE"..frame:GetID().."_NAME"];
-	
+
 		-- resistances can now be negative. Show Red if negative, Green if positive, white otherwise
 		if( resistance < 0 ) then
 			text:SetText(RED_FONT_COLOR_CODE..resistance..FONT_COLOR_CODE_CLOSE);
@@ -550,7 +550,7 @@ function PetPaperDollFrame_SetStats()
 		if ( ( posBuff == 0 ) and ( negBuff == 0 ) ) then
 			text:SetText(effectiveStat);
 			frame.tooltip = tooltipText..effectiveStat..FONT_COLOR_CODE_CLOSE;
-		else 
+		else
 			tooltipText = tooltipText..effectiveStat;
 			if ( posBuff > 0 or negBuff < 0 ) then
 				tooltipText = tooltipText.." ("..(stat - posBuff - negBuff)..FONT_COLOR_CODE_CLOSE;
@@ -574,7 +574,7 @@ function PetPaperDollFrame_SetStats()
 				text:SetText(GREEN_FONT_COLOR_CODE..effectiveStat..FONT_COLOR_CODE_CLOSE);
 			end
 		end
-		
+
 		-- Second tooltip line
 		frame.tooltip2 = _G["DEFAULT_STAT"..i.."_TOOLTIP"];
 		if ( i == 1 ) then

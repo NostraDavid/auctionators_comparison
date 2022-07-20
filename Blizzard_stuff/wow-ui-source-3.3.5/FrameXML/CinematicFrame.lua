@@ -5,13 +5,13 @@ function CinematicFrame_OnLoad(self)
 
 	local width = GetScreenWidth();
 	local height = GetScreenHeight();
-	
+
 	if ( width / height > 4 / 3) then
 		local desiredHeight = width / 2;
 		if ( desiredHeight > height ) then
 			desiredHeight = height;
 		end
-		
+
 		local blackBarHeight = ( height - desiredHeight ) / 2;
 
 		UpperBlackBar:SetHeight( blackBarHeight );
@@ -19,7 +19,7 @@ function CinematicFrame_OnLoad(self)
 		LowerBlackBar:SetHeight( blackBarHeight );
 		LowerBlackBar:SetWidth( width );
 	end
-	
+
 
 end
 

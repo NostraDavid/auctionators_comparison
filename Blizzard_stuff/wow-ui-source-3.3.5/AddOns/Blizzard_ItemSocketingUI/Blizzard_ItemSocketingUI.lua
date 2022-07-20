@@ -43,7 +43,7 @@ function ItemSocketingFrame_Update()
 	end
 
 	local numSockets = GetNumSockets();
-	local name, icon, quality, gemMatchesSocket; 
+	local name, icon, quality, gemMatchesSocket;
 	local socket, socketName;
 	local numNewGems = numSockets;
 	local closedBracket, openBracket;
@@ -63,7 +63,7 @@ function ItemSocketingFrame_Update()
 				if ( icon ) then
 					bracketsOpen = nil;
 				end
-				
+
 				-- Count down new gems if there's no name
 				numNewGems = numNewGems - 1;
 			elseif ( GetExistingSocketInfo(i) ) then
@@ -87,7 +87,7 @@ function ItemSocketingFrame_Update()
 				closedBracket:Show();
 				openBracket:Hide();
 			end
-			
+
 			if ( gemColor ~= "" ) then
 				gemInfo = GEM_TYPE_INFO[gemColor];
 				gemBorder = _G[socketName.."Background"]
@@ -125,7 +125,7 @@ function ItemSocketingFrame_Update()
 		end
 	end
 
-	-- Playsound if all sockets are matched 
+	-- Playsound if all sockets are matched
 	if ( numMatches == numsockets ) then
 		-- Will probably need a new sound
 		PlaySound("MapPing");
@@ -167,7 +167,7 @@ function ItemSocketingFrame_Update()
 	-- Update socket button
 	if ( numNewGems == 0 ) then
 		ItemSocketingSocketButton_Disable();
-	else	
+	else
 		ItemSocketingSocketButton_Enable();
 	end
 end
@@ -188,7 +188,7 @@ end
 function ItemSocketingSocketButton_OnEnter(self)
 	local newSocket = GetNewSocketInfo(self:GetID());
 	local existingSocket = GetExistingSocketInfo(self:GetID());
-	
+
 	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	if ( newSocket ) then
 		GameTooltip:SetSocketGem(self:GetID());
@@ -225,5 +225,5 @@ function ItemSocketingSocketButton_Enable()
 	ItemSocketingSocketButton:Enable();
 	ItemSocketingSocketButtonLeft:SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
 	ItemSocketingSocketButtonMiddle:SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
-	ItemSocketingSocketButtonRight:SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");	
+	ItemSocketingSocketButtonRight:SetTexture("Interface\\Buttons\\UI-Panel-Button-Up");
 end

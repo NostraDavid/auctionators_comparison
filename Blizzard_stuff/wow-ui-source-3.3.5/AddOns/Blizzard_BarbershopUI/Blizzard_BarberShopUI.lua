@@ -3,7 +3,7 @@ function BarberShop_OnLoad(self)
 	BarberShop_UpdateFacialHairCustomization();
 	self:RegisterEvent("BARBER_SHOP_APPEARANCE_APPLIED");
 	self:RegisterEvent("BARBER_SHOP_SUCCESS");
-	
+
 	if ( CanAlterSkin() ) then
 		BarberShop_ToFourAttributeFormat();
 	end
@@ -21,7 +21,7 @@ function BarberShop_OnShow(self)
 	self:SetPoint("RIGHT", min(-50, -CONTAINER_OFFSET_X), -50);
 
 	PlaySound("BarberShop_Sit");
-	
+
 	WatchFrame:Hide();
 
 	--load the texture
@@ -32,7 +32,7 @@ function BarberShop_OnHide(self)
 	BarberShopBannerFrame:Hide();
 
 	WatchFrame:Show();
-	
+
 	--unload the texture to save memory
 	BarberShopFrameBackground:SetTexture(nil);
 end

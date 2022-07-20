@@ -10,7 +10,7 @@ function MainMenuExpBar_Update()
 	MainMenuExpBar:SetValue(currXP);
 end
 
-local function MainMenuBar_GetAnimPos(self, fraction)	
+local function MainMenuBar_GetAnimPos(self, fraction)
 	return "BOTTOM", UIParent, "BOTTOM", MAINMENU_XPOS, (sin(fraction*90+90)-1) * MAINMENU_GONEYPOS;
 end
 
@@ -22,7 +22,7 @@ local function MainMenuBar_GetRightABPos(self, fraction)
 	else
 		finaloffset = 62;
 	end
-	
+
 	return "BOTTOMRIGHT", UIParent, "BOTTOMRIGHT", (sin(fraction*90)) * finaloffset, 98;
 end
 
@@ -36,7 +36,7 @@ local function MainMenuBar_GetSeatIndicatorPos(self, fraction)
 	else
 		finaloffset = 0;
 	end
-	
+
 	return "TOPRIGHT", MinimapCluster, "BOTTOMRIGHT", (cos(fraction*90)) * finaloffset, -13;
 end
 
@@ -88,40 +88,40 @@ local AnimDataTable = {
 
 function MainMenuBar_ToVehicleArt(self)
 	MainMenuBar.state = "vehicle";
-	
+
 	SetUpAnimation(VehicleMenuBar, AnimDataTable.MenuBar_Slide, nil, true);
-	
+
 	MultiBarLeft:Hide();
 	MultiBarRight:Hide();
 	MultiBarBottomLeft:Hide();
 	MultiBarBottomRight:Hide();
-	
+
 	MainMenuBar:Hide();
 	VehicleMenuBar:SetPoint(MainMenuBar_GetAnimPos(VehicleMenuBar, 1))
 	VehicleMenuBar:Show();
 	PossessBar_Update(true);
 	ShowBonusActionBar(true);	--Now, when we are switching to vehicle art we will ALWAYS be using the BonusActionBar
-	UIParent_ManageFramePositions();	--This is called in PossessBar_Update, but it doesn't actually do anything but change an attribute, so it is worth keeping	
-	
+	UIParent_ManageFramePositions();	--This is called in PossessBar_Update, but it doesn't actually do anything but change an attribute, so it is worth keeping
+
 	VehicleMenuBar_SetSkin(VehicleMenuBar.skin, IsVehicleAimAngleAdjustable());
 end
 
 function MainMenuBar_ToPlayerArt(self)
 	MainMenuBar.state = "player";
-	
+
 	MultiActionBar_Update();
-	
+
 	MultiBarRight:SetPoint(MainMenuBar_GetRightABPos(MultiBarRight, 1));
-	
+
 	SetUpAnimation(MainMenuBar, AnimDataTable.MenuBar_Slide, nil, true);
 	SetUpAnimation(MultiBarRight, AnimDataTable.ActionBar_Slide, MainMenuBar_UnlockAB, true);
 	SetUpAnimation(VehicleSeatIndicator, AnimDataTable.SeatIndicator_Slide, nil, true);
-	
-	
-	
+
+
+
 	VehicleMenuBar:Hide();
-	
-	
+
+
 	MainMenuBar:Show();
 
 	PossessBar_Update(true);
@@ -132,7 +132,7 @@ function MainMenuBar_ToPlayerArt(self)
 	end
 	--UIParent_ManageFramePositions()	--This is called in PossessBar_Update
 	MainMenuBarVehicleLeaveButton_Update();
-	
+
 	VehicleMenuBar_MoveMicroButtons();
 	VehicleMenuBar_ReleaseSkins();
 end
@@ -180,7 +180,7 @@ function MainMenuBar_OnLoad(self)
 	self:RegisterEvent("UNIT_ENTERED_VEHICLE");
 	self:RegisterEvent("UNIT_EXITING_VEHICLE");
 	self:RegisterEvent("UNIT_EXITED_VEHICLE");
-	
+
 	MainMenuBar.state = "player";
 	MainMenuBarPageNumber:SetText(GetActionBarPage());
 end
@@ -293,7 +293,7 @@ function MainMenuBar_OnEvent(self, event, ...)
 				HideBonusActionBar();
 			end
 		end
-		
+
 	end
 end
 
@@ -383,7 +383,7 @@ function ExhaustionToolTipText()
 			GameTooltip_SetDefaultAnchor(GameTooltip, UIParent);
 		end
 	end
-	
+
 	local exhaustionStateID, exhaustionStateName, exhaustionStateMultiplier;
 	exhaustionStateID, exhaustionStateName, exhaustionStateMultiplier = GetRestState();
 
@@ -402,7 +402,7 @@ function ExhaustionToolTipText()
 	if ( GetTimeToWellRested() ) then
 		exhaustionCountdown = GetTimeToWellRested() / 60;
 	end
-	
+
 	local currXP = UnitXP("player");
 	local nextXP = UnitXPMax("player");
 	local percentXP = math.ceil(currXP/nextXP*100);
@@ -491,7 +491,7 @@ function MainMenuBarPerformanceBarFrame_OnEnter(self)
 	local i, j, k = 0, 0, 0;
 
 	GameTooltip_SetDefaultAnchor(GameTooltip, self);
-	
+
 	GameTooltip_AddNewbieTip(self, self.tooltipText, 1.0, 1.0, 1.0, self.newbieText);
 
 	-- latency
@@ -552,7 +552,7 @@ function MainMenuBarPerformanceBarFrame_OnEnter(self)
 		if ( SHOW_NEWBIE_TIPS == "1" ) then
 			GameTooltip:AddLine(NEWBIE_TOOLTIP_MEMORY, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, 1);
 		end
-		
+
 		local size;
 		for i=1, NUM_ADDONS_TO_DISPLAY, 1 do
 			if ( topAddOns[i].value == 0 ) then

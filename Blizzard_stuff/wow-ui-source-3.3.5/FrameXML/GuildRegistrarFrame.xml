@@ -38,7 +38,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\QuestFrame\UI-QuestGreeting-TopRight">
 					<Size>
 						<AbsDimension x="128" y="256"/>
@@ -76,7 +76,7 @@
 					</Anchors>
 				</FontString>
 			</Layer>
-		</Layers> 
+		</Layers>
  		<Frames>
 			<Frame name="GuildRegistrarNpcNameFrame">
 				<Size>
@@ -318,7 +318,7 @@
 							</OnEscapePressed>
 						</Scripts>
 						<FontString inherits="ChatFontNormal"/>
-					</EditBox>	
+					</EditBox>
 				</Frames>
 			</Frame>
  		</Frames>

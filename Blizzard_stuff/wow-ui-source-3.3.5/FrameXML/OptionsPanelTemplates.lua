@@ -354,7 +354,7 @@ function BlizzardOptionsPanel_OnEvent (frame, event, ...)
 				end
 			end
 		end
-		frame:UnregisterEvent(event);	
+		frame:UnregisterEvent(event);
 	end
 end
 
@@ -371,7 +371,7 @@ function BlizzardOptionsPanel_RegisterControl (control, parentFrame)
 end
 
 function BlizzardOptionsPanel_SetupControl (control)
-	if ( control.type == CONTROLTYPE_CHECKBOX ) then			
+	if ( control.type == CONTROLTYPE_CHECKBOX ) then
 		if ( control.cvar ) then
 			local value = GetCVar(control.cvar);
 			control.value = value;
@@ -453,4 +453,3 @@ function BlizzardOptionsPanel_SetupDependentControl (dependency, control)
 		control.Enable = function (self) UIDropDownMenu_EnableDropDown(self) end;
 	end
 end
-

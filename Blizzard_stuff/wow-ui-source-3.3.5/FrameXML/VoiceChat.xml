@@ -36,7 +36,7 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-					<Layer level="BACKGROUND">			
+					<Layer level="BACKGROUND">
 						<Texture file="Interface\Common\VoiceChat-Speaker"/>
 						<Texture file="Interface\Common\VoiceChat-On"/>
 					</Layer>
@@ -70,12 +70,12 @@
 							</Offset>
 						</Anchor>
 						<Anchor point="BOTTOMRIGHT"/>
-					</Anchors>					
+					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
 	</Frame>
-	
+
 	<Frame name="VoiceChatTalkers" parent="UIParent" movable="true" clampedToScreen="true">
 		<Size>
 			<AbsDimension x="125" y="24"/>
@@ -88,7 +88,7 @@
 			</Anchor>
 		</Anchors>
 		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-			<EdgeSize>	
+			<EdgeSize>
 				<AbsValue val="16"/>
 			</EdgeSize>
 			<TileSize>
@@ -96,7 +96,7 @@
 			</TileSize>
 			<BackgroundInsets>
 				<AbsInset left="5" right="5" top="5" bottom="5"/>
-			</BackgroundInsets>		
+			</BackgroundInsets>
 		</Backdrop>
 		<HitRectInsets>
 			<AbsInset left="-10" right="-10" top="-10" bottom="-10"/>
@@ -115,9 +115,9 @@
 				if ( self:IsMouseOver() ) then
 					return;
 				end
-				
+
 				self.mouseoverLock = nil;
-				
+
 				if ( VoiceChatTalkers_CanHide() ) then
 					self:SetAlpha(0);
 				end
@@ -152,14 +152,14 @@
 					</Anchor>
 				</Anchors>
 				<Layers>
-					<Layer level="BACKGROUND">			
+					<Layer level="BACKGROUND">
 						<Texture file="Interface\Common\VoiceChat-Speaker"/>
 						<Texture file="Interface\Common\VoiceChat-On"/>
 					</Layer>
 				</Layers>
 			</Frame>
 		</Frames>
-	</Frame>  
+	</Frame>
 	<Button name="MiniMapVoiceChatFrame" parent="Minimap" hidden="true">
 		<Size>
 			<AbsDimension x="33" y="33"/>

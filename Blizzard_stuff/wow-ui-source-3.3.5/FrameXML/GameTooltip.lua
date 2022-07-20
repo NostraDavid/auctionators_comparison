@@ -69,7 +69,7 @@ function GameTooltip_UnitColor(unit)
 	return r, g, b;
 end
 
-function GameTooltip_SetDefaultAnchor(tooltip, parent)		
+function GameTooltip_SetDefaultAnchor(tooltip, parent)
 	tooltip:SetOwner(parent, "ANCHOR_NONE");
 	tooltip:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X - 13, CONTAINER_OFFSET_Y);
 	tooltip.default = 1;
@@ -142,7 +142,7 @@ function GameTooltip_ClearMoney(self)
 	if ( not self.shownMoneyFrames ) then
 		return;
 	end
-	
+
 	local moneyFrame;
 	for i=1, self.shownMoneyFrames do
 		moneyFrame = _G[self:GetName().."MoneyFrame"..i];
@@ -222,7 +222,7 @@ function GameTooltip_ShowCompareItem(self, shift)
 	if ( not link ) then
 		return;
 	end
-	
+
 	local shoppingTooltip1, shoppingTooltip2, shoppingTooltip3 = unpack(self.shoppingTooltips);
 
 	local item1 = nil;
@@ -290,7 +290,7 @@ function GameTooltip_ShowCompareItem(self, shift)
 		shoppingTooltip3:SetHyperlinkCompareItem(link, 3, shift, self);
 		shoppingTooltip3:Show();
 	end
-	
+
 	if ( item1 ) then
 		if( item3 ) then
 			shoppingTooltip1:SetOwner(shoppingTooltip3, "ANCHOR_NONE");

@@ -20,7 +20,7 @@ StaticPopupDialogs["CONFIRM_PROFESSION"] = {
 	OnAccept = function(self)
 		BuyTrainerService(ClassTrainerFrame.selectedService);
 		ClassTrainerFrame.showSkillDetails = 1;
-		ClassTrainerFrame.showDialog = nil;		
+		ClassTrainerFrame.showDialog = nil;
 		ClassTrainer_SetSelection(GetTrainerSelectionIndex());
 		ClassTrainerFrame_Update();
 	end,
@@ -46,7 +46,7 @@ function ClassTrainerFrame_Show()
 
 	ClassTrainerTrainButton:Disable();
 	--Reset scrollbar
-	ClassTrainerListScrollFrameScrollBar:SetMinMaxValues(0, 0); 
+	ClassTrainerListScrollFrameScrollBar:SetMinMaxValues(0, 0);
 
 	ClassTrainer_SelectFirstLearnableSkill();
 	ClassTrainerFrame_Update();
@@ -81,7 +81,7 @@ function ClassTrainerFrame_Update()
 	ClassTrainerGreetingText:SetText(GetTrainerGreetingText());
 	local numTrainerServices = GetNumTrainerServices();
 	local skillOffset = FauxScrollFrame_GetOffset(ClassTrainerListScrollFrame);
-	
+
 	-- If no spells then clear everything out
 	if ( numTrainerServices == 0 ) then
 		ClassTrainerCollapseAllButton:Disable();
@@ -103,7 +103,7 @@ function ClassTrainerFrame_Update()
 
 	-- ScrollFrame update
 	FauxScrollFrame_Update(ClassTrainerListScrollFrame, numTrainerServices, CLASS_TRAINER_SKILLS_DISPLAYED, CLASS_TRAINER_SKILL_HEIGHT, nil, nil, nil, ClassTrainerSkillHighlightFrame, 293, 316 )
-	
+
 	--ClassTrainerUsedButton:Show();
 	ClassTrainerMoneyFrame:Show();
 
@@ -113,10 +113,10 @@ function ClassTrainerFrame_Update()
 	-- Fill in the skill buttons
 	for i=1, CLASS_TRAINER_SKILLS_DISPLAYED, 1 do
 		local skillIndex = i + skillOffset;
-		local skillButton = _G["ClassTrainerSkill"..i]; 
+		local skillButton = _G["ClassTrainerSkill"..i];
 		local serviceName, serviceSubText, serviceType, isExpanded;
 		local moneyCost, cpCost1, cpCost2;
-		if ( skillIndex <= numTrainerServices ) then	
+		if ( skillIndex <= numTrainerServices ) then
 			serviceName, serviceSubText, serviceType, isExpanded = GetTrainerServiceInfo(skillIndex);
 			if ( not serviceName ) then
 				serviceName = UNKNOWN;
@@ -155,7 +155,7 @@ function ClassTrainerFrame_Update()
 					skillText:SetWidth(CLASS_TRAINER_SKILL_NOSUBTEXT_WIDTH);
 					skillSubText:Hide();
 				end
-				
+
 				-- Cost Stuff
 				moneyCost, cpCost1, cpCost2 = GetTrainerServiceCost(skillIndex);
 				if ( serviceType == "available" ) then
@@ -168,7 +168,7 @@ function ClassTrainerFrame_Update()
 				else
 					skillButton:SetNormalFontObject(GameFontNormalLeftRed);
 					ClassTrainer_SetSubTextColor(skillButton, 0.6, 0, 0);
-				end		
+				end
 			end
 			skillButton:SetID(skillIndex);
 			skillButton:Show();
@@ -188,7 +188,7 @@ function ClassTrainerFrame_Update()
 			skillButton:Hide();
 		end
 	end
-		
+
 	-- Set the expand/collapse all button texture
 	local numHeaders = 0;
 	local notExpanded = 0;
@@ -210,7 +210,7 @@ function ClassTrainerFrame_Update()
 	-- Show skill details if the skill is visible
 	if ( showDetails ) then
 		ClassTrainer_ShowSkillDetails();
-	else	
+	else
 		ClassTrainer_HideSkillDetails();
 	end
 	-- If all headers are not expanded then show collapse button, otherwise show the expand button
@@ -248,7 +248,7 @@ function ClassTrainer_SetSelection(id)
 	local serviceName, serviceSubText, serviceType, isExpanded = GetTrainerServiceInfo(id);
 
 	ClassTrainerSkillHighlightFrame:Show();
-	
+
 	if ( serviceType == "available" ) then
 		ClassTrainerSkillHighlight:SetVertexColor(0, 1.0, 0);
 	elseif ( serviceType == "used" ) then
@@ -265,7 +265,7 @@ function ClassTrainer_SetSelection(id)
 		end
 		return;
 	end
-	
+
 	ClassTrainerSubSkillName:SetFormattedText(PARENS_TEMPLATE, serviceSubText);
 	ClassTrainerFrame.selectedService = id;
 	SelectTrainerService(id);
@@ -328,7 +328,7 @@ function ClassTrainer_SetSelection(id)
 	if ( step ) then
 		if ( met ) then
 			requirements = requirements..separator..format(TRAINER_REQ_ABILITY, step );
-		else 
+		else
 			requirements = requirements..separator..format(TRAINER_REQ_ABILITY_RED, step );
 		end
 	end
@@ -356,7 +356,7 @@ function ClassTrainer_SetSelection(id)
 			unavailable = 1;
 		end
 	end
-	
+
 	MoneyFrame_Update("ClassTrainerDetailMoneyFrame", moneyCost);
 	if ( cpCost2 > 0 ) then
 		ClassTrainerFrame.showDialog = 1;
@@ -493,7 +493,7 @@ function ClassTrainerFrameFilterDropDown_Initialize()
 	UIDropDownMenu_AddButton(info);
 end
 
-function ClassTrainerFrameFilterDropDown_OnClick(self)	
+function ClassTrainerFrameFilterDropDown_OnClick(self)
 	ClassTrainerListScrollFrameScrollBar:SetValue(0);
 	if ( UIDropDownMenuButton_GetChecked(self) ) then
 		SetTrainerServiceTypeFilter(self.value, 1);

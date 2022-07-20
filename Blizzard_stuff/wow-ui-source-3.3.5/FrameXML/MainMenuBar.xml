@@ -141,7 +141,7 @@
 						if ( GetCVar("xpBarText") == "1" ) then
 							TextStatusBar_UpdateTextString(self);
 						end
-					</OnShow>					
+					</OnShow>
 					<OnEnter>
 						TextStatusBar_UpdateTextString(self);
 						ShowTextStatusBarText(self);

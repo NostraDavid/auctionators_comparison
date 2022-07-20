@@ -134,7 +134,7 @@ function GossipFrameActiveQuestsUpdate(...)
 			titleButtonIcon:SetTexture("Interface\\GossipFrame\\ActiveQuestIcon");
 		else
 			titleButtonIcon:SetTexture("Interface\\GossipFrame\\IncompleteQuestIcon");
-		end		
+		end
 		GossipFrame.buttonIndex = GossipFrame.buttonIndex + 1;
 		titleIndex = titleIndex + 1;
 		titleButton:Show();

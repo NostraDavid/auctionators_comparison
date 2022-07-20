@@ -14,7 +14,7 @@ end
 
 function HonorFrame_Update(updateAll)
 	local hk, cp, dk, contribution, rank, highestRank, rankName, rankNumber;
-	
+
 	-- This only gets set on player entering the world
 	if ( updateAll ) then
 		-- Yesterday's values
@@ -31,12 +31,12 @@ function HonorFrame_Update(updateAll)
 		--HonorFrameLastWeekContributionValue:SetText(contribution);
 		--HonorFrameLastWeekStandingValue:SetText(rank);
 	end
-	
+
 	-- This session's values
 	hk, cp = GetPVPSessionStats();
 	HonorFrameCurrentHKValue:SetText(hk);
 	--HonorFrameCurrentDKValue:SetText(dk);
-	
+
 	-- Lifetime stats
 	hk, highestRank = GetPVPLifetimeStats();
 	HonorFrameLifeTimeHKValue:SetText(hk);
@@ -54,7 +54,7 @@ function HonorFrame_Update(updateAll)
 	end
 	HonorFrameCurrentPVPTitle:SetText(rankName);
 	HonorFrameCurrentPVPRank:SetText("("..RANK.." "..rankNumber..")");
-	
+
 	-- Set icon
 	if ( rankNumber > 0 ) then
 		HonorFramePvPIcon:SetTexture(format("%s%02d","Interface\\PvPRankBadges\\PvPRank",rankNumber));
@@ -62,7 +62,7 @@ function HonorFrame_Update(updateAll)
 	else
 		HonorFramePvPIcon:Hide();
 	end
-	
+
 	-- Set rank progress and bar color
 	local factionGroup, factionName = UnitFactionGroup("player");
 	if ( factionGroup == "Alliance" ) then

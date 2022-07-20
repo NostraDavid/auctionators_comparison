@@ -150,7 +150,7 @@
 				self.minLevel = 10;	--Just used for display. But we know that it will become available by level 10 due to the level 10 achievement.
 			</OnLoad>
 			<OnEvent function="AchievementMicroButton_OnEvent"/>
-			<OnClick> 
+			<OnClick>
 				ToggleAchievementFrame();
 			</OnClick>
 		</Scripts>
@@ -226,7 +226,7 @@
 		<Scripts>
 			<OnLoad>
 				self:RegisterEvent("UPDATE_BINDINGS");
-				
+
 				self:SetNormalTexture("Interface\\Buttons\\UI-MicroButtonCharacter-Up");
 				self:SetPushedTexture("Interface\\Buttons\\UI-MicroButtonCharacter-Down");
 				self:SetHighlightTexture("Interface\\Buttons\\UI-MicroButton-Hilight");
@@ -349,7 +349,7 @@
 					self.updateInterval = PERFORMANCEBAR_UPDATE_INTERVAL;
 					local bandwidthIn, bandwidthOut, latency = GetNetStats();
 					if (latency > PERFORMANCEBAR_MEDIUM_LATENCY) then
-						MainMenuBarPerformanceBar:SetVertexColor(1, 0, 0);									
+						MainMenuBarPerformanceBar:SetVertexColor(1, 0, 0);
 					elseif (latency > PERFORMANCEBAR_LOW_LATENCY) then
 						MainMenuBarPerformanceBar:SetVertexColor(1, 1, 0);
 					else
@@ -373,7 +373,7 @@
 							AudioOptionsFrameCancel:Click();
 						elseif ( InterfaceOptionsFrame:IsShown() ) then
 							InterfaceOptionsFrameCancel:Click();
-						end		
+						end
 						CloseMenus();
 						CloseAllWindows()
 						PlaySound("igMainMenuOpen");
@@ -399,7 +399,7 @@
 								AudioOptionsFrameCancel:Click();
 							elseif ( InterfaceOptionsFrame:IsShown() ) then
 								InterfaceOptionsFrameCancel:Click();
-							end						
+							end
 							CloseMenus();
 							CloseAllWindows()
 							PlaySound("igMainMenuOpen");
@@ -421,7 +421,7 @@
 					self.down = 1;
 				end
 			</OnMouseUp>
-			
+
 			<OnEnter>
 				self.hover = 1;
 				self.updateInterval = 0;

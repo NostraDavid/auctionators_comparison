@@ -67,12 +67,12 @@ end
 function TradeFrame_UpdatePlayerItem(id)
 	local name, texture, numItems, isUsable, enchantment = GetTradePlayerItemInfo(id);
 	local buttonText = _G["TradePlayerItem"..id.."Name"];
-	
+
 	-- See if its the enchant slot
 	if ( id == TRADE_ENCHANT_SLOT ) then
 		if ( name ) then
 			if ( enchantment ) then
-				buttonText:SetText(GREEN_FONT_COLOR_CODE..enchantment..FONT_COLOR_CODE_CLOSE);		
+				buttonText:SetText(GREEN_FONT_COLOR_CODE..enchantment..FONT_COLOR_CODE_CLOSE);
 			else
 				buttonText:SetText(HIGHLIGHT_FONT_COLOR_CODE..TRADEFRAME_NOT_MODIFIED_TEXT..FONT_COLOR_CODE_CLOSE);
 			end
@@ -99,14 +99,14 @@ function TradeFrame_UpdateTargetItem(id)
 	if ( id == TRADE_ENCHANT_SLOT ) then
 		if ( name ) then
 			if ( enchantment ) then
-				buttonText:SetText(GREEN_FONT_COLOR_CODE..enchantment..FONT_COLOR_CODE_CLOSE);		
+				buttonText:SetText(GREEN_FONT_COLOR_CODE..enchantment..FONT_COLOR_CODE_CLOSE);
 			else
 				buttonText:SetText(HIGHLIGHT_FONT_COLOR_CODE..TRADEFRAME_NOT_MODIFIED_TEXT..FONT_COLOR_CODE_CLOSE);
 			end
 		else
 			buttonText:SetText("");
 		end
-		
+
 	else
 		buttonText:SetText(name);
 	end
@@ -145,7 +145,7 @@ function TradeFrame_SetAcceptState(playerState, targetState)
 	end
 end
 
-function TradeFrameCancelButton_OnClick() 
+function TradeFrameCancelButton_OnClick()
 	if ( TradeFrame.acceptState == 1 ) then
 		CancelTradeAccept();
 	else
@@ -222,4 +222,3 @@ function TradeFrameTradeButton_SetToEnabledState()
 		self:Disable();
 	end
 end
-

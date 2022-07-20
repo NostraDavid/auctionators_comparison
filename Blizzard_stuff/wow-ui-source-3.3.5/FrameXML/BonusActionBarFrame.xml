@@ -226,14 +226,14 @@
 					<TexCoords left="0" right="2" top="0" bottom="1"/>
 				</Texture>
 			</Layer>
-			<Layer level="BORDER">		
+			<Layer level="BORDER">
 				<Texture name="ShapeshiftBarRight" file="Interface\ShapeshiftBar\ShapeshiftBar">
 					<Size x="43" y="38"/>
 					<Anchors>
 						<Anchor point="LEFT" relativeTo="ShapeshiftBarMiddle" relativePoint="RIGHT"/>
 					</Anchors>
 					<TexCoords left="0.328125" right="1" top="0.3125" bottom="0.6015625"/>
-				</Texture>				
+				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>

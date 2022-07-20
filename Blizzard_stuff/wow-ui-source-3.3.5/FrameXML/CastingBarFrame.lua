@@ -45,7 +45,7 @@ end
 
 function CastingBarFrame_OnEvent (self, event, ...)
 	local arg1 = ...;
-	
+
 	local unit = self.unit;
 	if ( event == "PLAYER_ENTERING_WORLD" ) then
 		local nameChannel  = UnitChannelInfo(unit);
@@ -64,7 +64,7 @@ function CastingBarFrame_OnEvent (self, event, ...)
 	if ( arg1 ~= unit ) then
 		return;
 	end
-	
+
 	local selfName = self:GetName();
 	local barSpark = _G[selfName.."Spark"];
 	local barText = _G[selfName.."Text"];

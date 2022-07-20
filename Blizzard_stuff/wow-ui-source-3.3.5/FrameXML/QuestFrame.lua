@@ -42,7 +42,7 @@ function QuestFrame_OnEvent(self, event, ...)
 		QuestFrameProgressPanel:Show();
 	elseif ( event == "QUEST_COMPLETE" ) then
 		HideUIPanel(QuestLogDetailFrame);
-		QuestFrameCompleteQuestButton:Enable();	
+		QuestFrameCompleteQuestButton:Enable();
 		QuestFrameRewardPanel:Hide();
 		QuestFrameRewardPanel:Show();
 	elseif ( event == "QUEST_ITEM_UPDATE" ) then
@@ -53,7 +53,7 @@ function QuestFrame_OnEvent(self, event, ...)
 			QuestFrameProgressItems_Update()
 			QuestProgressScrollFrameScrollBar:SetValue(0);
 		elseif ( QuestFrameRewardPanel:IsShown() ) then
-			QuestInfo_ShowRewards();		
+			QuestInfo_ShowRewards();
 			QuestRewardScrollFrameScrollBar:SetValue(0);
 		end
 	end
@@ -66,7 +66,7 @@ function QuestFrame_SetPortrait()
 	else
 		QuestFramePortrait:SetTexture("Interface\\QuestFrame\\UI-QuestLog-BookIcon");
 	end
-	
+
 end
 
 function QuestFrameRewardPanel_OnShow()
@@ -149,11 +149,11 @@ function QuestFrameProgressItems_Update()
 	local questItemName = "QuestProgressItem";
 	if ( numRequiredItems > 0 or GetQuestMoneyToGet() > 0 ) then
 		QuestProgressRequiredItemsText:Show();
-		
+
 		-- If there's money required then anchor and display it
 		if ( GetQuestMoneyToGet() > 0 ) then
 			MoneyFrame_Update("QuestProgressRequiredMoneyFrame", GetQuestMoneyToGet());
-			
+
 			if ( GetQuestMoneyToGet() > GetMoney() ) then
 				-- Not enough money
 				QuestProgressRequiredMoneyText:SetTextColor(0, 0, 0);
@@ -175,8 +175,8 @@ function QuestFrameProgressItems_Update()
 		end
 
 
-		
-		for i=1, numRequiredItems, 1 do	
+
+		for i=1, numRequiredItems, 1 do
 			local requiredItem = _G[questItemName..i];
 			requiredItem.type = "required";
 			local name, texture, numItems = GetQuestItemInfo(requiredItem.type, i);
@@ -184,7 +184,7 @@ function QuestFrameProgressItems_Update()
 			SetItemButtonTexture(requiredItem, texture);
 			requiredItem:Show();
 			_G[questItemName..i.."Name"]:SetText(name);
-			
+
 		end
 	else
 		QuestProgressRequiredMoneyText:Hide();
@@ -216,7 +216,7 @@ function QuestFrameGreetingPanel_OnShow()
 	if ( numActiveQuests == 0 ) then
 		CurrentQuestsText:Hide();
 		QuestGreetingFrameHorizontalBreak:Hide();
-	else 
+	else
 		CurrentQuestsText:SetPoint("TOPLEFT", "GreetingText", "BOTTOMLEFT", 0, -10);
 		CurrentQuestsText:Show();
 		QuestTitleButton1:SetPoint("TOPLEFT", "CurrentQuestsText", "BOTTOMLEFT", -10, -5);
@@ -329,7 +329,7 @@ function QuestFrameDetailPanel_OnShow()
 		QuestFrameDetailPanelBotRight:SetTexture("Interface\\QuestFrame\\UI-QuestGreeting-BotRight-blank");
 		QuestFrameDeclineButton:Hide();
 		QuestFrame.autoQuest = true;
-	end		
+	end
 	local material = QuestFrame_GetMaterial();
 	QuestFrame_SetMaterial(QuestFrameDetailPanel, material);
 	QuestInfo_Display(QUEST_TEMPLATE_DETAIL1, QuestDetailScrollChildFrame, QuestFrameAcceptButton, nil, material);
@@ -344,7 +344,7 @@ function QuestDetailAcceptButton_OnClick()
 		if ( QuestFrame.autoQuest ) then
 			HideUIPanel(QuestFrame);
 		else
-			AcceptQuest();		
+			AcceptQuest();
 		end
 	end
 end
@@ -388,4 +388,4 @@ end
 function QuestFrame_SetTextColor(fontString, material)
 	local materialTextColor = GetMaterialTextColors(material);
 	fontString:SetTextColor(materialTextColor[1], materialTextColor[2], materialTextColor[3]);
-end 
+end

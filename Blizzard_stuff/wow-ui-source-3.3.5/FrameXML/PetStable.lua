@@ -62,13 +62,13 @@ function PetStable_Update()
 					selectedPet = i;
 					ClickStablePet(i);
 					break;
-				end 
+				end
 			end
 		end
 	end
 
 	-- Set slot cost
-	MoneyFrame_Update("PetStableCostMoneyFrame", GetNextStableSlotCost());	
+	MoneyFrame_Update("PetStableCostMoneyFrame", GetNextStableSlotCost());
 
 	-- Set slot statuseses
 	local numSlots = GetNumStableSlots();
@@ -107,7 +107,7 @@ function PetStable_Update()
 					PetStableLevelText:SetText("");
 					PetStableModel:Hide();
 				end
-				
+
 			else
 				button:SetChecked(nil);
 			end
@@ -225,7 +225,7 @@ function PetStable_NoPetsAllowed()
 		button.tooltip = EMPTY_STABLE_SLOT;
 		button:SetChecked(nil);
 	end
-	
+
 	PetStableCurrentPet:SetChecked(nil);
 	PetStableLevelText:SetText("");
 	PetStableModel:Hide();

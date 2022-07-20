@@ -19,7 +19,7 @@ local GROUP_UPDATE_INTERVAL_SEC = 3;
 -- update optimizations
 local max = max;
 
--- 
+--
 -- local helper functions
 --
 
@@ -111,7 +111,7 @@ local function _QuestLog_ToggleQuestWatch(questIndex)
 	end
 end
 
--- 
+--
 -- QuestLogTitleButton
 --
 
@@ -231,7 +231,7 @@ function QuestLogScrollFrame_OnLoad(self)
 end
 
 
--- 
+--
 -- QuestLogFrame
 --
 
@@ -245,7 +245,7 @@ function QuestLog_OnLoad(self)
 	self:RegisterEvent("PARTY_MEMBER_ENABLE");
 	self:RegisterEvent("PARTY_MEMBER_DISABLE");
 	self:RegisterEvent("DISPLAY_SIZE_CHANGED");
-	
+
 	QuestLog_SetSelection(0);
 end
 
@@ -263,8 +263,8 @@ function QuestLog_OnEvent(self, event, ...)
 			QuestLog_Update();
 		end
 	elseif ( event == "QUEST_WATCH_UPDATE" ) then
-		if ( AUTO_QUEST_PROGRESS == "1" and 
-			 GetNumQuestLeaderBoards(arg1) > 0 and 
+		if ( AUTO_QUEST_PROGRESS == "1" and
+			 GetNumQuestLeaderBoards(arg1) > 0 and
 			 GetNumQuestWatches() < MAX_WATCHABLE_QUESTS ) then
 			AddQuestWatch(arg1,MAX_QUEST_WATCH_TIME);
 			QuestLog_Update();
@@ -291,7 +291,7 @@ function QuestLog_OnShow(self)
 	QuestLogShowMapPOI_UpdatePosition();
 	QuestLog_SetSelection(GetQuestLogSelection());
 	QuestLog_Update();
-	
+
 	QuestLogDetailFrame_AttachToQuestLog();
 end
 
@@ -300,7 +300,7 @@ function QuestLog_OnHide(self)
 	PlaySound("igQuestLogClose");
 	QuestLogShowMapPOI_UpdatePosition();
 	QuestLogControlPanel_UpdatePosition();
-	
+
 	QuestLogDetailFrame_DetachFromQuestLog();
 end
 
@@ -328,7 +328,7 @@ function QuestLog_Update()
 	if ( not QuestLogFrame:IsShown() ) then
 		return;
 	end
-	
+
 	local numEntries, numQuests = GetNumQuestLogEntries();
 	if ( numEntries == 0 ) then
 		HideUIPanel(QuestLogDetailFrame);
@@ -340,7 +340,7 @@ function QuestLog_Update()
 	end
 
 	QuestLog_UpdateMapButton();
-	
+
 	-- Update Quest Count
 	QuestLog_UpdateQuestCount(numQuests);
 
@@ -356,7 +356,7 @@ function QuestLog_Update()
 		questLogSelection = GetQuestLogSelection();
 	end
 	QuestLogFrame.selectedIndex = questLogSelection;
-    
+
     --The counts may have changed with SetNearestValidSelection expanding quest headers.
     --Bug ID 170644
     numEntries, numQuests = GetNumQuestLogEntries();
@@ -412,7 +412,7 @@ function QuestLog_Update()
 				if ( isCollapsed ) then
 					questLogTitle:SetNormalTexture("Interface\\Buttons\\UI-PlusButton-Up");
 				else
-					questLogTitle:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up"); 
+					questLogTitle:SetNormalTexture("Interface\\Buttons\\UI-MinusButton-Up");
 				end
 				questLogTitle:SetHighlightTexture("Interface\\Buttons\\UI-PlusButton-Hilight");
 
@@ -543,7 +543,7 @@ function QuestLog_UpdateQuestDetails(resetScrollBar)
 	QuestInfo_Display(QUEST_TEMPLATE_LOG, QuestLogDetailScrollChildFrame)
 	if ( resetScrollBar ) then
 		QuestLogDetailScrollFrameScrollBar:SetValue(0);
-	end	
+	end
 	QuestLogDetailScrollFrame:Show();
 end
 
@@ -738,7 +738,7 @@ function QuestLog_SetNearestValidSelection()
 			return;
 		end
 	end
-	
+
 	-- 3, Found nothing, so deselect
 	QuestLog_SetSelection(0);
 end
@@ -793,14 +793,14 @@ end
 
 function QuestLogDetailFrame_OnShow(self)
 	PlaySound("igQuestLogOpen");
-	QuestLogControlPanel_UpdatePosition();	
+	QuestLogControlPanel_UpdatePosition();
 	QuestLogShowMapPOI_UpdatePosition();
 	QuestLog_UpdateQuestDetails();
 end
 
 function QuestLogDetailFrame_OnHide(self)
 	-- this function effectively deselects the selected quest
-	PlaySound("igQuestLogClose");	
+	PlaySound("igQuestLogClose");
 	QuestLogControlPanel_UpdatePosition();
 	QuestLogShowMapPOI_UpdatePosition();
 end
@@ -883,7 +883,7 @@ function QuestLogShowMapPOI_UpdatePosition()
 	elseif ( QuestLogDetailFrame:IsShown() ) then
 		parent = QuestLogDetailFrame;
 	end
-	
+
 	if ( parent ) then
 		QuestLogFrameShowMapButton:SetParent(parent);
 		QuestLogFrameShowMapButton:SetPoint("TOPRIGHT", -25, -38);

@@ -15,7 +15,7 @@ function ItemTextFrame_OnEvent(self, event, ...)
 		ItemTextStatusBar:Hide();
 		ItemTextPrevPageButton:Hide();
 		ItemTextNextPageButton:Hide();
-		local material = ItemTextGetMaterial(); 
+		local material = ItemTextGetMaterial();
 		if ( not material ) then
 			material = "Parchment";
 		end
@@ -42,12 +42,12 @@ function ItemTextFrame_OnEvent(self, event, ...)
 		else
 			ItemTextPageText:SetText("\n"..ItemTextGetText().."\n\n");
 		end
-		
+
 		ItemTextScrollFrameScrollBar:SetValue(0);
-		ItemTextScrollFrame:Show();	
+		ItemTextScrollFrame:Show();
 		local page = ItemTextGetPage();
 		local next = ItemTextHasNextPage();
-		local material = ItemTextGetMaterial(); 
+		local material = ItemTextGetMaterial();
 		if ( not material ) then
 			material = "Parchment";
 		end
@@ -79,7 +79,7 @@ function ItemTextFrame_OnEvent(self, event, ...)
 			else
 				ItemTextNextPageButton:Hide();
 			end
-		end	
+		end
 		ItemTextStatusBar:Hide();
 		ShowUIPanel(self);
 		if ( not self:IsShown() ) then

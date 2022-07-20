@@ -10,7 +10,7 @@ function BNConversationInviteDialog_OnLoad(self)
 	-- special popup dialog settings
 	self.hideOnEscape = true;
 	self.exclusive = true;
-	
+
 	BNConversationInvite_Reset();
 end
 
@@ -47,22 +47,22 @@ end
 
 function BNConversationInvite_SelectPlayers(conversationID)
 	BNConversationInvite_SetMode("invite", conversationID);
-	
+
 	BNConversationInvite_Reset();
-	
+
 	for i=1, BNGetNumConversationMembers(conversationID) do
 		local accountID, toonID, name = BNGetConversationMemberInfo(conversationID, i);
 		BNConversationInvite_Lock(accountID);
 	end
-	
+
 	StaticPopupSpecial_Show(BNConversationInviteDialog);
 end
 
 function BNConversationInvite_NewConversation(selected1, selected2)
 	BNConversationInvite_SetMode("create");
-	
+
 	BNConversationInvite_Reset();
-	
+
 	if ( selected1 ) then
 		BNConversationInvite_Select(selected1);
 		BNConversationInvite_Lock(selected1);
@@ -71,7 +71,7 @@ function BNConversationInvite_NewConversation(selected1, selected2)
 		BNConversationInvite_Select(selected2);
 		BNConversationInvite_Lock(selected2);
 	end
-	
+
 	StaticPopupSpecial_Show(BNConversationInviteDialog);
 end
 
@@ -85,7 +85,7 @@ function BNConversationInvite_SetMode(mode, target)
 	local frame = BNConversationInviteDialog;
 	frame.mode = mode;
 	frame.target = target;
-	
+
 	if ( mode == "create" ) then
 		frame.instructionText:SetText(NEW_CONVERSATION_INSTRUCTIONS);
 		BNConversationInvite_SetMinMaxInvites(2, 2);
@@ -134,7 +134,7 @@ end
 function BNConversationInvite_UpdateInviteButtonState()
 	local dialog = BNConversationInviteDialog;
 	local button = BNConversationInviteDialogInviteButton;
-	
+
 	if ( dialog.actionsLocked or #dialog.inviteTargets < dialog.minInvites ) then
 		button:Disable();
 	else
@@ -172,9 +172,9 @@ end
 
 function BNConversationInvite_Update()
 	local _, numBNetOnline = BNGetNumFriends();
-	
+
 	local offset = FauxScrollFrame_GetOffset(BNConversationInviteDialogListScrollFrame);
-	
+
 	for i=1, BN_CONVERSATION_INVITE_NUM_DISPLAYED do
 		local index = i + offset;
 		local frame = _G["BNConversationInviteDialogListFriend"..i];
@@ -187,21 +187,21 @@ function BNConversationInvite_Update()
 		else
 			frame:Hide();
 		end
-		
+
 		frame.checkButton:SetChecked(tContains(BNConversationInviteDialog.inviteTargets, frame.id));
-		
+
 		if ( tContains(BNConversationInviteDialog.lockedTargets, frame.id) or
 				(#BNConversationInviteDialog.inviteTargets >= BNConversationInviteDialog.maxInvites and --Disable everything if we've checked the max amount
-				not frame.checkButton:GetChecked()  ) ) then	--Never disable a button that is already checked) then 
+				not frame.checkButton:GetChecked()  ) ) then	--Never disable a button that is already checked) then
 			frame.checkButton:Disable();
 			frame.name:SetFontObject("GameFontDisable");
 		else
 			frame.checkButton:Enable();
 			frame.name:SetFontObject("GameFontHighlight");
 		end
-		
+
 	end
-	
+
 	BNConversationInvite_UpdateInviteButtonState();
 	FauxScrollFrame_Update(BNConversationInviteDialogListScrollFrame, numBNetOnline, BN_CONVERSATION_INVITE_NUM_DISPLAYED, BN_CONVERSATION_INVITE_HEIGHT);
 end
@@ -210,10 +210,10 @@ end
 function BNConversationButton_OnLoad(self)
 	self.chatFrame = _G["ChatFrame"..self:GetID()];
 	self.chatFrame.conversationButton = self;
-	
+
 	BNConversationButton_UpdateAttachmentPoint(self);
 	BNConversationButton_UpdateTarget(self);
-	
+
 	self:RegisterEvent("BN_CHAT_CHANNEL_LEFT");
 	self:RegisterEvent("BN_CHAT_CHANNEL_JOINED");
 end
@@ -253,17 +253,17 @@ function BNConversationButton_OnEnter(self, motion)
 	if ( self.chatType == "BN_CONVERSATION" ) then
 		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 		BNConversation_DisplayConversationTooltip(self.chatTarget);
-		
+
 		GameTooltip:AddLine(" ");
 		GameTooltip:AddLine(CLICK_TO_INVITE_TO_CONVERSATION, nil, nil, nil, true);
 		GameTooltip:Show();
 	else
 		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 		GameTooltip:AddLine(CLICK_TO_START_CONVERSATION, nil, nil, nil, true);
-		GameTooltip:Show();		
+		GameTooltip:Show();
 	end
 end
-	
+
 function BNConversation_DisplayConversationTooltip(conversationID)
 	local info = ChatTypeInfo["BN_CONVERSATION"];
 	GameTooltip:SetText(format(CONVERSATION_NAME, conversationID + MAX_WOW_CHAT_CHANNELS), info.r, info.g, info.b);
@@ -272,7 +272,7 @@ function BNConversation_DisplayConversationTooltip(conversationID)
 		local accountID, toonID, name = BNGetConversationMemberInfo(conversationID, i);
 		GameTooltip:AddLine(name, FRIENDS_BNET_NAME_COLOR.r, FRIENDS_BNET_NAME_COLOR.g, FRIENDS_BNET_NAME_COLOR.b);
 	end
-	
+
 	GameTooltip:Show();
 end
 
@@ -284,7 +284,7 @@ end
 
 function BNConversationButton_UpdateAttachmentPoint(self)
 	local chatFrame = self.chatFrame;
-	
+
 	if ( chatFrame.isDocked ) then
 		self:SetPoint("BOTTOM", chatFrame.buttonFrame.upButton, "TOP", 0, 0);
 	else
@@ -295,7 +295,7 @@ end
 function BNConversationButton_UpdateTarget(self)
 	local chatFrame = self.chatFrame;
 	local chatTarget = tonumber(chatFrame.chatTarget) or chatFrame.chatTarget;
-	
+
 	self.chatType = chatFrame.chatType;
 	self.chatTarget = chatTarget;
 	BNConversationButton_UpdateEnabledState(self);

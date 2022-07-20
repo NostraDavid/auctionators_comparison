@@ -52,7 +52,7 @@ function RaidNotice_OnUpdate( noticeFrame, elapsedTime )
 		RaidNotice_UpdateSlot( noticeFrame.slot2, noticeFrame.timings, elapsedTime );
 		RaidNotice_unused = false;
 	end
-	
+
 	if ( RaidNotice_unused ) then
 		noticeFrame:Hide();
 	end
@@ -69,7 +69,7 @@ function RaidNotice_UpdateSlot( slotFrame, timings, elapsedTime )
 			slotFrame:SetTextHeight(timings["RAID_NOTICE_MIN_HEIGHT"]);
 			slotFrame.scrollTime = nil;
 		end
-	end	
+	end
 	FadingFrame_OnUpdate(slotFrame);
 end
 
@@ -77,7 +77,7 @@ end
 
 
 
------------  RAID WARNING 
+-----------  RAID WARNING
 function RaidWarningFrame_OnLoad(self)
 	self:RegisterEvent("CHAT_MSG_RAID_WARNING");
 	self.slot1 = RaidWarningFrameSlot1;
@@ -93,7 +93,7 @@ end
 
 function RaidWarningFrame_OnEvent(self, event, message)
 	if ( event == "CHAT_MSG_RAID_WARNING" ) then
-		
+
 		--Task 21207: Add the ability to link raid icons to other players
 		local term;
 		for tag in string.gmatch(message, "%b{}") do
@@ -102,15 +102,15 @@ function RaidWarningFrame_OnEvent(self, event, message)
 				-- Using 0 as the height to make the texture match the font height
 				message = string.gsub(message, tag, ICON_LIST[ICON_TAG_LIST[term]] .. "0|t");
 			end
-		end		
-		
+		end
+
 		RaidNotice_AddMessage( self, message, ChatTypeInfo["RAID_WARNING"] );
 		PlaySound("RaidWarning");
 	end
 end
 
 
------------  BOSS EMOTE 
+-----------  BOSS EMOTE
 function RaidBossEmoteFrame_OnLoad(self)
 	self.slot1 = RaidBossEmoteFrameSlot1;
 	self.slot2 = RaidBossEmoteFrameSlot2;
@@ -121,7 +121,7 @@ function RaidBossEmoteFrame_OnLoad(self)
 	self.timings["RAID_NOTICE_MAX_HEIGHT"] = 30.0;
 	self.timings["RAID_NOTICE_SCALE_UP_TIME"] = 0.2;
 	self.timings["RAID_NOTICE_SCALE_DOWN_TIME"] = 0.4;
-	
+
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE");
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER");
 end

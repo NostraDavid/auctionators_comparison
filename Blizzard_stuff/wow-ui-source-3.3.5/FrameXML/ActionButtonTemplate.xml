@@ -68,7 +68,7 @@
 							<AbsDimension x="0" y="-1"/>
 						</Offset>
 					</Anchor>
-				</Anchors> 
+				</Anchors>
 			</Cooldown>
 		</Frames>
 		<NormalTexture name="$parentNormalTexture" file="Interface\Buttons\UI-Quickslot2">
@@ -88,4 +88,3 @@
 		<CheckedTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
 	</CheckButton>
 </Ui>
-

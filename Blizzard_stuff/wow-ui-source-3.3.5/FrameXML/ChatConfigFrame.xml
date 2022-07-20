@@ -119,7 +119,7 @@
 			<OnLoad>
 				self:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b, 0.5);
 				self:SetBackdropColor(0.27, 0.27, 0.27);
-				
+
 				local fontStringOffset = 2;
 				self.classStrings = {};
 				tinsert(self.classStrings, self.firstClass);
@@ -133,7 +133,7 @@
 					local classColor = RAID_CLASS_COLORS[value];
 					fontString:SetFormattedText("|cff%.2x%.2x%.2x%s|r\n", classColor.r*255, classColor.g*255, classColor.b*255, LOCALIZED_CLASS_NAMES_MALE[value]);
 				end
-				
+
 				self:SetHeight((self.firstClass:GetHeight() + fontStringOffset) * #self.classStrings + self.header:GetHeight() + 31);
 			</OnLoad>
 		</Scripts>
@@ -148,7 +148,7 @@
 				if ( self.func ) then
 					self.func(self, checked);
 				end
-				
+
 				ChatConfigFrame_PlayCheckboxSound(checked);
 			</OnClick>
 			<OnEnter>
@@ -1150,7 +1150,7 @@
 													CHATCONFIG_SELECTED_FILTER_SETTINGS.schoolNameHighlighting = false;
 												end
 												CombatConfig_Colorize_Update();
-												ChatConfigFrame_PlayCheckboxSound(checked);											
+												ChatConfigFrame_PlayCheckboxSound(checked);
 											</OnClick>
 										</Scripts>
 									</CheckButton>

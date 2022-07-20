@@ -41,7 +41,7 @@
 				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
 				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>	
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 			</CheckButton>
 		</Frames>
 		<Scripts>
@@ -146,7 +146,7 @@
 					<TexCoords left="0" right="0.71875" top="0" bottom="0.875"/>
 				</Texture>
 			</Layer>
-		</Layers>					
+		</Layers>
 		<Frames>
 			<CheckButton name="$parentEnableButton" parentKey="enableButton">
 				<Size>
@@ -159,7 +159,7 @@
 				<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
 				<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
-				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>	
+				<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
 			</CheckButton>
 			<Button name="$parentExpandOrCollapseButton" parentKey="expandOrCollapseButton">
 				<Size>

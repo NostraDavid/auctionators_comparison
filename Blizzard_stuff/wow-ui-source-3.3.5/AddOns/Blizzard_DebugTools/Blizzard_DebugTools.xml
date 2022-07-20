@@ -37,7 +37,7 @@
 			<OnLeave function="EventTraceFrameEvent_OnLeave"/>
 			<OnClick function="EventTraceFrameEvent_OnClick"/>
 		</Scripts>
-		<HighlightTexture setAllPoints="true" alphaMode="ADD">  
+		<HighlightTexture setAllPoints="true" alphaMode="ADD">
 			<Color r=".8" g=".8" b="1" a="1"/>
 		</HighlightTexture>
 	</Button>
@@ -80,7 +80,7 @@
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 					<TexCoords left="0.501953125" right="0.625" top="0" bottom="1"/>
-				</Texture>			
+				</Texture>
 				<Texture name="$parentTopRight" file="Interface\PaperDollInfoFrame\UI-GearManager-Border">
 					<Size x="64" y="64"/>
 					<Anchors>
@@ -102,7 +102,7 @@
 						<Anchor point="BOTTOMLEFT"/>
 					</Anchors>
 					<TexCoords left="0.751953125" right="0.875" top="0" bottom="1"/>
-				</Texture>			
+				</Texture>
 				<Texture name="$parentBottomRight" file="Interface\PaperDollInfoFrame\UI-GearManager-Border">
 					<Size x="64" y="64"/>
 					<Anchors>
@@ -145,7 +145,7 @@
 							<Offset x="-32" y="-8"/>
 						</Anchor>
 					</Anchors>
-				</FontString>					
+				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
@@ -200,7 +200,7 @@
 					<Anchor point="BOTTOMRIGHT">
 						<Offset x="-7" y="10"/>
 					</Anchor>
-				</Anchors>			
+				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
 						<Texture name="$parentBG" setAllPoints="true">
@@ -220,7 +220,7 @@
 					<TexCoords left="0.25" right="0.75" top="0.25" bottom="0.75"/>
 				</ThumbTexture>
 			</Slider>
-		</Frames>		
+		</Frames>
 		<Scripts>
 			<OnLoad function="EventTraceFrame_OnLoad"/>
 			<OnEvent function="EventTraceFrame_OnEvent"/>
@@ -267,7 +267,7 @@
 						frame:StopMovingOrSizing();
 					</OnDragStop>
 				</Scripts>
-			</Frame>		
+			</Frame>
 			<ScrollFrame name="$parentScrollFrame" inherits="UIPanelScrollFrameTemplate">
 				<Size x="343" y="194"/>
 				<Anchors>
@@ -302,7 +302,7 @@
 				<Scripts>
 					<OnClick function="ScriptErrorsFrameButton_OnClick"/>
 				</Scripts>
-			</Button>			
+			</Button>
 			<Button parentKey="next" inherits="UIPanelButtonTemplate" text="NEXT" id="1">
 				<Size x="96" y="24"/>
 				<Anchors>
@@ -327,11 +327,11 @@
 			</Button>
 		</Frames>
 		<Scripts>
-			<OnLoad function="ScriptErrorsFrame_OnLoad"/>	
+			<OnLoad function="ScriptErrorsFrame_OnLoad"/>
 			<OnShow function="ScriptErrorsFrame_OnShow"/>
 		</Scripts>
 	</Frame>
-	
+
 	<GameTooltip name="FrameStackTooltip" frameStrata="TOOLTIP" hidden="true" parent="WorldFrame" inherits="GameTooltipTemplate">
 		<Scripts>
 			<OnLoad function="DebugTooltip_OnLoad"/>
@@ -340,7 +340,7 @@
 			<OnUpdate function="FrameStackTooltip_OnUpdate"/>
 		</Scripts>
 	</GameTooltip>
-	
+
 	<GameTooltip name="EventTraceTooltip" frameStrata="TOOLTIP" hidden="true" parent="EventTraceFrame" inherits="GameTooltipTemplate">
 		<Scripts>
 			<OnLoad function="DebugTooltip_OnLoad"/>

@@ -14,7 +14,7 @@ function MicroButtonTooltipText(text, action)
 	else
 		return text;
 	end
-	
+
 end
 
 function UpdateMicroButtons()
@@ -26,7 +26,7 @@ function UpdateMicroButtons()
 		CharacterMicroButton:SetButtonState("NORMAL");
 		CharacterMicroButton_SetNormal();
 	end
-	
+
 	if ( SpellBookFrame:IsShown() ) then
 		SpellbookMicroButton:SetButtonState("PUSHED", 1);
 	else
@@ -49,10 +49,10 @@ function UpdateMicroButtons()
 	else
 		QuestLogMicroButton:SetButtonState("NORMAL");
 	end
-	
-	if ( ( GameMenuFrame:IsShown() ) 
-		or ( InterfaceOptionsFrame:IsShown()) 
-		or ( KeyBindingFrame and KeyBindingFrame:IsShown()) 
+
+	if ( ( GameMenuFrame:IsShown() )
+		or ( InterfaceOptionsFrame:IsShown())
+		or ( KeyBindingFrame and KeyBindingFrame:IsShown())
 		or ( MacroFrame and MacroFrame:IsShown()) ) then
 		MainMenuMicroButton:SetButtonState("PUSHED", 1);
 		MainMenuMicroButton_SetPushed();
@@ -73,7 +73,7 @@ function UpdateMicroButtons()
 			PVPMicroButton_SetNormal();
 		end
 	end
-	
+
 	if ( FriendsFrame:IsShown() ) then
 		SocialsMicroButton:SetButtonState("PUSHED", 1);
 	else
@@ -96,7 +96,7 @@ function UpdateMicroButtons()
 	else
 		HelpMicroButton:SetButtonState("NORMAL");
 	end
-	
+
 	if ( AchievementFrame and AchievementFrame:IsShown() ) then
 		AchievementMicroButton:SetButtonState("PUSHED", 1);
 	else

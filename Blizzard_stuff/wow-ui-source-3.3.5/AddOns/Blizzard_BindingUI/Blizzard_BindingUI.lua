@@ -129,7 +129,7 @@ function KeyBindingFrame_Update()
 			_G["KeyBindingFrameBinding"..i]:Hide();
 		end
 	end
-	
+
 	-- Scroll frame stuff
 	FauxScrollFrame_Update(KeyBindingFrameScrollFrame, numBindings, KEY_BINDINGS_DISPLAYED, KEY_BINDING_HEIGHT );
 

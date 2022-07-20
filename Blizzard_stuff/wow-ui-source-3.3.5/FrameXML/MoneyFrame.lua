@@ -187,7 +187,7 @@ function MoneyFrame_OnEvent (self, event, ...)
 	end
 
 	local moneyType = self.moneyType;
-	
+
 	if ( event == "PLAYER_MONEY" and moneyType == "PLAYER" ) then
 		MoneyFrame_UpdateMoney(self);
 	elseif ( event == "PLAYER_TRADE_MONEY" and (moneyType == "PLAYER" or moneyType == "PLAYER_TRADE") ) then
@@ -252,7 +252,7 @@ local function CreateMoneyButtonNormalTexture (button, iconWidth)
 	texture:SetHeight(iconWidth);
 	texture:SetPoint("RIGHT");
 	button:SetNormalTexture(texture);
-	
+
 	return texture;
 end
 
@@ -264,7 +264,7 @@ function MoneyFrame_Update(frameName, money)
 	else
 		frame = _G[frameName];
 	end
-	
+
 	local info = frame.info;
 	if ( not info ) then
 		message("Error moneyType not set");
@@ -331,7 +331,7 @@ function MoneyFrame_Update(frameName, money)
 		copperButton:SetWidth(copperButton:GetTextWidth() + iconWidth);
 		copperButton:Show();
 	end
-		
+
 	-- Store how much money the frame is displaying
 	frame.staticMoney = money;
 
@@ -361,7 +361,7 @@ function MoneyFrame_Update(frameName, money)
 		if ( showLowerDenominations and info.fixedWidth ) then
 			silverButton:SetWidth(COIN_BUTTON_WIDTH);
 		end
-		
+
 		width = width + silverButton:GetWidth();
 		goldButton:SetPoint("RIGHT", frameName.."SilverButton", "LEFT", spacing, 0);
 		if ( goldButton:IsShown() ) then
@@ -382,7 +382,7 @@ function MoneyFrame_Update(frameName, money)
 		if ( showLowerDenominations and info.fixedWidth ) then
 			copperButton:SetWidth(COIN_BUTTON_WIDTH);
 		end
-		
+
 		width = width + copperButton:GetWidth();
 		silverButton:SetPoint("RIGHT", frameName.."CopperButton", "LEFT", spacing, 0);
 		if ( silverButton:IsShown() or goldButton:IsShown() ) then
@@ -523,7 +523,7 @@ function SetMoneyFrameColor(frameName, color)
 			fontObject = NumberFontNormalLargeRight;
 		end
 	end
-	
+
 	local goldButton = _G[frameName.."GoldButton"];
 	local silverButton = _G[frameName.."SilverButton"];
 	local copperButton = _G[frameName.."CopperButton"];
@@ -565,7 +565,7 @@ function AltCurrencyFrame_PointsUpdate(frameName, honor, arena)
 	else
 		buttonHonor:Hide();
 	end
-	
+
 	local buttonArena = _G[frameName.."Arena"];
 	if ( arena and arena > 0 ) then
 		buttonHonor.pointType = ARENA_POINTS;
@@ -592,7 +592,7 @@ function GetMoneyString(money)
 	local gold = floor(money / (COPPER_PER_SILVER * SILVER_PER_GOLD));
 	local silver = floor((money - (gold * COPPER_PER_SILVER * SILVER_PER_GOLD)) / COPPER_PER_SILVER);
 	local copper = mod(money, COPPER_PER_SILVER);
-	
+
 	if ( ENABLE_COLORBLIND_MODE == "1" ) then
 		goldString = gold..GOLD_AMOUNT_SYMBOL;
 		silverString = silver..SILVER_AMOUNT_SYMBOL;
@@ -602,9 +602,9 @@ function GetMoneyString(money)
 		silverString = format(SILVER_AMOUNT_TEXTURE, silver, 0, 0);
 		copperString = format(COPPER_AMOUNT_TEXTURE, copper, 0, 0);
 	end
-	
+
 	local moneyString = "";
-	local separator = "";	
+	local separator = "";
 	if ( gold > 0 ) then
 		moneyString = goldString;
 		separator = " ";
@@ -616,6 +616,6 @@ function GetMoneyString(money)
 	if ( copper > 0 or moneyString == "" ) then
 		moneyString = moneyString..separator..copperString;
 	end
-	
+
 	return moneyString;
 end

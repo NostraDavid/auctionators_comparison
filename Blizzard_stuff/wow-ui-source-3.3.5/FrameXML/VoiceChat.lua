@@ -2,7 +2,7 @@ VOICECHAT_DELAY = 1.25;
 VOICECHAT_BUTTON_OFFSET = 45;
 VOICECHAT_UPDATE_FREQ = 0.05
 VOICECHAT_TALKERS_PADDING = 16;
-MOVING_FRAME = nil; 
+MOVING_FRAME = nil;
 
 VOICECHAT_TALKERS = {};
 local timeSinceLast = 0;
@@ -15,7 +15,7 @@ local function AddTalker(name, unit)
 			return;
 		end
 	end
-	
+
 	local talker = {}
 	talker.name = name;
 	talker.unit = unit;
@@ -55,7 +55,7 @@ function VoiceChatTalkers_OnEvent(self, event, ...)
 		if ( arg1 and (not arg2 or not UnitIsUnit(arg2, "player")) ) then
 			AddTalker(arg1, arg2);
 			VoiceChatTalkers_Update();
-		end	
+		end
 	elseif ( event == "VOICE_PLATE_STOP" ) then
 		if ( arg1 and (not arg2 or not UnitIsUnit(arg2, "player")) ) then
 			for _, talker in next, VOICECHAT_TALKERS do
@@ -78,11 +78,11 @@ function VoiceChatTalkers_OnUpdate(self, elapsed)
 				update = true;
 			end
 		end
-		
+
 		if ( update ) then
 			VoiceChatTalkers_Update();
 		end
-		
+
 		if ( #VOICECHAT_TALKERS == 0 ) then
 			VoiceChatTalkers:SetScript("OnUpdate", nil);
 		end
@@ -117,7 +117,7 @@ function VoiceChatTalkers_Update()
 		end
 		VoiceChatTalkers_ResizeFrame(1);
 		VoiceChatTalkers.speakerLock = nil;
-		
+
 		if ( VoiceChatTalkers.visible > 0 and VoiceChatTalkers_CanHide() ) then
 			--Only run this if we're actually changing from a number of talkers greater than zero to zero.
 			VoiceChatTalkers_FadeOut();
@@ -136,7 +136,7 @@ function VoiceChatTalkers_Update()
 			VoiceChatTalkers.buttons[i]:Hide();
 		end
 	end
-	
+
 	VoiceChatTalkersSpeaker:Hide();
 	VoiceChatTalkers.speakerLock = true;
 	VoiceChatTalkers:SetAlpha(1);
@@ -146,7 +146,7 @@ end
 
 function VoiceChatTalkers_CreateButtons (maxButtons)
 	assert(maxButtons)
-	
+
 	local buttonFrame;
 	for i = #VoiceChatTalkers.buttons + 1, maxButtons do
 		buttonFrame = CreateFrame("FRAME", VoiceChatTalkers:GetName() .. "Button" .. i, VoiceChatTalkers, "VoiceChatButtonTemplate");
@@ -159,7 +159,7 @@ end
 
 function VoiceChatTalkers_ResizeFrame(visible)
 	local visibleButtons = visible;
-	
+
 	if ( not visibleButtons ) then
 		for i = 1, #VoiceChatTalkers.buttons do
 			if ( VoiceChatTalkers.buttons[i]:IsShown() ) then
@@ -167,7 +167,7 @@ function VoiceChatTalkers_ResizeFrame(visible)
 			end
 		end
 	end
-	
+
 	if ( visibleButtons > 0 ) then
 		VoiceChatTalkers:SetHeight(visibleButtons * VoiceChatTalkers.buttons[1]:GetHeight() + VOICECHAT_TALKERS_PADDING);
 	else
@@ -182,7 +182,7 @@ function VoiceChat_OnUpdate(self, elapsed)
 				return;
 			elseif ( self.timer ) then
 				if ( self.timer < 0 ) then
-					UIFrameFadeOut(self, 0.35); 
+					UIFrameFadeOut(self, 0.35);
 					self.timer = nil;
 					self.unit = nil;
 					self.name = nil;

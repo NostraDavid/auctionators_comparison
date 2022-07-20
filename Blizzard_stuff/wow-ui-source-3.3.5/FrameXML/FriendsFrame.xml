@@ -16,7 +16,7 @@
 			</Layer>
 		</Layers>
 	</Frame>
-	
+
 	<Button name="FriendsFrameButtonTemplate" hidden="true" virtual="true">
 		<Size>
 			<AbsDimension x="298" y="20"/>
@@ -44,7 +44,7 @@
 				<Texture name="$parentStatus" file="Interface\FriendsFrame\StatusIcon-Online" parentKey="status">
 					<Size>
 						<AbsDimension x="16" y="16"/>
-					</Size>	
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -56,7 +56,7 @@
 				<Texture name="$parentGameIcon" file="Interface\FriendsFrame\Battlenet-WoWicon" parentKey="gameIcon">
 					<Size>
 						<AbsDimension x="28" y="28"/>
-					</Size>	
+					</Size>
 					<Anchors>
 						<Anchor point="TOPRIGHT">
 							<Offset>
@@ -90,35 +90,35 @@
 						</Anchor>
 					</Anchors>
 					<Color r="0.486" g="0.518" b="0.541" />
-				</FontString>						
+				</FontString>
 				<FontString name="$parentInfo" inherits="FriendsFont_Small" justifyH="LEFT" parentKey="info">
 					<Size>
 						<AbsDimension x="260" y="10"/>
-					</Size>				
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="BOTTOMLEFT" x="0" y="-2"/>
 					</Anchors>
 					<Color r="0.486" g="0.518" b="0.541" />
-				</FontString>			
+				</FontString>
 				<FontString name="$parentBroadcastMessage" inherits="FriendsFont_UserText" justifyH="LEFT" justifyV="TOP" parentKey="broadcastMessage" hidden="true">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentInfo" relativePoint="BOTTOMLEFT" x="20" y="-4"/>
 					</Anchors>
 					<Size>
 						<AbsDimension x="250" y="2"/>
-					</Size>								
+					</Size>
 					<Color r="0.345" g="0.667" b="0.867" />
-				</FontString>			
+				</FontString>
 			</Layer>
 			<Layer level="OVERLAY">
 				<Texture name="$parentBroadcastIcon" file="Interface\FriendsFrame\BroadcastIcon" parentKey="broadcastIcon" hidden="true">
 					<Size>
 						<AbsDimension x="16" y="16"/>
-					</Size>	
+					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT" x="20" y="-29"/>
-					</Anchors>						
-				</Texture>					
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>
@@ -181,7 +181,7 @@
 									<AbsDimension x="0" y="-1"/>
 								</Offset>
 							</Anchor>
-						</Anchors> 
+						</Anchors>
 					</Cooldown>
 				</Frames>
 				<Scripts>
@@ -351,7 +351,7 @@
 											<AbsDimension x="0" y="-1"/>
 										</Offset>
 									</Anchor>
-								</Anchors> 
+								</Anchors>
 							</Cooldown>
 						</Frames>
 						<Scripts>
@@ -386,7 +386,7 @@
 								GameTooltip:Hide();
 							</OnLeave>
 						</Scripts>
-					</Button>					
+					</Button>
 					<Button name="$parentNote">
 						<Size x="7" y="8"/>
 						<Anchors>
@@ -1339,7 +1339,7 @@
 								<Texture file="Interface\FriendsFrame\PlusManz-BattleNet">
 									<Size>
 										<AbsDimension x="28" y="28"/>
-									</Size>	
+									</Size>
 									<Anchors>
 										<Anchor point="RIGHT" relativeTo="$parentText" relativePoint="LEFT" x="-4" y="0"/>
 									</Anchors>
@@ -1350,7 +1350,7 @@
 							<Button name="$parentInfoButton">
 								<Size>
 									<AbsDimension x="16" y="16"/>
-								</Size>	
+								</Size>
 								<Anchors>
 									<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentText" x="4" y="0"/>
 								</Anchors>
@@ -1478,18 +1478,18 @@
 										</Anchor>
 									</Anchors>
 									<Color r="0.35" g="0.35" b="0.35"/>
-								</FontString>								
+								</FontString>
 							</Layer>
 							<Layer level="ARTWORK">
 								<Texture file="Interface\FriendsFrame\BroadcastIcon" parentKey="icon">
 									<Size>
-										<AbsDimension x="16" y="16"/>										
+										<AbsDimension x="16" y="16"/>
 									</Size>
 									<Anchors>
 										<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT">
 											<Offset x="-5" y="-1"/>
 										</Anchor>
-									</Anchors>									
+									</Anchors>
 								</Texture>
 							</Layer>
 						</Layers>
@@ -1528,7 +1528,7 @@
 										local editBox = FriendsFrameBroadcastInput;
 										editBox:SetFocus();
 										editBox:SetCursorPosition(strlen(editBox:GetText()));
-										editBox:HighlightText(0, -1);  -- highlight all										
+										editBox:HighlightText(0, -1);  -- highlight all
 										self:Hide();
 									</OnClick>
 									<OnEnter>
@@ -1588,7 +1588,7 @@
 							<OnClick>
 								PanelTemplates_Tab_OnClick(self, FriendsTabHeader);
 								FriendsFrame_Update();
-								PlaySound("igMainMenuOptionCheckBoxOn");							
+								PlaySound("igMainMenuOptionCheckBoxOn");
 							</OnClick>
 						</Scripts>
 					</Button>
@@ -1654,7 +1654,7 @@
 				</Scripts>
 			</Frame>
 			<Frame name="FriendsListFrame" hidden="true" setAllPoints="true">
-				<Frames>				
+				<Frames>
 					<Button name="FriendsFrameAddFriendButton" inherits="UIPanelButtonTemplate2" text="ADD_FRIEND">
 						<Size>
 							<AbsDimension x="131" y="21"/>
@@ -3636,7 +3636,7 @@
 													GuildControlPopupAcceptButton:Enable();
 													GuildControlPopupFrame.goldChanged = 1;
 												end
-											</OnTextChanged> 
+											</OnTextChanged>
 											<OnEditFocusGained>
 												GuildControlPopupAcceptButton:Enable();
 											</OnEditFocusGained>
@@ -3760,7 +3760,7 @@
 									<OnLeave function="GameTooltip_Hide"/>
 								</Scripts>
 							</CheckButton>
-							
+
 						</Frames>
 					</Frame>
 					<Button name="GuildControlPopupFrameCancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
@@ -3942,7 +3942,7 @@
 												if(amount and amount ~= "" and amount ~= UNLIMITED) then
 													SetPendingGuildBankTabWithdraw(GuildControlPopupFrameTabPermissions.selectedTab, amount);
 												end
-											</OnTextChanged> 
+											</OnTextChanged>
 											<OnEnterPressed>
 												self:ClearFocus();
 												GuildControlPopupAcceptButton:Enable();
@@ -4094,7 +4094,7 @@
 										else
 											GuildInfoEditBox:ClearFocus();
 										end
-									</OnMouseUp> 
+									</OnMouseUp>
 								</Scripts>
 								<ScrollChild>
 									<EditBox name="GuildInfoEditBox" letters="500" multiLine="true" autoFocus="false">
@@ -4529,7 +4529,7 @@
 							</OnLoad>
 							<OnMouseUp>
 								StaticPopup_Show("SET_GUILDPLAYERNOTE");
-							</OnMouseUp> 
+							</OnMouseUp>
 						</Scripts>
 					</Frame>
 					<Frame name="GuildMemberOfficerNoteBackground">
@@ -4577,7 +4577,7 @@
 							</OnLoad>
 							<OnMouseUp>
 								StaticPopup_Show("SET_GUILDOFFICERNOTE");
-							</OnMouseUp> 
+							</OnMouseUp>
 						</Scripts>
 					</Frame>
 				</Frames>
@@ -4655,17 +4655,17 @@
 									<Frame name="GuildEventLogScrollChildFrame">
 										<Size>
 											<AbsDimension x="340" y="359"/>
-										</Size>	
+										</Size>
 										<Layers>
 											<Layer level="OVERLAY">
 												<FontString name="GuildEventMessage" inherits="ChatFontNormal" justifyH="LEFT">
 													<Size>
 														<AbsDimension x="340" y="0"/>
-													</Size>										
+													</Size>
 													<Anchors>
 														<Anchor point="TOPLEFT" />
 													</Anchors>
-												</FontString>									
+												</FontString>
 											</Layer>
 										</Layers>
 									</Frame>
@@ -4891,7 +4891,7 @@
 						<Texture name="$parentNoteIcon" file="Interface/FriendsFrame/UI-FriendsFrame-Note">
 							<Size>
 								<AbsDimension x="14" y="12"/>
-							</Size>	
+							</Size>
 							<Anchors>
 								<Anchor point="TOPRIGHT" relativeTo="$parentNoteText" relativePoint="TOPLEFT" x="-1" y="0"/>
 							</Anchors>
@@ -4910,7 +4910,7 @@
 						<Texture name="$parentBroadcastIcon" file="Interface\FriendsFrame\BroadcastIcon">
 							<Size>
 								<AbsDimension x="16" y="16"/>
-							</Size>	
+							</Size>
 							<Anchors>
 								<Anchor point="TOPRIGHT" relativeTo="$parentBroadcastText" relativePoint="TOPLEFT" x="-2" y="1"/>
 							</Anchors>
@@ -5045,7 +5045,7 @@
 			<EdgeSize>
 				<AbsValue val="32"/>
 			</EdgeSize>
-		</Backdrop>		
+		</Backdrop>
 		<Frames>
 			<Frame name="AddFriendInfoFrame" hidden="true">
 				<Size>
@@ -5223,7 +5223,7 @@
 					<Button name="$parentInfoButton">
 						<Size>
 							<AbsDimension x="16" y="16"/>
-						</Size>	
+						</Size>
 						<Anchors>
 							<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentTopTitle" x="8" y="0" />
 						</Anchors>
@@ -5334,7 +5334,7 @@
 							<OnEscapePressed>
 								self:ClearFocus();
 							</OnEscapePressed>
-							<OnTextChanged function="AddFriendNameEditBox_OnTextChanged"/>			
+							<OnTextChanged function="AddFriendNameEditBox_OnTextChanged"/>
 						</Scripts>
 						<FontString inherits="FriendsFont_Small">
 							<Color r="1" g="1" b="1" />
@@ -5480,7 +5480,7 @@
 												else
 													AddFriendNoteEditBoxFill:Show();
 												end
-											</OnTextChanged> 
+											</OnTextChanged>
 											<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
 											<OnUpdate>
 												ScrollingEdit_OnUpdate(self, elapsed, self:GetParent());
@@ -5494,7 +5494,7 @@
 								</ScrollChild>
 							</ScrollFrame>
 						</Frames>
-					</Frame>		
+					</Frame>
 					<Button name="$parentAcceptButton" inherits="UIPanelButtonTemplate2" text="ADD_FRIEND">
 						<Size>
 							<AbsDimension x="118" y="22"/>
@@ -5733,7 +5733,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="ARTWORK">
-						<FontString inherits="ChatFontNormal" text="FRIENDS_FRIENDS_WAITING">			
+						<FontString inherits="ChatFontNormal" text="FRIENDS_FRIENDS_WAITING">
 							<Anchors>
 								<Anchor point="CENTER" x="12" y="0"/>
 							</Anchors>
@@ -5886,7 +5886,7 @@
 										else
 											FriendsFriendsNoteEditBoxFill:Show();
 										end
-									</OnTextChanged> 
+									</OnTextChanged>
 									<OnCursorChanged function="ScrollingEdit_OnCursorChanged"/>
 									<OnUpdate>
 										ScrollingEdit_OnUpdate(self, elapsed, self:GetParent());

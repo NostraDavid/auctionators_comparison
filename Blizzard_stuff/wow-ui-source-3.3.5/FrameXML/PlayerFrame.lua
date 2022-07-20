@@ -2,10 +2,10 @@ REQUIRED_REST_HOURS = 5;
 
 function PlayerFrame_OnLoad(self)
 	UnitFrame_Initialize(self, "player", PlayerName, PlayerPortrait,
-						 PlayerFrameHealthBar, PlayerFrameHealthBarText, 
+						 PlayerFrameHealthBar, PlayerFrameHealthBarText,
 						 PlayerFrameManaBar, PlayerFrameManaBarText,
 						 PlayerFrameFlash);
-						 
+
 	self.statusCounter = 0;
 	self.statusSign = -1;
 	CombatFeedback_Initialize(self, PlayerHitIndicator, 30);
@@ -35,7 +35,7 @@ function PlayerFrame_OnLoad(self)
 	self:RegisterEvent("UNIT_EXITED_VEHICLE");
 	self:RegisterEvent("PLAYER_FLAGS_CHANGED");
 	self:RegisterEvent("PLAYER_ROLES_ASSIGNED");
-	
+
 	-- Chinese playtime stuff
 	self:RegisterEvent("PLAYTIME_CHANGED");
 
@@ -96,7 +96,7 @@ function PlayerFrame_UpdatePvPStatus()
 		PlayerPVPIconHitArea.tooltipTitle = PVPFFA;
 		PlayerPVPIconHitArea.tooltipText = NEWBIE_TOOLTIP_PVPFFA;
 		PlayerPVPIconHitArea:Show();
-		
+
 		PlayerPVPTimerText:Hide();
 		PlayerPVPTimerText.timeLeft = nil;
 	elseif ( factionGroup and UnitIsPVP("player") ) then
@@ -120,7 +120,7 @@ end
 
 function PlayerFrame_OnEvent(self, event, ...)
 	UnitFrame_OnEvent(self, event, ...);
-	
+
 	local arg1, arg2, arg3, arg4, arg5 = ...;
 	if ( event == "UNIT_LEVEL" ) then
 		if ( arg1 == "player" ) then
@@ -148,7 +148,7 @@ function PlayerFrame_OnEvent(self, event, ...)
 		PlayerFrame_UpdateRolesAssigned();
 		PlayerSpeakerFrame:Show();
 		PlayerFrame_UpdateVoiceStatus(UnitIsTalking(UnitName("player")));
-		
+
 		if ( IsPVPTimerRunning() ) then
 			PlayerPVPTimerText:Show();
 			PlayerPVPTimerText.timeLeft = GetPVPTimer();
@@ -248,7 +248,7 @@ function PlayerFrame_UpdateRolesAssigned()
 	local frame = PlayerFrame;
 	local icon = _G[frame:GetName().."RoleIcon"];
 	local isTank, isHealer, isDamage = UnitGroupRolesAssigned("player");
-	
+
 	if ( isTank ) then
 		icon:SetTexCoord(0, 19/64, 22/64, 41/64);
 		icon:Show();
@@ -304,14 +304,14 @@ function PlayerFrame_ToVehicleArt(self, vehicleType)
 	--Swap frame
 
 	PlayerFrame.state = "vehicle";
-	
+
 	UnitFrame_SetUnit(self, "vehicle", PlayerFrameHealthBar, PlayerFrameManaBar);
 	UnitFrame_SetUnit(PetFrame, "player", PetFrameHealthBar, PetFrameManaBar);
 	PetFrame_Update(PetFrame);
 	PlayerFrame_Update();
 	BuffFrame_Update();
 	ComboFrame_Update();
-			
+
 	PlayerFrameTexture:Hide();
 	if ( vehicleType == "Natural" ) then
 		PlayerFrameVehicleTexture:SetTexture("Interface\\Vehicles\\UI-Vehicle-Frame-Organic");
@@ -327,28 +327,28 @@ function PlayerFrame_ToVehicleArt(self, vehicleType)
 		PlayerFrameManaBar:SetPoint("TOPLEFT",119,-52);
 	end
 	PlayerFrameVehicleTexture:Show();
-	
+
 	PlayerName:SetPoint("CENTER",50,23);
 	PlayerLeaderIcon:SetPoint("TOPLEFT",40,-12);
 	PlayerMasterIcon:SetPoint("TOPLEFT",86,0);
 	PlayerFrameGroupIndicator:SetPoint("BOTTOMLEFT", PlayerFrame, "TOPLEFT", 97, -13);
-	
+
 	PlayerFrameBackground:SetWidth(114);
 	PlayerLevelText:Hide();
 end
 
 function PlayerFrame_ToPlayerArt(self)
 	--Unswap frame
-	
+
 	PlayerFrame.state = "player";
-	
+
 	UnitFrame_SetUnit(self, "player", PlayerFrameHealthBar, PlayerFrameManaBar);
 	UnitFrame_SetUnit(PetFrame, "pet", PetFrameHealthBar, PetFrameManaBar);
 	PetFrame_Update(PetFrame);
 	PlayerFrame_Update();
 	BuffFrame_Update();
 	ComboFrame_Update();
-			
+
 	PlayerFrameTexture:Show();
 	PlayerFrameVehicleTexture:Hide();
 	PlayerName:SetPoint("CENTER",50,19);
@@ -409,7 +409,7 @@ function PlayerFrame_OnUpdate (self, elapsed)
 		PlayerStatusTexture:SetAlpha(alpha);
 		PlayerStatusGlow:SetAlpha(alpha);
 	end
-	
+
 	if ( PlayerPVPTimerText.timeLeft ) then
 		PlayerPVPTimerText.timeLeft = PlayerPVPTimerText.timeLeft - elapsed*1000;
 		local timeLeft = PlayerPVPTimerText.timeLeft;
@@ -519,7 +519,7 @@ end
 
 function PlayerFrame_SetupDeathKnniggetLayout ()
 	PlayerFrame:SetHitRectInsets(0,0,0,35);
-	
+
 	--[[ PlayerFrame:SetPoint("TOPLEFT", -11, -8);
 	PlayerFrame:RegisterEvent("UNIT_RUNIC_POWER");
 	PlayerPortrait:SetDrawLayer("BACKGROUND");
@@ -540,12 +540,12 @@ function PlayerFrame_SetupDeathKnniggetLayout ()
 	PlayerFrameBackground:SetHeight(4);
 	PlayerFrameBackground:SetWidth(4);
 	PlayerFrameBackground:SetPoint("TOPLEFT", 108, -24);
-	
+
 	PlayerName:SetPoint("CENTER", 50, 18);
 	PlayerFrameHealthBar:SetPoint("TOPLEFT", PlayerFrame, "TOPLEFT", 113, -41);
 	PlayerFrameHealthBar:SetWidth(112);
 	PlayerFrameHealthBarText:SetPoint("CENTER", 53, 3);
-	
+
 	-- Death Knight Specific Border Frame
 	PlayerFrame:CreateTexture("PlayerFrameRunicPowerOverlay", "OVERLAY");
 	PlayerFrameRunicPowerOverlay:SetPoint("TOPLEFT", 15, 15);
@@ -573,14 +573,14 @@ function PlayerFrame_SetupDeathKnniggetLayout ()
 	PlayerFrameManaBar:ClearAllPoints();
 	PlayerFrameManaBar:SetPoint("TOPLEFT", UIParent, "BOTTOMRIGHT");
 	PlayerFrameManaBarText:SetParent(PlayerFrameManaBar);
-	
+
 	local runicPowerBar = PlayerFrame:CreateTexture("$parentRunicPowerBar", "ARTWORK");
 	-- Mmmm, runic Power Bars, my favorite kind. Tastes like Death Knnigget.
 	runicPowerBar:SetTexture("Interface\\PlayerFrame\\UI-PlayerFrame-DeathKnight-RunicPower");
 	runicPowerBar:SetPoint("BOTTOMLEFT", "$parent", "BOTTOMLEFT", 70, 24);
 	runicPowerBar:SetWidth(64);
 	runicPowerBar:SetHeight(63);
-	
+
 	PlayerFrame_SetRunicPower(UnitPower("player"));--]]
 end
 
@@ -595,9 +595,9 @@ function PlayerFrame_UpdateLayout ()
 		return;
 	end
 	layoutUpdated = true;
-	
-	local _, class = UnitClass("player");	
-	
+
+	local _, class = UnitClass("player");
+
 	if ( CustomClassLayouts[class] ) then
 		CustomClassLayouts[class]();
 	end
@@ -617,7 +617,7 @@ local RUNICGLOW_THROBSTART = 0;
 function PlayerFrame_SetRunicPower (runicPower)
 	PlayerFrameRunicPowerBar:SetHeight(RUNICPOWERBARHEIGHT * (runicPower / 100));
 	PlayerFrameRunicPowerBar:SetTexCoord(0, 1, (1 - (runicPower / 100)), 1);
-	
+
 	if ( runicPower >= 90 ) then
 		-- Oh,  God help us for these function and variable names.
 		RUNICGLOW_FINISHTHROBANDHIDE = false;
@@ -637,11 +637,11 @@ function DeathKnniggetThrobFunction (self, elapsed)
 	if ( RUNICGLOW_THROBSTART == 0 ) then
 		RUNICGLOW_THROBSTART = GetTime();
 	elseif ( not RUNICGLOW_FINISHTHROBANDHIDE ) then
-		local interval = RUNICGLOW_THROBINTERVAL - math.abs( .9 - (UnitPower("player") / 100)); 
+		local interval = RUNICGLOW_THROBINTERVAL - math.abs( .9 - (UnitPower("player") / 100));
 		local animTime = GetTime() - RUNICGLOW_THROBSTART;
 		if ( animTime >= interval ) then
 			-- Fading out
-			PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_MINALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * interval/animTime)));			
+			PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_MINALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * interval/animTime)));
 			if ( animTime >= interval * 2 ) then
 				self.timeSinceThrob = 0;
 				RUNICGLOW_THROBSTART = GetTime();
@@ -650,9 +650,9 @@ function DeathKnniggetThrobFunction (self, elapsed)
 		else
 			-- Fading in
 			if ( firstFadeIn ) then
-				PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_FADEALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * animTime/interval)));			
+				PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_FADEALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * animTime/interval)));
 			else
-				PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_MINALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * animTime/interval)));			
+				PlayerFrameRunicPowerGlow:SetAlpha(math.max(RUNICGLOW_MINALPHA, math.min(RUNICGLOW_MAXALPHA, RUNICGLOW_MAXALPHA * animTime/interval)));
 			end
 		end
 	elseif ( RUNICGLOW_FINISHTHROBANDHIDE ) then
@@ -660,11 +660,11 @@ function DeathKnniggetThrobFunction (self, elapsed)
 		local animTime = GetTime() - RUNICGLOW_THROBSTART;
 		local interval = RUNICGLOW_THROBINTERVAL;
 		firstFadeIn = true;
-		
+
 		if ( animTime >= interval ) then
 			-- Already fading out, just keep fading out.
 			local alpha = math.min(PlayerFrameRunicPowerGlow:GetAlpha(), RUNICGLOW_MAXALPHA * (interval/(animTime*(animTime/2))));
-			
+
 			PlayerFrameRunicPowerGlow:SetAlpha(alpha);
 			if ( alpha <= RUNICGLOW_FADEALPHA ) then
 				self.timeSinceThrob = 0;
@@ -680,4 +680,3 @@ function DeathKnniggetThrobFunction (self, elapsed)
 		end
 	end
 end
-

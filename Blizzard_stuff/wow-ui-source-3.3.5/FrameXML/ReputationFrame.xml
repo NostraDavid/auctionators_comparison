@@ -228,7 +228,7 @@
 			</OnLeave>
 		</Scripts>
 	</Button>
-	
+
 	<Frame name="ReputationFrame" setAllPoints="true" enableMouse="true" parent="CharacterFrame" hidden="true" id="3">
 		<HitRectInsets>
 			<AbsInset left="0" right="30" top="0" bottom="75"/>
@@ -463,7 +463,7 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-			
+
 			<ScrollFrame name="ReputationListScrollFrame" inherits="FauxScrollFrameTemplate">
 				<Size>
 					<AbsDimension x="296" y="354"/>

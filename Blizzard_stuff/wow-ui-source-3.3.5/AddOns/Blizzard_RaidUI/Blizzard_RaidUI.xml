@@ -48,7 +48,7 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-			</Layer>		
+			</Layer>
 		</Layers>
 		<Scripts>
 			<OnLoad>
@@ -217,7 +217,7 @@
 							GameTooltip:SetText(MASTER_LOOTER, nil, nil, nil, nil, 1);
 						else
 							GameTooltip:Hide();
-						end	
+						end
 					</OnEnter>
 				</Scripts>
 			</Button>
@@ -231,7 +231,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnLoad>	
+					<OnLoad>
 						RaiseFrameLevelByTwo(self);
 					</OnLoad>
 				</Scripts>
@@ -437,7 +437,7 @@
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0.296875" right="0.5703125" top="0" bottom="0.515625"/>
-				</Texture>	
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -638,7 +638,7 @@
 					</OnValueChanged>
 					<OnMouseUp>
 						TargetUnit(self:GetParent().unit.."target");
-					</OnMouseUp> 
+					</OnMouseUp>
 				</Scripts>
 				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
 				<BarColor r="1.0" g="0" b="0"/>
@@ -686,7 +686,7 @@
 					</OnLoad>
 					<OnMouseUp>
 						TargetUnit(self:GetParent().unit.."targettarget");
-					</OnMouseUp> 
+					</OnMouseUp>
 				</Scripts>
 			</Frame>
 			<StatusBar name="$parentTargetTarget" drawLayer="ARTWORK" inherits="TextStatusBar" enableMouse="false" hidden="true">
@@ -735,7 +735,7 @@
 						<Scripts>
 							<OnMouseUp>
 								TargetUnit(self:GetParent():GetParent().unit.."targettarget");
-							</OnMouseUp> 
+							</OnMouseUp>
 						</Scripts>
 					</Frame>
 				</Frames>
@@ -745,7 +745,7 @@
 					</OnValueChanged>
 					<OnMouseUp>
 						TargetUnit(self:GetParent().unit.."targettarget");
-					</OnMouseUp> 
+					</OnMouseUp>
 				</Scripts>
 				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
 			</StatusBar>
@@ -943,7 +943,7 @@
 			<OnMouseUp>
 				self:StopMovingOrSizing();
 				self:SetFrameStrata("BACKGROUND");
-			</OnMouseUp> 
+			</OnMouseUp>
 		</Scripts>
 	</Button>
 	<Button name="RaidFrameRaidBrowserButton" inherits="UIPanelButtonTemplate" parent="RaidFrame" text="LOOKING_FOR_RAID">

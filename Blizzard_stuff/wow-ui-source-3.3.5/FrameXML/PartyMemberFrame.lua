@@ -38,13 +38,13 @@ function PartyMemberFrame_ToPlayerArt(self)
 	_G[prefix.."MasterIcon"]:SetPoint("TOPLEFT", 32, 0);
 	_G[prefix.."PVPIcon"]:SetPoint("TOPLEFT", -9, -15);
 	_G[prefix.."Disconnect"]:SetPoint("LEFT", -7, -1);
-	
+
 	self.overrideName = nil;
-	
+
 	UnitFrame_SetUnit(self, "party"..self:GetID(), _G[prefix.."HealthBar"], _G[prefix.."ManaBar"]);
 	UnitFrame_SetUnit(_G[prefix.."PetFrame"], "partypet"..self:GetID(), _G[prefix.."PetFrameHealthBar"], nil);
 	PartyMemberFrame_UpdateMember(self);
-	
+
 	UnitFrame_Update(self)
 end
 
@@ -63,13 +63,13 @@ function PartyMemberFrame_ToVehicleArt(self, vehicleType)
 	_G[prefix.."MasterIcon"]:SetPoint("TOPLEFT", 29, 0);
 	_G[prefix.."PVPIcon"]:SetPoint("TOPLEFT", -12, -15);
 	_G[prefix.."Disconnect"]:SetPoint("LEFT", -10, -1);
-	
+
 	self.overrideName = "party"..self:GetID();
-	
+
 	UnitFrame_SetUnit(self, "partypet"..self:GetID(), _G[prefix.."HealthBar"], _G[prefix.."ManaBar"]);
 	UnitFrame_SetUnit(_G[prefix.."PetFrame"], "party"..self:GetID(), _G[prefix.."PetFrameHealthBar"], nil);
 	PartyMemberFrame_UpdateMember(self);
-	
+
 	UnitFrame_Update(self)
 end
 
@@ -103,7 +103,7 @@ function PartyMemberFrame_OnLoad (self)
 		ToggleDropDownMenu(1, nil, _G["PartyMemberFrame"..self:GetID().."DropDown"], self:GetName(), 47, 15);
 	end
 	SecureUnitButton_OnLoad(self, "party"..self:GetID(), showmenu);
-	
+
 	PartyMemberFrame_UpdateArt(self);
 end
 
@@ -143,10 +143,10 @@ function PartyMemberFrame_UpdatePet (self, id)
 	if ( not id ) then
 		id = self:GetID();
 	end
-	
+
 	local frameName = "PartyMemberFrame"..id;
 	local petFrame = _G["PartyMemberFrame"..id.."PetFrame"];
-	
+
 	if ( UnitIsConnected("party"..id) and UnitExists("partypet"..id) and SHOW_PARTY_PETS == "1" ) then
 		petFrame:Show();
 		petFrame:SetPoint("TOPLEFT", frameName, "TOPLEFT", 23, -43);
@@ -154,7 +154,7 @@ function PartyMemberFrame_UpdatePet (self, id)
 		petFrame:Hide();
 		petFrame:SetPoint("TOPLEFT", frameName, "TOPLEFT", 23, -27);
 	end
-	
+
 	PartyMemberFrame_RefreshPetDebuffs(self, id);
 	UpdatePartyMemberBackground();
 end
@@ -207,7 +207,7 @@ function PartyMemberFrame_UpdatePvPStatus (self)
 	local factionGroup = UnitFactionGroup(unit);
 	if ( UnitIsPVPFreeForAll(unit) ) then
 		icon:SetTexture("Interface\\TargetingFrame\\UI-PVP-FFA");
-		icon:Show();	
+		icon:Show();
 	elseif ( factionGroup and UnitIsPVP(unit) ) then
 		icon:SetTexture("Interface\\GroupFrame\\UI-Group-PVP-"..factionGroup);
 		icon:Show();
@@ -221,7 +221,7 @@ function PartyMemberFrame_UpdateAssignedRoles (self)
 	local unit = "party"..id;
 	local icon = _G["PartyMemberFrame"..id.."RoleIcon"];
 	local isTank, isHealer, isDamage = UnitGroupRolesAssigned(unit);
-	
+
 	if ( isTank ) then
 		icon:SetTexCoord(0, 19/64, 22/64, 41/64);
 		icon:Show();
@@ -242,10 +242,10 @@ function PartyMemberFrame_UpdateVoiceStatus (self)
 		--No need to update if the frame doesn't have a unit.
 		return;
 	end
-	
+
 	local mode;
 	local inInstance, instanceType = IsInInstance();
-	
+
 	if ( (instanceType == "pvp") or (instanceType == "arena") ) then
 		mode = "Battleground";
 	elseif ( GetNumRaidMembers() > 0 ) then
@@ -302,10 +302,10 @@ end
 
 function PartyMemberFrame_OnEvent(self, event, ...)
 	UnitFrame_OnEvent(self, event, ...);
-	
+
 	local arg1, arg2, arg3 = ...;
 	local selfID = self:GetID();
-	
+
 	if ( event == "PLAYER_ENTERING_WORLD" ) then
 		if ( GetPartyMember(self:GetID()) ) then
 			PartyMemberFrame_UpdateMember(self);
@@ -320,7 +320,7 @@ function PartyMemberFrame_OnEvent(self, event, ...)
 		PartyMemberFrame_UpdateAssignedRoles(self);
 		return;
 	end
-	
+
 	if ( event == "PARTY_LEADER_CHANGED" ) then
 		PartyMemberFrame_UpdateLeader(self);
 		return;
@@ -450,9 +450,9 @@ function PartyMemberBuffTooltip_Update (self)
 	local numBuffs = 0;
 	local numDebuffs = 0;
 	local index = 1;
-	
+
 	PartyMemberBuffTooltip:SetID(self:GetID());
-	
+
 	for i=1, MAX_PARTY_TOOLTIP_BUFFS do
 		name, rank, icon = UnitBuff(self.unit, i);
 		if ( icon ) then
@@ -480,7 +480,7 @@ function PartyMemberBuffTooltip_Update (self)
 	for i=1, MAX_PARTY_TOOLTIP_DEBUFFS do
 		local debuffBorder = _G["PartyMemberBuffTooltipDebuff"..index.."Border"]
 		local partyDebuff = _G["PartyMemberBuffTooltipDebuff"..index.."Icon"];
-		name, rank, icon, debuffStack, debuffType = UnitDebuff(self.unit, i);		
+		name, rank, icon, debuffStack, debuffType = UnitDebuff(self.unit, i);
 		if ( icon ) then
 			partyDebuff:SetTexture(icon);
 			if ( debuffType ) then
@@ -515,7 +515,7 @@ function PartyMemberHealthCheck (self, value)
 	local unitHPMin, unitHPMax, unitCurrHP;
 	unitHPMin, unitHPMax = self:GetMinMaxValues();
 	local parentName = self:GetParent():GetName();
-	
+
 	unitCurrHP = self:GetValue();
 	if ( unitHPMax > 0 ) then
 		self:GetParent().unitHPPercent = unitCurrHP / unitHPMax;
@@ -611,7 +611,7 @@ function PartyMemberFrame_UpdateOnlineStatus(self)
 		local selfName = self:GetName();
 		local healthBar = _G[selfName.."HealthBar"];
 		local unitHPMin, unitHPMax = healthBar:GetMinMaxValues();
-		
+
 		healthBar:SetValue(unitHPMax);
 		healthBar:SetStatusBarColor(0.5, 0.5, 0.5);
 		SetDesaturation(_G[selfName.."Portrait"], 1);

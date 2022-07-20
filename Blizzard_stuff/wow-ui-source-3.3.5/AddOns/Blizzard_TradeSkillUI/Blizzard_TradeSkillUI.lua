@@ -8,7 +8,7 @@ TradeSkillTypePrefix = {
 ["optimal"] = " [+++] ",
 ["medium"] = " [++] ",
 ["easy"] = " [+] ",
-["trivial"] = " ", 
+["trivial"] = " ",
 ["header"] = " ",
 }
 
@@ -34,7 +34,7 @@ function TradeSkillFrame_Show()
 		TradeSkillFrame_SetSelection(GetTradeSkillSelectionIndex());
 	end
 	FauxScrollFrame_SetOffset(TradeSkillListScrollFrame, 0);
-	TradeSkillListScrollFrameScrollBar:SetMinMaxValues(0, 0); 
+	TradeSkillListScrollFrameScrollBar:SetMinMaxValues(0, 0);
 	TradeSkillListScrollFrameScrollBar:SetValue(0);
 	SetPortraitTexture(TradeSkillFramePortrait, "player");
 	TradeSkillOnlyShowMakeable(TradeSkillFrameAvailableFilterCheckButton:GetChecked());
@@ -88,7 +88,7 @@ function TradeSkillFrame_Update()
 	local numTradeSkills = GetNumTradeSkills();
 	local skillOffset = FauxScrollFrame_GetOffset(TradeSkillListScrollFrame);
 	local name, rank, maxRank = GetTradeSkillLine();
-        
+
 	if ( CURRENT_TRADESKILL ~= name ) then
 		StopTradeSkillRepeat();
 		if ( CURRENT_TRADESKILL ~= "" ) then
@@ -129,12 +129,12 @@ function TradeSkillFrame_Update()
 	end
 	-- ScrollFrame update
 	FauxScrollFrame_Update(TradeSkillListScrollFrame, numTradeSkills, TRADE_SKILLS_DISPLAYED, TRADE_SKILL_HEIGHT, nil, nil, nil, TradeSkillHighlightFrame, 293, 316 );
-	
+
 	TradeSkillHighlightFrame:Hide();
 	local skillName, skillType, numAvailable, isExpanded, altVerb;
 	local skillIndex, skillButton, skillButtonText, skillButtonCount;
 	local nameWidth, countWidth;
-	
+
 	local skillNamePrefix = " ";
 	for i=1, TRADE_SKILLS_DISPLAYED, 1 do
 		skillIndex = i + skillOffset;
@@ -142,7 +142,7 @@ function TradeSkillFrame_Update()
 		skillButton = _G["TradeSkillSkill"..i];
 		skillButtonText = _G["TradeSkillSkill"..i.."Text"];
 		skillButtonCount = _G["TradeSkillSkill"..i.."Count"];
-		if ( skillIndex <= numTradeSkills ) then	
+		if ( skillIndex <= numTradeSkills ) then
 			-- Set button widths if scrollbar is shown or hidden
 			if ( TradeSkillListScrollFrame:IsShown() ) then
 				skillButton:SetWidth(293);
@@ -157,11 +157,11 @@ function TradeSkillFrame_Update()
 				skillButton.g = color.g;
 				skillButton.b = color.b;
 			end
-			
+
 			if ( ENABLE_COLORBLIND_MODE == "1" ) then
 				skillNamePrefix = TradeSkillTypePrefix[skillType] or " ";
 			end
-			
+
 			skillButton:SetID(skillIndex);
 			skillButton:Show();
 			-- Handle headers
@@ -199,7 +199,7 @@ function TradeSkillFrame_Update()
 						skillButtonText:SetWidth(0);
 					end
 				end
-				
+
 				-- Place the highlight and lock the highlight state
 				if ( GetTradeSkillSelectionIndex() == skillIndex ) then
 					TradeSkillHighlightFrame:SetPoint("TOPLEFT", "TradeSkillSkill"..i, "TOPLEFT", 0, 0);
@@ -212,12 +212,12 @@ function TradeSkillFrame_Update()
 					skillButton.isHighlighted = false;
 				end
 			end
-			
+
 		else
 			skillButton:Hide();
 		end
 	end
-	
+
 	-- Set the expand/collapse all button texture
 	local numHeaders = 0;
 	local notExpanded = 0;
@@ -300,9 +300,9 @@ function TradeSkillFrame_SetSelection(id)
 	else
 		TradeSkillSkillIconCount:SetText("");
 	end
-	
+
 	-- Reagents
-	
+
 	local numReagents = GetTradeSkillNumReagents(id);
 	if(numReagents > 0) then
 		TradeSkillReagentLabel:Show();
@@ -340,7 +340,7 @@ function TradeSkillFrame_SetSelection(id)
 	if ( (numReagents > 0) and (mod(numReagents, 2) == 0) ) then
 		reagentToAnchorTo = reagentToAnchorTo - 1;
 	end
-	
+
 	for i=numReagents + 1, MAX_TRADE_SKILL_REAGENTS, 1 do
 		_G["TradeSkillReagent"..i]:Hide();
 	end
@@ -361,7 +361,7 @@ function TradeSkillFrame_SetSelection(id)
 		TradeSkillCreateButton:Disable();
 		TradeSkillCreateAllButton:Disable();
 	end
-	
+
 	if ( GetTradeSkillDescription(id) ) then
 		TradeSkillDescription:SetText(GetTradeSkillDescription(id))
 		TradeSkillReagentLabel:SetPoint("TOPLEFT", "TradeSkillDescription", "BOTTOMLEFT", 0, -10);
@@ -371,7 +371,7 @@ function TradeSkillFrame_SetSelection(id)
 	end
 	-- Reset the number of items to be created
 	TradeSkillInputBox:SetNumber(GetTradeskillRepeatCount());
-	
+
 	--Hide inapplicable buttons if we are inspecting. Otherwise show them
 	if ( IsTradeSkillLinked() ) then
 		TradeSkillCreateButton:Hide();
@@ -390,7 +390,7 @@ function TradeSkillFrame_SetSelection(id)
 			TradeSkillDecrementButton:Show();
 			TradeSkillInputBox:Show();
 			TradeSkillIncrementButton:Show();
-			
+
 			TradeSkillFrameBottomLeftTexture:SetTexture([[Interface\TradeSkillFrame\UI-TradeSkill-BotLeft]]);
 			TradeSkillFrameBottomRightTexture:SetTexture([[Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight]])
 		else
@@ -399,7 +399,7 @@ function TradeSkillFrame_SetSelection(id)
 			TradeSkillDecrementButton:Hide();
 			TradeSkillInputBox:Hide();
 			TradeSkillIncrementButton:Hide();
-			
+
 			TradeSkillFrameBottomLeftTexture:SetTexture([[Interface\ClassTrainerFrame\UI-ClassTrainer-BotLeft]]);
 			TradeSkillFrameBottomRightTexture:SetTexture([[Interface\ClassTrainerFrame\UI-ClassTrainer-BotRight]]);
 		end
@@ -410,7 +410,7 @@ function TradeSkillFrame_SetSelection(id)
 		end
 		TradeSkillCreateButton:SetText(altVerb or CREATE);
 		TradeSkillCreateButton:Show();
-    end	
+    end
 end
 
 function TradeSkillSkillButton_OnClick(self, button)
@@ -538,7 +538,7 @@ function TradeSkillFilterFrame_LoadInvSlots(...)
 		info.text = select(i, ...);
 		info.func = TradeSkillInvSlotDropDownButton_OnClick;
 		info.checked = checked;
-		
+
 		UIDropDownMenu_AddButton(info);
 	end
 end
@@ -602,7 +602,7 @@ function TradeSkillFrame_PlaytimeUpdate()
 			TradeSkillCreateButtonMask:Show();
 			TradeSkillCreateButtonMask.tooltip = format(PLAYTIME_TIRED_ABILITY, REQUIRED_REST_HOURS - floor(GetBillingTimeRested()/60));
 		end
-	
+
 		TradeSkillCreateAllButton:Disable();
 		if (not TradeSkillCreateAllButtonMask:IsShown()) then
 			TradeSkillCreateAllButtonMask:Show();
@@ -614,7 +614,7 @@ function TradeSkillFrame_PlaytimeUpdate()
 			TradeSkillCreateButtonMask:Show();
 			TradeSkillCreateButtonMask.tooltip = format(PLAYTIME_UNHEALTHY_ABILITY, REQUIRED_REST_HOURS - floor(GetBillingTimeRested()/60));
 		end
-	
+
 		TradeSkillCreateAllButton:Disable();
 		if (not TradeSkillCreateAllButtonMask:IsShown()) then
 			TradeSkillCreateAllButtonMask:Show();

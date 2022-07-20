@@ -18,7 +18,7 @@ function QuestTimerFrame_Update(self, ...)
 	if ( true ) then
 		return;
 	end
-	
+
 	self.updating = 1;
 	self.numTimers = select("#", ...);
 	for i=1, self.numTimers, 1 do

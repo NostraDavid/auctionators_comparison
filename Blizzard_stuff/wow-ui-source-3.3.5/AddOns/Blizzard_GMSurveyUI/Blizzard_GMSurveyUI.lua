@@ -65,7 +65,7 @@ function GMSurveyScrollFrame_OnEvent(self, event, ...)
 
 		-- expand and contract scroll frame contents depending on scroll bar visibility
 		local scrollBar = _G[self:GetName().."ScrollBar"];
-		scrollBar.Show = 
+		scrollBar.Show =
 			function (self)
 				local scrollFrame = self:GetParent();
 				local scrollFrameParent = scrollFrame:GetParent();
@@ -76,7 +76,7 @@ function GMSurveyScrollFrame_OnEvent(self, event, ...)
 
 				getmetatable(self).__index.Show(self);
 			end
-		scrollBar.Hide = 
+		scrollBar.Hide =
 			function (self)
 				local scrollFrame = self:GetParent();
 				local scrollFrameParent = scrollFrame:GetParent();
@@ -93,7 +93,7 @@ function GMSurveyScrollFrame_OnEvent(self, event, ...)
 		ScrollFrame_OnScrollRangeChanged(self);
 
 		-- we don't need this event any more
-		self:UnregisterEvent(event)		
+		self:UnregisterEvent(event)
 	end
 end
 
@@ -120,7 +120,7 @@ end
 
 function GMSurveyQuestion_SpaceAnswers(self, questionNumber)
 	local radioButtons = self.radioButtons;
-	
+
 	if (questionNumber == 1) then
 		radioButtons[0]:SetPoint("BOTTOMLEFT", self, "BOTTOMLEFT", 30, 45);
 		radioButtons[1]:SetPoint("LEFT", radioButtons[0], "RIGHT", GMSURVEY_NA_SHORT_SPACING, 0);
@@ -182,7 +182,7 @@ function GMSurveyCommentScrollFrame_OnEvent(self, event, ...)
 
 		-- expand and contract scroll frame contents depending on scroll bar visibility
 		local scrollBar = _G[self:GetName().."ScrollBar"];
-		scrollBar.Show = 
+		scrollBar.Show =
 			function (self)
 				local scrollFrame = self:GetParent();
 				-- adjust scroll frame width
@@ -193,7 +193,7 @@ function GMSurveyCommentScrollFrame_OnEvent(self, event, ...)
 				GMSurveyFrameComment:SetWidth(scrollFrameWidth);
 				getmetatable(self).__index.Show(self);
 			end
-		scrollBar.Hide = 
+		scrollBar.Hide =
 			function (self)
 				local scrollFrame = self:GetParent();
 				-- adjust scroll frame width
@@ -209,7 +209,7 @@ function GMSurveyCommentScrollFrame_OnEvent(self, event, ...)
 		ScrollFrame_OnScrollRangeChanged(self);
 
 		-- we don't need this event any more
-		self:UnregisterEvent(event)		
+		self:UnregisterEvent(event)
 	end
 end
 

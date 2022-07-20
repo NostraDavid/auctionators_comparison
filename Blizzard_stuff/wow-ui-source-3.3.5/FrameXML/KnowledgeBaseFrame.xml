@@ -4,7 +4,7 @@
 	<Button name="KnowledgeBaseArticleListItemTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="569" y="15"/>
-		</Size>	
+		</Size>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<Texture name="$parentHotIcon" file="Interface\HelpFrame\HotIssueIcon">
@@ -30,7 +30,7 @@
 							</Offset>
 						</Anchor>
 					</Anchors>
-				</Texture>				
+				</Texture>
 				<FontString name="$parentNumber" inherits="GameFontNormal" justifyH="RIGHT">
 					<Size>
 						<AbsDimension x="0" y="12"/>
@@ -42,7 +42,7 @@
 							</Offset>
 						</Anchor>
 					</Anchors>
-				</FontString>				
+				</FontString>
 				<FontString name="$parentTitle" inherits="GameFontWhite" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="485" y="12"/>
@@ -54,7 +54,7 @@
 							</Offset>
 						</Anchor>
 					</Anchors>
-				</FontString>						
+				</FontString>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -125,7 +125,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button name="KnowledgeBaseFrameTopIssuesButton" inherits="GameMenuButtonTemplate" text="KBASE_TOP_ISSUES">	
+			<Button name="KnowledgeBaseFrameTopIssuesButton" inherits="GameMenuButtonTemplate" text="KBASE_TOP_ISSUES">
 				<Size>
 					<AbsDimension x="95" y="21"/>
 				</Size>
@@ -252,7 +252,7 @@
 							<AbsDimension x="14" y="9"/>
 						</Offset>
 					</Anchor>
-				</Anchors>	
+				</Anchors>
 				<Scripts>
 					<OnEnterPressed>
 						if ( KnowledgeBaseFrameSearchButton:IsEnabled() == 1 ) then
@@ -332,7 +332,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<Layers>				
+				<Layers>
 					<Layer level="ARTWORK">
 						<FontString name="KnowledgeBaseArticleListFrameTitle" inherits="GameFontNormalLarge" text="KBASE_TOP_ISSUES">
 							<Anchors>
@@ -342,8 +342,8 @@
 									</Offset>
 								</Anchor>
 							</Anchors>
-						</FontString>					
-						<FontString name="KnowledgeBaseArticleListFrameCount" inherits="GameFontNormalSmall" text="ARTICLE_COUNT">							
+						</FontString>
+						<FontString name="KnowledgeBaseArticleListFrameCount" inherits="GameFontNormalSmall" text="ARTICLE_COUNT">
 						</FontString>
 					</Layer>
 				</Layers>
@@ -417,121 +417,121 @@
 									<AbsDimension x="-5" y="-7"/>
 								</Offset>
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem2" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem1" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem3" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem2" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem4" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem3" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem5" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem4" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem6" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem5" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem7" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem6" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem8" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem7" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem9" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem8" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem10" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem9" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem11" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem10" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem12" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem11" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem13" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem12" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem14" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem13" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem15" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem14" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem16" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem15" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem17" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem16" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem18" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem17" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem19" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem18" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 					<Button name="KnowledgeBaseArticleListItem20" inherits="KnowledgeBaseArticleListItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="KnowledgeBaseArticleListItem19" relativePoint="BOTTOMLEFT">
 							</Anchor>
-						</Anchors>						
+						</Anchors>
 					</Button>
 				</Frames>
 			</Frame>
@@ -627,7 +627,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<FontString name="KnowledgeBaseErrorFrameText" inherits="ErrorFont" text="ERROR" justifyH="CENTER">			
+						<FontString name="KnowledgeBaseErrorFrameText" inherits="ErrorFont" text="ERROR" justifyH="CENTER">
 							<Size>
 								<AbsDimension x="300" y="0"/>
 							</Size>

@@ -160,7 +160,7 @@ function KnowledgeBaseFrame_UpdateServerMessage()
 	if ( currrentServerNotice  ) then
 		local closeBracketIndex = strfind(currrentServerNotice, "] ", 1, true);
 		if ( closeBracketIndex ) then
-			currrentServerNotice = strsub(currrentServerNotice, closeBracketIndex + 2);		
+			currrentServerNotice = strsub(currrentServerNotice, closeBracketIndex + 2);
 		end
 		KnowledgeBaseServerMessageText:SetText(currrentServerNotice);
 	else
@@ -303,11 +303,11 @@ end
 function KnowledgeBaseFrameCategoryButton_OnClick(self)
 	local oldSelectedCategoryId = UIDropDownMenu_GetSelectedID(KnowledgeBaseFrameCategoryDropDown);
 	local selectedCategoryId = self:GetID();
-	
+
 	if ( selectedCategoryId == oldSelectedCategoryId) then
 		return;
 	end
-	
+
 	UIDropDownMenu_SetSelectedID(KnowledgeBaseFrameCategoryDropDown, selectedCategoryId);
 
 	UIDropDownMenu_SetSelectedID(KnowledgeBaseFrameSubCategoryDropDown, 0);
@@ -328,8 +328,8 @@ function UpdateSubCategoryEnabledState()
 		UIDropDownMenu_DisableDropDown(KnowledgeBaseFrameSubCategoryDropDown);
 		return;
 	end
-	
-	local numSubCategories = KBSetup_GetSubCategoryCount(selectedCategoryId - KBASE_NUM_FAKE_CATEGORIES);	
+
+	local numSubCategories = KBSetup_GetSubCategoryCount(selectedCategoryId - KBASE_NUM_FAKE_CATEGORIES);
 	if ( numSubCategories == 0 ) then
 		UIDropDownMenu_DisableDropDown(KnowledgeBaseFrameSubCategoryDropDown);
 	else

@@ -9,13 +9,13 @@
 	<Script>
 		_ERROR_COUNT = 0;
 		_ERROR_LIMIT = 1000;
-		
+
 		function _ERRORMESSAGE(message)
 			debuginfo() -- Debugging information for internal use.
-			
+
 			LoadAddOn("Blizzard_DebugTools");
 			local loaded = IsAddOnLoaded("Blizzard_DebugTools");
-			
+
 			if ( GetCVarBool("scriptErrors") ) then
 				if ( not loaded or DEBUG_DEBUGTOOLS ) then
 					BasicScriptErrorsText:SetText(message);
@@ -30,7 +30,7 @@
 				local HIDE_ERROR_FRAME = true;
 				ScriptErrorsFrame_OnError(message, HIDE_ERROR_FRAME);
 			end
-			
+
 			-- Show a warning if there are too many errors
 			_ERROR_COUNT = _ERROR_COUNT + 1;
 			if ( _ERROR_COUNT == _ERROR_LIMIT ) then

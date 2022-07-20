@@ -115,7 +115,7 @@
 				end
 			</OnEnter>
 			<OnLeave>
-				if(self.tooltipText ~= nil) then 
+				if(self.tooltipText ~= nil) then
 					GameTooltip:Hide();
 				end
 			</OnLeave>
@@ -916,15 +916,15 @@
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
-				</Texture>					
+				</Texture>
 			</Layer>
-		</Layers>				
+		</Layers>
 		<Scripts>
 			<OnLoad>
 				AutoCastShine_OnLoad(self);
 			</OnLoad>
 		</Scripts>
-	</Frame>		
+	</Frame>
 	<Frame name="UIPanelDialogTemplate" virtual="true">
 		<Layers>
 			<Layer level="OVERLAY">
@@ -934,7 +934,7 @@
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 					<TexCoords left="0.501953125" right="0.625" top="0" bottom="1"/>
-				</Texture>			
+				</Texture>
 				<Texture name="$parentTopRight" file="Interface\PaperDollInfoFrame\UI-GearManager-Border">
 					<Size x="64" y="64"/>
 					<Anchors>
@@ -956,7 +956,7 @@
 						<Anchor point="BOTTOMLEFT"/>
 					</Anchors>
 					<TexCoords left="0.751953125" right="0.875" top="0" bottom="1"/>
-				</Texture>			
+				</Texture>
 				<Texture name="$parentBottomRight" file="Interface\PaperDollInfoFrame\UI-GearManager-Border">
 					<Size x="64" y="64"/>
 					<Anchors>

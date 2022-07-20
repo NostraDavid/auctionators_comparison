@@ -76,7 +76,7 @@
 			<Frame name="InspectPVPFrameHonor" hidden="false">
 				<Size>
 					<AbsDimension x="300" y="20"/>
-				</Size>				
+				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="InspectPVPFrameBackground" relativePoint="TOPLEFT">
 						<Offset>
@@ -131,7 +131,7 @@
 			<Frame name="InspectPVPFrameArena">
 				<Size>
 					<AbsDimension x="300" y="20"/>
-				</Size>				
+				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="InspectPVPFrameBackground" relativePoint="TOPLEFT">
 						<Offset>

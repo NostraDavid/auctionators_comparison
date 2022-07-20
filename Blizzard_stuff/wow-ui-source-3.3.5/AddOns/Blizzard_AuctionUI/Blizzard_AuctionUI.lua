@@ -94,7 +94,7 @@ AuctionSort["bidder_buyout"] = {
 	{ column =  "duration",	reverse = false	},
 	{ column =  "buyout",	reverse = false	},
 };
- 
+
 AuctionSort["bidder_status"] = {
 	{ column =  "quantity",	reverse = true	},
 	{ column =  "name",		reverse = false	},
@@ -235,7 +235,7 @@ StaticPopupDialogs["CANCEL_AUCTION"] = {
 		else
 			self.text:SetText(CANCEL_AUCTION_CONFIRMATION);
 		end
-		
+
 	end,
 	hasMoneyFrame = 1,
 	showAlert = 1,
@@ -256,7 +256,7 @@ function AuctionFrame_OnLoad (self)
 	AuctionsStackSizeEntry.nextFocus = AuctionsNumStacksEntry;
 	AuctionsNumStacksEntry.prevFocus = AuctionsStackSizeEntry;
 	AuctionsNumStacksEntry.nextFocus = StartPriceGold;
-	
+
 	MoneyInputFrame_SetPreviousFocus(BrowseBidPrice, BrowseMaxLevel);
 	MoneyInputFrame_SetNextFocus(BrowseBidPrice, BrowseName);
 
@@ -268,7 +268,7 @@ function AuctionFrame_OnLoad (self)
 
 	MoneyInputFrame_SetPreviousFocus(BuyoutPrice, StartPriceCopper);
 	MoneyInputFrame_SetNextFocus(BuyoutPrice, AuctionsStackSizeEntry);
-	
+
 	-- Init search dot count
 	AuctionFrameBrowse.dotCount = 0;
 	AuctionFrameBrowse.isSearchingThrottle = 0;
@@ -306,7 +306,7 @@ function AuctionFrame_Show()
 
 		BrowsePrevPageButton.isEnabled = false;
 		BrowseNextPageButton.isEnabled = false;
-		
+
 		if ( not AuctionFrame:IsShown() ) then
 			CloseAuctionHouse();
 		end
@@ -375,7 +375,7 @@ function AuctionFrameBrowse_OnLoad(self)
 
 	-- set default sort
 	AuctionFrame_SetSort("list", "quality", false);
-	
+
 	-- initialize class filter array
 	AuctionFrameBrowse_InitClasses(GetAuctionItemClasses());
 end
@@ -406,7 +406,7 @@ end
 
 function BrowseButton_OnClick(button)
 	assert(button);
-	
+
 	if ( GetCVarBool("auctionDisplayOnCharacter") ) then
 		DressUpItemLink(GetAuctionItemLink("list", button:GetID() + FauxScrollFrame_GetOffset(BrowseScrollFrame)));
 	end
@@ -623,7 +623,7 @@ function AuctionFrameFilters_UpdateClasses()
 			tinsert(OPEN_FILTER_LIST, {CLASS_FILTERS[i], "class", i, nil});
 		end
 	end
-	
+
 	-- Display the list of open filters
 	local button, index, info, isLast;
 	local offset = FauxScrollFrame_GetOffset(BrowseFilterScrollFrame);
@@ -669,7 +669,7 @@ end
 function AuctionFrameFilters_UpdateSubClasses(...)
 	local subClass;
 	for i=1, select("#", ...) do
-		subClass = HIGHLIGHT_FONT_COLOR_CODE..select(i, ...)..FONT_COLOR_CODE_CLOSE; 
+		subClass = HIGHLIGHT_FONT_COLOR_CODE..select(i, ...)..FONT_COLOR_CODE_CLOSE;
 		if ( AuctionFrameBrowse.selectedSubclass and AuctionFrameBrowse.selectedSubclass == subClass ) then
 			tinsert(OPEN_FILTER_LIST, {select(i, ...), "subclass", i, 1});
 			AuctionFrameFilters_UpdateInvTypes(GetAuctionInvTypes(AuctionFrameBrowse.selectedClassIndex,i));
@@ -684,7 +684,7 @@ function AuctionFrameFilters_UpdateInvTypes(...)
 	for i=1, select("#", ...), 2 do
 -- each type has 2 args: token name(i), display in list(i+1)
 		idx = (i + 1) / 2;
-		invType = HIGHLIGHT_FONT_COLOR_CODE.._G[select(i, ...)]..FONT_COLOR_CODE_CLOSE; 
+		invType = HIGHLIGHT_FONT_COLOR_CODE.._G[select(i, ...)]..FONT_COLOR_CODE_CLOSE;
 		if ( (i + 1) == select("#", ...) ) then
 			isLast = 1;
 		end
@@ -704,7 +704,7 @@ function FilterButton_SetType(button, type, text, isLast)
 	if ( type == "class" ) then
 		button:SetText(text);
 		normalText:SetPoint("LEFT", button, "LEFT", 4, 0);
-		normalTexture:SetAlpha(1.0);	
+		normalTexture:SetAlpha(1.0);
 		line:Hide();
 	elseif ( type == "subclass" ) then
 		button:SetText(HIGHLIGHT_FONT_COLOR_CODE..text..FONT_COLOR_CODE_CLOSE);
@@ -714,7 +714,7 @@ function FilterButton_SetType(button, type, text, isLast)
 	elseif ( type == "invtype" ) then
 		button:SetText(HIGHLIGHT_FONT_COLOR_CODE..text..FONT_COLOR_CODE_CLOSE);
 		normalText:SetPoint("LEFT", button, "LEFT", 20, 0);
-		normalTexture:SetAlpha(0.0);	
+		normalTexture:SetAlpha(0.0);
 		if ( isLast ) then
 			line:SetTexCoord(0.4375, 0.875, 0, 0.625);
 		else
@@ -722,7 +722,7 @@ function FilterButton_SetType(button, type, text, isLast)
 		end
 		line:Show();
 	end
-	button.type = type; 
+	button.type = type;
 end
 
 function AuctionFrameFilter_OnClick(self, button)
@@ -859,7 +859,7 @@ function AuctionFrameBrowse_Update()
 			else
 				yourBidText:Hide();
 			end
-			
+
 			if ( requiredBid >= MAXIMUM_BID_PRICE ) then
 				-- Lie about our buyout price
 				buyoutPrice = requiredBid;
@@ -887,7 +887,7 @@ function AuctionFrameBrowse_Update()
 			-- Set highlight
 			if ( GetSelectedAuctionItem("list") and (offset + i) == GetSelectedAuctionItem("list") ) then
 				button:LockHighlight();
-				
+
 				if ( buyoutPrice > 0 and buyoutPrice >= minBid ) then
 					local canBuyout = 1;
 					if ( GetMoney() < buyoutPrice ) then
@@ -927,7 +927,7 @@ function AuctionFrameBrowse_Update()
 		else
 			BrowseSearchCountText:Hide();
 		end
-		
+
 		-- Artifically inflate the number of results so the scrollbar scrolls one extra row
 		numBatchAuctions = numBatchAuctions + 1;
 	else
@@ -1025,7 +1025,7 @@ function AuctionFrameBid_Update()
 			else
 				_G[buttonName.."BidStatus"]:SetText(RED_FONT_COLOR_CODE..OUTBID..FONT_COLOR_CODE_CLOSE);
 			end
-			
+
 			-- Set closing time
 			_G[buttonName.."ClosingTimeText"]:SetText(AuctionFrame_GetTimeLeftText(duration));
 			_G[buttonName.."ClosingTime"].tooltip = AuctionFrame_GetTimeLeftTooltipText(duration);
@@ -1044,7 +1044,7 @@ function AuctionFrameBid_Update()
 			else
 				itemCount:Hide();
 			end
-			
+
 			-- Set current bid
 			-- If not bidAmount set the bid amount to the min bid
 			if ( bidAmount == 0 ) then
@@ -1061,7 +1061,7 @@ function AuctionFrameBid_Update()
 			-- Set highlight
 			if ( GetSelectedAuctionItem("bidder") and (offset + i) == GetSelectedAuctionItem("bidder") ) then
 				button:LockHighlight();
-				
+
 				if ( buyoutPrice > 0 and buyoutPrice >= bidAmount ) then
 					local canBuyout = 1;
 					if ( GetMoney() < buyoutPrice ) then
@@ -1078,7 +1078,7 @@ function AuctionFrameBid_Update()
 				end
 				-- Set bid
 				MoneyInputFrame_SetCopper(BidBidPrice, bidAmount + minIncrement);
-				
+
 				if ( not highBidder and GetMoney() >= MoneyInputFrame_GetCopper(BidBidPrice) ) then
 					BidBidButton:Enable();
 				end
@@ -1095,7 +1095,7 @@ function AuctionFrameBid_Update()
 		else
 			BidSearchCountText:Hide();
 		end
-		
+
 		-- Artifically inflate the number of results so the scrollbar scrolls one extra row
 		numBatchAuctions = numBatchAuctions + 1;
 	else
@@ -1108,7 +1108,7 @@ end
 
 function BidButton_OnClick(button)
 	assert(button)
-	
+
 	if ( GetCVarBool("auctionDisplayOnCharacter") ) then
 		DressUpItemLink(GetAuctionItemLink("bidder", button:GetID() + FauxScrollFrame_GetOffset(BidScrollFrame)));
 	end
@@ -1201,7 +1201,7 @@ function AuctionFrameAuctions_Update()
 			isLastSlotEmpty = (i == NUM_AUCTIONS_TO_DISPLAY);
 		else
 			auction:Show();
-			
+
 			name, texture, count, quality, canUse, level, minBid, minIncrement, buyoutPrice, bidAmount, highBidder, owner, saleStatus = GetAuctionItemInfo("owner", offset + i);
 			duration = GetAuctionItemTimeLeft("owner", offset + i);
 
@@ -1223,7 +1223,7 @@ function AuctionFrameAuctions_Update()
 				buttonHighlight:SetWidth(543);
 				AuctionsBidSort:SetWidth(193);
 			end
-			
+
 			-- Display differently based on the saleStatus
 			-- saleStatus "1" means that the item was sold
 			-- Set name and quality color
@@ -1360,7 +1360,7 @@ end
 
 function AuctionsButton_OnClick(button)
 	assert(button);
-	
+
 	if ( GetCVarBool("auctionDisplayOnCharacter") ) then
 		DressUpItemLink(GetAuctionItemLink("owner", button:GetID() + FauxScrollFrame_GetOffset(AuctionsScrollFrame)));
 	end
@@ -1400,8 +1400,8 @@ function PriceDropDown_OnClick(self)
 	AuctionFrameAuctions.priceType = self.value;
 	UIDropDownMenu_SetSelectedValue(PriceDropDown, self.value);
 	local startPrice = MoneyInputFrame_GetCopper(StartPrice);
-	local buyoutPrice = MoneyInputFrame_GetCopper(BuyoutPrice);	
-	local stackSize = AuctionsStackSizeEntry:GetNumber();	
+	local buyoutPrice = MoneyInputFrame_GetCopper(BuyoutPrice);
+	local stackSize = AuctionsStackSizeEntry:GetNumber();
 	if ( stackSize > 1 ) then
 		if ( self.value == PRICE_TYPE_UNIT ) then
 			MoneyInputFrame_SetCopper(StartPrice, math.floor(startPrice / stackSize));
@@ -1473,7 +1473,7 @@ function AuctionSellItemButton_OnEvent(self, event, ...)
 			AuctionsNumStacksMaxButton:Show();
 			UIDropDownMenu_EnableDropDown(PriceDropDown);
 			UpdateMaximumButtons();
-		else	
+		else
 			AuctionsItemButtonCount:Hide();
 			AuctionsStackSizeEntry:Hide();
 			AuctionsStackSizeMaxButton:Hide();
@@ -1497,7 +1497,7 @@ function AuctionSellItemButton_OnEvent(self, event, ...)
 			if ( UIDropDownMenu_GetSelectedValue(PriceDropDown) == 1 and stackCount > 0 ) then
 				-- unit price
 				MoneyInputFrame_SetCopper(StartPrice, max(100, floor(pricePerUnit * 1.5)));
-				
+
 			else
 				MoneyInputFrame_SetCopper(StartPrice, max(100, floor(price * 1.5)));
 			end
@@ -1552,7 +1552,7 @@ function AuctionFrame_UpdateTimeLeft(elapsed, type)
 		self.updateCounter = 0;
 	end
 	if ( self.updateCounter > AUCTION_TIMER_UPDATE_DELAY ) then
-		self.updateCounter = 0;	
+		self.updateCounter = 0;
 		local index = self:GetID();
 		if ( type == "list" ) then
 			index = index + FauxScrollFrame_GetOffset(BrowseScrollFrame);
@@ -1661,7 +1661,7 @@ function SetMaxStackSize()
 		end
 	else
 		AuctionsStackSizeEntry:SetNumber("");
-		AuctionsNumStacksEntry:SetNumber("");	
+		AuctionsNumStacksEntry:SetNumber("");
 	end
 end
 
@@ -1686,7 +1686,7 @@ function AuctionProgressFrame_OnUpdate(self)
 		local alpha = self:GetAlpha() - CASTING_BAR_ALPHA_STEP;
 		if ( alpha > 0 ) then
 			self:SetAlpha(alpha);
-		else			
+		else
 			self.fadeOut = nil;
 			self:Hide();
 			self:SetAlpha(1);

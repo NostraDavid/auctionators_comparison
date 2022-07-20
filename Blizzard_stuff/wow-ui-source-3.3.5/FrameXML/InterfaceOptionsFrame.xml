@@ -214,7 +214,7 @@
 				</Scripts>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentTabSpacer" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer">	
+						<Texture name="$parentTabSpacer" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer">
 							<Size>
 								<AbsDimension x="85" y="16"/>
 							</Size>
@@ -245,10 +245,10 @@
 						PanelTemplates_UpdateTabs(InterfaceOptionsFrame);
 						InterfaceOptionsFrame_TabOnClick();
 					</OnClick>
-				</Scripts>				
+				</Scripts>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture name="$parentTabSpacer1" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer" hidden="true">	
+						<Texture name="$parentTabSpacer1" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer" hidden="true">
 							<Size>
 								<AbsDimension x="64" y="16"/>
 							</Size>
@@ -261,7 +261,7 @@
 								<Anchor point="LEFT" relativeTo="InterfaceOptionsFrameAddOnsTopLeft" relativePoint="RIGHT"/>
 							</Anchors>
 						</Texture>
-						<Texture name="$parentTabSpacer2" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer" hidden="true">	
+						<Texture name="$parentTabSpacer2" file="Interface\OptionsFrame\UI-OptionsFrame-Spacer" hidden="true">
 							<Size>
 								<AbsDimension x="16" y="16"/>
 							</Size>
@@ -275,7 +275,7 @@
 							</Anchors>
 						</Texture>
 					</Layer>
-				</Layers>				
+				</Layers>
 			</Button>
 		</Frames>
 		<Scripts>

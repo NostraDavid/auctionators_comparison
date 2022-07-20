@@ -88,7 +88,7 @@ function GlyphFrameGlyph_UpdateSlot (self)
 		self.setting:SetTexture("Interface\\Spellbook\\UI-GlyphFrame-Locked");
 		self.setting:SetTexCoord(.1, .9, .1, .9);
 	elseif ( not glyphSpell ) then
-		slotAnimation.glyph = nil;	
+		slotAnimation.glyph = nil;
 		if ( slotAnimation.sparkle ) then
 			slotAnimation.sparkle:StopAnimating();
 			slotAnimation.sparkle:Hide();
@@ -121,7 +121,7 @@ end
 
 function GlyphFrameGlyph_SetGlyphType (glyph, glyphType)
 	glyph.glyphType = glyphType;
-	
+
 	glyph.setting:SetTexture("Interface\\Spellbook\\UI-GlyphFrame");
 	if ( glyphType == GLYPHTYPE_MAJOR ) then
 		glyph.glyph:SetVertexColor(GLYPH_MAJOR.r, GLYPH_MAJOR.g, GLYPH_MAJOR.b);
@@ -162,10 +162,10 @@ function GlyphFrameGlyph_OnUpdate (self, elapsed)
 	local GLYPHFRAMEGLYPH_HOLD = 4;
 
 	local hasGlyph = self.glyph:IsShown();
-	
+
 	if ( hasGlyph or self.elapsed > 0 ) then
 		self.elapsed = self.elapsed + elapsed;
-		
+
 		elapsed = self.elapsed;
 		if ( elapsed >= GLYPHFRAMEGLYPH_FINISHED ) then
 			self.setting:SetAlpha(.6);
@@ -180,35 +180,35 @@ function GlyphFrameGlyph_OnUpdate (self, elapsed)
 	else
 		self.setting:SetAlpha(.6);
 	end
-	
-	
+
+
 	local TINT_START, TINT_HOLD, TINT_FINISHED = .6, .8, 1.6;
-	
-	
+
+
 	local id = self:GetID();
 	if ( not hasGlyph and self.background:IsShown() and GlyphMatchesSocket(id) ) then
 		self.tintElapsed = self.tintElapsed + elapsed;
-		
+
 		self.background:SetTexCoord(GLYPH_SLOTS[id].left, GLYPH_SLOTS[id].right, GLYPH_SLOTS[id].top, GLYPH_SLOTS[id].bottom);
-		
+
 		local highlight = false;
 		if ( not self:IsMouseOver() ) then
 			self.highlight:Show();
 			highlight = true;
 		end
-		
+
 		local alpha;
 		elapsed = self.tintElapsed;
 		if ( elapsed >= TINT_FINISHED ) then
 			alpha = 1;
-			
+
 			self.tintElapsed = 0;
 		elseif ( elapsed <= TINT_START ) then
 			alpha = 1 - (.6 * elapsed/TINT_START);
 		elseif ( elapsed >= TINT_HOLD ) then
 			alpha = .4 + (.6 * (elapsed - TINT_HOLD) / (TINT_FINISHED - TINT_HOLD));
 		end
-		
+
 		if ( alpha ) then
 			self.background:SetAlpha(alpha);
 			if ( highlight ) then
@@ -221,7 +221,7 @@ function GlyphFrameGlyph_OnUpdate (self, elapsed)
 		self.background:SetTexCoord(GLYPH_SLOTS[0].left, GLYPH_SLOTS[0].right, GLYPH_SLOTS[0].top, GLYPH_SLOTS[0].bottom);
 		self.background:SetAlpha(1);
 	end
-	
+
 	if ( self.hasCursor and SpellIsTargeting() ) then
 		if ( GlyphMatchesSocket(self:GetID()) and self.background:IsShown() ) then
 			SetCursor("CAST_CURSOR");

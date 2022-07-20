@@ -658,7 +658,7 @@
 								</Anchor>
 							</Anchors>
 						</FontString>
-						
+
 					</Layer>
 					<Layer level="ARTWORK">
 						<FontString name="CompanionSelectedName" inherits="DialogButtonNormalText">
@@ -978,7 +978,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			
+
 		</Frames>
 		<Scripts>
 			<OnLoad function="PetPaperDollFrame_OnLoad"/>

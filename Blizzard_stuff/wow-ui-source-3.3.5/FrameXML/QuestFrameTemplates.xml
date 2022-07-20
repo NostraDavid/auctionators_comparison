@@ -16,7 +16,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\QuestFrame\UI-QuestGreeting-TopRight">
 					<Size>
 						<AbsDimension x="128" y="256"/>
@@ -40,7 +40,7 @@
 					<Anchors>
 						<Anchor point="BOTTOMRIGHT"/>
 					</Anchors>
-				</Texture>	
+				</Texture>
 			</Layer>
 			<Layer level="BORDER">
 				<Texture name="$parentMaterialTopLeft">
@@ -201,7 +201,7 @@
 					self.icon:Show();
 				else
 					self.icon:Hide();
-				end				
+				end
 			</OnLoad>
 		</Scripts>
 	</Frame>
@@ -291,7 +291,7 @@
 				</FontString>
 			</Layer>
 		</Layers>
-   </Frame>   
+   </Frame>
    <Frame name="QuestReputationTemplate" virtual="true">
 		<Size x="280" y="15"/>
 		<Layers>
@@ -316,7 +316,7 @@
 				</FontString>
 			</Layer>
 		</Layers>
-   </Frame>   
+   </Frame>
    <Frame name="QuestPlayerTitleFrameTemplate" virtual="true">
 		<Size x="500" y="40"/>
 		<Layers>

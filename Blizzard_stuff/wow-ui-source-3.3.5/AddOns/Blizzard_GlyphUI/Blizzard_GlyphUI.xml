@@ -130,7 +130,7 @@
 							<Offset x="0" y="-18"/>
 						</Anchor>
 					</Anchors>
-				</FontString>	
+				</FontString>
 			</Layer>
 			<Layer level="OVERLAY">
 				<Texture name="$parentGlow" parentKey="glow" file="Interface\Spellbook\UI-GlyphFrame-Glow" hidden="true">
@@ -183,7 +183,7 @@
 						<Offset x="26" y="168"/>
 					</Anchor>
 				</Anchors>
-			</Button>	
+			</Button>
 			<Button name="$parentGlyph2" inherits="GlyphTemplate" id="2">
 				<Size x="90" y="90"/>
 				<Anchors>
@@ -191,7 +191,7 @@
 						<Offset x="-14" y="-103"/>
 					</Anchor>
 				</Anchors>
-			</Button>			
+			</Button>
 			<Button name="$parentGlyph5" inherits="GlyphTemplate" id="5">
 				<Size x="90" y="90"/>
 				<Anchors>

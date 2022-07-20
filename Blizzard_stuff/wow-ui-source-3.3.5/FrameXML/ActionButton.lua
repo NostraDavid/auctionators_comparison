@@ -65,7 +65,7 @@ function ActionBar_PageDown()
 			break;
 		end
 	end
-	
+
 	if ( not prevPage ) then
 		for i=NUM_ACTIONBAR_PAGES, 1, -1 do
 			if ( VIEWABLE_ACTION_BAR_PAGES[i] ) then
@@ -166,7 +166,7 @@ function ActionButton_Update (self)
 	local action = self.action;
 	local icon = _G[name.."Icon"];
 	local buttonCooldown = _G[name.."Cooldown"];
-	local texture = GetActionTexture(action);	
+	local texture = GetActionTexture(action);
 
 	if ( HasAction(action) ) then
 		if ( not self.eventsRegistered ) then
@@ -259,7 +259,7 @@ function ActionButton_Update (self)
 			hotkey:SetVertexColor(0.6, 0.6, 0.6);
 		end
 	end
-	ActionButton_UpdateCount(self);	
+	ActionButton_UpdateCount(self);
 
 	-- Update tooltip
 	if ( GameTooltip:GetOwner() == self ) then
@@ -283,17 +283,17 @@ function ActionButton_ShowGrid (button)
 	end
 end
 
-function ActionButton_HideGrid (button)	
+function ActionButton_HideGrid (button)
 	assert(button);
-	
+
 	local showgrid = button:GetAttribute("showgrid");
-	
+
 	if ( issecure() ) then
 		if ( showgrid > 0 ) then
 			button:SetAttribute("showgrid", showgrid - 1);
 		end
 	end
-	
+
 	if ( button:GetAttribute("showgrid") == 0 and not HasAction(button.action) ) then
 		button:Hide();
 	end
@@ -301,7 +301,7 @@ end
 
 function ActionButton_UpdateState (button)
 	assert(button);
-	
+
 	local action = button.action;
 	if ( IsCurrentAction(action) or IsAutoRepeatAction(action) ) then
 		button:SetChecked(1);
@@ -438,7 +438,7 @@ function ActionButton_OnUpdate (self, elapsed)
 	if ( ActionButton_IsFlashing(self) ) then
 		local flashtime = self.flashtime;
 		flashtime = flashtime - elapsed;
-		
+
 		if ( flashtime <= 0 ) then
 			local overtime = -flashtime;
 			if ( overtime >= ATTACK_BUTTON_FLASH_TIME ) then
@@ -453,10 +453,10 @@ function ActionButton_OnUpdate (self, elapsed)
 				flashTexture:Show();
 			end
 		end
-		
+
 		self.flashtime = flashtime;
 	end
-	
+
 	-- Handle range indicator
 	local rangeTimer = self.rangeTimer;
 	if ( rangeTimer ) then
@@ -484,7 +484,7 @@ function ActionButton_OnUpdate (self, elapsed)
 			end
 			rangeTimer = TOOLTIP_UPDATE_TIME;
 		end
-		
+
 		self.rangeTimer = rangeTimer;
 	end
 end
@@ -518,6 +518,6 @@ function ActionButton_IsFlashing (self)
 	if ( self.flashing == 1 ) then
 		return 1;
 	end
-	
+
 	return nil;
 end

@@ -80,8 +80,8 @@ function FriendsFrame_ShowSubFrame(frameName)
 			_G[value]:Show()
 		else
 			_G[value]:Hide();
-		end	
-	end 
+		end
+	end
 end
 
 function FriendsFrame_SummonButton_OnEvent (self, event, ...)
@@ -100,11 +100,11 @@ function FriendsFrame_SummonButton_Update (self)
 		self:Hide();
 		return;
 	end
-	
+
 	self:Show();
-	
+
 	local start, duration = GetSummonFriendCooldown();
-	
+
 	if ( duration > 0 ) then
 		self.duration = duration;
 		self.start = start;
@@ -112,9 +112,9 @@ function FriendsFrame_SummonButton_Update (self)
 		self.duration = nil;
 		self.start = nil;
 	end
-	
+
 	local enable = CanSummonFriend(GetFriendInfo(id));
-	
+
 	local icon = _G[self:GetName().."Icon"];
 	local normalTexture = _G[self:GetName().."NormalTexture"];
 	if ( enable ) then
@@ -142,7 +142,7 @@ function FriendsFrame_ShowDropdown(name, connected, lineID, chatType, chatFrame,
 		else
 			FriendsDropDown.initialize = FriendsFrameOfflineDropDown_Initialize;
 		end
-		
+
 		FriendsDropDown.displayMode = "MENU";
 		FriendsDropDown.name = name;
 		FriendsDropDown.friendsList = friendsList;
@@ -231,13 +231,13 @@ function FriendsFrame_OnLoad(self)
 	-- friends list
 	DynamicScrollFrame_CreateButtons(FriendsFrameFriendsScrollFrame, "FriendsFrameButtonTemplate", FRIENDS_BUTTON_HEADER_HEIGHT, FriendsFrame_SetButton, FriendsFrame_GetTopButton);
 	FriendsFrameOfflineHeader:SetParent(FriendsFrameFriendsScrollFrameScrollChild);
-	FriendsFrameBroadcastInputClearButton.icon:SetVertexColor(FRIENDS_BNET_NAME_COLOR.r, FRIENDS_BNET_NAME_COLOR.g, FRIENDS_BNET_NAME_COLOR.b);	
+	FriendsFrameBroadcastInputClearButton.icon:SetVertexColor(FRIENDS_BNET_NAME_COLOR.r, FRIENDS_BNET_NAME_COLOR.g, FRIENDS_BNET_NAME_COLOR.b);
 	if ( not BNFeaturesEnabled() ) then
 		FriendsTabHeaderTab3:Hide();
 		FriendsFrameBroadcastInput:Hide();
 		FriendsFrameBattlenetStatus:Hide();
 		FriendsFrameStatusDropDown:Show();
-	end	
+	end
 end
 
 function FriendsFrame_OnShow()
@@ -252,7 +252,7 @@ function FriendsFrame_OnShow()
 end
 
 function FriendsFrame_Update()
-	if ( FriendsFrame.selectedTab == 1 ) then	
+	if ( FriendsFrame.selectedTab == 1 ) then
 		FriendsTabHeader:Show();
 		if ( FriendsTabHeader.selectedTab == 1 ) then
 			ShowFriends();
@@ -264,7 +264,7 @@ function FriendsFrame_Update()
 			FriendsFrame_ShowSubFrame("FriendsListFrame");
 		elseif ( FriendsTabHeader.selectedTab == 3 ) then
 			FriendsFrameTopLeft:SetTexture("Interface\\FriendsFrame\\UI-FriendsFrame-TopLeft-bnet");
-			FriendsFrameTopRight:SetTexture("Interface\\FriendsFrame\\UI-FriendsFrame-TopRight-bnet");		
+			FriendsFrameTopRight:SetTexture("Interface\\FriendsFrame\\UI-FriendsFrame-TopRight-bnet");
 			FriendsFrameBottomRight:SetTexture("Interface\\FriendsFrame\\UI-FriendsFrame-Pending-BotRight");
 			FriendsFrameBottomLeft:SetTexture("Interface\\FriendsFrame\\UI-FriendsFrame-Pending-BotLeft");
 			FriendsFrameTitleText:SetText(PENDING_INVITE_LIST);
@@ -307,7 +307,7 @@ function FriendsFrame_Update()
 			local guildName, title, rank = GetGuildInfo("player");
 			if ( guildName ) then
 				FriendsFrameTitleText:SetFormattedText(GUILD_TITLE_TEMPLATE, title, guildName);
-			else 
+			else
 				FriendsFrameTitleText:SetText("");
 			end
 			GuildStatus_Update();
@@ -347,7 +347,7 @@ function FriendsList_Update()
 	local numBNetOffline = numBNetTotal - numBNetOnline;
 	local numWoWTotal, numWoWOnline = GetNumFriends();
 	local numWoWOffline = numWoWTotal - numWoWOnline;
-	
+
 	FriendsMicroButtonCount:SetText(numBNetOnline + numWoWOnline);
 	if ( not FriendsListFrame:IsShown() ) then
 		return;
@@ -355,8 +355,8 @@ function FriendsList_Update()
 
 	local buttonCount = numBNetTotal + numWoWTotal;
 	local haveHeader;
-	
-	totalScrollHeight = 0;	
+
+	totalScrollHeight = 0;
 	if ( numBNetOnline > 0 or numWoWOnline > 0 ) then
 		totalScrollHeight = totalScrollHeight + (numBNetOnline + numWoWOnline) * FRIENDS_BUTTON_NORMAL_HEIGHT + numOnlineBroadcasts * (FRIENDS_BUTTON_LARGE_HEIGHT - FRIENDS_BUTTON_NORMAL_HEIGHT);
 	end
@@ -374,7 +374,7 @@ function FriendsList_Update()
 			FriendButtons[i] = { };
 		end
 	end
-	
+
 	local index = 0;
 	-- online Battlenet friends
 	for i = 1, numBNetOnline do
@@ -403,7 +403,7 @@ function FriendsList_Update()
 	for i = 1, numWoWOffline do
 		index = index + 1;
 		FriendButtons[index].buttonType = FRIENDS_BUTTON_TYPE_WOW;
-		FriendButtons[index].id = i + numWoWOnline;		
+		FriendButtons[index].id = i + numWoWOnline;
 	end
 
 	-- selection
@@ -442,7 +442,7 @@ function FriendsList_Update()
 		FriendsFrameSendMessageButton:Disable();
 	end
 	FriendsFrame.selectedFriend = selectedFriend;
-		
+
 	DynamicScrollFrame_Update(FriendsFrameFriendsScrollFrame);
 end
 
@@ -461,7 +461,7 @@ function IgnoreList_Update()
 		ignoredHeader = 1;
 	else
 		ignoredHeader = 0;
-	end	
+	end
 	if ( numBlocks > 0 ) then
 		blockedHeader = 1;
 	else
@@ -471,13 +471,13 @@ function IgnoreList_Update()
 		blockedToonHeader = 1;
 	else
 		blockedToonHeader = 0;
-	end	
+	end
 	if ( numMutes > 0 ) then
 		mutedHeader = 1;
 	else
 		mutedHeader = 0;
 	end
-	
+
 	local lastIgnoredIndex = numIgnores + ignoredHeader;
 	local lastBlockedIndex = lastIgnoredIndex + numBlocks + blockedHeader;
 	local lastBlockedToonIndex = lastBlockedIndex + numToonBlocks + blockedToonHeader;
@@ -488,7 +488,7 @@ function IgnoreList_Update()
 	FriendsFrameBlockedInviteHeader:Hide();
 	FriendsFrameBlockedToonHeader:Hide();
 	FriendsFrameMutedHeader:Hide();
-	
+
 	-- selection stuff
 	local selectedSquelchType = FriendsFrame.selectedSquelchType;
 	local selectedSquelchIndex = 0 ;
@@ -525,7 +525,7 @@ function IgnoreList_Update()
 	else
 		FriendsFrameUnsquelchButton:Disable();
 	end
-	
+
 	local scrollOffset = FauxScrollFrame_GetOffset(FriendsFrameIgnoreScrollFrame);
 	local squelchedIndex;
 	for i = 1, IGNORES_TO_DISPLAY, 1 do
@@ -577,7 +577,7 @@ function IgnoreList_Update()
 		else
 			button:Show();
 		end
-	end	
+	end
 	-- ScrollFrame stuff
 	FauxScrollFrame_Update(FriendsFrameIgnoreScrollFrame, numEntries, IGNORES_TO_DISPLAY, FRIENDS_FRAME_IGNORE_HEIGHT );
 end
@@ -602,7 +602,7 @@ function PendingList_Update(newInvite)
 			PendingListInfoFrame:SetFrameLevel(FriendsFramePendingButton1:GetFrameLevel() + 1);
 			PendingListInfoFrame:Show();
 		end
-	
+
 		local scrollFrame = FriendsFramePendingScrollFrame;
 		local buttonHeight, message, _;
 		local heightLeft = scrollFrame.scrollHeight;
@@ -724,7 +724,7 @@ function PendingListFrame_OnHide()
 	table.wipe(PendingInvitesNew);
 	PendingList_UpdateTab();
 end
-	
+
 function PendingListFrame_BlockCommunication(self)
 	local inviteID, name, surname, message = BNGetFriendInviteInfo(self:GetParent().index);
 	local dialog = StaticPopup_Show("CONFIRM_BLOCK_INVITES", string.format(BATTLENET_NAME_FORMAT, name, surname));
@@ -806,7 +806,7 @@ function WhoList_Update()
 		buttonText:SetTextColor(classTextColor.r, classTextColor.g, classTextColor.b);
 		local variableText = _G["WhoFrameButton"..i.."Variable"];
 		variableText:SetText(columnTable[UIDropDownMenu_GetSelectedID(WhoFrameDropDown)]);
-		
+
 		-- If need scrollbar resize columns
 		if ( showScrollBar ) then
 			variableText:SetWidth(95);
@@ -820,7 +820,7 @@ function WhoList_Update()
 		else
 			button:UnlockHighlight();
 		end
-		
+
 		if ( whoIndex > numWhos ) then
 			button:Hide();
 		else
@@ -834,7 +834,7 @@ function WhoList_Update()
 	else
 		WhoFrameGroupInviteButton:Enable();
 		WhoFrameAddFriendButton:Enable();
-		WhoFrame.selectedName = GetWhoInfo(WhoFrame.selectedWho); 
+		WhoFrame.selectedName = GetWhoInfo(WhoFrame.selectedWho);
 	end
 
 	-- If need scrollbar resize columns
@@ -921,7 +921,7 @@ function GuildStatus_Update()
 		-- Manage guild member related buttons
 		if ( CanGuildPromote() and ( rankIndex > 1 ) and ( rankIndex > (guildRankIndex + 1) ) ) then
 			GuildFramePromoteButton:Enable();
-		else 
+		else
 			GuildFramePromoteButton:Disable();
 		end
 		if ( CanGuildDemote() and ( rankIndex >= 1 ) and ( rankIndex > guildRankIndex ) and ( rankIndex ~= maxRankIndex ) ) then
@@ -948,11 +948,11 @@ function GuildStatus_Update()
 			GuildMemberGroupInviteButton:Enable();
 		end
 
-		GuildFrame.selectedName = GetGuildRosterInfo(GetGuildRosterSelection()); 
+		GuildFrame.selectedName = GetGuildRosterInfo(GetGuildRosterSelection());
 	else
 		GuildMemberDetailFrame:Hide();
 	end
-	
+
 	-- Message of the day stuff
 	local guildMOTD = GetGuildRosterMOTD();
 	if ( CanEditMOTD() ) then
@@ -972,7 +972,7 @@ function GuildStatus_Update()
 	if ( numGuildMembers > GUILDMEMBERS_TO_DISPLAY ) then
 		showScrollBar = 1;
 	end
-	
+
 	-- Get number of online members
 	for i=1, numGuildMembers, 1 do
 		name, rank, rankIndex, level, class, zone, note, officernote, online = GetGuildRosterInfo(i);
@@ -1056,14 +1056,14 @@ function GuildStatus_Update()
 			else
 				button:UnlockHighlight();
 			end
-			
+
 			if ( guildIndex > numGuildMembers ) then
 				button:Hide();
 			else
 				button:Show();
 			end
 		end
-		
+
 		GuildFrameGuildListToggleButton:SetText(PLAYER_STATUS);
 		-- If need scrollbar resize column headers
 		if ( showScrollBar ) then
@@ -1075,7 +1075,7 @@ function GuildStatus_Update()
 		end
 		-- ScrollFrame update
 		FauxScrollFrame_Update(GuildListScrollFrame, numGuildMembers, GUILDMEMBERS_TO_DISPLAY, FRIENDS_FRAME_GUILD_HEIGHT );
-		
+
 		GuildPlayerStatusFrame:Show();
 		GuildStatusFrame:Hide();
 	else
@@ -1084,7 +1084,7 @@ function GuildStatus_Update()
 		local yearlabel, monthlabel, daylabel, hourlabel;
 		local guildOffset = FauxScrollFrame_GetOffset(GuildListScrollFrame);
 		local classFileName;
-		
+
 		for i=1, GUILDMEMBERS_TO_DISPLAY, 1 do
 			guildIndex = guildOffset + i;
 			button = _G["GuildFrameGuildStatusButton"..i];
@@ -1139,7 +1139,7 @@ function GuildStatus_Update()
 				button:Show();
 			end
 		end
-		
+
 		GuildFrameGuildListToggleButton:SetText(GUILD_STATUS);
 		-- If need scrollbar resize columns
 		if ( showScrollBar ) then
@@ -1149,7 +1149,7 @@ function GuildStatus_Update()
 			WhoFrameColumn_SetWidth(GuildFrameGuildStatusColumnHeader3, 90);
 			GuildFrameGuildListToggleButton:SetPoint("LEFT", "GuildFrame", "LEFT", 307, -67);
 		end
-		
+
 		-- ScrollFrame update
 		FauxScrollFrame_Update(GuildListScrollFrame, numGuildMembers, GUILDMEMBERS_TO_DISPLAY, FRIENDS_FRAME_GUILD_HEIGHT );
 
@@ -1505,7 +1505,7 @@ end
 
 function GuildControlPopupFrame_OnLoad()
 	local buttonText;
-	for i=1, 17 do	
+	for i=1, 17 do
 		buttonText = _G["GuildControlPopupFrameCheckbox"..i.."Text"];
 		if ( buttonText ) then
 			buttonText:SetText(_G["GUILDCONTROL_OPTION"..i]);
@@ -1540,7 +1540,7 @@ function GuildControlPopupFrame_OnShow()
 	GuildControlPopupAcceptButton:Disable();
 	-- Update popup
 	GuildControlPopupframe_Update();
-	
+
 	UIPanelWindows["FriendsFrame"].width = FriendsFrame:GetWidth() + GuildControlPopupFrame:GetWidth();
 	UpdateUIPanelPositions(FriendsFrame);
 	--GuildControlPopupFrame:RegisterEvent("GUILD_ROSTER_UPDATE"); --It was decided that having a risk of conflict when two people are editing the guild permissions at once is better than resetting whenever someone joins the guild or changes ranks.
@@ -1551,7 +1551,7 @@ function GuildControlPopupFrame_OnEvent (self, event, ...)
 		GuildControlPopupFrame:Hide();
 		return;
 	end
-	
+
 	local rank
 	for i = 1, GuildControlGetNumRanks() do
 		rank = GuildControlGetRankName(i);
@@ -1560,7 +1560,7 @@ function GuildControlPopupFrame_OnEvent (self, event, ...)
 			UIDropDownMenu_SetText(GuildControlPopupFrameDropDown, rank);
 		end
 	end
-	
+
 	GuildControlPopupframe_Update()
 end
 
@@ -1581,7 +1581,7 @@ function GuildControlPopupframe_Update(loadPendingTabPermissions, skipCheckboxUp
 		-- Update permission flags
 		GuildControlCheckboxUpdate(GuildControlGetRankFlags());
 	end
-	
+
 	local rankID = UIDropDownMenu_GetSelectedID(GuildControlPopupFrameDropDown);
 	GuildControlPopupFrameEditBox:SetText(GuildControlGetRankName(rankID));
 	if ( GuildControlPopupFrame.previousSelectedRank and GuildControlPopupFrame.previousSelectedRank ~= rankID ) then
@@ -1633,7 +1633,7 @@ function GuildControlPopupframe_Update(loadPendingTabPermissions, skipCheckboxUp
 			GuildControlWithdrawItemsEditBox:SetTextColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
 			GuildControlWithdrawItemsEditBoxMask:Hide();
 		end
-		
+
 		GuildControlWithdrawGoldText:SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
 		GuildControlWithdrawGoldAmountText:SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
 		GuildControlWithdrawGoldEditBox:SetNumeric(1);
@@ -1686,7 +1686,7 @@ function GuildControlPopupframe_Update(loadPendingTabPermissions, skipCheckboxUp
 		end
 		GuildControlPopup_UpdateDepositCheckBox();
 	end
-	
+
 	--Only show available tabs
 	local tab;
 	local numTabs = GetNumGuildBankTabs();
@@ -1694,7 +1694,7 @@ function GuildControlPopupframe_Update(loadPendingTabPermissions, skipCheckboxUp
 	for i=1, MAX_GUILDBANK_TABS do
 		name = GetGuildBankTabInfo(i);
 		tab = _G["GuildBankTabPermissionsTab"..i];
-		
+
 		if ( i <= numTabs ) then
 			tab:Show();
 			tab.tooltip = name;
@@ -1769,7 +1769,7 @@ end
 
 function GuildControlPopupFrameDropDownButton_OnClick(self)
 	local rank = self:GetID();
-	UIDropDownMenu_SetSelectedID(GuildControlPopupFrameDropDown, rank);	
+	UIDropDownMenu_SetSelectedID(GuildControlPopupFrameDropDown, rank);
 	GuildControlSetRank(rank);
 	GuildControlPopupFrame.rank = GuildControlGetRankName(rank);
 	GuildControlPopupFrame.goldChanged = nil;
@@ -1855,14 +1855,14 @@ function GuildFrameGuildListToggleButton_OnClick()
 	if ( FriendsFrame.playerStatusFrame ) then
 		FriendsFrame.playerStatusFrame = nil;
 	else
-		FriendsFrame.playerStatusFrame = 1;		
+		FriendsFrame.playerStatusFrame = 1;
 	end
 	GuildStatus_Update();
 end
 
 function GuildFrameControlButton_OnUpdate()
 	if ( FriendsFrame.guildControlShow == 1 ) then
-		GuildFrameControlButton:LockHighlight();		
+		GuildFrameControlButton:LockHighlight();
 	else
 		GuildFrameControlButton:UnlockHighlight();
 	end
@@ -2057,11 +2057,11 @@ end
 function FriendsFrame_GetTopButton(offset)
 	local heightLeft = offset;
 	local priorHeight = 0;
-	local buttonHeight;	
+	local buttonHeight;
 	local numBNetTotal, numBNetOnline = BNGetNumFriends();
 	local numBNetOffline = numBNetTotal - numBNetOnline;
 	local numWoWTotal, numWoWOnline = GetNumFriends();
-	local numWoWOffline = numWoWTotal - numWoWOnline;	
+	local numWoWOffline = numWoWTotal - numWoWOnline;
 	local buttonIndex = 0;
 
 	-- online
@@ -2090,7 +2090,7 @@ function FriendsFrame_GetTopButton(offset)
 		heightLeft = heightLeft - numWoWOnline * FRIENDS_BUTTON_NORMAL_HEIGHT;
 		buttonIndex = buttonIndex + numWoWOnline;
 	end
-	-- offline 
+	-- offline
 	if (  numBNetOffline + numWoWOffline > 0  ) then
 		-- check header first
 		if ( numBNetOnline + numWoWOnline > 0 ) then
@@ -2128,10 +2128,10 @@ end
 function FriendsFrame_SetButton(button, index, firstButton)
 	local height;
 	local nameText, nameColor, infoText, broadcastText;
-		
+
 	if ( firstButton ) then
 		FriendsFrameOfflineHeader:Hide();
-		DynamicScrollFrame_UnlockAllHighlights(FriendsFrameFriendsScrollFrame);	
+		DynamicScrollFrame_UnlockAllHighlights(FriendsFrameFriendsScrollFrame);
 	end
 	button.buttonType = FriendButtons[index].buttonType;
 	button.id = FriendButtons[index].id;
@@ -2217,11 +2217,11 @@ function FriendsFrame_SetButton(button, index, firstButton)
 		FriendsFrameOfflineHeader:SetAllPoints(button);
 		return FRIENDS_BUTTON_HEADER_HEIGHT;
 	end
-	
+
 	if ( FriendsFrame.selectedFriendType == FriendButtons[index].buttonType and FriendsFrame.selectedFriend == FriendButtons[index].id ) then
 		button:LockHighlight();
 	end
-	
+
 	button.name:SetText(nameText);
 	button.name:SetTextColor(nameColor.r, nameColor.g, nameColor.b);
 	button.info:SetText(infoText);
@@ -2367,10 +2367,10 @@ function FriendsFrameTooltip_Show(self)
 	local anchor, text;
 	local FRIENDS_TOOLTIP_WOW_INFO_TEMPLATE = NORMAL_FONT_COLOR_CODE..FRIENDS_LIST_ZONE.."|r%1$s|n"..NORMAL_FONT_COLOR_CODE..FRIENDS_LIST_REALM.."|r%2$s";
 	local numToons = 0;
-	local tooltip = FriendsTooltip;	
+	local tooltip = FriendsTooltip;
 	tooltip.height = 0;
 	tooltip.maxWidth = 0;
-	
+
 	if ( self.buttonType == FRIENDS_BUTTON_TYPE_BNET ) then
 		local nameText;
 		local presenceID, givenName, surname, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, broadcastText, noteText, isFriend, broadcastTime = BNGetFriendInfo(self.id);
@@ -2456,7 +2456,7 @@ function FriendsFrameTooltip_Show(self)
 		FriendsTooltipBroadcastText:Hide();
 		FriendsTooltipLastOnline:Hide();
 	end
-	
+
 	-- other toons
 	local toonIndex = 1;
 	local toonNameString;
@@ -2643,7 +2643,7 @@ end
 function FriendsFriendsFrameDropDown_Initialize()
 	local info = UIDropDownMenu_CreateInfo();
 	local value = FriendsFriendsFrame.view;
-	
+
 	info.value = FRIENDS_FRIENDS_ALL;
 	info.text = FRIENDS_FRIENDS_CHOICE_EVERYONE;
 	info.func = FriendsFriendsFrameDropDown_OnClick;
@@ -2692,7 +2692,7 @@ function FriendsFriendsList_Update()
 	if ( FriendsFriendsWaitFrame:IsShown() ) then
 		return;
 	end
-	
+
 	local friendsButton, friendsIndex;
 	local showMutual, showPotential;
 	local view = FriendsFriendsFrame.view;
@@ -2744,7 +2744,7 @@ function FriendsFriendsList_Update()
 			end
 			friendsButton.friendID = friendID;
 			friendsButton:Show();
-		end		
+		end
 	end
 	if ( haveSelection ) then
 		FriendsFriendsSendRequestButton:Enable();
@@ -2791,7 +2791,7 @@ function FriendsFriendsFrame_OnEvent(self, event)
 			end
 			waitFrame:Hide();
 			FriendsFriendsList_Update();
-		end	
+		end
 	elseif ( event == "BN_REQUEST_FOF_FAILED" ) then
 		-- FIX ME - need an error here
 	elseif ( event == "BN_DISCONNECTED" ) then

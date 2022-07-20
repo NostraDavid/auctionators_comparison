@@ -41,7 +41,7 @@ function ChannelFrame_OnEvent(self, event, ...)
 	elseif ( event == "CHANNEL_COUNT_UPDATE" ) then
 		ChannelList_CountUpdate(arg1, arg2);
 	elseif ( event == "CHANNEL_ROSTER_UPDATE" ) then
-		ChannelRoster_Update(arg1);		
+		ChannelRoster_Update(arg1);
 	elseif ( event == "MUTELIST_UPDATE" or event == "IGNORELIST_UPDATE" ) then
 		ChannelRoster_Update(GetSelectedDisplayChannel());
 	end
@@ -81,7 +81,7 @@ end
 
 function ChannelFrame_New_OnClick()
 	if ( ChannelFrameDaughterFrame:IsShown() ) then
-		ChannelFrameDaughterFrame:Hide();		
+		ChannelFrameDaughterFrame:Hide();
 	else
 		ChannelFrameDaughterFrameChannelNameLabel:SetText(CHANNEL_CHANNEL_NAME);
 		ChannelFrameDaughterFrameChannelPasswordLabel:SetText(PASSWORD);
@@ -96,7 +96,7 @@ end
 
 function ChannelFrame_Join_OnClick()
 	if ( ChannelFrameDaughterFrame:IsShown() ) then
-		ChannelFrameDaughterFrame:Hide();		
+		ChannelFrameDaughterFrame:Hide();
 	else
 		local selected = GetSelectedDisplayChannel();
 		local button;
@@ -135,7 +135,7 @@ function ChannelFrameDaughterFrame_Okay()
 	end
 	DEFAULT_CHAT_FRAME.channelList[i] = name;
 	DEFAULT_CHAT_FRAME.zoneChannelList[i] = zoneChannel;
-	
+
 	-- Clear Out Values
 	ChannelFrameDaughterFrame:Hide();
 end
@@ -180,7 +180,7 @@ function ChannelList_Update()
 					buttonName:SetPoint(point, rTo, rPoint, CHANNEL_HEADER_OFFSET, y);
 					buttonName:SetWidth(CHANNEL_TITLE_WIDTH + buttonSpeaker:GetWidth());
 				end
-				
+
 				-- Set the collapsed Status
 				if ( collapsed ) then
 					buttonCollapsed:SetText("+");
@@ -200,7 +200,7 @@ function ChannelList_Update()
 			else
 				local point, rTo, rPoint, x, y = buttonName:GetPoint();
 				if ( not button.channel ) then
-					buttonName:SetPoint(point, rTo, rPoint, CHANNEL_TITLE_OFFSET, y);				
+					buttonName:SetPoint(point, rTo, rPoint, CHANNEL_TITLE_OFFSET, y);
 					buttonName:SetWidth(CHANNEL_TITLE_WIDTH - buttonSpeaker:GetWidth());
 				end
 				if ( not channelNumber ) then
@@ -251,7 +251,7 @@ function ChannelList_Update()
 			-- Scroll Bar Handling --
 			frameHeight = frameHeight - button:GetHeight();
 		end
-	end	
+	end
 
 	-- Scroll Bar Handling --
 	ChannelListScrollChildFrame:SetHeight(frameHeight);
@@ -269,7 +269,7 @@ function ChannelList_CountUpdate(id, count)
 	if ( category == "CHANNEL_CATEGORY_GROUP" ) then
 		if ( count ) then
 			button:SetText(HIGHLIGHT_FONT_COLOR_CODE..channelNumber..". "..name.." ("..count..")"..FONT_COLOR_CODE_CLOSE);
-		end	
+		end
 	end
 	if ( id == GetSelectedDisplayChannel() ) then
 		ChannelRoster_Update(id);
@@ -308,7 +308,7 @@ function ChannelRoster_SetScroll()
 		ChannelRosterScrollFrameBottom:Show();
 		buttonWidth = buttonWidth - 10;
 	end
-	
+
 	for i=1, MAX_CHANNEL_MEMBER_BUTTONS do
 		_G["ChannelMemberButton"..i]:SetWidth(buttonWidth);
 	end
@@ -318,7 +318,7 @@ function ChannelList_UpdateVoice(id, enabled, active)
 	local speakerIcon =  _G["ChannelButton"..id.."SpeakerFrameOn"];
 	local speakerFlash = _G["ChannelButton"..id.."SpeakerFrameFlash"];
 	local button = _G["ChannelButton" .. id];
-	
+
 	if ( enabled ) then
 		button.voiceEnabled = true;
 		if ( active ) then
@@ -370,14 +370,14 @@ function ChannelList_OnClick(self, button)
 			FauxScrollFrame_SetOffset(ChannelRosterScrollFrame, 0);
 			if ( self.global ) then
 				ChannelList_UpdateHighlight(id);
-				ChannelList_ShowDropdown(id);			
+				ChannelList_ShowDropdown(id);
 			end
 			if ( self.active ) then
 				ChannelFrame.updating = id;
 				GetNumChannelMembers(id);
 				ChannelList_UpdateHighlight(id);
 				ChannelListDropDown.clicked = id;
-				ChannelList_ShowDropdown(id);			
+				ChannelList_ShowDropdown(id);
 			end
 		end
 	end
@@ -393,7 +393,7 @@ function ChannelList_UpdateHighlight(id)
 				button:LockHighlight();
 			else
 				button:UnlockHighlight();
-			end		
+			end
 		end
 	end
 end
@@ -424,7 +424,7 @@ function ChannelListDropDown_Initialize()
 				info = UIDropDownMenu_CreateInfo();
 				info.text = CHAT_VOICE;
 				info.notCheckable = 1;
-				info.func = ChannelListDropDown_StripSelf				
+				info.func = ChannelListDropDown_StripSelf
 				info.arg1 = SetActiveVoiceChannel;
 				info.arg2 = ChannelListDropDown.id;
 				UIDropDownMenu_AddButton(info);
@@ -448,13 +448,13 @@ function ChannelListDropDown_Initialize()
 			info = UIDropDownMenu_CreateInfo();
 			info.text = CHAT_PASSWORD;
 			info.notCheckable = 1;
-			info.func = ChannelListDropDown_StripSelf			
+			info.func = ChannelListDropDown_StripSelf
 			info.arg1 = ChannelListDropDown_SetPassword;
 			info.arg2 = ChannelListDropDown.channelName;
 			UIDropDownMenu_AddButton(info);
 			count = count + 1;
 		end
-		
+
 		-- INVITE if it is a custom Channel and is owner
 		if ( ChannelListDropDown.custom and IsDisplayChannelModerator() ) then
 			info = UIDropDownMenu_CreateInfo();
@@ -479,7 +479,7 @@ function ChannelListDropDown_Initialize()
 		UIDropDownMenu_AddButton(info);
 		count = count + 1;
 	end
-	
+
 	-- LEAVE Channel if not a group channel
 	if ( not ChannelListDropDown.group and ChannelListDropDown.active ) then
 		info = UIDropDownMenu_CreateInfo();
@@ -491,7 +491,7 @@ function ChannelListDropDown_Initialize()
 		UIDropDownMenu_AddButton(info);
 		count = count + 1;
 	end
-	
+
 	if ( count > 0 ) then
 		info = UIDropDownMenu_CreateInfo();
 		info.text = CANCEL;
@@ -538,24 +538,24 @@ function ChannelList_ShowDropdown(id)
 	ToggleDropDownMenu(1, nil, ChannelListDropDown, "cursor");
 end
 
-function ChannelListButton_OnDragStart (button)	
+function ChannelListButton_OnDragStart (button)
 	local name, index, spoof = ChannelPulloutRoster_GetActiveSession()
 	if ( ( button and button.channel and button.voiceEnabled ) and ( not spoof and name == button.channel ) ) then
 		CHANNELPULLOUT_OPTIONS.displayActive = true;
 	elseif ( button.channel and button.voiceEnabled ) then
 		CHANNELPULLOUT_OPTIONS.displayActive = nil;
 		CHANNELPULLOUT_OPTIONS.name = button.channel;
-		CHANNELPULLOUT_OPTIONS.session = ChannelPulloutRoster_GetSessionIDByName(button.channel); 
+		CHANNELPULLOUT_OPTIONS.session = ChannelPulloutRoster_GetSessionIDByName(button.channel);
 	else
 		return;
 	end
-	
+
 	if ( not ChannelPullout:IsShown() ) then
 		ChannelPullout_ToggleDisplay();
 	end
-	
+
 	ChannelPulloutRoster_OnEvent(rosterFrame or ChannelPulloutRoster);
-	 
+
 	ChannelPulloutTab:StartMoving();
 	ChannelPulloutTab:ClearAllPoints();
 	local x, y = GetCursorPosition();
@@ -612,7 +612,7 @@ function ChannelRoster_Update(id)
 	else
 		ChannelRosterScrollFrame.scrolling = nil;
 		ChannelRosterChannelName:SetText("");
-		ChannelRosterChannelCount:SetText("");		
+		ChannelRosterChannelCount:SetText("");
 		count = 0;
 	end
 	local rosterOffset = FauxScrollFrame_GetOffset(ChannelRosterScrollFrame);
@@ -644,12 +644,12 @@ function ChannelRoster_Update(id)
 			if ( IsVoiceChatEnabled() ) then
 				ChannelRoster_UpdateVoice(i, enabled, active, muted);
 			else
-				ChannelRoster_UpdateVoice(i, nil, nil, nil);			
+				ChannelRoster_UpdateVoice(i, nil, nil, nil);
 			end
 
 			button:SetID(rosterIndex);
 			button:Show();
-		else		
+		else
 			button:Hide();
 		end
 	end
@@ -770,7 +770,7 @@ function ChannelPullout_OnUpdate (self, elapsed)
 				self.oldy = yPos;
 			end
 			if ( self.hoverTime > CHANNELPULLOUT_TAB_SHOW_DELAY or ChannelPulloutTab.dragging ) then
-				-- If the tab's alpha is less than the current default, then fade it in 
+				-- If the tab's alpha is less than the current default, then fade it in
 				if ( not self.hasBeenFaded and (ChannelPulloutTab.oldAlpha and ChannelPulloutTab.oldAlpha < DEFAULT_CHANNELPULLOUT_TAB_ALPHA) ) then
 					UIFrameFadeIn(ChannelPulloutTab, CHANNELPULLOUT_TAB_FADE_TIME, ChannelPulloutTab.oldAlpha, DEFAULT_CHANNELPULLOUT_TAB_ALPHA);
 					local frame;
@@ -794,7 +794,7 @@ function ChannelPullout_OnUpdate (self, elapsed)
 			if ( not ChannelPulloutTab.oldAlpha ) then
 				ChannelPulloutTab.oldAlpha = ChannelPulloutTab:GetAlpha();
 			end
-			
+
 			self.oldAlpha = ChannelPulloutBackground:GetAlpha();
 		end
 	else
@@ -812,7 +812,7 @@ function ChannelPullout_OnUpdate (self, elapsed)
 			self.hasBeenFaded = nil;
 		end
 		self.hoverTime = 0;
-	end	
+	end
 end
 
 function ChannelPullout_ShowOpacity ()
@@ -854,7 +854,7 @@ function ChannelPulloutTab_OnClick (tab, button)
 	end
 
 	CloseDropDownMenus();
-	
+
 	if ( tab:GetButtonState() == "PUSHED" ) then
 		tab:StopMovingOrSizing();
 	elseif ( CHANNELPULLOUT_OPTIONS.locked ) then
@@ -862,7 +862,7 @@ function ChannelPulloutTab_OnClick (tab, button)
 	else
 		tab:StartMoving();
 	end
-	
+
 	ValidateFramePosition(tab);
 end
 
@@ -890,14 +890,14 @@ function ChannelPulloutTabDropDown_Initialize ()
 	if ( not rosterFrame ) then
 		return;
 	end
-	
+
 	info.text = CHANNELS;
 	info.notCheckable = true;
 	info.isTitle = true;
 	UIDropDownMenu_AddButton(info, 1);
-	
+
 	info = UIDropDownMenu_CreateInfo();
-	
+
 	info.text = DISPLAY_ACTIVE_CHANNEL;
 	info.func = function ()
 			CHANNELPULLOUT_OPTIONS.displayActive = not CHANNELPULLOUT_OPTIONS.displayActive;
@@ -907,7 +907,7 @@ function ChannelPulloutTabDropDown_Initialize ()
 		end
 	info.checked = CHANNELPULLOUT_OPTIONS.displayActive;
 	UIDropDownMenu_AddButton(info, 1);
-	
+
 	for i = 1, GetNumVoiceSessions() do
 		name = GetVoiceSessionInfo(i);
 		info.text = name;
@@ -919,20 +919,20 @@ function ChannelPulloutTabDropDown_Initialize ()
 		info.checked = ( function () if ( ( not CHANNELPULLOUT_OPTIONS.displayActive ) and CHANNELPULLOUT_OPTIONS.name == name ) then return true end return false end )();
 		UIDropDownMenu_AddButton(info, 1);
 	end
-	
+
 	info.checked = nil;
 	info.text = DISPLAY_OPTIONS;
 	info.notCheckable = true;
 	info.isTitle = true;
 	UIDropDownMenu_AddButton(info, 1);
-	
+
 	info = UIDropDownMenu_CreateInfo();
-	
+
 	info.text = LOCK_CHANNELPULLOUT_LABEL;
 	info.func = function() CHANNELPULLOUT_OPTIONS.locked = not CHANNELPULLOUT_OPTIONS.locked end;
 	info.checked = CHANNELPULLOUT_OPTIONS.locked
 	UIDropDownMenu_AddButton(info, 1);
-	
+
 	info.text = CHANNELPULLOUT_OPACITY_LABEL;
 	info.func = ChannelPullout_ShowOpacity;
 	info.checked = nil;
@@ -980,7 +980,7 @@ function ChannelPulloutRoster_GetActiveSession ()
 	if ( name ) then
 		return name, 1, true;
 	end
-	
+
 	return false;
 end
 
@@ -990,14 +990,14 @@ function ChannelPulloutRoster_GetSessionIDByName (name)
 			return i;
 		end
 	end
-	
+
 	return nil;
 end
 
 function ChannelPulloutRoster_GetSessionInfo (roster)
 	rosterFrame = roster or rosterFrame;
-	
-	local index, name;	
+
+	local index, name;
 	if ( CHANNELPULLOUT_OPTIONS.displayActive or ( not CHANNELPULLOUT_OPTIONS.session and not CHANNELPULLOUT_OPTIONS.name ) ) then
 		CHANNELPULLOUT_OPTIONS.displayActive = true;
 		name, index = ChannelPulloutRoster_GetActiveSession();
@@ -1014,25 +1014,25 @@ function ChannelPulloutRoster_GetSessionInfo (roster)
 			CHANNELPULLOUT_OPTIONS.name = CHANNEL_ROSTER;
 		end
 	end
-	
+
 	ChannelPulloutTab_UpdateText(CHANNELPULLOUT_OPTIONS.name);
-		
+
 	local numMembers = GetNumVoiceSessionMembersBySessionID(CHANNELPULLOUT_OPTIONS.session) or 0;
 	for i = 1, numMembers do
 		rosterFrame.members[i] = { GetVoiceSessionMemberInfoBySessionID(CHANNELPULLOUT_OPTIONS.session, i) };
 	end
-		
+
 	if ( numMembers < #rosterFrame.members ) then
 		for i = #rosterFrame.members, numMembers + 1, -1 do
 			rosterFrame.members[i] = nil;
 		end
 	end
-	
+
 	table.sort(rosterFrame.members, ChannelPulloutRoster_Sort);
 end
 
 function ChannelPulloutRoster_Populate (roster, templateName, maxButtons)
-	rosterFrame = roster or rosterFrame;	
+	rosterFrame = roster or rosterFrame;
 	local button;
 	if ( not rosterFrame.buttons ) then
 		rosterFrame.buttons = {}
@@ -1044,15 +1044,15 @@ function ChannelPulloutRoster_Populate (roster, templateName, maxButtons)
 		rosterFrame.buttonHeight = button:GetHeight();
 		tinsert(rosterFrame.buttons, button);
 	end
-	
+
 	maxButtons = maxButtons or math.floor(rosterFrame:GetHeight() / rosterFrame.buttonHeight);
-	
+
 	if ( maxButtons > CHANNELPULLOUT_MAXSIZE ) then
 		maxButtons = CHANNELPULLOUT_MAXSIZE;
 	elseif ( maxButtons < CHANNELPULLOUT_MINSIZE ) then
 		maxButtons = CHANNELPULLOUT_MINSIZE;
 	end
-	
+
 	if ( #rosterFrame.buttons > maxButtons ) then
 		for i = #rosterFrame.buttons, maxButtons + 1, -1 do
 			rosterFrame.buttons[i]:Hide();
@@ -1068,7 +1068,7 @@ function ChannelPulloutRoster_Populate (roster, templateName, maxButtons)
 			end
 		end
 	end
-	
+
 	for i = #rosterFrame.buttons + 1, maxButtons do
 		button = CreateFrame("BUTTON", rosterFrame:GetName() .. "Button" .. i, rosterFrame, templateName);
 		button:SetPoint("TOP", rosterFrame.buttons[#rosterFrame.buttons], "BOTTOM");
@@ -1083,9 +1083,9 @@ function ChannelPulloutRoster_Populate (roster, templateName, maxButtons)
 	rosterFrame.offset = 0;
 end
 
-function ChannelPulloutRoster_Sort (memberOne, memberTwo)	
+function ChannelPulloutRoster_Sort (memberOne, memberTwo)
 	local name, voiceActive, sessionActive, muted, squelched = 1, 2, 3, 4, 5
-	
+
 	if ( memberOne[voiceActive] and memberTwo[voiceActive] ) then
 		--If they both have voice chat enabled...
 		if ( memberOne[sessionActive] and memberTwo[sessionActive] ) then
@@ -1117,7 +1117,7 @@ function ChannelPulloutRoster_Sort (memberOne, memberTwo)
 		--If memberTwo has voice chat on and memberOne doesn't, memberTwo first.
 		return false;
 	end
-	
+
 	--Otherwise, sort alphabetically.
 	return memberOne[name] < memberTwo[name];
 end
@@ -1128,9 +1128,9 @@ function ChannelPulloutRoster_Update (roster)
 	if ( not rosterFrame or not rosterFrame.members or not rosterFrame.buttons ) then
 		return;
 	end
-	
+
 	local name = 1;
-	
+
 	if ( not CHANNELPULLOUT_OPTIONS.session ) then
 		CHANNEL_EMPTY_DATA[name] = GRAY_FONT_COLOR_CODE .. NO_VOICE_SESSIONS;
 		ChannelPulloutRoster_DrawButton(rosterFrame.buttons[1], CHANNEL_EMPTY_DATA);
@@ -1146,7 +1146,7 @@ function ChannelPulloutRoster_Update (roster)
 		end
 		return;
 	end
-	
+
 	for i = 1, #rosterFrame.buttons do
 		ChannelPulloutRoster_DrawButton(rosterFrame.buttons[i], rosterFrame.members[i + (rosterFrame.offset or 0)]);
 	end
@@ -1167,7 +1167,7 @@ function ChannelPulloutRoster_DrawButton (button, data)
 		button:Hide();
 		return;
 	end
-	
+
 	local name, voiceActive, sessionActive, muted, squelched = 1, 2, 3, 4, 5
 
 	button.name:SetText(data[name]);
@@ -1177,8 +1177,8 @@ function ChannelPulloutRoster_DrawButton (button, data)
 	else
 		button.speaker:Hide();
 	end
-	
-	if ( data[sessionActive] ) then			
+
+	if ( data[sessionActive] ) then
 		ChannelFrame_Desaturate(_G[button.speaker:GetName().."On"], nil, 1, 1, 1, 0.75);
 		ChannelFrame_Desaturate(_G[button.speaker:GetName().."Flash"], nil, 1, 1, 1, 0.75);
 		_G[button.speaker:GetName().."Muted"]:SetVertexColor(1, 1, 1, 1);
@@ -1187,13 +1187,13 @@ function ChannelPulloutRoster_DrawButton (button, data)
 		ChannelFrame_Desaturate(_G[button.speaker:GetName().."Flash"], 1, nil, nil, nil, 0.25);
 		_G[button.speaker:GetName().."Muted"]:SetVertexColor(1, 1, 1, .35);
 	end
-	
-	if ( data[muted] or data[squelched] ) then	
+
+	if ( data[muted] or data[squelched] ) then
 		_G[button.speaker:GetName().."Muted"]:Show();
 	else
 		_G[button.speaker:GetName().."Muted"]:Hide();
 	end
-	
+
 	button:Show();
 end
 
@@ -1202,7 +1202,7 @@ function ChannelPulloutRoster_ScrollToTop (roster)
 	if ( not rosterFrame ) then
 		return;
 	end
-	
+
 	rosterFrame.offset = 0;
 	ChannelPulloutRoster_Update(rosterFrame);
 	ChannelPulloutRoster_UpdateScrollControls(rosterFrame);
@@ -1213,7 +1213,7 @@ function ChannelPulloutRoster_ScrollToBottom (roster)
 	if ( not rosterFrame ) then
 		return;
 	end
-	
+
 	rosterFrame.offset = #rosterFrame.members - #rosterFrame.buttons;
 	ChannelPulloutRoster_Update(rosterFrame);
 	ChannelPulloutRoster_UpdateScrollControls(rosterFrame);
@@ -1224,10 +1224,10 @@ function ChannelPulloutRoster_Scroll (roster, dir)
 	if ( not rosterFrame or not dir ) then
 		return;
 	end
-	
+
 	-- We need to invert the delta we receive from mousewheels, and this function is designed to be used by ChannelPulloutRoster's OnMouseWheel, so we're doing this here!
 	dir = -dir
-	
+
 	if ( ( rosterFrame.offset + dir ) >= 0 and ( rosterFrame.offset + dir ) <= ( #rosterFrame.members - #rosterFrame.buttons ) ) then
 		rosterFrame.offset = rosterFrame.offset + dir;
 	elseif ( rosterFrame.offset < 0 ) then
@@ -1235,7 +1235,7 @@ function ChannelPulloutRoster_Scroll (roster, dir)
 	elseif ( rosterFrame.offset > ( #rosterFrame.members - #rosterFrame.buttons ) and ( #rosterFrame.members - #rosterFrame.buttons >= 0 ) ) then
 		rosterFrame.offset = #rosterFrame.members - #rosterFrame.buttons;
 	end
-	
+
 	ChannelPulloutRoster_Update(rosterFrame);
 	ChannelPulloutRoster_UpdateScrollControls(rosterFrame);
 end
@@ -1247,13 +1247,13 @@ function ChannelPulloutRoster_UpdateScrollControls (roster)
 	else
 		rosterFrame.upBtn:Enable();
 	end
-	
+
 	if ( rosterFrame.offset >= #rosterFrame.members - #rosterFrame.buttons ) then
 		rosterFrame.downBtn:Disable();
 	elseif ( ( rosterFrame.offset < #rosterFrame.members - #rosterFrame.buttons ) and #rosterFrame.members > #rosterFrame.buttons ) then
 		rosterFrame.downBtn:Enable();
 	end
-	
+
 	if ( not ( rosterFrame.downBtn:IsEnabled() == 1 or rosterFrame.upBtn:IsEnabled() == 1 ) ) then
 		rosterFrame.scroll:Hide();
 	else

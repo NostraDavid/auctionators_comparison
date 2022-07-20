@@ -4,7 +4,7 @@ function ArenaEnemyFrames_OnLoad(self)
 	self:RegisterEvent("CVAR_UPDATE");
 	self:RegisterEvent("VARIABLES_LOADED");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
-	
+
 	if ( GetCVarBool("showArenaEnemyFrames") ) then
 		ArenaEnemyFrames_Enable(self);
 	else
@@ -17,7 +17,7 @@ function ArenaEnemyFrames_OnLoad(self)
 		castFrame.showCastbar = showCastbars;
 		CastingBarFrame_UpdateIsShown(castFrame);
 	end
-	
+
 	UpdateArenaEnemyBackground(GetCVarBool("showPartyBackground"));
 	ArenaEnemyBackground_SetOpacity(tonumber(GetCVar("partyBackgroundOpacity")));
 end
@@ -56,7 +56,7 @@ end
 function ArenaEnemyFrames_OnShow(self)
 	--Set it up to hide stuff we don't want shown in an arena.
 	ArenaEnemyFrames_UpdateWatchFrame();
-	
+
 	DurabilityFrame_SetAlerts();
 	UIParent_ManageFramePositions();
 end
@@ -87,7 +87,7 @@ end
 function ArenaEnemyFrames_OnHide(self)
 	--Make the stuff that needs to be shown shown again.
 	ArenaEnemyFrames_UpdateWatchFrame();
-	
+
 	DurabilityFrame_SetAlerts();
 	UIParent_ManageFramePositions();
 end
@@ -115,20 +115,20 @@ function ArenaEnemyFrame_OnLoad(self)
 	self.statusCounter = 0;
 	self.statusSign = -1;
 	self.unitHPPercent = 1;
-	
+
 	self.classPortrait = _G[self:GetName().."ClassPortrait"];
 	ArenaEnemyFrame_UpdatePlayer(self, true);
 	self:RegisterEvent("UNIT_PET");
 	self:RegisterEvent("ARENA_OPPONENT_UPDATE");
 	self:RegisterEvent("UNIT_NAME_UPDATE");
-	
+
 	UIDropDownMenu_Initialize(self.DropDown, ArenaEnemyDropDown_Initialize, "MENU");
-	
+
 	local setfocus = function()
 		FocusUnit("arena"..self:GetID());
 	end
 	SecureUnitButton_OnLoad(self, "arena"..self:GetID(), setfocus);
-	
+
 	local id = self:GetID();
 	if ( UnitClass("arena"..id) and (not UnitExists("arena"..id))) then	--It is possible for the unit itself to no longer exist on the client, but some of the information to remain (after reloading the UI)
 		self:Show();
@@ -144,9 +144,9 @@ function ArenaEnemyFrame_UpdatePlayer(self, useCVars)--At some points, we need t
 		self:Show();
 		UnitFrame_Update(self);
 	end
-		
+
 	local _, class = UnitClass(self.unit);
-	
+
 	if( class ) then
 		self.classPortrait:SetTexture("Interface\\TargetingFrame\\UI-Classes-Circles");
 		self.classPortrait:SetTexCoord(unpack(CLASS_ICON_TCOORDS[class]));
@@ -190,7 +190,7 @@ function ArenaEnemyFrame_OnEvent(self, event, arg1, arg2)
 		if ( arg2 == "seen" or arg2 == "destroyed") then
 			ArenaEnemyFrame_Unlock(self);
 			ArenaEnemyFrame_UpdatePlayer(self);
-			
+
 			if ( self.healthbar.frequentUpdates and GetCVarBool("predictedHealth") ) then
 				self.healthbar:SetScript("OnUpdate", UnitFrameHealthBar_OnUpdate);
 				self.healthbar:UnregisterEvent("UNIT_HEALTH");
@@ -203,7 +203,7 @@ function ArenaEnemyFrame_OnEvent(self, event, arg1, arg2)
 			UIParent_ManageFramePositions();
 		elseif ( arg2 == "unseen" ) then
 			ArenaEnemyFrame_Lock(self);
-			
+
 			self.healthbar:RegisterEvent("UNIT_HEALTH");
 			self.healthbar:SetScript("OnUpdate", nil);
 			UnitFrameManaBar_RegisterDefaultEvents(self.manabar);
@@ -224,21 +224,21 @@ function ArenaEnemyFrame_UpdatePet(self, id, useCVars)	--At some points, we need
 	if ( not id ) then
 		id = self:GetID();
 	end
-	
+
 	local unitFrame = _G["ArenaEnemyFrame"..id];
 	local petFrame = _G["ArenaEnemyFrame"..id.."PetFrame"];
-	
+
 	local showArenaEnemyPets = (SHOW_ARENA_ENEMY_PETS == "1");
 	if ( useCVars ) then
 		showArenaEnemyPets = GetCVarBool("showArenaEnemyPets");
 	end
-	
+
 	if ( UnitGUID(petFrame.unit) and showArenaEnemyPets) then
 		petFrame:Show();
 	else
 		petFrame:Hide();
 	end
-	
+
 	UnitFrame_Update(petFrame);
 end
 
@@ -256,9 +256,9 @@ function ArenaEnemyPetFrame_OnLoad(self)
 	ArenaEnemyFrame_UpdatePet(self, id, true);
 	self:RegisterEvent("ARENA_OPPONENT_UPDATE");
 	self:RegisterEvent("UNIT_CLASSIFICATION_CHANGED");
-	
+
 	UIDropDownMenu_Initialize(self.DropDown, ArenaEnemyPetDropDown_Initialize, "MENU");
-	
+
 	local setfocus = function()
 		FocusUnit("arenapet"..self:GetID());
 	end
@@ -321,7 +321,7 @@ function UpdateArenaEnemyBackground(force)
 	else
 		ArenaEnemyBackground:Hide();
 	end
-	
+
 end
 
 function ArenaEnemyBackground_SetOpacity(opacity)

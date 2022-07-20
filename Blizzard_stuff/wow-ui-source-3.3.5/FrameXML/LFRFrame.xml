@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="LFRFrame.lua"/>
-	
+
 	<Button name="LFRBrowseFrameColumnHeaderTemplate" inherits="WhoFrameColumnHeaderTemplate" virtual="true">
 		<Scripts>
 			<OnClick>
@@ -28,7 +28,7 @@
 					</Anchors>
 				</Texture>
 			</Layer>
-		</Layers>					
+		</Layers>
 		<Scripts>
 			<OnMouseDown>
 				self.icon:SetPoint("CENTER", 1, -2);

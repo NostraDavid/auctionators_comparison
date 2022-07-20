@@ -594,7 +594,7 @@
 						<Anchor point="CENTER"/>
 					</Anchors>
 					<TexCoords left="0.8203125" right="1.0" top="0.34375" bottom="0.484375"/>
-				</Texture>				
+				</Texture>
 			</Layer>
 			<Layer level="ARTWORK">
 				<Texture file="Interface\WorldStateFrame\WorldState-CaptureBar">
@@ -882,7 +882,7 @@
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0" right="2.0" top="0" bottom="1.0"/>
-				</Texture>				
+				</Texture>
 			</Layer>
 		</Layers>
 		<Frames>
@@ -1147,10 +1147,10 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			
+
 			<!-- Unit drop down for the Notify AFK -->
 			<Frame name="ScorePlayerDropDown" inherits="UIDropDownMenuTemplate" clampedToScreen="true" id="1" hidden="true" />
-			
+
 			<Frame name="WorldStateScoreButton1" inherits="WorldStateScoreTemplate" id="1">
 				<Anchors>
 					<Anchor point="TOPLEFT">

@@ -431,7 +431,7 @@
 			</OnDoubleClick>
 			<OnEnter>
 				local chatFrame = _G["ChatFrame"..self:GetID()];
-				
+
 				if ( chatFrame.isTemporary and chatFrame.chatType == "BN_CONVERSATION" ) then
 					GameTooltip:SetOwner(self, "ANCHOR_TOPRIGHT");
 					BNConversation_DisplayConversationTooltip(tonumber(chatFrame.chatTarget));
@@ -473,9 +473,9 @@
 					SELECTED_CHAT_FRAME = chatFrame;
 					MOVING_CHATFRAME = chatFrame;
 				end
-				
+
 				self:LockHighlight();
-				
+
 				--OnUpdate simulates OnDragStop
 				--This is a hack fix we need to do because when SetParent is called, the OnDragStop never fires for the matching OnDragStart.
 				self.dragButton = button;
@@ -552,7 +552,7 @@
 						SetCursor("UI-Cursor-Size");	--Hide the cursor
 
 						self:GetHighlightTexture():Hide();
-						
+
 						chatFrame:StartSizing("BOTTOMRIGHT");
 					</OnMouseDown>
 					<OnMouseUp>
@@ -560,7 +560,7 @@
 						SetCursor(nil); --Show the cursor again
 
 						self:GetHighlightTexture():Show();
-						
+
 						self:GetParent():StopMovingOrSizing();
 						FCF_SavePositionAndDimensions(self:GetParent());
 					</OnMouseUp>
@@ -736,7 +736,7 @@
 			</OnEvent>
 		</Scripts>
 	</ScrollingMessageFrame>
-	
+
 	<Button name="FloatingChatFrameMinimizedTemplate" movable="true" clampedToScreen="true" virtual="true">
 		<Size x="180" y="32"/>
 		<Layers>
@@ -865,7 +865,7 @@
 			</OnLoad>
 		</Scripts>
 	</Frame>
-	
+
 	<!-- Main chat window -->
 	<Button name="ChatFrame1Tab" inherits="ChatTabTemplate" id="1"/>
 	<ScrollingMessageFrame name="ChatFrame1" hidden="false" inherits="FloatingChatFrameTemplate" id="1">
@@ -886,11 +886,11 @@
 				DEFAULT_CHAT_FRAME = ChatFrame1;
 				SELECTED_CHAT_FRAME = ChatFrame1;
 				SELECTED_DOCK_FRAME = ChatFrame1;
-				
+
 				self.isStaticDocked = true;
 				FCFDock_SetPrimary(GENERAL_CHAT_DOCK, self);
 				ChatEdit_SetLastActiveWindow(self.editBox);
-				
+
 				self:SetClampRectInsets(-35, 35, 38, -50);
 				self:RegisterEvent("UPDATE_CHAT_WINDOWS");
 				self:RegisterEvent("UPDATE_FLOATING_CHAT_WINDOWS");
@@ -986,7 +986,7 @@
 		<Scripts>
 			<OnLoad function="VoiceMacroMenu_OnLoad"/>
 		</Scripts>
-	</Frame>	
+	</Frame>
 	<Button name="ChatFrame2Tab" inherits="ChatTabTemplate" id="2"/>
 	<ScrollingMessageFrame name="ChatFrame2" inherits="FloatingChatFrameTemplate" id="2">
 		<Scripts>
@@ -1013,7 +1013,7 @@
 	<ScrollingMessageFrame name="ChatFrame9" inherits="FloatingChatFrameTemplate" id="9"/>
 	<Button name="ChatFrame10Tab" inherits="ChatTabTemplate" id="10"/>
 	<ScrollingMessageFrame name="ChatFrame10" inherits="FloatingChatFrameTemplate" id="10"/>
-	
+
 	<!--This frame is here to work as a single point of entry for events which must fire once and only once-->
 	<Frame name="FloatingChatFrameManager">
 		<Scripts>
@@ -1022,4 +1022,3 @@
 		</Scripts>
 	</Frame>
 </Ui>
-	

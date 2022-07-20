@@ -681,7 +681,7 @@
 											</OnMouseDown>
 											<OnMouseUp>
 												GMSurveyFrameComment:SetFocus();
-											</OnMouseUp> 
+											</OnMouseUp>
 										</Scripts>
 										<ScrollChild>
 											<EditBox name="GMSurveyFrameComment" multiLine="true" letters="500" enableMouse="true" autoFocus="false">

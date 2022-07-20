@@ -46,7 +46,7 @@
 						</Anchor>
 					</Anchors>
 					<TexCoords left="0.296875" right="0.5703125" top="0" bottom="0.515625"/>
-				</Texture>	
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
@@ -583,12 +583,12 @@
 		<Scripts>
 			<OnLoad>
 				local id = self:GetID();
-				self.debuffCountdown = 0; 
+				self.debuffCountdown = 0;
 				self.numDebuffs = 0;
 				self.noTextPrefix = true;
 				local prefix = "PartyMemberFrame"..id;
 				UnitFrame_Initialize(self, "party"..id,  _G[prefix.."Name"], _G[prefix.."Portrait"],
-					   _G[prefix.."HealthBar"], _G[prefix.."HealthBarText"], 
+					   _G[prefix.."HealthBar"], _G[prefix.."HealthBarText"],
 					   _G[prefix.."ManaBar"], _G[prefix.."ManaBarText"],
 				       _G[prefix.."Flash"]);
 				SetTextStatusBarTextZeroText(_G[prefix.."HealthBar"], DEAD);

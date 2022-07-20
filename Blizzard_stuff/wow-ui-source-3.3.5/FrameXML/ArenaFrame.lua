@@ -20,13 +20,13 @@ function ArenaFrame_OnEvent (self, event, ...)
 					ArenaFrame.selection = 4;
 				end
 			end
-            
+
             if ( GetCurrentArenaSeason()==NO_ARENA_SEASON ) then
                 ArenaFrameZoneDescription:SetText(ARENA_MASTER_NO_SEASON_TEXT);
             else
                 ArenaFrameZoneDescription:SetText(ARENA_MASTER_TEXT)
             end
-            
+
 			if ( not ArenaFrame:IsShown() ) then
 				CloseBattlefield();
 				return;
@@ -55,9 +55,9 @@ function ArenaFrame_Update (self)
 	ARENA_TEAMS[1] = {size = 2};
 	ARENA_TEAMS[2] = {size = 3};
 	ARENA_TEAMS[3] = {size = 5};
-	
+
 	local button, battleType, teamSize;
-	
+
 	for i=1, MAX_ARENA_BATTLES, 1 do
 		button = _G["ArenaZone"..i];
 		battleType = ARENA_RATED;

@@ -1,4 +1,4 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ 
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="TabardFrame.lua"/>
 	<Frame name="TabardFrameCustomizeTemplate" virtual="true">
@@ -134,7 +134,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
 					<Size>
 						<AbsDimension x="128" y="256"/>
@@ -451,7 +451,7 @@
 								MoneyFrame_SetType(self, "STATIC");
 							</OnLoad>
 						</Scripts>
-					</Frame>					
+					</Frame>
 				</Frames>
 			</Frame>
 			<Frame name="TabardFrameCustomizationFrame">
@@ -525,7 +525,7 @@
 						<Scripts>
 							<OnLoad>
 								TabardFrameCustomization4Text:SetText(EMBLEM_BORDER_COLOR);
-							</OnLoad>	
+							</OnLoad>
 						</Scripts>
 					</Frame>
 					<Frame name="TabardFrameCustomization5" inherits="TabardFrameCustomizeTemplate" id="5">
@@ -539,7 +539,7 @@
 						<Scripts>
 							<OnLoad>
 								TabardFrameCustomization5Text:SetText(EMBLEM_BACKGROUND);
-							</OnLoad>	
+							</OnLoad>
 						</Scripts>
 					</Frame>
 				</Frames>

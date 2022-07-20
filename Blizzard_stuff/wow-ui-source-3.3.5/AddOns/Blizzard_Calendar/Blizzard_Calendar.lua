@@ -5246,8 +5246,8 @@ function CalendarClassButtonContainer_Update()
 		buttonIcon = button:GetNormalTexture();
 		-- set the count
 		classData = CalendarClassData[class];
-		count = classData.counts[CALENDAR_INVITESTATUS_CONFIRMED] + 
-			classData.counts[CALENDAR_INVITESTATUS_ACCEPTED] + 
+		count = classData.counts[CALENDAR_INVITESTATUS_CONFIRMED] +
+			classData.counts[CALENDAR_INVITESTATUS_ACCEPTED] +
 			classData.counts[CALENDAR_INVITESTATUS_SIGNEDUP];
 		buttonCount:SetText(count);
 		if ( count > 0 ) then
@@ -5422,4 +5422,3 @@ function CalendarClassTotalsButton_OnEnter(self)
 	GameTooltip:SetText(CALENDAR_TOOLTIP_INVITE_TOTALS, nil, nil, nil, nil, 1);
 	GameTooltip:Show();
 end
-

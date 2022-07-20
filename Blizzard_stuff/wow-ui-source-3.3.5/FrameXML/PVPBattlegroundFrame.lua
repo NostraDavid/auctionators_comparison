@@ -18,14 +18,14 @@ function PVPBattleground_UpdateBattlegrounds()
 	local frame;
 	local localizedName, canEnter, isHoliday;
 	local tempString, BGindex, isBig;
-	
+
 	local offset = FauxScrollFrame_GetOffset(PVPBattlegroundFrameTypeScrollFrame);
 	local currentFrameNum = -offset + 1;
 	local numBGs = 0;
-	
+
 	for i=1,GetNumBattlegroundTypes() do
 		frame = _G["BattlegroundType"..currentFrameNum];
-		
+
 		localizedName, canEnter, isHoliday = GetBattlegroundInfo(i);
 		tempString = localizedName;
 		if ( localizedName and canEnter ) then
@@ -39,7 +39,7 @@ function PVPBattleground_UpdateBattlegrounds()
 				if ( isHoliday ) then
 					tempString = tempString.." ("..BATTLEGROUND_HOLIDAY..")";
 				end
-			
+
 				frame.title:SetText(tempString);
 				frame:Show();
 				if ( i == PVPBattlegroundFrame.selectedBG ) then
@@ -52,11 +52,11 @@ function PVPBattleground_UpdateBattlegrounds()
 			numBGs = numBGs + 1;
 		end
 	end
-	
+
 	if ( currentFrameNum <= NUM_DISPLAYED_BATTLEGROUNDS ) then
 		isBig = true;	--Espand the highlight to cover where the scroll bar usually is.
 	end
-	
+
 	for i=1,NUM_DISPLAYED_BATTLEGROUNDS do
 		frame = _G["BattlegroundType"..i];
 		if ( isBig ) then
@@ -65,14 +65,14 @@ function PVPBattleground_UpdateBattlegrounds()
 			frame:SetWidth(295);
 		end
 	end
-	
+
 	for i=currentFrameNum,NUM_DISPLAYED_BATTLEGROUNDS do
 		frame = _G["BattlegroundType"..i];
 		frame:Hide();
 	end
-	
+
 	PVPBattleground_UpdateQueueStatus();
-	
+
 	PVPBattlegroundFrame_UpdateGroupAvailable();
 	FauxScrollFrame_Update(PVPBattlegroundFrameTypeScrollFrame, numBGs, NUM_DISPLAYED_BATTLEGROUNDS, 16);
 end
@@ -81,14 +81,14 @@ function PVPBattleground_UpdateInfo(BGindex)
 	if ( type(BGindex) ~= "number" ) then
 		BGindex = PVPBattlegroundFrame.selectedBG;
 	end
-	
+
 	local BGname, canEnter, isHoliday, isRandom, BattleGroundID = GetBattlegroundInfo(BGindex);
 
-	
+
 	if(PVPBATTLEGROUND_TEXTURELIST[BattleGroundID]) then
 		PVPBattlegroundFrameBGTex:SetTexture(PVPBATTLEGROUND_TEXTURELIST[BattleGroundID]);
 	end
-	
+
 	if ( isRandom or isHoliday ) then
 		PVPBattleground_UpdateRandomInfo();
 		PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo:Show();
@@ -99,7 +99,7 @@ function PVPBattleground_UpdateInfo(BGindex)
 			PVPBattlegroundFrameInfoScrollFrameChildFrameDescription:SetText(mapDescription);
 			PVPBattlegroundFrameInfoScrollFrame:SetVerticalScroll(0);
 		end
-		
+
 		PVPBattlegroundFrameInfoScrollFrameChildFrameRewardsInfo:Hide();
 		PVPBattlegroundFrameInfoScrollFrameChildFrameDescription:Show();
 	end
@@ -144,9 +144,9 @@ function PVPBattleground_UpdateQueueStatus()
 	end
 end
 
-function PVPBattleground_ResetInfo()	
+function PVPBattleground_ResetInfo()
 	RequestBattlegroundInstanceInfo(PVPBattlegroundFrame.selectedBG);
-	
+
 	PVPBattleground_UpdateInfo();
 end
 
@@ -161,25 +161,25 @@ function PVPBattlegroundButton_OnClick(self)
 			_G["BattlegroundType"..i]:UnlockHighlight();
 		end
 	end
-	
+
 	if ( self.BGindex == PVPBattlegroundFrame.selectedBG ) then
 		return;
 	end
-	
+
 	PVPBattlegroundFrame.selectedBG = self.BGindex;
-	
+
 	PVPBattleground_ResetInfo();
-	
+
 	PVPBattleground_UpdateJoinButton();
 end
 
 function PVPBattleground_UpdateJoinButton()
 	local mapName, mapDescription, maxGroup = GetBattlefieldInfo();
-	
+
 	if ( maxGroup and maxGroup == 5 ) then
 		PVPBattlegroundFrameGroupJoinButton:SetText(JOIN_AS_PARTY);
 	else
-		PVPBattlegroundFrameGroupJoinButton:SetText(JOIN_AS_GROUP);		
+		PVPBattlegroundFrameGroupJoinButton:SetText(JOIN_AS_GROUP);
 	end
 end
 
@@ -188,7 +188,7 @@ function PVPBattlegroundFrameJoinButton_OnClick(self)
 	if ( self == PVPBattlegroundFrameGroupJoinButton ) then
 		joinAsGroup = true;
 	end
-	
+
 	JoinBattlefield(0, joinAsGroup);
 end
 
@@ -199,10 +199,10 @@ function PVPBattlegroundFrame_OnLoad(self)
 	self:RegisterEvent("PVPQUEUE_ANYWHERE_UPDATE_AVAILABLE");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
 	self:RegisterEvent("PARTY_MEMBERS_CHANGED");
-	
+
 	PanelTemplates_SetTab(PVPParentFrame, 1);
 	PVPBattlegroundFrame_UpdateVisible();
-	
+
 	BattlegroundType1:Click();
 end
 
@@ -221,7 +221,7 @@ function PVPBattlegroundFrame_OnEvent(self, event, ...)
 		PVPBattleground_UpdateQueueStatus();
 	elseif ( event == "PVPQUEUE_ANYWHERE_UPDATE_AVAILABLE" or event == "PLAYER_ENTERING_WORLD" ) then
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD");
-		
+
 		FauxScrollFrame_SetOffset(PVPBattlegroundFrameTypeScrollFrame, 0);
 		FauxScrollFrame_OnVerticalScroll(PVPBattlegroundFrameTypeScrollFrame, 0, 16, PVPBattleground_UpdateBattlegrounds); --We may be changing brackets, so we don't want someone to see an outdated version of the data.
 		if ( self.selectedBG ) then
@@ -240,9 +240,9 @@ function PVPBattlegroundFrame_OnShow(self)
 	else
 		WintergraspTimer:Show();
 	end
-	
+
 	SortBGList();
-	
+
 	PVPBattleground_UpdateBattlegrounds();
 	RequestBattlegroundInstanceInfo(self.selectedBG or 1);
 end

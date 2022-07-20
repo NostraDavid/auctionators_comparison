@@ -71,7 +71,7 @@ function InspectFrame_OnShow(self)
 	if ( not self.unit ) then
 		return;
 	end
-	PlaySound("igCharacterInfoOpen");	
+	PlaySound("igCharacterInfoOpen");
 	SetPortraitTexture(InspectFramePortrait, self.unit);
 	InspectNameText:SetText(UnitName(self.unit));
 end
@@ -92,7 +92,7 @@ function InspectFrame_OnUpdate(self)
 	if ( not UnitIsVisible(self.unit) ) then
 		HideUIPanel(InspectFrame);
 	end
-end		
+end
 
 function InspectSwitchTabs(newID)
 	local newFrame = _G[INSPECTFRAME_SUBFRAMES[newID]];

@@ -7,7 +7,7 @@ function ToggleCharacter (tab)
 			PanelTemplates_SetTab(CharacterFrame, subFrame:GetID());
 			if ( CharacterFrame:IsShown() ) then
 				if ( subFrame:IsShown() ) then
-					HideUIPanel(CharacterFrame);	
+					HideUIPanel(CharacterFrame);
 				else
 					PlaySound("igCharacterInfoTab");
 					CharacterFrame_ShowSubFrame(tab);
@@ -25,24 +25,24 @@ function CharacterFrame_ShowSubFrame (frameName)
 		if ( value == frameName ) then
 			_G[value]:Show()
 		else
-			_G[value]:Hide();	
-		end	
-	end 
+			_G[value]:Hide();
+		end
+	end
 end
 
 function CharacterFrameTab_OnClick (self, button)
 	local name = self:GetName();
-	
+
 	if ( name == "CharacterFrameTab1" ) then
 		ToggleCharacter("PaperDollFrame");
 	elseif ( name == "CharacterFrameTab2" ) then
 		ToggleCharacter("PetPaperDollFrame");
 	elseif ( name == "CharacterFrameTab3" ) then
-		ToggleCharacter("ReputationFrame");	
+		ToggleCharacter("ReputationFrame");
 	elseif ( name == "CharacterFrameTab4" ) then
-		ToggleCharacter("SkillFrame");	
+		ToggleCharacter("SkillFrame");
 	elseif ( name == "CharacterFrameTab5" ) then
-		ToggleCharacter("TokenFrame");	
+		ToggleCharacter("TokenFrame");
 	end
 	PlaySound("igCharacterInfoTab");
 end
@@ -65,7 +65,7 @@ function CharacterFrame_OnEvent (self, event, ...)
 	if ( not self:IsShown() ) then
 		return;
 	end
-	
+
 	local arg1 = ...;
 	if ( event == "UNIT_PORTRAIT_UPDATE" ) then
 		if ( arg1 == "player" ) then
@@ -100,7 +100,7 @@ function CharacterFrame_OnShow (self)
 	ShowTextStatusBarText(PetFrameHealthBar);
 	ShowTextStatusBarText(PetFrameManaBar);
 	ShowWatchedReputationBarText();
-	
+
 	SetButtonPulse(CharacterMicroButton, 0, 1);	--Stop the button pulse
 end
 
@@ -130,23 +130,23 @@ function CharacterFrame_TabBoundsCheck(self)
 	if ( string.sub(self:GetName(), 1, 17) ~= "CharacterFrameTab" ) then
 		return;
 	end
-	
+
 	local totalSize = 60;
 	for i=1, NUM_CHARACTERFRAME_TABS do
 		_G["CharacterFrameTab"..i.."Text"]:SetWidth(0);
 		PanelTemplates_TabResize(_G["CharacterFrameTab"..i], 0);
 		totalSize = totalSize + _G["CharacterFrameTab"..i]:GetWidth();
 	end
-	
+
 	local diff = totalSize - 465
-	
+
 	if ( diff > 0 and CharacterFrameTab5:IsShown() and CharacterFrameTab2:IsShown()) then
 		--Find the biggest tab
 		for i=1, NUM_CHARACTERFRAME_TABS do
 			CharTabtable[i]=_G["CharacterFrameTab"..i];
 		end
 		table.sort(CharTabtable, CompareFrameSize);
-		
+
 		local i=1;
 		while ( diff > 0 and i <= NUM_CHARACTERFRAME_TABS) do
 			local tabText = _G[CharTabtable[i]:GetName().."Text"]

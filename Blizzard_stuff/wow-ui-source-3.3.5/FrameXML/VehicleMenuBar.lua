@@ -617,7 +617,7 @@ function VehicleMenuBar_SetSkin(skinName, pitchVisible)
 		frameCount[frametype] = 1;
 	end
 	local frame, framedata
-	
+
 	if ( pitchVisible ) then
 		VehicleMenuBar:SetWidth(skinTable.Overall.yesPitchWidth or 970);
 		VehicleMenuBar:SetHeight(skinTable.Overall.yesPitchHeight or 53);
@@ -625,51 +625,51 @@ function VehicleMenuBar_SetSkin(skinName, pitchVisible)
 		VehicleMenuBar:SetWidth(skinTable.Overall.noPitchWidth or 970);
 		VehicleMenuBar:SetHeight(skinTable.Overall.noPitchHeight or 53);
 	end
-	
+
 	for _, framedata in ipairs(skinTable) do
 		if ( bit.band((framedata.pitchHidden or 0),(pitchVisible or 0)+1) == 0 ) then	--0 = never hide. 1 = hide when no pitch slider 2 = hide when pitch slider
 			frame = _G["VehicleMenuBarArtFrame"..framedata.layer..frameCount[framedata.layer]];
 			if ( not frame ) then
 				error("Not enough vehicle art frames of type "..framedata.layer);
 			end
-			
+
 			frameCount[framedata.layer] = frameCount[framedata.layer] + 1;
-			
+
 			frame:SetTexture(framedata.texture, framedata.tile);
 			frame:SetHeight(framedata.height);
 			frame:SetWidth(framedata.width);
-			
+
 			frame:ClearAllPoints()
 			frame:SetPoint(framedata.point, ( framedata.relativeFrame or frame:GetParent() ) , ( framedata.relativePoint or framedata.point ), ( framedata.xOfs or 0 ) , ( framedata.yOfs or 0 ));
-			
+
 			frame:SetTexCoord( unpack(framedata.texCoord) );
 		end
 	end
-	
+
 	for framename, framedata in pairs(skinTable) do	--For buttons
 		if ( type(framename) == "string" and framename ~= "Overall") then
 			frame = _G["VehicleMenuBar"..framename]
-			
+
 			if ( framedata.height ) then
 				frame:SetHeight(framedata.height);
 				frame:SetWidth(framedata.width);
 			end
-			
+
 			if ( framedata.normalTexture ) then
 				frame:GetNormalTexture():SetTexture(framedata.normalTexture);
 				frame:GetNormalTexture():SetTexCoord( unpack(framedata.normalTexCoord) );
 			end
-			
+
 			if ( framedata.pushedTexture ) then
 				frame:GetPushedTexture():SetTexture(framedata.pushedTexture);
 				frame:GetPushedTexture():SetTexCoord( unpack(framedata.pushedTexCoord) );
 			end
-			
+
 			if ( framedata.texture ) then
 				frame:SetTexture(framedata.texture);
 				frame:SetTexCoord( unpack(framedata.texCoord) );
 			end
-			
+
 			if ( frame.SetVertexColor ) then
 				if ( framedata.vertexColor ) then
 					frame:SetVertexColor( unpack(framedata.vertexColor) );
@@ -677,16 +677,16 @@ function VehicleMenuBar_SetSkin(skinName, pitchVisible)
 					frame:SetVertexColor( 1.0, 1.0, 1.0, 1.0 );
 				end
 			end
-			
+
 			if ( framedata.point ) then
 				frame:ClearAllPoints();
 				frame:SetPoint(framedata.point, ( framedata.relativeFrame or frame:GetParent() ) , ( framedata.relativePoint or framedata.point ), ( framedata.xOfs or 0 ) , ( framedata.yOfs or 0 ));
 			end
-			
+
 			if ( frame.SetScale ) then
 				frame:SetScale(framedata.scale or 1);
 			end
-			
+
 			if ( bit.band((framedata.pitchHidden or 0),(pitchVisible or 0)+1) ~= 0 ) then	--0 = never hide. 1 = hide when no pitch slider 2 = hide when pitch slider
 				frame:Hide();
 			else
@@ -694,7 +694,7 @@ function VehicleMenuBar_SetSkin(skinName, pitchVisible)
 			end
 		end
 	end
-	
+
 	VehicleMenuBar_MoveMicroButtons(skinName);
 end
 
@@ -712,21 +712,21 @@ local MicroButtons = {
 	}
 function VehicleMenuBar_MoveMicroButtons(skinName)
 	if ( not skinName ) then
-	
+
 		for _, frame in pairs(MicroButtons) do
 			frame:SetParent(MainMenuBarArtFrame);
 			frame:Show();
 		end
-		
+
 		CharacterMicroButton:ClearAllPoints();
 		CharacterMicroButton:SetPoint("BOTTOMLEFT", 552, 2);
 		SocialsMicroButton:ClearAllPoints();
 		SocialsMicroButton:SetPoint("BOTTOMLEFT", QuestLogMicroButton, "BOTTOMRIGHT", -3, 0);
-		
+
 		UpdateMicroButtons();
-		
+
 	elseif ( skinName == "Mechanical" ) then
-	
+
 		for _, frame in pairs(MicroButtons) do
 			frame:SetParent(VehicleMenuBarArtFrame);
 			frame:Show();
@@ -735,10 +735,10 @@ function VehicleMenuBar_MoveMicroButtons(skinName)
 		CharacterMicroButton:SetPoint("BOTTOMLEFT", VehicleMenuBar, "BOTTOMRIGHT", -340, 41);
 		SocialsMicroButton:ClearAllPoints();
 		SocialsMicroButton:SetPoint("TOPLEFT", CharacterMicroButton, "BOTTOMLEFT", 0, 20);
-		
+
 		UpdateMicroButtons();
 	elseif ( skinName == "Natural" ) then
-	
+
 		for _, frame in pairs(MicroButtons) do
 			frame:SetParent(VehicleMenuBarArtFrame);
 			frame:Show();
@@ -747,7 +747,7 @@ function VehicleMenuBar_MoveMicroButtons(skinName)
 		CharacterMicroButton:SetPoint("BOTTOMLEFT", VehicleMenuBar, "BOTTOMRIGHT", -365, 41);
 		SocialsMicroButton:ClearAllPoints();
 		SocialsMicroButton:SetPoint("TOPLEFT", CharacterMicroButton, "BOTTOMLEFT", 0, 20);
-		
+
 		UpdateMicroButtons();
 	end
 end
@@ -766,7 +766,7 @@ function VehicleMenuBar_ReleaseSkins()
 	for i=1, VEHICLE_MAX_OVERLAY do
 		_G["VehicleMenuBarArtFrameOVERLAY"..i]:SetTexture(nil);
 	end
-	
+
 	VehicleMenuBarPitchUpButton:GetNormalTexture():SetTexture(nil);
 	VehicleMenuBarPitchUpButton:GetPushedTexture():SetTexture(nil);
 	VehicleMenuBarPitchDownButton:GetNormalTexture():SetTexture(nil);
@@ -786,7 +786,7 @@ function VehicleMenuBar_UpdateActionBars()
 		frame:GetNormalTexture():SetWidth(105);
 		frame = _G["VehicleMenuBarActionButton"..i.."HotKey"];
 		frame:SetPoint("TOPLEFT", -20, -4);
-		frame.SetPoint = function() end;	
+		frame.SetPoint = function() end;
 	end
 end
 
@@ -864,24 +864,24 @@ function VehicleSeatIndicator_SetUpVehicle(vehicleIndicatorID)
 	if ( vehicleIndicatorID == VehicleSeatIndicator.currSkin ) then
 		return;
 	end
-	
+
 	if ( vehicleIndicatorID == 0 ) then
 		VehicleSeatIndicator_UnloadTextures();
 		return;
 	end
-	
+
 	local backgroundTexture, numSeatIndicators = GetVehicleUIIndicator(vehicleIndicatorID);
-	
+
 	VehicleSeatIndicator.currSkin = vehicleIndicatorID;
-	
+
 	VehicleSeatIndicatorBackgroundTexture:SetTexture(backgroundTexture);
-	
+
 	--These have been hard-coded in for now. FIXME (need something returned from GetVehicleUIIndicator that gives height/width)
 	local totalHeight = 128; --VehicleSeatIndicatorBackgroundTexture:GetFileHeight();
 	local totalWidth = 128; --VehicleSeatIndicatorBackgroundTexture:GetFileWidth();
 	VehicleSeatIndicator:SetHeight(totalHeight);
 	VehicleSeatIndicator:SetWidth(totalWidth);
-	
+
 	for i=1, numSeatIndicators do
 		local button;
 		if ( i > numVehicleIndicatorButtons ) then
@@ -891,23 +891,23 @@ function VehicleSeatIndicator_SetUpVehicle(vehicleIndicatorID)
 		else
 			button = _G["VehicleSeatIndicatorButton"..i];
 		end
-		
+
 		local virtualSeatIndex, xOffset, yOffset = GetVehicleUIIndicatorSeat(vehicleIndicatorID, i);
-		
+
 		button.virtualID = virtualSeatIndex;
 		button:SetPoint("CENTER", button:GetParent(), "TOPLEFT", xOffset*totalWidth, -yOffset*totalHeight);
 		button:Show();
-	end	
-	
+	end
+
 	for i=numSeatIndicators+1, numVehicleIndicatorButtons do
 		local button = _G["VehicleSeatIndicatorButton"..i];
 		button:Hide();
 	end
-	
+
 	VehicleSeatIndicator:Show();
 	DurabilityFrame_SetAlerts();
 	VehicleSeatIndicator_Update();
-	
+
 	UIParent_ManageFramePositions();
 end
 
@@ -916,7 +916,7 @@ function VehicleSeatIndicator_UnloadTextures()
 	VehicleSeatIndicator:Hide()
 	VehicleSeatIndicator.currSkin = nil;
 	DurabilityFrame_SetAlerts();
-	
+
 	UIParent_ManageFramePositions();
 end
 
@@ -1006,10 +1006,10 @@ function VehicleSeatIndicatorButton_OnEnter(self)
 	if ( not self:IsEnabled() ) then
 		return;
 	end
-	
+
 	local controlType, occupantName, serverName, ejectable, canSwitchSeats = UnitVehicleSeatInfo("player", self.virtualID);
 	local highlight = _G[self:GetName().."Highlight"]
-	
+
 	if ( not UnitUsingVehicle("player") ) then	--UnitUsingVehicle also returns true when we are transitioning between seats in a vehicle.
 		highlight:Hide();
 		if ( occupantName ) then
@@ -1019,7 +1019,7 @@ function VehicleSeatIndicatorButton_OnEnter(self)
 		end
 		return;
 	end
-	
+
 	if ( not canSwitchSeats or not CanSwitchVehicleSeat() ) then
 		highlight:Hide();
 		SetCursor(nil);

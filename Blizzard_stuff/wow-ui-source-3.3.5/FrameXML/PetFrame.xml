@@ -255,7 +255,7 @@
 								<AbsDimension x="24" y="23"/>
 							</Size>
 							<TexCoords left="0" right="0.1875" top="0" bottom="0.359375"/>
-						</Texture>			
+						</Texture>
 					</Layer>
 				</Layers>
 				<Scripts>

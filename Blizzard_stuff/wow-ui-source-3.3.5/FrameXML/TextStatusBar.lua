@@ -67,7 +67,7 @@ function TextStatusBar_UpdateTextString(textStatusBar)
 					textString:SetText(value.." / "..valueMax);
 				end
 			end
-			
+
 			if ( (textStatusBar.cvar and GetCVar(textStatusBar.cvar) == "1" and textStatusBar.textLockable) or textStatusBar.forceShow ) then
 				textString:Show();
 			elseif ( textStatusBar.lockShow > 0 and (not textStatusBar.forceHideText) ) then

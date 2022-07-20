@@ -16,7 +16,7 @@ function MoneyInputFrame_GetCopper(moneyFrame)
 	local copper = _G[moneyFrame:GetName().."Copper"]:GetText();
 	local silver = _G[moneyFrame:GetName().."Silver"]:GetText();
 	local gold = _G[moneyFrame:GetName().."Gold"]:GetText();
-	
+
 	if ( copper ~= "" ) then
 		totalCopper = totalCopper + copper;
 	end

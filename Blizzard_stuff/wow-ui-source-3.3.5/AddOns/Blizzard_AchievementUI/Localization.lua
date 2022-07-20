@@ -3,7 +3,7 @@
 function AchievementFrameSummary_LocalizeButton (button)
 
 end
-	
+
 function AchievementButton_LocalizeMiniAchievement (frame)
 
 end

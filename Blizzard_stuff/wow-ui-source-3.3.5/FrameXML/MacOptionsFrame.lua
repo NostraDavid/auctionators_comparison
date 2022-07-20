@@ -48,10 +48,10 @@ function MacOptionsFrame_Load()
 		local checked = 0;
 		checked = GetCVar(value.cvar);
 		button:SetChecked(checked);
-		
+
 		string:SetText(_G[index]);
 		button.tooltipText = value.tooltipText;
-		
+
 		if(not MovieRecording_IsSupported() and (value.index < 7)) then
 			MacOptionsFrame_DisableCheckBox(button);
 		else
@@ -60,7 +60,7 @@ function MacOptionsFrame_Load()
 	end
 
 
-	
+
 
 	if(not MovieRecording_IsSupported()) then
 		UIDropDownMenu_DisableDropDown(MacOptionsFrameResolutionDropDown);
@@ -74,7 +74,7 @@ function MacOptionsFrame_Load()
 		MacOptionsFrame_DisableText(MacOptionsFrameText2);
 		MacOptionsFrame_DisableText(MacOptionsFrameText3);
 		MacOptionsFrame_DisableText(MacOptionsFrameText4);
- 
+
 	else
 		MacOptionsFrameQualitySlider:SetValue(GetCVar("MovieRecordingQuality"));
 		if GetCVar("MovieRecordingGUI") then
@@ -92,7 +92,7 @@ function MacOptionsFrame_Load()
 	-- make sure that if UI recording is not enabled, that we disable cursor recording (it's part of the UI)
 	if ( not MacOptionsFrameCheckButton1:GetChecked() ) then
 		MacOptionsFrameCheckButton3:SetChecked(0);
-		MacOptionsFrame_DisableCheckBox(MacOptionsFrameCheckButton3);		
+		MacOptionsFrame_DisableCheckBox(MacOptionsFrameCheckButton3);
 	end
 
 end
@@ -108,7 +108,7 @@ function MacOptionsFrame_Save()
 
 		SetCVar(value.cvar, value.value, index);
 	end
-	
+
 	local resolution, xIndex, width;
 	resolution = UIDropDownMenu_GetSelectedValue(MacOptionsFrameResolutionDropDown);
 	xIndex = strfind(resolution, "x");
@@ -131,28 +131,28 @@ function MacOptionsFrameResolutionDropDown_OnLoad(self)
 		return;
 	end
 	local ratio, width;
-	
+
 	UIDropDownMenu_Initialize(self, MacOptionsFrameResolutionDropDown_Initialize);
-	
+
 	ratio = MovieRecording_GetAspectRatio();
 	width = min(GetCVar("MovieRecordingWidth"), MovieRecording_GetViewportWidth());
 	UIDropDownMenu_SetSelectedValue(self, width.."x"..floor(width*ratio), 1);
 	UIDropDownMenu_SetWidth(MacOptionsFrameResolutionDropDown, 110);
 end
 
-local function greaterThanTableSort(a, b) return a > b end 
+local function greaterThanTableSort(a, b) return a > b end
 
 function MacOptionsFrameResolutionDropDown_Initialize()
 	local info = UIDropDownMenu_CreateInfo();
 	local width, height, ratio, halfWidth, quarterWidth, oldWidth;
-		
+
 	ratio = MovieRecording_GetAspectRatio();
 	width = MovieRecording_GetViewportWidth();
 	width = width - (width % 4);
-	
+
 	oldWidth = GetCVar("MovieRecordingWidth");
 	oldWidth = oldWidth - (oldWidth % 4);
-	
+
 	info.text = width.."x"..floor(width*ratio);
 	info.value = info.text;
 	info.func = MacOptionsFrameResolutionButton_OnClick;
@@ -160,12 +160,12 @@ function MacOptionsFrameResolutionDropDown_Initialize()
 	info.tooltipTitle = MOVIE_RECORDING_FULL_RESOLUTION;
 	UIDropDownMenu_AddButton(info);
 	info.tooltipTitle = nil;
-	
+
 	halfWidth = width / 2;
 	halfWidth = halfWidth - (halfWidth % 4);
 	quarterWidth = width / 4;
 	quarterWidth = quarterWidth - (quarterWidth % 4);
-	
+
 	local resWidth = { 4096, 2560, 1920, 1600, 1344, 1280, 1024, 960, 800, 640, 320 };
 	table.insert(resWidth, tonumber(oldWidth));
 	if halfWidth > 320 then
@@ -174,9 +174,9 @@ function MacOptionsFrameResolutionDropDown_Initialize()
 			table.insert(resWidth, tonumber(quarterWidth));
 		end
 	end
-	
+
 	table.sort(resWidth, greaterThanTableSort);
-	
+
 	local lastWidth = width;
 	for index, value in pairs(resWidth) do
 		if value < width and value ~= lastWidth then
@@ -207,7 +207,7 @@ function MacOptionsFrameFramerateDropDown_OnLoad(self)
 	if ( not IsMacClient() ) then
 		return;
 	end
-	
+
 	UIDropDownMenu_Initialize(self, MacOptionsFrameFramerateDropDown_Initialize);
 	UIDropDownMenu_SetSelectedValue(self, GetCVar("MovieRecordingFramerate"));
 	UIDropDownMenu_SetWidth(self, 110);
@@ -232,9 +232,9 @@ function MacOptionsFrameFramerateDropDown_Initialize()
 	info.value = "4";
 	info.checked = nil;
 	UIDropDownMenu_AddButton(info);
-	
+
 	local fps = { "100", "90", "80", "70", "60", "50", "40", "30", "29.97", "25", "23.98", "20", "15", "10" };
-	
+
 	for index, value in pairs(fps) do
 		info.text = value;
 		info.value = info.text;
@@ -252,7 +252,7 @@ function MacOptionsFrameCodecDropDown_OnLoad(self)
 	if ( not IsMacClient() ) then
 		return;
 	end
-	
+
 	UIDropDownMenu_Initialize(self, MacOptionsFrameCodecDropDown_Initialize);
 	UIDropDownMenu_SetSelectedValue(self, tonumber(GetCVar("MovieRecordingCompression")));
 	UIDropDownMenu_SetWidth(self, 110);
@@ -262,9 +262,9 @@ function MacOptionsFrameCodecDropDown_Initialize()
 	local info = UIDropDownMenu_CreateInfo();
 	info.func = MacOptionsFrameCodecDropDown_OnClick;
 	info.checked = nil;
-	
-	local codecType = { 1835692129, 
-						1635148593, 
+
+	local codecType = { 1835692129,
+						1635148593,
 						1768124260,
 						1836070006 };
 	local codecName = { MOVIE_RECORDING_MJPEG,
@@ -275,7 +275,7 @@ function MacOptionsFrameCodecDropDown_Initialize()
 							MOVIE_RECORDING_H264_TOOLTIP,
 							MOVIE_RECORDING_AIC_TOOLTIP,
 							MOVIE_RECORDING_MPEG4_TOOLTIP };
-						
+
 	for index, value in pairs(codecType) do
 		if ( MovieRecording_IsCodecSupported(value)) then
 			info.text = codecName[index];
@@ -315,7 +315,7 @@ function MacOptionsFrame_SetDefaults()
 	UIDropDownMenu_Initialize(MacOptionsFrameResolutionDropDown, MacOptionsFrameResolutionDropDown_Initialize);
 	local ratio = MovieRecording_GetAspectRatio();
 	UIDropDownMenu_SetSelectedValue(MacOptionsFrameResolutionDropDown, "640x"..floor(640*ratio));
-	
+
 	MacOptionsFrameQualitySlider:SetValue(2);
 	MacOptionsFrame_UpdateTime();
 end
@@ -336,7 +336,7 @@ function MacOptionsFrame_EnableCheckBox(checkBox, setChecked, checked, isWhite)
 	else
 		_G[checkBox:GetName().."Text"]:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
 	end
-	
+
 end
 
 function MacOptionsFrame_UpdateTime()
@@ -351,12 +351,12 @@ function MacOptionsFrame_UpdateTime()
 		else
 			sound = 0;
 		end
-		
-		MacOptionsFrameText2:SetText(MovieRecording_MaxLength(	tonumber(width), 
+
+		MacOptionsFrameText2:SetText(MovieRecording_MaxLength(	tonumber(width),
 																tonumber(framerate),
 																tonumber(sound)));
 
-		local dataRate = MovieRecording_DataRate(	tonumber(width), 
+		local dataRate = MovieRecording_DataRate(	tonumber(width),
 													tonumber(UIDropDownMenu_GetSelectedValue(MacOptionsFrameFramerateDropDown)),
 													tonumber(sound))
 		MacOptionsFrameText4:SetText(dataRate);
@@ -377,7 +377,7 @@ function MacOptionsCancelFrame_OnShow()
 
 	MacOptionsCancelFrame:SetWidth(frameWidth + 40);
 	MacOptionsCancelFrameFileName:SetWidth(frameWidth);
-	MacOptionsCancelFrameQuestion:SetWidth(frameWidth); 
+	MacOptionsCancelFrameQuestion:SetWidth(frameWidth);
 end
 
 function MacOptionsCompressFrame_OnShow()

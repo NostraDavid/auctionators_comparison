@@ -33,7 +33,7 @@ runeMapping = {
 
 function RuneButton_OnLoad (self)
 	RuneFrame_AddRune(RuneFrame, self);
-	
+
 	self.rune = _G[self:GetName().."Rune"];
 	self.fill = _G[self:GetName().."Fill"];
 	self.shine = _G[self:GetName().."ShineTexture"];
@@ -44,20 +44,20 @@ function RuneButton_OnUpdate (self, elapsed)
 	-- Constants that aren't used elsewhere and are actually constant are happiest inside their functions ;)
 	--local RUNE_HEIGHT = 18;
 	--local MIN_RUNE_ALPHA = .4
-	
+
 	local cooldown = _G[self:GetName().."Cooldown"];
 	local start, duration, runeReady = GetRuneCooldown(self:GetID());
-	
+
 	local displayCooldown = (runeReady and 0) or 1;
-	
+
 	CooldownFrame_SetTimer(cooldown, start, duration, displayCooldown);
-	
+
 	-- if ( not enable ) then
 		-- self.fill:SetHeight(RUNE_HEIGHT * ((GetTime() - start)/duration));
 		-- self.fill:SetTexCoord(0, 1, (1 - ((GetTime() - start)/duration)), 1);
 		-- self.fill:SetAlpha(math.max(MIN_RUNE_ALPHA, (GetTime() - start)/duration));
 	-- else
-	
+
 	if ( runeReady ) then
 		-- self.fill:SetHeight(RUNE_HEIGHT);
 		-- self.fill:SetTexCoord(0, 1, 0, 1);
@@ -69,12 +69,12 @@ end
 function RuneButton_Update (self, rune, dontFlash)
 	rune = rune or self:GetID();
 	local runeType = GetRuneType(rune);
-	
+
 	if ( (not dontFlash) and (runeType) and (runeType ~= self.rune.runeType)) then
 		self.shine:SetVertexColor(unpack(runeColors[runeType]));
 		RuneButton_ShineFadeIn(self.shine)
 	end
-	
+
 	if (runeType) then
 		self.rune:SetTexture(iconTextures[runeType]);
 		-- self.fill:SetTexture(iconTextures[runeType]);
@@ -105,17 +105,17 @@ end
 function RuneFrame_OnLoad (self)
 	-- Disable rune frame if not a death knight.
 	local _, class = UnitClass("player");
-	
+
 	if ( class ~= "DEATHKNIGHT" ) then
 		self:Hide();
 	end
-	
+
 	self:RegisterEvent("RUNE_POWER_UPDATE");
 	self:RegisterEvent("RUNE_TYPE_UPDATE");
 	self:RegisterEvent("PLAYER_ENTERING_WORLD");
-	
+
 	self:SetScript("OnEvent", RuneFrame_OnEvent);
-	
+
 	self.runes = {};
 end
 
@@ -150,11 +150,11 @@ end
 
 function RuneFrame_FixRunes	(runeFrame)	--We want to swap where frost and unholy appear'
 	local temp;
-	
+
 	temp = runeFrame.runes[3];
 	runeFrame.runes[3] = runeFrame.runes[5];
 	runeFrame.runes[5] = temp;
-	
+
 	temp = runeFrame.runes[4];
 	runeFrame.runes[4] = runeFrame.runes[6];
 	runeFrame.runes[6] = temp;

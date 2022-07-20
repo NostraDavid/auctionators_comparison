@@ -52,7 +52,7 @@ function MultiActionBar_Update ()
 		MultiBarLeft:Hide();
 		VIEWABLE_ACTION_BAR_PAGES[LEFT_ACTIONBAR_PAGE] = 1;
 	end
-	
+
 	--Adjust VehicleSeatIndicator position
 	if ( VehicleSeatIndicator ) then
 		if ( SHOW_MULTI_ACTIONBAR_3 and SHOW_MULTI_ACTIONBAR_4 ) then
@@ -98,7 +98,7 @@ function MultiActionBar_UpdateGridVisibility ()
 end
 
 function Multibar_EmptyFunc (show)
-	
+
 end
 
 function MultibarGrid_IsVisible ()
@@ -125,4 +125,3 @@ function MultiBar4_IsVisible ()
 	STATE_MultiBar4 = SHOW_MULTI_ACTIONBAR_4;
 	return SHOW_MULTI_ACTIONBAR_4;
 end
-

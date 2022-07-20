@@ -95,11 +95,11 @@ function BuffFrame_Update()
 		end
 	else
 		BuffFrame.numConsolidated = 0;
-		ConsolidatedBuffs:Hide();	
+		ConsolidatedBuffs:Hide();
 	end
 	BuffFrame_UpdateAllBuffAnchors();
 	ConsolidatedBuffs.pauseUpdate = false;
-	
+
 	-- Handle debuffs
 	DEBUFF_ACTUAL_DISPLAY = 0;
 	for i=1, DEBUFF_MAX_DISPLAY do
@@ -221,7 +221,7 @@ function AuraButton_Update(buttonName, index, filter)
 			if ( buff.timeLeft and duration > 30 ) then
 				buff.exitTime = expirationTime - max(10, duration / 10);
 			end
-			buff.expirationTime = expirationTime;			
+			buff.expirationTime = expirationTime;
 			buff.consolidated = true;
 			table.insert(consolidatedBuffs, buff);
 		end
@@ -238,7 +238,7 @@ function AuraButton_OnUpdate(self, elapsed)
 	end
 
 	-- Update duration
-	securecall("AuraButton_UpdateDuration", self, self.timeLeft); -- Taint issue with SecondsToTimeAbbrev 
+	securecall("AuraButton_UpdateDuration", self, self.timeLeft); -- Taint issue with SecondsToTimeAbbrev
 	self.timeLeft = max(self.timeLeft - elapsed, 0);
 
 	if ( BuffFrame.BuffFrameUpdateTime > 0 ) then
@@ -279,10 +279,10 @@ function BuffFrame_UpdateAllBuffAnchors()
 	if ( BuffFrame.numConsolidated > 0 ) then
 		slack = slack + 1;	-- one icon for all consolidated buffs
 	end
-	
+
 	for i = 1, BUFF_ACTUAL_DISPLAY do
 		buff = _G["BuffButton"..i];
-		if ( buff.consolidated ) then	
+		if ( buff.consolidated ) then
 			if ( buff.parent == BuffFrame ) then
 				buff:SetParent(ConsolidatedBuffsContainer);
 				buff.parent = ConsolidatedBuffsContainer;
@@ -329,7 +329,7 @@ end
 function ConsolidatedBuffs_UpdateAllAnchors()
 	local buff, previousBuff, aboveBuff;
 	local numBuffs = 0;
-	
+
 	for _, buff in pairs(consolidatedBuffs) do
 		numBuffs = numBuffs + 1;
 		if ( buff.parent == BuffFrame ) then
@@ -381,7 +381,7 @@ end
 function TemporaryEnchantFrame_Hide()
 	if ( BuffFrame.numEnchants > 0 ) then
 		BuffFrame.numEnchants = 0;
-		BuffFrame_Update();		
+		BuffFrame_Update();
 	end
 	TempEnchant1:Hide();
 	TempEnchant1Duration:Hide();
@@ -497,7 +497,7 @@ function ConsolidatedBuffs_OnUpdate(self)
 			ConsolidatedBuffsTooltip:Hide();
 		end
 	end
-	
+
 	-- check exit times
 	if ( not ConsolidatedBuffs.pauseUpdate ) then
 		local needUpdate = false;
@@ -510,14 +510,14 @@ function ConsolidatedBuffs_OnUpdate(self)
 				needUpdate = true;
 			end
 		end
-		if ( needUpdate ) then			
+		if ( needUpdate ) then
 			if ( #consolidatedBuffs == 0 ) then
 				BuffFrame.numConsolidated = 0;
 				ConsolidatedBuffs:Hide();
 			else
 				BuffFrame_UpdateAllBuffAnchors();
 				ConsolidatedBuffsCount:SetText(#consolidatedBuffs);
-			end			
+			end
 		end
 	end
 end
@@ -528,10 +528,10 @@ function ConsolidatedBuffs_OnShow()
 	BuffFrame_UpdateAllBuffAnchors();
 end
 
-function ConsolidatedBuffs_OnEnter(self)			
+function ConsolidatedBuffs_OnEnter(self)
 	ConsolidatedBuffsTooltip:SetPoint("TOPLEFT", self, "BOTTOMLEFT", 0, 0);
 	-- check expiration times
-	local timeNow = GetTime();	
+	local timeNow = GetTime();
 	for buffIndex, buff in pairs(consolidatedBuffs) do
 		if ( buff.timeLeft ) then
 			buff.timeLeft = buff.expirationTime - timeNow;
@@ -543,7 +543,7 @@ function ConsolidatedBuffs_OnEnter(self)
 end
 
 function ConsolidatedBuffs_OnHide(self)
-	self.mousedOver = nil;	
+	self.mousedOver = nil;
 	ConsolidatedBuffsTooltip:Hide();
 	TemporaryEnchantFrame:SetPoint("TOPRIGHT", ConsolidatedBuffs, "TOPRIGHT", 0, 0);
 	BuffFrame_UpdateAllBuffAnchors();

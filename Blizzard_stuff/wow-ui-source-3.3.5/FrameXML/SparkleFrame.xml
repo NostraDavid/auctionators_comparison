@@ -16,13 +16,13 @@
 	</Texture>
 	<Texture name="SparkleTextureKindaSmall" inherits="SparkleTextureNormal" virtual="true">
 		<Size x="10" y="10"/>
-	</Texture>	
+	</Texture>
 	<Texture name="SparkleTextureSmall" inherits="SparkleTextureNormal" virtual="true">
 		<Size x="7" y="7"/>
-	</Texture>	
+	</Texture>
 	<Texture name="SparkleTextureTiny" inherits="SparkleTextureNormal" virtual="true">
 		<Size x="4" y="4"/>
-	</Texture>		
+	</Texture>
 	<Texture name="SparkleTextureSuperHuge" inherits="SparkleTextureNormal" virtual="true">
 		<Size x="64" y="64"/>
 	</Texture>

@@ -94,11 +94,11 @@
 					</OnEnter>
 					<OnLeave>
 						GameTooltip:Hide();
-					</OnLeave>						
+					</OnLeave>
 				</Scripts>
 				<NormalFont style="GameFontHighlightSmallRight"/>
 				<PushedTextOffset>
-					<AbsDimension x="0" y="0"/> 
+					<AbsDimension x="0" y="0"/>
 				</PushedTextOffset>
 			</Button>
 			<CheckButton name="$parentButton" hidden="true">
@@ -480,9 +480,9 @@
 							<Anchor point="TOP">
 								<Offset>
 									<AbsDimension x="0" y="-38"/>
-								</Offset>							
+								</Offset>
 							</Anchor>
-						</Anchors>					
+						</Anchors>
 						<Layers>
 							<Layer level="ARTWORK">
 								<FontString name="$parentText" inherits="GameFontNormal" text="INBOX_TOO_MUCH_MAIL">
@@ -494,19 +494,19 @@
 										</Anchor>
 									</Anchors>
 									<Color r="1.0" g="0.1" b="0.1" a="1.0"/>
-								</FontString>									
+								</FontString>
 								<Texture file="Interface\DialogFrame\UI-Dialog-Icon-AlertNew">
 									<Size>
 										<AbsDimension x="32" y="32"/>
-									</Size>		
+									</Size>
 									<Anchors>
 										<Anchor point="RIGHT" relativeTo="$parentText" relativePoint="LEFT">
 											<Offset>
 												<AbsDimension x="0" y="-2"/>
-											</Offset>					
+											</Offset>
 										</Anchor>
 									</Anchors>
-								</Texture>						
+								</Texture>
 							</Layer>
 						</Layers>
 						<Scripts>
@@ -521,7 +521,7 @@
 								GameTooltip:Hide();
 							</OnLeave>
 						</Scripts>
-					</Frame>				
+					</Frame>
 					<Frame name="MailItem1" inherits="MailItemTemplate">
 						<Anchors>
 							<Anchor point="TOPLEFT">
@@ -851,7 +851,7 @@
 										if ( CursorHasItem() ) then
 											SendMailAttachmentButton_OnDropAny();
 										end
-									</OnMouseUp> 
+									</OnMouseUp>
 								</Scripts>
 							</Frame>
 						</ScrollChild>
@@ -967,7 +967,7 @@
 							<OnLoad>
 								SmallMoneyFrame_OnLoad(self);
 								MoneyFrame_SetType(self, "STATIC");
-								MoneyFrame_Update("SendMailCostMoneyFrame", GetSendMailPrice());	
+								MoneyFrame_Update("SendMailCostMoneyFrame", GetSendMailPrice());
 							</OnLoad>
 						</Scripts>
 					</Frame>
@@ -1240,7 +1240,7 @@
 						if ( CursorHasItem() ) then
 							SendMailAttachmentButton_OnDropAny();
 						end
-					</OnMouseUp> 
+					</OnMouseUp>
 				</Scripts>
 			</Frame>
 			<Button name="InboxCloseButton" inherits="UIPanelCloseButton">
@@ -1300,7 +1300,7 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
-<!-- Stationery Popup -->	
+<!-- Stationery Popup -->
 	<Frame name="StationeryPopupFrame" toplevel="true" parent="UIParent" movable="true" enableMouse="true" hidden="true">
 		<Size>
 			<AbsDimension x="220" y="298"/>
@@ -2061,4 +2061,3 @@
 		</Scripts>
 	</Frame>
 </Ui>
-

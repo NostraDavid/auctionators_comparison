@@ -366,7 +366,7 @@
 										<Anchor point="BOTTOMLEFT" relativeTo="PVPHonorKillsLabel" relativePoint="TOPRIGHT">
 											<Offset x="90" y="10"/>
 										</Anchor>
-									</Anchors>	
+									</Anchors>
 								</FontString>
 								<FontString name="$parentYesterdayKills" inherits="GameFontHighlightSmall">
 									<Size>
@@ -399,7 +399,7 @@
 										<Anchor point="BOTTOMLEFT" relativeTo="PVPHonorKillsLabel" relativePoint="TOPRIGHT">
 											<Offset x="170" y="10"/>
 										</Anchor>
-									</Anchors>	
+									</Anchors>
 								</FontString>
 								<FontString name="$parentLifetimeKills" inherits="GameFontHighlightSmall">
 									<Size>
@@ -617,7 +617,7 @@
 						<FontString name="$parentName" inherits="GameFontNormal" justifyH="LEFT">
 							<Size>
 								<AbsDimension x="0" y="12"/>
-							</Size>						
+							</Size>
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="PVPTeamDetails" relativePoint="TOPLEFT">
 									<Offset>
@@ -750,7 +750,7 @@
 								</Anchor>
 							</Anchors>
 						</FontString>
-					</Layer>	
+					</Layer>
 				</Layers>
 				<Frames>
 					<Frame name="PVPDropDown" inherits="UIDropDownMenuTemplate"/>
@@ -818,7 +818,7 @@
 						</Anchors>
 						<Scripts>
 							<OnLoad>
-								WhoFrameColumn_SetWidth(self, 75);							
+								WhoFrameColumn_SetWidth(self, 75);
 								self:GetFontString():SetWidth(75);	--Deal with a problem of size in Russian client
 								self.sortType = "won";
 							</OnLoad>

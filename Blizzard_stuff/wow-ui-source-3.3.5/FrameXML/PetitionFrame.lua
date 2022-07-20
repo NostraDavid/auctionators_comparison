@@ -15,7 +15,7 @@ function PetitionFrame_Update(self)
 			PetitionFrameInstructions:SetText(ARENA_PETITION_LEADER_INSTRUCTIONS);
 		end
 		PetitionFrameRenameButton:Show();
-	else	
+	else
 		PetitionFrameRequestButton:Hide();
 		PetitionFrameSignButton:Show();
 		if ( petitionType == "guild" ) then
@@ -54,7 +54,7 @@ function PetitionFrame_Update(self)
 		memberText = _G["PetitionFrameMemberName"..i];
 		if ( i <= numNames ) then
 			memberText:SetText(GetPetitionNameInfo(i));
-		else			
+		else
 			memberText:SetText(NOT_YET_SIGNED);
 		end
 		if ( i == minSignatures ) then
@@ -70,4 +70,3 @@ function PetitionFrame_Update(self)
 		PetitionFrameRequestButton:Enable();
 	end
 end
-

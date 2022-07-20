@@ -145,7 +145,6 @@ function InspectTalentFramePointsBar_OnEnter(self)
 			);
 		end
 	end
-	
+
 	GameTooltip:Show();
 end
-

@@ -17,10 +17,10 @@
 			<Layer level="BACKGROUND">
 				<Texture setAllPoints="true">
 					<Color r="0" g="0" b="0" a="0"/>
-				</Texture>		
+				</Texture>
 			</Layer>
 		</Layers>
-		
+
 		<Frames>
 			<StatusBar name="MovieProgressBar" drawLayer="BORDER" virtual="true" minValue="0" maxValue="1" defaultValue="0">
 				<Size>
@@ -37,7 +37,7 @@
 					<Layer level="BACKGROUND">
 						<Texture setAllPoints="true">
 							<Color r="0" g="0" b="0" a="0.5"/>
-						</Texture>		
+						</Texture>
 					</Layer>
 					<Layer level="ARTWORK">
 						<FontString name="$parentText" inherits="GameFontHighlight" text="Compressing">

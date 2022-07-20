@@ -57,7 +57,7 @@ function ToggleBag(id)
 	if ( IsOptionFrameOpen() ) then
 		return;
 	end
-	
+
 	local size = GetContainerNumSlots(id);
 	if ( size > 0 or id == KEYRING_CONTAINER ) then
 		local containerShowing;
@@ -78,7 +78,7 @@ function ToggleBackpack()
 	if ( IsOptionFrameOpen() ) then
 		return;
 	end
-	
+
 	if ( IsBagOpen(0) ) then
 		for i=1, NUM_CONTAINER_FRAMES, 1 do
 			local frame = _G["ContainerFrame"..i];
@@ -114,8 +114,8 @@ function ContainerFrame_OnHide(self)
 			bagButton:SetChecked(0);
 		else
 			-- If its a bank bag then update its highlight
-			
-			UpdateBagButtonHighlight(self:GetID()); 
+
+			UpdateBagButtonHighlight(self:GetID());
 		end
 	end
 	ContainerFrame1.bagsShown = ContainerFrame1.bagsShown - 1;
@@ -153,7 +153,7 @@ function ContainerFrame_OnShow(self)
 
 	if ( self:GetID() == 0 ) then
 		MainMenuBarBackpackButton:SetChecked(1);
-	elseif ( self:GetID() <= NUM_BAG_SLOTS ) then 
+	elseif ( self:GetID() <= NUM_BAG_SLOTS ) then
 		local button = _G["CharacterBag"..(self:GetID() - 1).."Slot"];
 		if ( button ) then
 			button:SetChecked(1);
@@ -169,7 +169,7 @@ function ContainerFrame_OnShow(self)
 		PlaySound("igBackPackOpen");
 	end
  	ContainerFrame_Update(self);
-	
+
 	-- If there are tokens watched then decide if we should show the bar
 	if ( ManageBackpackTokenFrame ) then
 		ManageBackpackTokenFrame();
@@ -240,7 +240,7 @@ function OpenBackpack()
 	if ( not ContainerFrame1.backpackWasOpen ) then
 		ToggleBackpack();
 	end
-	
+
 	return ContainerFrame1.backpackWasOpen;
 end
 
@@ -277,25 +277,25 @@ function ContainerFrame_Update(frame)
 	local tooltipOwner = GameTooltip:GetOwner();
 	for i=1, frame.size, 1 do
 		itemButton = _G[name.."Item"..i];
-		
+
 		texture, itemCount, locked, quality, readable = GetContainerItemInfo(id, itemButton:GetID());
 		isQuestItem, questId, isActive = GetContainerItemQuestInfo(id, itemButton:GetID());
-		
+
 		SetItemButtonTexture(itemButton, texture);
 		SetItemButtonCount(itemButton, itemCount);
 		SetItemButtonDesaturated(itemButton, locked, 0.5, 0.5, 0.5);
-		
+
 		questTexture = _G[name.."Item"..i.."IconQuestTexture"];
 		if ( questId and not isActive ) then
 			questTexture:SetTexture(TEXTURE_ITEM_QUEST_BANG);
 			questTexture:Show();
 		elseif ( questId or isQuestItem ) then
 			questTexture:SetTexture(TEXTURE_ITEM_QUEST_BORDER);
-			questTexture:Show();		
+			questTexture:Show();
 		else
 			questTexture:Hide();
 		end
-		
+
 		if ( texture ) then
 			ContainerFrame_UpdateCooldown(id, itemButton);
 			itemButton.hasItem = 1;
@@ -304,7 +304,7 @@ function ContainerFrame_Update(frame)
 			itemButton.hasItem = nil;
 		end
 		itemButton.readable = readable;
-		
+
 		if ( itemButton == tooltipOwner ) then
 			itemButton.UpdateTooltip(itemButton);
 		end
@@ -318,7 +318,7 @@ function ContainerFrame_UpdateLocked(frame)
 	local texture, itemCount, locked, quality, readable;
 	for i=1, frame.size, 1 do
 		itemButton = _G[name.."Item"..i];
-		
+
 		texture, itemCount, locked, quality, readable = GetContainerItemInfo(id, itemButton:GetID());
 
 		SetItemButtonDesaturated(itemButton, locked, 0.5, 0.5, 0.5);
@@ -395,7 +395,7 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 		else
 			bgTexture1Slot:Hide();
 			bgTextureTop:Show();
-	
+
 			-- Not the backpack
 			-- Set whether or not its a bank bag
 			local bagTextureSuffix = "";
@@ -404,7 +404,7 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 			elseif ( id == KEYRING_CONTAINER ) then
 				bagTextureSuffix = "-Keyring";
 			end
-			
+
 			-- Set textures
 			bgTextureTop:SetTexture("Interface\\ContainerFrame\\UI-Bag-Components"..bagTextureSuffix);
 			for i=1, MAX_BG_TEXTURES do
@@ -413,8 +413,8 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 			end
 			bgTextureBottom:SetTexture("Interface\\ContainerFrame\\UI-Bag-Components"..bagTextureSuffix);
 			-- Hide the moneyframe since its not the backpack
-			_G[name.."MoneyFrame"]:Hide();	
-			
+			_G[name.."MoneyFrame"]:Hide();
+
 			local bgTextureCount, height;
 			local rowHeight = 41;
 			-- Subtract one, since the top texture contains one row already
@@ -442,7 +442,7 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 			end
 			-- Calculate the number of background textures we're going to need
 			bgTextureCount = ceil(remainingRows/ROWS_IN_BG_TEXTURE);
-			
+
 			local middleBgHeight = 0;
 			-- If one row only special case
 			if ( rows == 1 ) then
@@ -479,15 +479,15 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 				bgTextureBottom:SetPoint("TOP", bgTextureMiddle:GetName(), "BOTTOM", 0, 0);
 				bgTextureBottom:Show();
 			end
-				
+
 			-- Set the frame height
-			frame:SetHeight(bgTextureTop:GetHeight()+bgTextureBottom:GetHeight()+middleBgHeight);	
+			frame:SetHeight(bgTextureTop:GetHeight()+bgTextureBottom:GetHeight()+middleBgHeight);
 		end
 	end
 
 	if (size == 1) then
 		-- Halloween gag gift
-		frame:SetHeight(70);	
+		frame:SetHeight(70);
 		frame:SetWidth(99);
 		_G[frame:GetName().."Name"]:SetText("");
 		SetBagPortraitTexture(_G[frame:GetName().."Portrait"], id);
@@ -520,12 +520,12 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 				else
 					itemButton:SetPoint("BOTTOMRIGHT", name, "BOTTOMRIGHT", -12, 9);
 				end
-				
+
 			else
 				if ( mod((i-1), columns) == 0 ) then
-					itemButton:SetPoint("BOTTOMRIGHT", name.."Item"..(i - columns), "TOPRIGHT", 0, 4);	
+					itemButton:SetPoint("BOTTOMRIGHT", name.."Item"..(i - columns), "TOPRIGHT", 0, 4);
 				else
-					itemButton:SetPoint("BOTTOMRIGHT", name.."Item"..(i - 1), "BOTTOMLEFT", -5, 0);	
+					itemButton:SetPoint("BOTTOMRIGHT", name.."Item"..(i - 1), "BOTTOMLEFT", -5, 0);
 				end
 			end
 			itemButton:Show();
@@ -534,7 +534,7 @@ function ContainerFrame_GenerateFrame(frame, size, id)
 	for i=size + 1, MAX_CONTAINER_ITEMS, 1 do
 		_G[name.."Item"..i]:Hide();
 	end
-	
+
 	frame:SetID(id);
 	_G[frame:GetName().."PortraitButton"]:SetID(id);
 
@@ -552,12 +552,12 @@ function updateContainerFrameAnchors()
 	if ( BankFrame:IsShown() ) then
 		leftLimit = BankFrame:GetRight() - 25;
 	end
-	
+
 	while ( containerScale > CONTAINER_SCALE ) do
 		screenHeight = GetScreenHeight() / containerScale;
 		-- Adjust the start anchor for bags depending on the multibars
-		xOffset = CONTAINER_OFFSET_X / containerScale; 
-		yOffset = CONTAINER_OFFSET_Y / containerScale; 
+		xOffset = CONTAINER_OFFSET_X / containerScale;
+		yOffset = CONTAINER_OFFSET_Y / containerScale;
 		-- freeScreenHeight determines when to start a new column of bags
 		freeScreenHeight = screenHeight - yOffset;
 		leftMostPoint = screenWidth - xOffset;
@@ -579,11 +579,11 @@ function updateContainerFrameAnchors()
 			break;
 		end
 	end
-	
+
 	if ( containerScale < CONTAINER_SCALE ) then
 		containerScale = CONTAINER_SCALE;
 	end
-	
+
 	screenHeight = GetScreenHeight() / containerScale;
 	-- Adjust the start anchor for bags depending on the multibars
 	xOffset = CONTAINER_OFFSET_X / containerScale;
@@ -604,7 +604,7 @@ function updateContainerFrameAnchors()
 			frame:SetPoint("BOTTOMRIGHT", frame:GetParent(), "BOTTOMRIGHT", -(column * CONTAINER_WIDTH) - xOffset, yOffset );
 		else
 			-- Anchor to the previous bag
-			frame:SetPoint("BOTTOMRIGHT", ContainerFrame1.bags[index - 1], "TOPRIGHT", 0, CONTAINER_SPACING);	
+			frame:SetPoint("BOTTOMRIGHT", ContainerFrame1.bags[index - 1], "TOPRIGHT", 0, CONTAINER_SPACING);
 		end
 		freeScreenHeight = freeScreenHeight - frame:GetHeight() - VISIBLE_CONTAINER_SPACING;
 	end
@@ -633,14 +633,14 @@ function ContainerFrame_GetExtendedPriceString(itemButton, isEquipped, quantity)
 	if ( not refundSec or ((honorPoints == 0) and (arenaPoints == 0) and (itemCount == 0) and (money == 0)) ) then
 		return false;
 	end
-	
+
 	local count = itemButton.count or 1;
 	honorPoints, arenaPoints, itemCount = (honorPoints or 0) * quantity, (arenaPoints or 0) * quantity, (itemCount or 0) * quantity;
 	local itemsString;
 
 	if ( honorPoints and honorPoints ~= 0 ) then
 		local factionGroup = UnitFactionGroup("player");
-		if ( factionGroup ) then	
+		if ( factionGroup ) then
 			local pointsTexture = "Interface\\PVPFrame\\PVP-Currency-"..factionGroup;
 			itemsString = " |T" .. pointsTexture .. ":0:0:0:-1|t" ..  honorPoints .. " " .. HONOR_POINTS;
 		end
@@ -653,7 +653,7 @@ function ContainerFrame_GetExtendedPriceString(itemButton, isEquipped, quantity)
 			itemsString = " |TInterface\\PVPFrame\\PVP-ArenaPoints-Icon:0:0:0:-1|t" .. arenaPoints .. " " .. ARENA_POINTS;
 		end
 	end
-	
+
 	local maxQuality = 0;
 	for i=1, itemCount, 1 do
 		local itemTexture, itemQuantity, itemLink = GetContainerItemPurchaseItem(bag, slot, i, isEquipped);
@@ -795,13 +795,13 @@ function OpenAllBags(forceOpen)
 	if ( not UIParent:IsShown() ) then
 		return;
 	end
-	
+
 	local bagsOpen = 0;
 	local totalBags = 1;
 	for i=1, NUM_CONTAINER_FRAMES, 1 do
 		local containerFrame = _G["ContainerFrame"..i];
 		local bagButton = _G["CharacterBag"..(i -1).."Slot"];
-		if ( (i <= NUM_BAG_FRAMES) and GetContainerNumSlots(bagButton:GetID() - CharacterBag0Slot:GetID() + 1) > 0) then		
+		if ( (i <= NUM_BAG_FRAMES) and GetContainerNumSlots(bagButton:GetID() - CharacterBag0Slot:GetID() + 1) > 0) then
 			totalBags = totalBags + 1;
 		end
 		if ( containerFrame:IsShown() ) then
@@ -862,7 +862,7 @@ function ToggleKeyRing()
 	if ( IsOptionFrameOpen() ) then
 		return;
 	end
-	
+
 	local shownContainerID = IsBagOpen(KEYRING_CONTAINER);
 	if ( shownContainerID ) then
 		_G["ContainerFrame"..shownContainerID]:Hide();
@@ -898,7 +898,7 @@ function GetKeyRingSize()
 	else
 		-- Only expand if the number of keys in the keyring exceed or equal the max slot filled
 		size = maxSlotNumberFilled + (4 - modulo);
-	end	
+	end
 	size = min(size, numKeyringSlots);
 
 	return size;

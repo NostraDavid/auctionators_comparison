@@ -27,7 +27,7 @@
 		<FontHeight>
 			<AbsValue val="13"/>
 		</FontHeight>
-	</Font>	
+	</Font>
 	<Font name="SystemFont_Shadow_Small" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<Shadow>
 			<Offset>
@@ -49,7 +49,7 @@
 		<FontHeight>
 			<AbsValue val="10"/>
 		</FontHeight>
-	</Font>	
+	</Font>
 	<Font name="SystemFont_Med1" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<FontHeight>
 			<AbsValue val="12"/>
@@ -81,7 +81,7 @@
 		<FontHeight>
 			<AbsValue val="13"/>
 		</FontHeight>
-	</Font>	
+	</Font>
 	<Font name="SystemFont_Med3" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<FontHeight>
 			<AbsValue val="14"/>
@@ -227,7 +227,7 @@
 			<AbsValue val="18"/>
 		</FontHeight>
 	</Font>
-	
+
 	<Font name="GameTooltipHeader" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<FontHeight>
 			<AbsValue val="14"/>
@@ -269,7 +269,7 @@
 		<FontHeight>
 			<AbsValue val="10"/>
 		</FontHeight>
-	</Font>	
+	</Font>
 	<Font name="ReputationDetailFont" font="Fonts\FRIZQT__.TTF" virtual="true">
 		<FontHeight>
 			<AbsValue val="10"/>
@@ -325,5 +325,5 @@
 		<FontHeight>
 			<AbsValue val="11"/>
 		</FontHeight>
-	</Font>	
+	</Font>
 </Ui>

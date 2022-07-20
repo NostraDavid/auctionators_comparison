@@ -34,7 +34,7 @@ function DurabilityFrame_SetAlerts()
 		if ( color ) then
 			texture:SetVertexColor(color.r, color.g, color.b, 1.0);
 			if ( value.showSeparate ) then
-				texture:Show();			
+				texture:Show();
 			else
 				showDurability = 1;
 			end
@@ -42,7 +42,7 @@ function DurabilityFrame_SetAlerts()
 		else
 			texture:SetVertexColor(1.0, 1.0, 1.0, 0.5);
 			if ( value.showSeparate ) then
-				texture:Hide();			
+				texture:Hide();
 			end
 		end
 	end

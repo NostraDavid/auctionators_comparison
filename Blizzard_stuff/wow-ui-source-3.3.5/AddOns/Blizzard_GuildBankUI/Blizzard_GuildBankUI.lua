@@ -121,12 +121,12 @@ function GuildBankFrame_OnEvent(self, event, ...)
 		GuildBankFrame_Update();
 	elseif ( event == "GUILDBANK_UPDATE_TABS" or event == "GUILD_ROSTER_UPDATE" ) then
 		if ( event == "GUILD_ROSTER_UPDATE" and not select(1, ...) and GuildBankFrame.noViewableTabs and GuildBankFrame.mode == "bank" ) then
-			-- if rank changed while at the bank tab and not having any viewable tabs, query for new item data 
+			-- if rank changed while at the bank tab and not having any viewable tabs, query for new item data
 			QueryGuildBankTab(GetCurrentGuildBankTab());
 		end
-		
+
 		GuildBankFrame_SelectAvailableTab();
-		
+
 		if ( GuildBankFrameBuyInfo:IsShown() ) then
 			GuildBankFrame_UpdateTabBuyingInfo();
 		end
@@ -187,7 +187,7 @@ function GuildBankFrame_Update()
 	if ( GuildBankFrame.mode == "bank" ) then
 		-- Determine whether its the buy tab or not
 		GuildBankFrameLog:Hide();
-		GuildBankInfo:Hide();	
+		GuildBankInfo:Hide();
 		local tab = GetCurrentGuildBankTab();
 		if ( GuildBankFrame.noViewableTabs ) then
 			GuildBankFrame_HideColumns();
@@ -218,7 +218,7 @@ function GuildBankFrame_Update()
 			GuildBankErrorMessage:Hide();
 		end
 
-		-- Update the tab items		
+		-- Update the tab items
 		local button, index, column;
 		local texture, itemCount, locked;
 		for i=1, MAX_GUILDBANK_SLOTS_PER_TAB do
@@ -243,7 +243,7 @@ function GuildBankFrame_Update()
 	elseif ( GuildBankFrame.mode == "log" or GuildBankFrame.mode == "moneylog" ) then
 		GuildBankFrame_HideColumns();
 		GuildBankFrameBuyInfo:Hide();
-		GuildBankInfo:Hide();	
+		GuildBankInfo:Hide();
 		if ( GuildBankFrame.noViewableTabs and GuildBankFrame.mode == "log" ) then
 			GuildBankErrorMessage:SetText(NO_VIEWABLE_GUILDBANK_LOGS);
 			GuildBankErrorMessage:Show();
@@ -351,7 +351,7 @@ function GuildBankFrame_UpdateTabs()
 			iconTexture:SetTexture("Interface\\GuildBankFrame\\UI-GuildBankFrame-NewTab");
 			tabButton.tooltip = BUY_GUILDBANK_TAB;
 			tab:Show();
-			
+
 			if ( disableAll or GuildBankFrame.mode == "log" or GuildBankFrame.mode == "tabinfo" ) then
 				tabButton:SetChecked(nil);
 				SetDesaturation(iconTexture, 1);
@@ -405,7 +405,7 @@ function GuildBankFrame_UpdateTabs()
 				SetDesaturation(iconTexture, 1);
 				tabButton:SetChecked(nil);
 			end
-			
+
 		end
 		if ( unviewableCount == numTabs and not IsGuildLeader() ) then
 			--Can't view any tabs so hide everything
@@ -424,7 +424,7 @@ function GuildBankFrame_UpdateTabs()
 		withdrawalText = nil;
 	elseif ( GuildBankFrame.mode == "log" ) then
 		if ( titleText ) then
-			titleText = format(GUILDBANK_LOG_TITLE_FORMAT, titleText);	
+			titleText = format(GUILDBANK_LOG_TITLE_FORMAT, titleText);
 		end
 	elseif ( GuildBankFrame.mode == "tabinfo" ) then
 		withdrawalText = nil;
@@ -566,7 +566,7 @@ function GuildBankFrame_UpdateLog()
 	local tab = GetCurrentGuildBankTab();
 	local numTransactions = GetNumGuildBankTransactions(tab);
 	local type, name, itemLink, count, tab1, tab2, year, month, day, hour;
-	
+
 	local msg;
 	GuildBankMessageFrame:Clear();
 	for i=1, numTransactions, 1 do
@@ -711,9 +711,9 @@ function GuildBankPopupFrame_Update(tab)
 	local guildBankPopupIcon, guildBankPopupButton;
 	local guildBankPopupOffset = FauxScrollFrame_GetOffset(GuildBankPopupScrollFrame);
 	local index;
-	
+
 	local _, tabTexture  = GetGuildBankTabInfo(GetCurrentGuildBankTab());
-	
+
 	-- Icon list
 	local texture;
 	for i=1, NUM_GUILDBANK_ICONS_SHOWN do
@@ -751,7 +751,7 @@ function GuildBankPopupFrame_Update(tab)
 			end
 		end
 	end
-	
+
 	-- Scrollbar stuff
 	FauxScrollFrame_Update(GuildBankPopupScrollFrame, ceil(numguildBankIcons / NUM_GUILDBANK_ICONS_PER_ROW) , NUM_GUILDBANK_ICON_ROWS, GUILDBANK_ICON_ROW_HEIGHT );
 end
@@ -785,4 +785,3 @@ end
 function GuildBankPopupFrame_CancelEdit()
 	GuildBankPopupFrame:Hide();
 end
-

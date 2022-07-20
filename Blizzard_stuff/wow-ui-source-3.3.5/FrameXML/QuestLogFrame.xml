@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	<Script file="QuestLogFrame.lua"/>
-	
+
 	<Button name="QuestLogTitleButtonTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="299" y="16"/>
@@ -38,7 +38,7 @@
 					</Size>
 					<Anchors>
 						<Anchor point="LEFT"/>
-					</Anchors> 
+					</Anchors>
 				</Texture>
 			</Layer>
 		</Layers>
@@ -93,7 +93,7 @@
 						<AbsDimension x="20" y="0"/>
 					</Offset>
 				</Anchor>
-			</Anchors> 
+			</Anchors>
 		</ButtonText>
 		<NormalFont style="GameFontNormalLeft"/>
 		<HighlightFont style="GameFontHighlightLeft"/>
@@ -217,7 +217,7 @@
 							</Offset>
 						</Anchor>
 					</Anchors>
-				</Texture>		
+				</Texture>
 			</Layer>
 			<Layer level="BORDER">
 				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopLeft">
@@ -227,7 +227,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\PaperDollInfoFrame\UI-Character-General-TopRight">
 					<Size>
 						<AbsDimension x="94" y="256"/>
@@ -566,7 +566,7 @@
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 					<TexCoords left="0.0" right="1.0" top="0.0" bottom="0.86914"/>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\QuestFrame\UI-QuestLogDualPane-RIGHT">
 					<Size>
 						<AbsDimension x="170" y="445"/>
@@ -660,7 +660,7 @@
 								<Anchor point="RIGHT">
 									<Offset>
 										<AbsDimension x="-7" y="0"/>
-									</Offset>								
+									</Offset>
 								</Anchor>
 							</Anchors>
 						</Texture>
@@ -816,7 +816,7 @@
 							<Size>
 								<AbsDimension x="100" y="8"/>
 							</Size>
-							<Anchors>								
+							<Anchors>
 								<Anchor point="RIGHT" relativeTo="QuestLogCountTopRight" relativePoint="LEFT"/>
 								<Anchor point="LEFT" relativeTo="QuestLogCountTopLeft" relativePoint="RIGHT"/>
 							</Anchors>
@@ -836,7 +836,7 @@
 							<Size>
 								<AbsDimension x="100" y="8"/>
 							</Size>
-							<Anchors>								
+							<Anchors>
 								<Anchor point="RIGHT" relativeTo="QuestLogCountBottomRight" relativePoint="LEFT"/>
 								<Anchor point="LEFT" relativeTo="QuestLogCountBottomLeft" relativePoint="RIGHT"/>
 							</Anchors>

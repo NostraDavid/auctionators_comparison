@@ -18,7 +18,7 @@ BN_TOAST_RIGHT_OFFSET = -1;
 BN_TOAST_LEFT_OFFSET = 1;
 BN_TOAST_TOP_BUFFER = 20;	-- the minimum distance in pixels from the toast to the top edge of the screen
 BN_TOAST_MAX_LINE_WIDTH = 196;
-	
+
 function BNet_OnLoad(self)
 	self:RegisterEvent("BN_TOON_NAME_UPDATED");
 	self:RegisterEvent("BN_NEW_PRESENCE");
@@ -40,7 +40,7 @@ end
 
 -- BNET toast
 function BNToastFrame_OnEvent(self, event, arg1)
-	if ( event == "BN_FRIEND_ACCOUNT_ONLINE" ) then	
+	if ( event == "BN_FRIEND_ACCOUNT_ONLINE" ) then
 		BNToastFrame_AddToast(BN_TOAST_TYPE_ONLINE, arg1);
 	elseif ( event == "BN_FRIEND_ACCOUNT_OFFLINE" ) then
 		BNToastFrame_AddToast(BN_TOAST_TYPE_OFFLINE, arg1);
@@ -159,7 +159,7 @@ function BNToastFrame_Show()
 		local presenceID, givenName, surname, toonName, toonID, client, isOnline, lastOnline, isAFK, isDND, messageText = BNGetFriendInfoByID(toastData);
 		if ( not messageText or messageText == "" ) then
 			return;
-		end	
+		end
 		BNToastFrameIconTexture:SetTexCoord(0, 0.25, 0, 0.5);
 		topLine:Show();
 		topLine:SetFormattedText(BATTLENET_NAME_FORMAT, givenName, surname);
@@ -254,7 +254,7 @@ function BNToastFrame_UpdateAnchor(forceAnchor)
 	end
 end
 
-function BNToastFrame_OnClick(self)	
+function BNToastFrame_OnClick(self)
 	-- hide the tooltip if necessary
 	if ( BNToastFrame.tooltip and GameTooltip:GetOwner() == BNToastFrame ) then
 		GameTooltip:Hide();
@@ -333,7 +333,7 @@ function BNet_InitiateReport(presenceID, reportType)
 	reportFrame.type = reportType;
 	reportFrame.name = fullName;
 	BNetReportFrameCommentBox:SetText("");
-	
+
 	if ( reportType == "SPAM" or reportType == "NAME" ) then
 		StaticPopup_Show("CONFIRM_BNET_REPORT", format(_G["BNET_REPORT_CONFIRM_"..reportType], fullName));
 	elseif ( reportType == "ABUSE" ) then

@@ -5,7 +5,7 @@
 function PetFrame_OnLoad (self)
 	self.noTextPrefix = true;
 	UnitFrame_Initialize(self, "pet", PetName, PetPortrait,
-						 PetFrameHealthBar, PetFrameHealthBarText, 
+						 PetFrameHealthBar, PetFrameHealthBarText,
 						 PetFrameManaBar, PetFrameManaBarText,
 						 PetFrameFlash);
 
@@ -27,7 +27,7 @@ function PetFrame_OnLoad (self)
 		ToggleDropDownMenu(1, nil, PetFrameDropDown, "PetFrame", 44, 8);
 	end
 	SecureUnitButton_OnLoad(self, "pet", showmenu);
-	
+
 	local _, class = UnitClass("player");
 	if ( class == "DEATHKNIGHT"  or class == "DRUID" ) then	--Death Knights need the Pet frame moved down for their Runes and Druids need it moved down for the secondary power bar.
 		self:SetPoint("TOPLEFT", PlayerFrame, "TOPLEFT", 60, -75);
@@ -138,7 +138,7 @@ function PetFrame_OnUpdate (self, elapsed)
 	--		end
 	--	end
 	--end
-	
+
 end
 
 function PetFrame_SetHappiness ()
@@ -146,7 +146,7 @@ function PetFrame_SetHappiness ()
 	local hasPetUI, isHunterPet = HasPetUI();
 	if ( not happiness or not isHunterPet ) then
 		PetFrameHappiness:Hide();
-		return;	
+		return;
 	end
 	PetFrameHappiness:Show();
 	if ( happiness == 1 ) then

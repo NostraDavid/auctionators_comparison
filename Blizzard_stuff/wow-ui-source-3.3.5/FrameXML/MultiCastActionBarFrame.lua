@@ -194,11 +194,11 @@ local FLYOUT_MIDDLE_TCOORDS = {
 };
 
 -- knownMultiCastSummonSpells
--- index: TOTEM_MULTI_CAST_SUMMON_SPELLS 
+-- index: TOTEM_MULTI_CAST_SUMMON_SPELLS
 -- value: spellId if the spell is known, nil otherwise
 local knownMultiCastSummonSpells = { };
 -- knownMultiCastRecallSpells
--- index: TOTEM_MULTI_CAST_RECALL_SPELLS 
+-- index: TOTEM_MULTI_CAST_RECALL_SPELLS
 -- value: spellId if the spell is known, nil otherwise
 local knownMultiCastRecallSpells = { };
 

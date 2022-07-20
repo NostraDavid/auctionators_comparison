@@ -17,7 +17,7 @@ function InspectHonorFrame_OnShow()
 end
 
 function InspectHonorFrame_Update()
-	
+
 	local todayHK, todayHonor, yesterdayHK, yesterdayHonor, lifetimeHK, lifetimeRank = GetInspectHonorData();
 
 	-- Yesterday's values
@@ -27,7 +27,7 @@ function InspectHonorFrame_Update()
 	-- This week's values
 	--InspectHonorFrameThisWeekHKValue:SetText(thisweekHK);
 	--InspectHonorFrameThisWeekContributionValue:SetText(thisweekHonor);
-	
+
 	-- Last Week's values
 	--InspectHonorFrameLastWeekHKValue:SetText(lastweekHK);
 	--InspectHonorFrameLastWeekContributionValue:SetText(lastweekHonor);
@@ -36,7 +36,7 @@ function InspectHonorFrame_Update()
 	-- This session's values
 	InspectHonorFrameCurrentHKValue:SetText(todayHK);
 	--InspectHonorFrameCurrentDKValue:SetText(sessionDK);
-	
+
 	-- Lifetime stats
 	InspectHonorFrameLifeTimeHKValue:SetText(lifetimeHK);
 	--InspectHonorFrameLifeTimeDKValue:SetText(lifetimeDK);

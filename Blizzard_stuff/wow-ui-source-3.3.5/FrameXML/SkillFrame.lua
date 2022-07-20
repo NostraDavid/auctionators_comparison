@@ -41,7 +41,7 @@ function SkillFrame_SetStatusBar(statusBarID, skillIndex, numSkills, adjustedSki
 	-- Header objects
 	local skillRankFrameBorderTexture = _G["SkillRankFrame"..statusBarID.."Border"];
 	local skillTypeLabelText = _G["SkillTypeLabel"..statusBarID];
-	
+
 	-- Frame width vars
 	local skillRankFrameWidth = 0;
 
@@ -72,7 +72,7 @@ function SkillFrame_SetStatusBar(statusBarID, skillIndex, numSkills, adjustedSki
 		skillRankFrameBorderTexture:Show();
 		statusBar:Show();
 	end
-	
+
 	-- Set skillbar info
 	statusBar.skillIndex = skillIndex;
 	statusBarName:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
@@ -80,7 +80,7 @@ function SkillFrame_SetStatusBar(statusBarID, skillIndex, numSkills, adjustedSki
 	statusBarSkillRank:ClearAllPoints();
 	statusBarSkillRank:SetPoint("LEFT", "SkillRankFrame"..statusBarID.."SkillName", "RIGHT", 13, 0);
 	statusBarSkillRank:SetJustifyH("LEFT");
-	
+
 	-- Anchor the text to the left by default
 	statusBarName:ClearAllPoints();
 	statusBarName:SetPoint("LEFT", statusBar, "LEFT", 6, 1);
@@ -189,7 +189,7 @@ end
 
 function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 	-- Get info
-	local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, skillDescription = GetSkillLineInfo(skillIndex);	
+	local skillName, header, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, skillDescription = GetSkillLineInfo(skillIndex);
 	local skillRankStart = skillRank;
 	skillRank = skillRank + numTempPoints;
 
@@ -225,7 +225,7 @@ function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 	else
 		statusBarUnlearnButton:Hide();
 	end
-		
+
 	-- Set skillbar info
 	statusBar.skillIndex = skillIndex;
 	statusBarName:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
@@ -233,7 +233,7 @@ function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 	statusBarSkillRank:ClearAllPoints();
 	statusBarSkillRank:SetPoint("LEFT", "SkillDetailStatusBarSkillName", "RIGHT", 13, 0);
 	statusBarSkillRank:SetJustifyH("LEFT");
-	
+
 	-- Hide the learn skill button by default
 	statusBarLearnSkillButton:Hide();
 
@@ -344,7 +344,7 @@ function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 		else
 			statusBarRightArrow:Disable();
 		end
-	
+
 		statusBarName:SetText(skillName);
 
 		-- Setwidth value
@@ -360,7 +360,7 @@ function SkillDetailFrame_SetStatusBar(skillIndex, adjustedSkillPoints)
 
 		SkillDetailCostText:Hide();
 	end
-	
+
 	if ( SkillDetailCostText:IsShown() ) then
 		SkillDetailDescriptionText:SetPoint("TOP", "SkillDetailCostText", "BOTTOM", 0, -10 );
 	else
@@ -441,7 +441,7 @@ function SkillFrame_UpdateSkills()
 
 	-- Update scrollFrame
 	FauxScrollFrame_Update(SkillListScrollFrame, numSkills, SKILLS_TO_DISPLAY, SKILLFRAME_SKILL_HEIGHT );
-	
+
 	SkillDetailFrame_SetStatusBar(GetSelectedSkill(),adjustedSkillPoints)
 end
 

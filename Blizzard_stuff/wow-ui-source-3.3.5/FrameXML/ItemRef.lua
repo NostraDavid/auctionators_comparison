@@ -8,7 +8,7 @@ function SetItemRef(link, text, button, chatFrame)
 		else
 			namelink = strsub(link, 8);
 		end
-		
+
 		local name, lineid, chatType, chatTarget = strsplit(":", namelink);
 		if ( name and (strlen(name) > 0) ) then
 			if ( IsModifiedClick("CHATLINK") ) then
@@ -59,9 +59,9 @@ function SetItemRef(link, text, button, chatFrame)
 				elseif ( HelpFrameOpenTicketEditBox:IsVisible() ) then
 					HelpFrameOpenTicketEditBox:Insert(name);
 				else
-					SendWho(WHO_TAG_NAME..name);					
+					SendWho(WHO_TAG_NAME..name);
 				end
-				
+
 			elseif ( button == "RightButton" and (not isGMLink) ) then
 				FriendsFrame_ShowDropdown(name, 1, lineid, chatType, chatFrame);
 			else
@@ -71,7 +71,7 @@ function SetItemRef(link, text, button, chatFrame)
 		return;
 	elseif ( strsub(link, 1, 8) == "BNplayer" ) then
 		local namelink = strsub(link, 10);
-		
+
 		local name, presenceID, lineid, chatType, chatTarget = strsplit(":", namelink);
 		if ( name and (strlen(name) > 0) ) then
 			if ( IsModifiedClick("CHATLINK") ) then
@@ -120,9 +120,9 @@ function SetItemRef(link, text, button, chatFrame)
 				if ( ChatEdit_GetActiveWindow() ) then
 					ChatEdit_InsertLink(name);
 				elseif ( HelpFrameOpenTicketEditBox:IsVisible() ) then
-					HelpFrameOpenTicketEditBox:Insert(name);				
+					HelpFrameOpenTicketEditBox:Insert(name);
 				end
-				
+
 			elseif ( button == "RightButton" ) then
 				if ( not BNIsSelf(presenceID) ) then
 					FriendsFrame_ShowBNDropdown(name, 1, nil, chatType, chatFrame, nil, BNet_GetPresenceID(name));
@@ -146,7 +146,7 @@ function SetItemRef(link, text, button, chatFrame)
 		elseif ( button == "LeftButton" ) then
 			local chanLink = strsub(link, 9);
 			local chatType, chatTarget = strsplit(":", chanLink);
-			
+
 			if ( strupper(chatType) == "CHANNEL" ) then
 				if ( GetChannelName(tonumber(chatTarget))~=0 ) then
 					ChatFrame_OpenChat("/"..chatTarget, chatFrame);
@@ -171,7 +171,7 @@ function SetItemRef(link, text, button, chatFrame)
 		GMChatStatusFrame_OnClick();
 		return;
 	end
-	
+
 	if ( IsModifiedClick() ) then
 		local fixedLink = GetFixedLink(text);
 		HandleModifiedItemClick(fixedLink);
@@ -200,7 +200,7 @@ function GetFixedLink(text)
 			return (gsub(text, "(|H.+|h.+|h)", "|cffffd000%1|r", 1));
 		end
 	end
-	
+
 	--Nothing to change.
 	return text;
 end

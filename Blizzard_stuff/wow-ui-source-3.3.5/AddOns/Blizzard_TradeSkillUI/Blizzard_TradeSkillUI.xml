@@ -99,7 +99,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\ClassTrainerFrame\UI-ClassTrainer-TopRight">
 					<Size>
 						<AbsDimension x="128" y="256"/>
@@ -433,7 +433,7 @@
 					<OnLoad function="TradeSkillSubClassDropDown_OnLoad"/>
 				</Scripts>
 			</Frame>
-			
+
 			<Frame name="TradeSkillHighlightFrame" hidden="true">
 				<Size>
 					<AbsDimension x="293" y="16"/>
@@ -934,7 +934,7 @@
 						if ( self:GetText() == "0" ) then
 							self:SetText("1");
 						end
-					</OnTextChanged> 
+					</OnTextChanged>
 					<OnEditFocusLost function="EditBox_ClearHighlight"/>
 					<OnEditFocusGained function="EditBox_HighlightText"/>
 				</Scripts>
@@ -976,7 +976,7 @@
 			<OnLoad function="TradeSkillFrame_OnLoad"/>
 			<OnEvent function="TradeSkillFrame_OnEvent"/>
 			<OnShow>
-				TradeSkillInputBox:SetNumber(1);                
+				TradeSkillInputBox:SetNumber(1);
 				PlaySound("igCharacterInfoOpen");
 			</OnShow>
 			<OnHide>

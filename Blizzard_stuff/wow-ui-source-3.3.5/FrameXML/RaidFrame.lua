@@ -97,7 +97,7 @@ end
 -- Populates Raid Info Data
 function RaidInfoFrame_Update(scrollToSelected)
 	RaidInfoFrame_UpdateSelectedIndex();
-	
+
 	local scrollFrame = RaidInfoScrollFrame;
 	local savedInstances = GetNumSavedInstances();
 	local instanceName, instanceID, instanceReset, instanceDifficulty, locked, extended, instanceIDMostSig, isRaid, maxPlayers, difficultyName;
@@ -106,7 +106,7 @@ function RaidInfoFrame_Update(scrollToSelected)
 	local buttons = scrollFrame.buttons;
 	local numButtons = #buttons;
 	local buttonHeight = buttons[1]:GetHeight();
-	
+
 	if ( scrollToSelected == true and RaidInfoFrame.selectedIndex ) then --Using == true in case the HybridScrollFrame .update is changed to pass in the parent.
 		local button = buttons[RaidInfoFrame.selectedIndex - offset]
 		if ( not button or (button:GetTop() > scrollFrame:GetTop()) or (button:GetBottom() < scrollFrame:GetBottom()) ) then
@@ -149,21 +149,21 @@ function RaidInfoFrame_Update(scrollToSelected)
 				frame.reset:SetFormattedText("|cff808080%s|r", RAID_INSTANCE_EXPIRES_EXPIRED);
 				frame.name:SetFormattedText("|cff808080%s|r", instanceName);
 			end
-			
+
 			if ( extended ) then
 				frame.extended:Show();
 			else
 				frame.extended:Hide();
 			end
-			
+
 			frame:Show();
-			
+
 			if ( mouseIsOverScrollFrame and frame:IsMouseOver() ) then
 				RaidInfoInstance_OnEnter(frame);
 			end
 		else
 			frame:Hide();
-		end	
+		end
 	end
 	HybridScrollFrame_Update(scrollFrame, savedInstances * buttonHeight, scrollFrame:GetHeight());
 end

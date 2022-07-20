@@ -81,10 +81,10 @@ end
 function PVPFrame_Update()
 	for i=1, MAX_ARENA_TEAMS do
 		GetArenaTeam(i);
-	end	
+	end
 	PVPHonor_Update();
 	PVPTeam_Update();
-	
+
 	if ( GetCurrentArenaSeason() == 0 ) then	--We're in an off-season.
 		PVPFrame_SetToOffSeason();
 	elseif ( PVPFrameOffSeason:IsShown() ) then
@@ -127,14 +127,14 @@ function PVPTeam_Update()
 			-- Pull Values
 			teamName, teamSize, teamRating, teamPlayed, teamWins,  seasonTeamPlayed, seasonTeamWins, playerPlayed, seasonPlayerPlayed, teamRank, playerRating, background.r, background.g, background.b, emblem, emblemColor.r, emblemColor.g, emblemColor.b, border, borderColor.r, borderColor.g, borderColor.b = GetArenaTeam(value.index);
 
-			-- Set button elements to variables 
+			-- Set button elements to variables
 			buttonName = "PVPTeam"..buttonIndex;
 			data = buttonName.."Data";
 			standard = buttonName.."Standard";
 
 			button:SetID(value.index);
-			
-			
+
+
 			if ( PVPFrame.seasonStats ) then
 				_G[data.."TypeLabel"]:SetText(ARENA_THIS_SEASON);
 				PVPFrameToggleButton:SetText(ARENA_THIS_WEEK_TOGGLE);
@@ -151,7 +151,7 @@ function PVPTeam_Update()
 
 			loss = played - wins;
 			if ( played ~= 0 ) then
-				playerPlayedPct =  floor( ( playerPlayed / played ) * 100 );		
+				playerPlayedPct =  floor( ( playerPlayed / played ) * 100 );
 			else
 				playerPlayedPct =  floor( ( playerPlayed / 1 ) * 100 );
 			end
@@ -162,7 +162,7 @@ function PVPTeam_Update()
 			_G[data.."Games"]:SetText(played);
 			_G[data.."Wins"]:SetText(wins);
 			_G[data.."Loss"]:SetText(loss);
-			
+
 			if ( PVPFrame.seasonStats ) then
 				_G[data.."Played"]:SetText(playerRating);
 				_G[data.."Played"]:SetVertexColor(1.0, 1.0, 1.0);
@@ -179,7 +179,7 @@ function PVPTeam_Update()
 				_G[data.."Played"]:SetText(playerPlayed.." ("..playerPlayedPct.."%)");
 				_G[data.."PlayedLabel"]:SetText(PLAYED);
 			end
-			
+
 
 			-- Set TeamSize Banner
 			_G[standard.."Banner"]:SetTexture("Interface\\PVPFrame\\PVP-Banner-"..teamSize);
@@ -205,10 +205,10 @@ function PVPTeam_Update()
 			_G[buttonName.."Background"]:SetAlpha(1);
 			_G[buttonName.."TeamType"]:Hide();
 		else
-			-- Set button elements to variables 
+			-- Set button elements to variables
 			buttonName = "PVPTeam"..buttonIndex;
 			data = buttonName.."Data";
-			
+
 			button:SetID(0);
 
 			-- Set standard type
@@ -241,11 +241,11 @@ function PVPTeam_OnEnter(self)
 		GameTooltip_AddNewbieTip(self, ARENA_TEAM, 1.0, 1.0, 1.0, CLICK_FOR_DETAILS, 1);
 	else
 		GameTooltip_AddNewbieTip(self, ARENA_TEAM, 1.0, 1.0, 1.0, ARENA_TEAM_LEAD_IN, 1);
-	end		
+	end
 end
 
 function PVPTeam_OnLeave(self)
-	_G[self:GetName().."Highlight"]:Hide();	
+	_G[self:GetName().."Highlight"]:Hide();
 	GameTooltip:Hide();
 end
 
@@ -261,7 +261,7 @@ end
 function PVPTeamDetails_Update(id)
 	local numMembers = GetNumArenaTeamMembers(id, 1);
 	local name, rank, level, class, online, played, win, loss, seasonPlayed, seasonWin, seasonLoss, rating;
-	local teamName, teamSize, teamRating, teamPlayed, teamWins,  seasonTeamPlayed, seasonTeamWins, playerPlayed, seasonPlayerPlayed, teamRank, personalRating  = GetArenaTeam(id);		
+	local teamName, teamSize, teamRating, teamPlayed, teamWins,  seasonTeamPlayed, seasonTeamWins, playerPlayed, seasonPlayerPlayed, teamRank, personalRating  = GetArenaTeam(id);
 	local button;
 	local teamIndex;
 
@@ -270,13 +270,13 @@ function PVPTeamDetails_Update(id)
 	PVPTeamDetailsSize:SetFormattedText(PVP_TEAMSIZE, teamSize, teamSize);
 	PVPTeamDetailsRank:SetText(teamRank);
 	PVPTeamDetailsRating:SetText(teamRating);
-	
+
 	-- Tidy up team name display if it's too long - mostly for CN
 	PVPTeamDetailsName:SetWidth(0);
 	if ( PVPTeamDetailsName:GetWidth() > MAX_ARENA_TEAM_NAME_WIDTH ) then
 		PVPTeamDetailsName:SetWidth(MAX_ARENA_TEAM_NAME_WIDTH);
 	end
-	
+
 	-- Display General Team Data
 	if ( PVPTeamDetails.season ) then
 		PVPTeamDetailsFrameColumnHeader3.sortType = "seasonplayed";
@@ -305,7 +305,7 @@ function PVPTeamDetails_Update(id)
 		if ( i > numMembers ) then
 			button:Hide();
 		else
-			
+
 			button.teamIndex = i;
 			-- Get Data
 			name, rank, level, class, online, played, win, seasonPlayed, seasonWin, rating = GetArenaTeamRosterInfo(id, i);
@@ -331,7 +331,7 @@ function PVPTeamDetails_Update(id)
 			end
 
 			if ( teamPlayed ~= 0 ) then
-				playedPct =  floor( ( playedValue / teamPlayed ) * 100 );		
+				playedPct =  floor( ( playedValue / teamPlayed ) * 100 );
 			else
 				playedPct =  floor( (playedValue / 1 ) * 100 );
 			end
@@ -341,7 +341,7 @@ function PVPTeamDetails_Update(id)
 			else
 				_G["PVPTeamDetailsButton"..i.."PlayedText"]:SetVertexColor(1.0, 1.0, 1.0);
 			end
-			
+
 			playedPct = format("%d", playedPct);
 
 			_G["PVPTeamDetailsButton"..i.."Played"].tooltip = playedPct.."%";
@@ -365,7 +365,7 @@ function PVPTeamDetails_Update(id)
 			winLossWin:SetText(winValue)
 			winLossLoss:SetText(lossValue);
 			ratingText:SetText(rating);
-		
+
 			-- Color Entries based on Online status
 			local r, g, b;
 			if ( online ) then
@@ -401,7 +401,7 @@ function PVPTeamDetails_Update(id)
 				button:UnlockHighlight();
 			end
 		end
-		
+
 	end
 
 
@@ -411,7 +411,7 @@ function PVPTeamDetailsToggleButton_OnClick()
 	if ( PVPTeamDetails.season ) then
 		PVPTeamDetails.season = nil;
 	else
-		PVPTeamDetails.season = 1;		
+		PVPTeamDetails.season = 1;
 	end
 	PVPTeamDetails_Update(PVPTeamDetails.team);
 end
@@ -420,11 +420,11 @@ function PVPFrameToggleButton_OnClick()
 	if ( PVPFrame.seasonStats ) then
 		PVPFrame.seasonStats = nil;
 	else
-		PVPFrame.seasonStats = 1;		
+		PVPFrame.seasonStats = 1;
 	end
 	PVPTeam_Update();
 end
-						
+
 
 function PVPTeamDetailsButton_OnClick(self, button)
 	if ( button == "LeftButton" ) then
@@ -444,7 +444,7 @@ end
 
 function PVPFrame_ShowDropdown(name, online)
 	HideDropDownMenu(1);
-	
+
 	if ( not IsArenaTeamCaptain(PVPTeamDetails.team) ) then
 		if ( online ) then
 			PVPDropDown.initialize = PVPDropDown_Initialize;
@@ -503,7 +503,7 @@ end
 -- PVP Honor Data
 function PVPHonor_Update()
 	local hk, cp, dk, contribution, rank, highestRank, rankName, rankNumber;
-	
+
 	-- Yesterday's values
 	hk, contribution = GetPVPYesterdayStats();
 	PVPHonorYesterdayKills:SetText(hk);
@@ -513,8 +513,8 @@ function PVPHonor_Update()
 	hk, contribution =  GetPVPLifetimeStats();
 	PVPHonorLifetimeKills:SetText(hk);
 	PVPFrameHonorPoints:SetText(GetHonorCurrency());
-	PVPFrameArenaPoints:SetText(GetArenaCurrency())	
-	
+	PVPFrameArenaPoints:SetText(GetArenaCurrency())
+
 	-- Today's values
 	hk, cp = GetPVPSessionStats();
 	PVPHonorTodayKills:SetText(hk);
@@ -539,11 +539,11 @@ function PVPFrame_SetToOffSeason()
 	PVPTeam2Standard:Hide();
 	PVPTeam3:Hide();
 	PVPTeam3Standard:Hide();
-	
+
 	PVPFrameBlackFilter:Show();
-	
+
 	PVPFrameOffSeason:Show();
-	
+
 	local previousArenaSeason = GetPreviousArenaSeason();
 	PVPFrameOffSeasonText:SetText(format(ARENA_OFF_SEASON_TEXT, previousArenaSeason, previousArenaSeason+1));
 end
@@ -555,9 +555,9 @@ function PVPFrame_SetToInSeason()
 	PVPTeam2Standard:Show();
 	PVPTeam3:Show();
 	PVPTeam3Standard:Show();
-	
+
 	PVPFrameBlackFilter:Hide();
-	
+
 	PVPFrameOffSeason:Hide();
 end
 

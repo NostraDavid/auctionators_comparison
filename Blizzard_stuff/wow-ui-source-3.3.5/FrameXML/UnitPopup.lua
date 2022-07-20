@@ -207,7 +207,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 
 	-- Determine which buttons should be shown or hidden
 	UnitPopup_HideButtons();
-	
+
 	-- If only one menu item (the cancel button) then don't show the menu
 	local count = 0;
 	for index, value in ipairs(UnitPopupMenus[which]) do
@@ -218,7 +218,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 	if ( count < 1 ) then
 		return;
 	end
-	
+
 	-- Determine which loot method and which loot threshold are selected and set the corresponding buttons to the same text
 	dropdownMenu.selectedLootMethod = UnitLootMethod[GetLootMethod()].text;
 	UnitPopupButtons["LOOT_METHOD"].text = dropdownMenu.selectedLootMethod;
@@ -245,10 +245,10 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 	local _, instanceType, _, _, _, _, isDynamicInstance = GetInstanceInfo();
 	if ( isDynamicInstance and CanChangePlayerDifficulty() ) then
 		selectedRaidDifficulty, allowedRaidDifficultyChange = _GetPlayerDifficultyMenuOptions();
-	end	
+	end
 	if ( instanceType == "none" ) then
 		UnitPopupButtons["DUNGEON_DIFFICULTY"].nested = 1;
-		UnitPopupButtons["RAID_DIFFICULTY"].nested = 1;		
+		UnitPopupButtons["RAID_DIFFICULTY"].nested = 1;
 	else
 		UnitPopupButtons["DUNGEON_DIFFICULTY"].nested = nil;
 		if ( allowedRaidDifficultyChange ) then
@@ -257,7 +257,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 			UnitPopupButtons["RAID_DIFFICULTY"].nested = nil;
 		end
 	end
-	
+
 	--Add the cooldown to the RAF Summon
 	do
 		local start, duration = GetSummonFriendCooldown();
@@ -268,7 +268,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 			UnitPopupButtons["RAF_SUMMON"].text = RAF_SUMMON;
 		end
 	end
-	
+
 	-- If level 2 dropdown
 	local info;
 	local color;
@@ -320,7 +320,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 				end
 				local inInstance, instanceType = IsInInstance();
 				if ( ( inParty == 1 and isLeader == 0 ) or inInstance ) then
-					info.disabled = 1;	
+					info.disabled = 1;
 				end
 			elseif ( strsub(value, 1, 15) == "RAID_DIFFICULTY" and (strlen(value) > 15)) then
 				if ( isDynamicInstance ) then
@@ -365,7 +365,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 					info.checked = 1;
 				end
 			end
-			
+
 			info.value = value;
 			info.func = UnitPopup_OnClick;
 			-- Setup newbie tooltips
@@ -373,7 +373,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 			info.tooltipText = _G["NEWBIE_TOOLTIP_UNIT_"..value];
 			UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 		end
-		return;			
+		return;
 	end
 
 	-- Add dropdown title
@@ -388,7 +388,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 		info.notCheckable = 1;
 		UIDropDownMenu_AddButton(info);
 	end
-	
+
 	-- Set which menu is being opened
 	OPEN_DROPDOWNMENUS[UIDROPDOWNMENU_MENU_LEVEL] = {which = dropdownMenu.which, unit = dropdownMenu.unit};
 	-- Show the buttons which are used by this menu
@@ -438,7 +438,7 @@ function UnitPopup_ShowMenu (dropdownMenu, which, unit, name, userData)
 			else
 				info.hasArrow = nil;
 			end
-			
+
 			-- Setup newbie tooltips
 			info.tooltipTitle = UnitPopupButtons[value].text;
 			tooltipText = _G["NEWBIE_TOOLTIP_UNIT_"..value];
@@ -479,12 +479,12 @@ function UnitPopup_HideButtons ()
 	if ( UnitInBattleground("player") ) then
 		inBattleground = 1;
 	end
-	
+
 	local canCoop = 0;
 	if ( dropdownMenu.unit and UnitCanCooperate("player", dropdownMenu.unit) ) then
 		canCoop = 1;
 	end
-	
+
 	for index, value in ipairs(UnitPopupMenus[dropdownMenu.which]) do
 		UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 1;
 		if ( value == "TRADE" ) then
@@ -706,7 +706,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "MUTE" ) then
 			if ( not IsVoiceChatEnabled() or (dropdownMenu.unit and not UnitIsConnected(dropdownMenu.unit)) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				-- Hide if already muted.
 				if ( dropdownMenu.name == UnitName("player") or IsMuted(dropdownMenu.name) ) then
@@ -715,7 +715,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "UNMUTE" ) then
 			if ( not IsVoiceChatEnabled() ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				-- Hide if not muted or not online.
 				if ( dropdownMenu.name == UnitName("player") or not IsMuted(dropdownMenu.name) ) then
@@ -732,10 +732,10 @@ function UnitPopup_HideButtons ()
 			elseif ( isLeader == 1 ) then
 				if ( UnitIsRaidOfficer(dropdownMenu.unit) ) then
 					UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
-				end			
+				end
 			end
 		elseif ( value == "RAID_DEMOTE" ) then
-			if ( ( isLeader == 0 and isAssistant == 0 ) or not dropdownMenu.name ) then			
+			if ( ( isLeader == 0 and isAssistant == 0 ) or not dropdownMenu.name ) then
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			elseif ( not GetPartyAssignment("MAINTANK", dropdownMenu.name, 1) and not GetPartyAssignment("MAINASSIST", dropdownMenu.name, 1) ) then
 				if ( isLeader == 0  and isAssistant == 1 and UnitIsRaidOfficer(dropdownMenu.unit) ) then
@@ -759,7 +759,7 @@ function UnitPopup_HideButtons ()
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			end
 		elseif ( value == "RAID_REMOVE" ) then
-			if ( ( isLeader == 0 and isAssistant == 0 ) or not dropdownMenu.name ) then			
+			if ( ( isLeader == 0 and isAssistant == 0 ) or not dropdownMenu.name ) then
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			elseif ( isLeader == 0 and isAssistant == 1 and UnitIsRaidOfficer(dropdownMenu.unit) ) then
 				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
@@ -848,7 +848,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "CHAT_SILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if ( IsDisplayChannelModerator() and dropdownMenu.name ~= UnitName("player") ) then
 					if ( IsSilenced(dropdownMenu.name) ) then
@@ -860,7 +860,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "CHAT_UNSILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if ( IsDisplayChannelModerator() ) then
 					if ( not IsSilenced(dropdownMenu.name) ) then
@@ -872,7 +872,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "PARTY_SILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if ( ( inParty == 1 and isLeader == 1 and inRaid == 0 ) and dropdownMenu.name ~= UnitName("player") ) then
 					if ( UnitIsSilenced(dropdownMenu.name, "party") ) then
@@ -885,7 +885,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "PARTY_UNSILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if ( ( inParty == 1 and isLeader == 1 and inRaid == 0 ) ) then
 					if ( not UnitIsSilenced(dropdownMenu.name, "party") ) then
@@ -898,7 +898,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "RAID_SILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if (  inBattleground == 0 ) then
 					if ( ( inParty == 1 and isAssistant == 1 and inRaid == 1 ) and dropdownMenu.name ~= UnitName("player") ) then
@@ -915,7 +915,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "RAID_UNSILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if (  inBattleground == 0 ) then
 					if ( ( inParty == 1 and isAssistant == 1 and inRaid == 1 ) ) then
@@ -932,7 +932,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "BATTLEGROUND_SILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;	
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if (  inBattleground == 1 ) then
 					if ( ( inParty == 1 and isAssistant == 1 and inRaid == 1 ) and dropdownMenu.name ~= UnitName("player") ) then
@@ -949,7 +949,7 @@ function UnitPopup_HideButtons ()
 			end
 		elseif ( value == "BATTLEGROUND_UNSILENCE" ) then
 			if ( not IsVoiceChatEnabled() or not dropdownMenu.name or dropdownMenu.name == UNKNOWNOBJECT or not GetVoiceStatus(dropdownMenu.name) ) then
-				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;			
+				UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] = 0;
 			else
 				if (  inBattleground == 1 ) then
 					if ( ( inParty == 1 and isAssistant == 1 and inRaid == 1 ) ) then
@@ -1020,21 +1020,21 @@ function UnitPopup_OnUpdate (elapsed)
 	if ( IsRaidOfficer() ) then
 		isAssistant = 1;
 	end
-	
+
 	-- dynamic difficulty
 	local allowedRaidDifficultyChange;
 	local _, instanceType, _, _, _, _, isDynamicInstance = GetInstanceInfo();
 	if ( isDynamicInstance and CanChangePlayerDifficulty() ) then
 		_, allowedRaidDifficultyChange = _GetPlayerDifficultyMenuOptions();
 	end
-	
+
 	-- Loop through all menus and enable/disable their buttons appropriately
 	local count, tempCount;
 	local inInstance, instanceType = IsInInstance();
 	for level, dropdownFrame in pairs(OPEN_DROPDOWNMENUS) do
 		if ( dropdownFrame ) then
 			count = 0;
-			for index, value in ipairs(UnitPopupMenus[dropdownFrame.which]) do				
+			for index, value in ipairs(UnitPopupMenus[dropdownFrame.which]) do
 				if ( UnitPopupShown[UIDROPDOWNMENU_MENU_LEVEL][index] == 1 ) then
 					count = count + 1;
 					local enable = 1;
@@ -1043,7 +1043,7 @@ function UnitPopup_OnUpdate (elapsed)
 							enable = 0;
 						end
 					end
-					
+
 					if ( value == "TRADE" ) then
 						if ( UnitIsDeadOrGhost("player") or (not HasFullControl()) or UnitIsDeadOrGhost(dropdownFrame.unit) ) then
 							enable = 0;
@@ -1119,20 +1119,20 @@ function UnitPopup_OnUpdate (elapsed)
 						enable = 0;
 					elseif ( ( strsub(value, 1, 18) == "DUNGEON_DIFFICULTY" ) and ( strlen(value) > 18 ) ) then
 						if ( ( inParty == 1 and isLeader == 0 ) or inInstance or HasLFGRestrictions() ) then
-							enable = 0;	
+							enable = 0;
 						end
 					elseif ( value == "RAID_DIFFICULTY" and inInstance and not allowedRaidDifficultyChange ) then
 						enable = 0;
 					elseif ( ( strsub(value, 1, 15) == "RAID_DIFFICULTY" ) and ( strlen(value) > 15 ) ) then
 						if ( ( inParty == 1 and isLeader == 0 ) or inInstance ) then
-							enable = 0;	
+							enable = 0;
 						end
 						if ( allowedRaidDifficultyChange and allowedRaidDifficultyChange == value ) then
 							enable = 1;
 						end
 					elseif ( value == "RESET_INSTANCES" ) then
 						if ( ( inParty == 1 and isLeader == 0 ) or inInstance or HasLFGRestrictions() ) then
-							enable = 0;			
+							enable = 0;
 						end
 					elseif ( value == "RAF_SUMMON" ) then
 						if( not CanSummonFriend(dropdownFrame.unit) ) then
@@ -1337,7 +1337,7 @@ function UnitPopup_OnClick (self)
 		end
 		if ( GetPartyAssignment("MAINTANK", fullname, 1) ) then
 			ClearPartyAssignment("MAINTANK", fullname, 1);
-		elseif ( GetPartyAssignment("MAINASSIST", fullname, 1) ) then	
+		elseif ( GetPartyAssignment("MAINASSIST", fullname, 1) ) then
 			ClearPartyAssignment("MAINASSIST", fullname, 1);
 		end
 	elseif ( button == "RAID_MAINTANK" ) then

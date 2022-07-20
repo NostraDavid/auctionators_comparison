@@ -377,7 +377,7 @@
 						ChannelFrame_Join_OnClick();
 					</OnClick>
 				</Scripts>
-			</Button> 
+			</Button>
 			-->
 			<!-- Channel List -->
 			<ScrollFrame name="ChannelListScrollFrame" inherits="UIPanelScrollFrameTemplate">
@@ -1006,12 +1006,12 @@
 			<OnUpdate function="ChannelFrame_OnUpdate"/>
 			<OnHide>
 				if ( ChannelFrameDaughterFrame:IsShown() ) then
-					ChannelFrameDaughterFrame:Hide();		
+					ChannelFrameDaughterFrame:Hide();
 				end
 			</OnHide>
 		</Scripts>
 	</Frame>
-	
+
 	<Button name="ChannelPulloutRosterButtonTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="150" y="14"/>
@@ -1032,7 +1032,7 @@
 					</Anchor>
 				</Anchors>
 			</Button>
-		</Frames>		
+		</Frames>
 		<Layers>
 			<Layer level="ARTWORK">
 				<FontString name="$parentName" inherits="GameFontHighlightSmall" justifyH="LEFT" justifyV="TOP" text="">
@@ -1057,8 +1057,8 @@
 			</OnMouseWheel>
 		</Scripts>
 	</Button>
-	
-	
+
+
 	<Button name="ChannelPulloutTab" frameStrata="LOW" parent="UIParent" movable="true" hidden="true">
 		<Anchors>
 			<Anchor point="TOPLEFT" relativePoint="RIGHT">
@@ -1196,11 +1196,11 @@
 		<Scripts>
 			<OnUpdate function="ChannelPullout_OnUpdate"/>
 			<OnLoad function="ChannelPullout_OnLoad"/>
-		</Scripts>		
+		</Scripts>
 		<Frames>
 			<Frame name="$parentBackground" setAllPoints="true">
 				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
-					<EdgeSize>	
+					<EdgeSize>
 						<AbsValue val="16"/>
 					</EdgeSize>
 					<TileSize>
@@ -1208,13 +1208,13 @@
 					</TileSize>
 					<BackgroundInsets>
 						<AbsInset left="4" right="4" top="4" bottom="4"/>
-					</BackgroundInsets>		
-				</Backdrop>	
+					</BackgroundInsets>
+				</Backdrop>
 				<Scripts>
 					<OnLoad>
 						self:SetBackdropBorderColor(0.5, 0.5, 0.5, 0.5);
 						self:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b, 0.5);
-					</OnLoad>					
+					</OnLoad>
 				</Scripts>
 			</Frame>
 			<Button name="$parentCloseButton">
@@ -1257,7 +1257,7 @@
 						ChannelPulloutRoster_OnLoad(self);
 						self:EnableMouseWheel();
 						self.downArrow = _G[self:GetParent():GetName() .. "DownArrow"];
-						self.upArrow = _G[self:GetParent():GetName() .. "UpArrow"];						
+						self.upArrow = _G[self:GetParent():GetName() .. "UpArrow"];
 					</OnLoad>
 					<OnShow function="ChannelPulloutRoster_Update"/>
 					<OnMouseWheel function="ChannelPulloutRoster_Scroll"/>
@@ -1286,7 +1286,7 @@
 								</Size>
 								<Anchors>
 									<Anchor point="TOP"/>
-								</Anchors>		
+								</Anchors>
 								<Scripts>
 									<OnClick>
 										ChannelPulloutRoster_Scroll(self:GetParent():GetParent(), 1);
@@ -1320,5 +1320,5 @@
 			</Frame>
 		</Frames>
 	</Frame>
-			
+
 </Ui>

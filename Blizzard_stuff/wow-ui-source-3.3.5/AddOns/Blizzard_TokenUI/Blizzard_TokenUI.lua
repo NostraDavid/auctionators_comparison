@@ -20,7 +20,7 @@ function TokenButton_OnLoad(self)
 end
 
 function TokenFrame_OnLoad()
-	TokenFrameContainerScrollBar.Show = 
+	TokenFrameContainerScrollBar.Show =
 		function (self)
 			TokenFrameContainer:SetWidth(299);
 			for _, button in next, _G["TokenFrameContainer"].buttons do
@@ -28,8 +28,8 @@ function TokenFrame_OnLoad()
 			end
 			getmetatable(self).__index.Show(self);
 		end
-		
-	TokenFrameContainerScrollBar.Hide = 
+
+	TokenFrameContainerScrollBar.Hide =
 		function (self)
 			TokenFrameContainer:SetWidth(313);
 			for _, button in next, TokenFrameContainer.buttons do
@@ -151,7 +151,7 @@ function TokenFrame_Update()
 	local displayedHeight = #buttons * (button:GetHeight()+TOKEN_BUTTON_OFFSET);
 
 	HybridScrollFrame_Update(scrollFrame, totalHeight, displayedHeight);
-	
+
 	if ( numTokenTypes == 0 ) then
 		CharacterFrameTab5:Hide();
 	else
@@ -277,7 +277,7 @@ function TokenButton_OnClick(self)
 			BackpackTokenFrame_Update();
 			ManageBackpackTokenFrame();
 		else
-			
+
 			if ( TokenFramePopup:IsShown() ) then
 				if ( TokenFrame.selectedID == self.index ) then
 					TokenFramePopup:Hide();

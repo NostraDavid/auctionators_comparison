@@ -71,7 +71,7 @@
 				self.scrollBarBackground:SetParent(scrollBar);
 				self.scrollBarArtTop:SetParent(scrollBar);
 				self.scrollBarArtBottom:SetParent(scrollBar);
-				
+
 				self.defaultWidth = self:GetWidth();
 				local resizeFunc = function(scrollBar)
 					if ( scrollBar:IsShown() ) then
@@ -80,10 +80,10 @@
 						self:SetWidth(self.defaultWidth + scrollBar:GetWidth() + 7);
 					end
 				end
-				
+
 				scrollBar:SetScript("OnHide", resizeFunc);
 				scrollBar:SetScript("OnShow", resizeFunc);
-				
+
 				resizeFunc(scrollBar);
 			</OnLoad>
 		</Scripts>
@@ -407,7 +407,7 @@
 					<Anchors>
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
-				</Texture>		
+				</Texture>
 				<Texture file="Interface\BattlefieldFrame\UI-Battlefield-TopRight">
 					<Size>
 						<AbsDimension x="128" y="256"/>

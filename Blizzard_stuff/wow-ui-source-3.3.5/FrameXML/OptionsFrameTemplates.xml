@@ -230,7 +230,7 @@
 					<BackgroundInsets>
 						<AbsInset left="0" right="0" top="5" bottom="5"/>
 					</BackgroundInsets>
-				</Backdrop>				
+				</Backdrop>
 				<Scripts>
 					<OnLoad>
 						self:SetBackdropBorderColor(.6, .6, .6, .6);
@@ -253,7 +253,7 @@
 								<Offset>
 									<AbsDimension x="0" y="19"/>
 								</Offset>
-							</Anchor>	
+							</Anchor>
 						</Anchors>
 						<Scripts>
 							<OnValueChanged>
@@ -316,12 +316,12 @@
 		<HighlightFont style="GameFontHighlight"/>
 		<HighlightTexture file="Interface\QuestFrame\UI-QuestLogTitleHighlight" alphaMode="ADD">
 			<Anchors>
-				<Anchor point="TOPLEFT">	
+				<Anchor point="TOPLEFT">
 					<Offset>
 						<AbsDimension x="0" y="1"/>
 					</Offset>
 				</Anchor>
-				<Anchor point="BOTTOMRIGHT">	
+				<Anchor point="BOTTOMRIGHT">
 					<Offset>
 						<AbsDimension x="0" y="1"/>
 					</Offset>

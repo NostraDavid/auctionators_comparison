@@ -1862,7 +1862,7 @@
 		</Anchors>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentFill" file="Interface\AuctionFrame\UI-AuctionPost-Background">							
+				<Texture name="$parentFill" file="Interface\AuctionFrame\UI-AuctionPost-Background">
 					<TexCoords left="0" right="1" top="0.25" bottom="0.75" />
 					<Color r="0.55" g="0.55" b="0.55" />
 					<Anchors>

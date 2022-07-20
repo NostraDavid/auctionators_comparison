@@ -140,7 +140,7 @@ function ShapeshiftBar_Update ()
 			ShapeshiftBarMiddle:SetTexCoord(0, numForms-2, 0, 1);
 			ShapeshiftBarRight:SetPoint("LEFT", "ShapeshiftBarMiddle", "RIGHT", 0, 0);
 		end
-		
+
 		ShapeshiftBarFrame:Show();
 	else
 		ShapeshiftBarFrame:Hide();
@@ -160,7 +160,7 @@ function ShapeshiftBar_UpdateState ()
 		if ( i <= numForms ) then
 			texture, name, isActive, isCastable = GetShapeshiftFormInfo(i);
 			icon:SetTexture(texture);
-			
+
 			--Cooldown stuffs
 			cooldown = _G["ShapeshiftButton"..i.."Cooldown"];
 			if ( texture ) then
@@ -170,7 +170,7 @@ function ShapeshiftBar_UpdateState ()
 			end
 			start, duration, enable = GetShapeshiftFormCooldown(i);
 			CooldownFrame_SetTimer(cooldown, start, duration, enable);
-			
+
 			if ( isActive ) then
 				ShapeshiftBarFrame.lastSelected = button:GetID();
 				button:SetChecked(1);

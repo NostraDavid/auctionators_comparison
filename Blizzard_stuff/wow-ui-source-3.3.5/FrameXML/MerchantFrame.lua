@@ -38,13 +38,13 @@ end
 
 function MerchantFrame_OnShow()
 	BACKPACK_WAS_OPEN = OpenBackpack();
-	
+
 	-- Update repair all button status
 	MerchantFrame_UpdateCanRepairAll();
 	MerchantFrame_UpdateGuildBankRepair();
 	PanelTemplates_SetTab(MerchantFrame, 1);
 	MerchantFrame_Update();
-	
+
 	PlaySound("igCharacterInfoOpen");
 end
 
@@ -54,7 +54,7 @@ function MerchantFrame_OnHide()
 		CloseBackpack();
 	end
 	ResetCursor();
-	
+
 	StaticPopup_Hide("CONFIRM_PURCHASE_TOKEN_ITEM");
 	StaticPopup_Hide("CONFIRM_REFUND_TOKEN_ITEM");
 	StaticPopup_Hide("CONFIRM_REFUND_MAX_HONOR");
@@ -68,15 +68,15 @@ function MerchantFrame_Update()
 	else
 		MerchantFrame_UpdateBuybackInfo();
 	end
-	
+
 end
 
 function MerchantFrame_UpdateMerchantInfo()
 	MerchantNameText:SetText(UnitName("NPC"));
 	SetPortraitTexture(MerchantFramePortrait, "NPC");
-	
+
 	local numMerchantItems = GetMerchantNumItems();
-	
+
 	MerchantPageText:SetFormattedText(MERCHANT_PAGE_NUMBER, MerchantFrame.page, math.ceil(numMerchantItems / MERCHANT_ITEMS_PER_PAGE));
 
 	local name, texture, price, quantity, numAvailable, isUsable, extendedCost;
@@ -92,7 +92,7 @@ function MerchantFrame_UpdateMerchantInfo()
 			SetItemButtonCount(itemButton, quantity);
 			SetItemButtonStock(itemButton, numAvailable);
 			SetItemButtonTexture(itemButton, texture);
-			
+
 			if ( extendedCost and (price <= 0) ) then
 				itemButton.price = nil;
 				itemButton.extendedCost = true;
@@ -140,7 +140,7 @@ function MerchantFrame_UpdateMerchantInfo()
 					SetItemButtonTextureVertexColor(itemButton, 0.5, 0.5, 0.5);
 					SetItemButtonNormalTextureVertexColor(itemButton,0.5, 0.5, 0.5);
 				end
-				
+
 			elseif ( not isUsable ) then
 				SetItemButtonNameFrameVertexColor(merchantButton, 1.0, 0, 0);
 				SetItemButtonSlotVertexColor(merchantButton, 1.0, 0, 0);
@@ -177,7 +177,7 @@ function MerchantFrame_UpdateMerchantInfo()
 		MerchantBuyBackItemMoneyFrame:Show();
 		MoneyFrame_Update("MerchantBuyBackItemMoneyFrame", buybackPrice);
 		MerchantBuyBackItem:Show();
-		
+
 	else
 		MerchantBuyBackItemName:SetText("");
 		MerchantBuyBackItemMoneyFrame:Hide();
@@ -244,14 +244,14 @@ function MerchantFrame_UpdateAltCurrency(index, i)
 			button.item = i;
 
 			itemTexture, itemValue, button.itemLink = GetMerchantItemCostItem(index, i);
-			
+
 			AltCurrencyFrame_Update(frameName.."Item"..i, itemTexture, itemValue);
 			-- Anchor items based on how many item costs there are.
 
 			if ( i > 1 ) then
 				button:SetPoint("LEFT", frameName.."Item"..i-1, "RIGHT", 4, 0);
 			elseif ( i == 1 and ( arenaPoints and honorPoints == 0 ) ) then
-				button:SetPoint("LEFT", frameAnchor, "LEFT", 0, 0);	
+				button:SetPoint("LEFT", frameAnchor, "LEFT", 0, 0);
 			else
 				button:SetPoint("LEFT", frameAnchor, "RIGHT", 4, 0);
 			end
@@ -285,7 +285,7 @@ function MerchantFrame_UpdateBuybackInfo()
 	MerchantItem5:SetPoint("TOPLEFT", "MerchantItem3", "BOTTOMLEFT", 0, -15);
 	MerchantItem7:SetPoint("TOPLEFT", "MerchantItem5", "BOTTOMLEFT", 0, -15);
 	MerchantItem9:SetPoint("TOPLEFT", "MerchantItem7", "BOTTOMLEFT", 0, -15);
-	
+
 	local numBuybackItems = GetNumBuybackItems();
 	local itemButton, buybackButton;
 	local buybackName, buybackTexture, buybackPrice, buybackQuantity, buybackNumAvailable, buybackIsUsable;
@@ -352,7 +352,7 @@ function MerchantItemBuybackButton_OnLoad(self)
 	self:RegisterEvent("MERCHANT_UPDATE");
 	self:RegisterForClicks("LeftButtonUp","RightButtonUp");
 	self:RegisterForDrag("LeftButton");
-	
+
 	self.SplitStack = function(button, split)
 		if ( split > 0 ) then
 			BuyMerchantItem(button:GetID(), split);
@@ -363,7 +363,7 @@ end
 function MerchantItemButton_OnLoad(self)
 	self:RegisterForClicks("LeftButtonUp","RightButtonUp");
 	self:RegisterForDrag("LeftButton");
-	
+
 	self.SplitStack = function(button, split)
 		if ( button.extendedCost ) then
 			MerchantFrame_ConfirmExtendedItemCost(button, split)
@@ -371,7 +371,7 @@ function MerchantItemButton_OnLoad(self)
 			BuyMerchantItem(button:GetID(), split);
 		end
 	end
-	
+
 	self.UpdateTooltip = MerchantItemButton_OnEnter;
 end
 
@@ -379,7 +379,7 @@ MERCHANT_HIGH_PRICE_COST = 1500000;
 
 function MerchantItemButton_OnClick(self, button)
 	MerchantFrame.extendedCost = nil;
-	
+
 	if ( MerchantFrame.selectedTab == 1 ) then
 		-- Is merchant frame
 		if ( button == "LeftButton" ) then
@@ -389,7 +389,7 @@ function MerchantItemButton_OnClick(self, button)
 					return;
 				end
 			end
-			
+
 			PickupMerchantItem(self:GetID());
 			if ( self.extendedCost ) then
 				MerchantFrame.extendedCost = self;
@@ -461,13 +461,13 @@ function MerchantFrame_ConfirmExtendedItemCost(itemButton, quantity)
 		BuyMerchantItem( itemButton:GetID(), quantity );
 		return;
 	end
-	
+
 	local count = itemButton.count or 1;
 	honorPoints, arenaPoints, itemCount = (honorPoints or 0) * quantity, (arenaPoints or 0) * quantity, (itemCount or 0) * quantity;
-	
+
 	if ( honorPoints and honorPoints ~= 0 ) then
 		local factionGroup = UnitFactionGroup("player");
-		if ( factionGroup ) then	
+		if ( factionGroup ) then
 			pointsTexture = "Interface\\PVPFrame\\PVP-Currency-"..factionGroup;
 			itemsString = " |T" .. pointsTexture .. ":0:0:0:-1|t" .. format(MERCHANT_HONOR_POINTS, honorPoints);
 		end
@@ -480,7 +480,7 @@ function MerchantFrame_ConfirmExtendedItemCost(itemButton, quantity)
 			itemsString = " |TInterface\\PVPFrame\\PVP-ArenaPoints-Icon:0:0:0:-1|t" .. format(MERCHANT_ARENA_POINTS, arenaPoints);
 		end
 	end
-	
+
 	local maxQuality = 0;
 	for i=1, MAX_ITEM_COST, 1 do
 		itemTexture, itemCount, itemLink = GetMerchantItemCostItem(index, i);
@@ -494,15 +494,15 @@ function MerchantFrame_ConfirmExtendedItemCost(itemButton, quantity)
 			end
 		end
 	end
-	
+
 	if ( honorPoints == 0 and arenaPoints == 0 and maxQuality <= ITEM_QUALITY_UNCOMMON ) then
 		BuyMerchantItem( itemButton:GetID(), quantity );
 		return;
 	end
-	
+
 	MerchantFrame.itemIndex = index;
 	MerchantFrame.count = quantity;
-	
+
 	local itemName, _, itemQuality = GetItemInfo(itemButton.link);
 	local r, g, b = GetItemQualityColor(itemQuality);
 	StaticPopup_Show("CONFIRM_PURCHASE_TOKEN_ITEM", itemsString, "", {["texture"] = itemButton.texture, ["name"] = itemName, ["color"] = {r, g, b, 1}, ["link"] = itemButton.link, ["index"] = index, ["count"] = count * quantity});
@@ -525,7 +525,7 @@ function MerchantFrame_ConfirmHighCostItem(itemButton, quantity)
 	MerchantFrame.itemIndex = index;
 	MerchantFrame.count = quantity;
 	MerchantFrame.price = itemButton.price;
-	
+
 	StaticPopup_Show("CONFIRM_HIGH_COST_ITEM", itemButton.link);
 end
 
@@ -538,7 +538,7 @@ function MerchantFrame_UpdateCanRepairAll()
 		else
 			SetDesaturation(MerchantRepairAllIcon, 1);
 			MerchantRepairAllButton:Disable();
-		end	
+		end
 	end
 end
 
@@ -550,7 +550,7 @@ function MerchantFrame_UpdateGuildBankRepair()
 	else
 		SetDesaturation(MerchantGuildBankRepairButtonIcon, 1);
 		MerchantGuildBankRepairButton:Disable();
-	end	
+	end
 end
 
 function MerchantFrame_UpdateRepairButtons()

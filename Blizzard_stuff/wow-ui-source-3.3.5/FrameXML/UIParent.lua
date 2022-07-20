@@ -182,7 +182,7 @@ function UIParent_OnLoad(self)
 	self:RegisterEvent("AUCTION_HOUSE_SHOW");
 	self:RegisterEvent("AUCTION_HOUSE_CLOSED");
 	self:RegisterEvent("AUCTION_HOUSE_DISABLED");
-	
+
 	-- Events for trainer UI handling
 	self:RegisterEvent("TRAINER_SHOW");
 	self:RegisterEvent("TRAINER_CLOSED");
@@ -218,10 +218,10 @@ function UIParent_OnLoad(self)
 
 	--Events for GMChatUI
 	self:RegisterEvent("CHAT_MSG_WHISPER");
-	
+
 	-- Events for WoW Mouse
 	self:RegisterEvent("WOW_MOUSE_NOT_FOUND");
-	
+
 	-- Events for talent wipes
 	self:RegisterEvent("TALENTS_INVOLUNTARILY_RESET");
 end
@@ -490,7 +490,7 @@ function UIParent_OnEvent(self, event, ...)
 			end
 		end
 		return;
-	end	
+	end
 	if ( event == "PLAYER_ALIVE" or event == "RAISED_AS_GHOUL" ) then
 		StaticPopup_Hide("DEATH");
 		StaticPopup_Hide("RESURRECT_NO_SICKNESS");
@@ -521,7 +521,7 @@ function UIParent_OnEvent(self, event, ...)
 		end
 		]]
 		UIErrorsFrame:AddMessage(DEATH_CORPSE_SKINNED, 1.0, 0.1, 0.1, 1.0);
-		return;		
+		return;
 	end
 	if ( event == "TRADE_REQUEST" ) then
 		StaticPopup_Show("TRADE", arg1);
@@ -634,7 +634,7 @@ function UIParent_OnEvent(self, event, ...)
 			else
 				button:Disable();
 			end
-		end 
+		end
 	end
 
 	if ( event == "CURSOR_UPDATE" ) then
@@ -662,7 +662,7 @@ function UIParent_OnEvent(self, event, ...)
 
 		-- Fix for Bug 124392
 		StaticPopup_Hide("LEVEL_GRANT_PROPOSED");
-		
+
 		local _, instanceType = IsInInstance();
 		if ( instanceType == "arena" ) then
 			Arena_LoadUI();
@@ -802,11 +802,11 @@ function UIParent_OnEvent(self, event, ...)
 			return;
 		end
 		CloseAllWindows_WithExceptions();
-		
+
 		--[[
 		-- Disable all microbuttons except the main menu
 		SetDesaturation(MicroButtonPortrait, 1);
-		
+
 		Designers previously wanted these disabled when feared, they seem to have changed their minds
 		CharacterMicroButton:Disable();
 		SpellbookMicroButton:Disable();
@@ -915,7 +915,7 @@ function UIParent_OnEvent(self, event, ...)
 			StaticPopupDialogs["GOSSIP_CONFIRM"].hasMoneyFrame = 1;
 		else
 			StaticPopupDialogs["GOSSIP_CONFIRM"].hasMoneyFrame = nil;
-		end	
+		end
 		local dialog = StaticPopup_Show("GOSSIP_CONFIRM", arg2);
 		if ( dialog ) then
 			dialog.data = arg1;
@@ -975,7 +975,7 @@ function UIParent_OnEvent(self, event, ...)
 	if ( event == "TRADE_SKILL_SHOW" ) then
 		TradeSkillFrame_LoadUI();
 		if ( TradeSkillFrame_Show ) then
-			TradeSkillFrame_Show();						
+			TradeSkillFrame_Show();
 		end
 		return;
 	end
@@ -1008,7 +1008,7 @@ function UIParent_OnEvent(self, event, ...)
 		end
 		return;
 	end
-	
+
 	-- Event for guildbank handling
 	if ( event == "GUILDBANKFRAME_OPENED" ) then
 		GuildBankFrame_LoadUI();
@@ -1039,7 +1039,7 @@ function UIParent_OnEvent(self, event, ...)
 			HideUIPanel(BarberShopFrame);
 		end
 	end
-	
+
 	-- Events for achievement handling
 	if ( event == "ACHIEVEMENT_EARNED" ) then
 		-- if ( not AchievementFrame ) then
@@ -1048,7 +1048,7 @@ function UIParent_OnEvent(self, event, ...)
 		-- end
 		-- self:UnregisterEvent(event);
 	end
-	
+
 	-- Events for Glyphs
 	if ( event == "USE_GLYPH" ) then
 		OpenGlyphFrame();
@@ -1081,7 +1081,7 @@ function UIParent_OnEvent(self, event, ...)
 		DEFAULT_CHAT_FRAME:AddMessage(message, info.r, info.g, info.b, info.id);
 		return;
 	end
-	
+
 	-- Events for taxi benchmarking
 	if ( event == "ENABLE_TAXI_BENCHMARK" ) then
 		if ( not FramerateText:IsShown() ) then
@@ -1099,7 +1099,7 @@ function UIParent_OnEvent(self, event, ...)
 		DEFAULT_CHAT_FRAME:AddMessage(BENCHMARK_TAXI_MODE_OFF, info.r, info.g, info.b, info.id);
 		return;
 	end
-	
+
 	-- Push to talk
 	if ( event == "VOICE_PUSH_TO_TALK_START" and GetVoiceCurrentSessionID() ) then
 		if ( GetCVarBool("PushToTalkSound") ) then
@@ -1125,15 +1125,15 @@ function UIParent_OnEvent(self, event, ...)
 		StaticPopup_Show("LEVEL_GRANT_PROPOSED", arg1);
 		return;
 	end
-	
+
 	if ( event == "CHAT_MSG_WHISPER" and arg6 == "GM" ) then	--GMChatUI
 		GMChatFrame_LoadUI(event, ...);
 	end
-	
+
 	if ( event == "WOW_MOUSE_NOT_FOUND" ) then
 		StaticPopup_Show("WOW_MOUSE_NOT_FOUND");
 	end
-	
+
 	if ( event == "TALENTS_INVOLUNTARILY_RESET" ) then
 		if ( arg1 ) then
 			StaticPopup_Show("TALENTS_INVOLUNTARILY_RESET_PET");
@@ -1145,7 +1145,7 @@ end
 
 -- Frame Management --
 
--- UIPARENT_MANAGED_FRAME_POSITIONS stores all the frames that have positioning dependencies based on other frames.  
+-- UIPARENT_MANAGED_FRAME_POSITIONS stores all the frames that have positioning dependencies based on other frames.
 
 -- UIPARENT_MANAGED_FRAME_POSITIONS["FRAME"] = {
 	-- none = This value is used if no dependent frames are shown
@@ -1175,7 +1175,7 @@ function UpdateMenuBarTop ()
 end
 
 UIPARENT_MANAGED_FRAME_POSITIONS = {
-	--Items with baseY set to "true" are positioned based on the value of menuBarTop and their offset needs to be repeatedly evaluated as menuBarTop can change. 
+	--Items with baseY set to "true" are positioned based on the value of menuBarTop and their offset needs to be repeatedly evaluated as menuBarTop can change.
 	--"yOffset" gets added to the value of "baseY", which is used for values based on menuBarTop.
 	["MultiBarBottomLeft"] = {baseY = 17, reputation = 1, maxLevel = 1, anchorTo = "ActionButton1", point = "BOTTOMLEFT", rpoint = "TOPLEFT"};
 	["MultiBarRight"] = {baseY = 98, reputation = 1, anchorTo = "UIParent", point = "BOTTOMRIGHT", rpoint = "BOTTOMRIGHT"};
@@ -1190,7 +1190,7 @@ UIPARENT_MANAGED_FRAME_POSITIONS = {
 	["PossessBarFrame"] = {baseY = 0, bottomLeft = actionBarOffset, reputation = 1, maxLevel = 1, anchorTo = "MainMenuBar", point = "BOTTOMLEFT", rpoint = "TOPLEFT", xOffset = 30};
 	["MultiCastActionBarFrame"] = {baseY = 0, bottomLeft = actionBarOffset, reputation = 1, maxLevel = 1, anchorTo = "MainMenuBar", point = "BOTTOMLEFT", rpoint = "TOPLEFT", xOffset = 30};
 	["AuctionProgressFrame"] = {baseY = true, yOffset = 18, bottomEither = actionBarOffset, vehicleMenuBar = vehicleMenuBarTop, pet = 1, reputation = 1, tutorialAlert = 1};
-	
+
 	-- Vars
 	-- These indexes require global variables of the same name to be declared. For example, if I have an index ["FOO"] then I need to make sure the global variable
 	-- FOO exists before this table is constructed. The function UIParent_ManageFramePosition will use the "FOO" table index to change the value of the FOO global
@@ -1229,7 +1229,7 @@ function UIParent_ManageFramePosition(index, value, yOffsetFrames, xOffsetFrames
 	if ( not frame or (type(frame)=="table" and frame.ignoreFramePositionManager)) then
 		return;
 	end
-	
+
 	-- Always start with base as the base offset or default to zero if no "none" specified
 	xOffset = 0;
 	if ( value["baseX"] ) then
@@ -1246,12 +1246,12 @@ function UIParent_ManageFramePosition(index, value, yOffsetFrames, xOffsetFrames
 		--value["baseY"] is true, use menuBarTop.
 		yOffset = menuBarTop;
 	end
-	
+
 	if ( value["yOffset"] ) then
 		--This is so things based on menuBarTop can still have an offset. Otherwise you'd just use put the offset value in baseY.
 		yOffset = yOffset + value["yOffset"];
 	end
-	
+
 	-- Iterate through frames that affect y offsets
 	local hasBottomEitherFlag;
 	for _, flag in pairs(yOffsetFrames) do
@@ -1262,7 +1262,7 @@ function UIParent_ManageFramePosition(index, value, yOffsetFrames, xOffsetFrames
 			yOffset = yOffset + value[flag];
 		end
 	end
-	
+
 	-- don't offset for the pet bar and bottomEither if the player has
 	-- the bottom right bar shown and not the bottom left
 	if ( hasBottomEitherFlag and hasBottomRight and hasPetBar and not hasBottomLeft ) then
@@ -1355,7 +1355,7 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 		if ( GetUIPanelWindowInfo(centerFrame, "allowOtherPanels") ) then
 			HideUIPanel(centerFrame);
 			centerFrame = nil;
-		else	
+		else
 			centerArea = GetUIPanelWindowInfo(centerFrame, "area");
 			if ( centerArea and (centerArea == "center") and (frameArea ~= "center") and (frameArea ~= "full") ) then
 				if ( force ) then
@@ -1368,14 +1368,14 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 			centerPushable = GetUIPanelWindowInfo(centerFrame, "pushable") or 0;
 		end
 	end
-	
+
 	-- Full-screen frames just replace each other
 	if ( frameArea == "full" ) then
 		securecall("CloseAllWindows");
 		self:SetUIPanel("fullscreen", frame);
 		return;
 	end
-	
+
 	-- Native "center" frames just replace each other, and they take priority over pushed frames
 	if ( frameArea == "center" ) then
 		securecall("CloseWindows");
@@ -1401,7 +1401,7 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 		self:SetUIPanel("doublewide", frame);
 		return;
 	end
-	
+
 	-- If not pushable, close any doublewide frames
 	local doublewideFrame = self:GetUIPanel("doublewide");
 	if ( doublewideFrame ) then
@@ -1417,7 +1417,7 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 		end
 		return;
 	end
-	
+
 	-- Try to put it on the left
 	local leftFrame = self:GetUIPanel("left");
 	if ( not leftFrame ) then
@@ -1425,7 +1425,7 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 		return;
 	end
 	local leftPushable = GetUIPanelWindowInfo(leftFrame, "pushable") or 0;
-	
+
 	-- Two open already
 	local rightFrame = self:GetUIPanel("right");
 	if ( centerFrame and not rightFrame ) then
@@ -1468,10 +1468,10 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 			-- Replace center
 			self:SetUIPanel("center", frame);
 		end
-		
+
 		return;
 	end
-	
+
 	-- If there's only one open...
 	if ( not centerFrame ) then
 		-- If neither is pushable, replace
@@ -1487,7 +1487,7 @@ function FramePositionDelegate:ShowUIPanel(frame, force)
 		else
 			self:SetUIPanel("center", frame);
 		end
-		
+
 		return;
 	end
 
@@ -1523,11 +1523,11 @@ function FramePositionDelegate:SetUIPanel(key, frame, skipSetPoint)
 	if ( key == "fullscreen" ) then
 		local oldFrame = self.fullscreen;
 		self.fullscreen = frame;
-	
+
 		if ( oldFrame ) then
 			oldFrame:Hide();
 		end
-	
+
 		if ( frame ) then
 			UIParent:Hide();
 			frame:Show();
@@ -1543,15 +1543,15 @@ function FramePositionDelegate:SetUIPanel(key, frame, skipSetPoint)
 		self.doublewide = frame;
 		self.left = nil;
 		self.center = nil;
-		
+
 		if ( oldDoubleWide ) then
 			oldDoubleWide:Hide();
 		end
-		
+
 		if ( oldLeft ) then
 			oldLeft:Hide();
 		end
-		
+
 		if ( oldCenter ) then
 			oldCenter:Hide();
 		end
@@ -1566,16 +1566,16 @@ function FramePositionDelegate:SetUIPanel(key, frame, skipSetPoint)
 			if ( self.doublewide ) then
 				if ( key == "left" or key == "center" ) then
 					self.doublewide:Hide();
-					self.doublewide = nil;	
+					self.doublewide = nil;
 				end
 			end
 		end
 	end
-	
+
 	if ( not skipSetPoint ) then
 		securecall("UpdateUIPanelPositions");
 	end
-	
+
 	if ( frame ) then
 		frame:Show();
 		-- Hide all child windows
@@ -1605,7 +1605,7 @@ function FramePositionDelegate:HideUIPanel(frame, skipSetPoint)
 		self:SetUIPanel("fullscreen", nil);
 		return;
 	end
-	
+
 	-- If we're hiding the right frame, just hide it
 	if ( frame == self:GetUIPanel("right") ) then
 		self:SetUIPanel("right", nil, skipSetPoint);
@@ -1647,7 +1647,7 @@ function FramePositionDelegate:GetUIPanel(key)
 	if ( key ~= "left" and key ~= "center" and key ~= "right" and key ~= "doublewide" and key ~= "fullscreen" ) then
 		return nil;
 	end
-	
+
 	return self[key];
 end
 
@@ -1656,7 +1656,7 @@ function FramePositionDelegate:UpdateUIPanelPositions(currentFrame)
 		return;
 	end
 	self.updatingPanels = true;
-	
+
 	local topOffset = UIParent:GetAttribute("TOP_OFFSET");
 	local leftOffset = UIParent:GetAttribute("LEFT_OFFSET");
 	local centerOffset = UIParent:GetAttribute("CENTER_OFFSET");
@@ -1747,18 +1747,18 @@ end
 function FramePositionDelegate:UIParentManageFramePositions()
 	-- Update the variable with the happy magic number.
 	UpdateMenuBarTop();
-	
+
 	-- Frames that affect offsets in y axis
 	local yOffsetFrames = {};
 	-- Frames that affect offsets in x axis
 	local xOffsetFrames = {};
-	
+
 	-- Set up flags
 	local hasBottomLeft, hasBottomRight, hasPetBar;
-	
+
 	if ( VehicleMenuBar and VehicleMenuBar:IsShown() ) then
 		tinsert(yOffsetFrames, "vehicleMenuBar");
-	else	
+	else
 		if ( MultiBarBottomLeft:IsShown() or MultiBarBottomRight:IsShown() ) then
 			tinsert(yOffsetFrames, "bottomEither");
 		end
@@ -1794,19 +1794,19 @@ function FramePositionDelegate:UIParentManageFramePositions()
 			tinsert(yOffsetFrames, "tutorialAlert");
 		end
 	end
-	
+
 	if ( menuBarTop == 55 ) then
 		UIPARENT_MANAGED_FRAME_POSITIONS["TutorialFrameAlertButton"].yOffset = -10;
 	else
 		UIPARENT_MANAGED_FRAME_POSITIONS["TutorialFrameAlertButton"].yOffset = -30;
 	end
-	
-	
+
+
 	-- Iterate through frames and set anchors according to the flags set
 	for index, value in pairs(UIPARENT_MANAGED_FRAME_POSITIONS) do
 		securecall("UIParent_ManageFramePosition", index, value, yOffsetFrames, xOffsetFrames, hasBottomLeft, hasBottomRight, hasPetBar);
 	end
-	
+
 	-- Custom positioning not handled by the loop
 
 	-- Update shapeshift bar appearance
@@ -1878,17 +1878,17 @@ function FramePositionDelegate:UIParentManageFramePositions()
 				captureBar:SetPoint("TOPRIGHT", MinimapCluster, "BOTTOMRIGHT", -CONTAINER_OFFSET_X, anchorY);
 				anchorY = anchorY - captureBar:GetHeight();
 			end
-		end	
+		end
 	end
-	
+
 	--Setup Vehicle seat indicator offset
 	if ( VehicleSeatIndicator ) then
 		if ( VehicleSeatIndicator and VehicleSeatIndicator:IsShown() ) then
 			anchorY = anchorY - VehicleSeatIndicator:GetHeight() - 18;	--The -18 is there to give a small buffer for things like the QuestTimeFrame below the Seat Indicator
 		end
-		
+
 	end
-	
+
 	-- Boss frames
 	local numBossFrames = 0;
 	local durabilityXOffset = CONTAINER_OFFSET_X;
@@ -1907,7 +1907,7 @@ function FramePositionDelegate:UIParentManageFramePositions()
 			durabilityXOffset = durabilityXOffset + 135;
 		end
 	end
-	
+
 	-- Setup durability offset
 	if ( DurabilityFrame ) then
 		if ( DurabilityShield:IsShown() or DurabilityOffWeapon:IsShown() or DurabilityRanged:IsShown() ) then
@@ -1918,7 +1918,7 @@ function FramePositionDelegate:UIParentManageFramePositions()
 			anchorY = anchorY - DurabilityFrame:GetHeight() - 10;
 		end
 	end
-	
+
 	if ( ArenaEnemyFrames ) then
 		ArenaEnemyFrames:ClearAllPoints();
 		ArenaEnemyFrames:SetPoint("TOPRIGHT", MinimapCluster, "BOTTOMRIGHT", -CONTAINER_OFFSET_X, anchorY);
@@ -1937,9 +1937,9 @@ function FramePositionDelegate:UIParentManageFramePositions()
 		WatchFrame:SetPoint("TOPRIGHT", "MinimapCluster", "BOTTOMRIGHT", -CONTAINER_OFFSET_X, anchorY);
 		-- OnSizeChanged for WatchFrame handles its redraw
 	end
-	
+
 	WatchFrame:SetPoint("BOTTOMRIGHT", "UIParent", "BOTTOMRIGHT", -CONTAINER_OFFSET_X, CONTAINER_OFFSET_Y);
-	
+
 	-- Update chat dock since the dock could have moved
 	FCF_DockUpdate();
 	updateContainerFrameAnchors();
@@ -1959,7 +1959,7 @@ function ToggleFrame(frame)
 	end
 end
 
-function ShowUIPanel(frame, force)	
+function ShowUIPanel(frame, force)
 	if ( not frame or frame:IsShown() ) then
 		return;
 	end
@@ -1967,7 +1967,7 @@ function ShowUIPanel(frame, force)
 		frame:Show();
 		return;
 	end
-	
+
 	-- Dispatch to secure code
 	FramePositionDelegate:SetAttribute("panel-force", force);
 	FramePositionDelegate:SetAttribute("panel-frame", frame);
@@ -1978,19 +1978,19 @@ function HideUIPanel(frame, skipSetPoint)
 	if ( not frame or not frame:IsShown() ) then
 		return;
 	end
-	
+
 	if ( not GetUIPanelWindowInfo(frame, "area") ) then
 		frame:Hide();
 		return;
 	end
-	
+
 	--Dispatch to secure code
 	FramePositionDelegate:SetAttribute("panel-frame", frame);
 	FramePositionDelegate:SetAttribute("panel-skipSetPoint", skipSetPoint);
 	FramePositionDelegate:SetAttribute("panel-hide", true);
 end
 
-function HideParentPanel(self)	
+function HideParentPanel(self)
 	HideUIPanel(self:GetParent());
 end
 
@@ -2020,7 +2020,7 @@ function CanShowRightUIPanel(frame)
 	else
 		width = UIParent:GetAttribute("DEFAULT_FRAME_WIDTH");
 	end
-	
+
 	local rightSide = UIParent:GetAttribute("RIGHT_OFFSET") + width;
 	if ( rightSide < GetMaxUIPanelsWidth() ) then
 		return 1;
@@ -2034,7 +2034,7 @@ function CanShowCenterUIPanel(frame)
 	else
 		width = UIParent:GetAttribute("DEFAULT_FRAME_WIDTH");
 	end
-	
+
 	local rightSide = UIParent:GetAttribute("CENTER_OFFSET") + width;
 	if ( rightSide < GetMaxUIPanelsWidth() ) then
 		return 1;
@@ -2060,7 +2060,7 @@ function CanShowUIPanels(leftFrame, centerFrame, rightFrame)
 	elseif ( centerFrame ) then
 		offset = GetUIPanelWidth(centerFrame);
 	end
-	
+
 	if ( offset < GetMaxUIPanelsWidth() ) then
 		return 1;
 	end
@@ -2071,7 +2071,7 @@ function CanOpenPanels()
 	if ( UnitIsDead("player") ) then
 		return nil;
 	end
-	
+
 	Previously couldn't open frames if player was out of control i.e. feared
 	if ( UnitIsDead("player") or UIParent.isOutOfControl ) then
 		return nil;
@@ -2092,7 +2092,7 @@ function CanOpenPanels()
 	return 1;
 end
 
--- this function handles possibly tainted values and so 
+-- this function handles possibly tainted values and so
 -- should always be called from secure code using securecall()
 function CloseChildWindows()
 	local childWindow;
@@ -2104,7 +2104,7 @@ function CloseChildWindows()
 	end
 end
 
--- this function handles possibly tainted values and so 
+-- this function handles possibly tainted values and so
 -- should always be called from secure code using securecall()
 function CloseSpecialWindows()
 	local found;
@@ -2130,19 +2130,19 @@ function CloseWindows(ignoreCenter, frameToIgnore)
 	if ( not frameToIgnore or frameToIgnore ~= leftFrame ) then
 		HideUIPanel(leftFrame, 1);
 	end
-	
+
 	HideUIPanel(fullScreenFrame, 1);
 	HideUIPanel(doublewideFrame, 1);
-	
+
 	if ( not frameToIgnore or frameToIgnore ~= centerFrame ) then
 		if ( centerFrame ) then
 			local area = GetUIPanelWindowInfo(centerFrame, "area");
 			if ( area ~= "center" or not ignoreCenter ) then
 				HideUIPanel(centerFrame, 1);
-			end	
+			end
 		end
 	end
-	
+
 	if ( not frameToIgnore or frameToIgnore ~= rightFrame ) then
 		if ( rightFrame ) then
 			HideUIPanel(rightFrame, 1);
@@ -2150,7 +2150,7 @@ function CloseWindows(ignoreCenter, frameToIgnore)
 	end
 
 	found = securecall("CloseSpecialWindows") or found;
-	
+
 	UpdateUIPanelPositions();
 
 	return found;
@@ -2181,7 +2181,7 @@ function CloseAllWindows(ignoreCenter)
 	return (bagsVisible or windowsVisible);
 end
 
--- this function handles possibly tainted values and so 
+-- this function handles possibly tainted values and so
 -- should always be called from secure code using securecall()
 function CloseMenus()
 	local menusVisible = nil;
@@ -2232,7 +2232,7 @@ function ValidateFramePosition(frame, offscreenPadding, returnOffscreen)
 	end
 	if ( bottom < (0 + MainMenuBar:GetHeight() + offscreenPadding)) then
 		-- Off the bottom of the screen
-		newAnchorY = MainMenuBar:GetHeight() + frame:GetHeight() - GetScreenHeight(); 
+		newAnchorY = MainMenuBar:GetHeight() + frame:GetHeight() - GetScreenHeight();
 	elseif ( top > GetScreenHeight() ) then
 		-- Off the top of the screen
 		newAnchorY =  0;
@@ -2256,8 +2256,8 @@ function ValidateFramePosition(frame, offscreenPadding, returnOffscreen)
 			frame:ClearAllPoints();
 			frame:SetPoint("TOPLEFT", nil, "TOPLEFT", newAnchorX, newAnchorY);
 		end
-		
-		
+
+
 	else
 		if ( returnOffscreen ) then
 			return nil;
@@ -2452,7 +2452,7 @@ frame.finishedArg3 [ANYTHING]	Argument to the finishedFunc
 frame.finishedArg4 [ANYTHING]	Argument to the finishedFunc
 frame.fadeHoldTime [Num]	Time to hold the faded state
  ]]
- 
+
 function UIFrameFade_OnUpdate(self, elapsed)
 	local index = 1;
 	local frame, fadeInfo;
@@ -2465,7 +2465,7 @@ function UIFrameFade_OnUpdate(self, elapsed)
 		end
 		fadeInfo.fadeTimer = fadeInfo.fadeTimer + elapsed;
 
-		-- If the fadeTimer is less then the desired fade time then set the alpha otherwise hold the fade state, call the finished function, or just finish the fade 
+		-- If the fadeTimer is less then the desired fade time then set the alpha otherwise hold the fade state, call the finished function, or just finish the fade
 		if ( fadeInfo.fadeTimer < fadeInfo.timeToFade ) then
 			if ( fadeInfo.mode == "IN" ) then
 				frame:SetAlpha((fadeInfo.fadeTimer / fadeInfo.timeToFade) * (fadeInfo.endAlpha - fadeInfo.startAlpha) + fadeInfo.startAlpha);
@@ -2486,10 +2486,10 @@ function UIFrameFade_OnUpdate(self, elapsed)
 				end
 			end
 		end
-		
+
 		index = index + 1;
 	end
-	
+
 	if ( #FADEFRAMES == 0 ) then
 		self:SetScript("OnUpdate", nil);
 	end
@@ -2528,7 +2528,7 @@ function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDon
 		else
 			frame.syncId = nil;
 		end
-		
+
 		-- Time it takes to fade in a flashing frame
 		frame.fadeInTime = fadeInTime;
 		-- Time it takes to fade out a flashing frame
@@ -2543,9 +2543,9 @@ function UIFrameFlash(frame, fadeInTime, fadeOutTime, flashDuration, showWhenDon
 		frame.flashInHoldTime = flashInHoldTime;
 		-- How long to hold the faded out state
 		frame.flashOutHoldTime = flashOutHoldTime;
-		
+
 		tinsert(FLASHFRAMES, frame);
-		
+
 		frameFlashManager:SetScript("OnUpdate", UIFrameFlash_OnUpdate);
 	end
 end
@@ -2554,12 +2554,12 @@ end
 function UIFrameFlash_OnUpdate(self, elapsed)
 	local frame;
 	local index = #FLASHFRAMES;
-	
+
 	-- Update timers for all synced frames
 	for syncId, timer in pairs(UIFrameFlashTimers) do
 		UIFrameFlashTimers[syncId] = timer + elapsed;
 	end
-	
+
 	while FLASHFRAMES[index] do
 		frame = FLASHFRAMES[index];
 		frame.flashTimer = frame.flashTimer + elapsed;
@@ -2569,11 +2569,11 @@ function UIFrameFlash_OnUpdate(self, elapsed)
 		else
 			local flashTime = frame.flashTimer;
 			local alpha;
-			
+
 			if (frame.syncId) then
 				flashTime = UIFrameFlashTimers[frame.syncId];
 			end
-			
+
 			flashTime = flashTime%(frame.fadeInTime+frame.fadeOutTime+(frame.flashInHoldTime or 0)+(frame.flashOutHoldTime or 0));
 			if (flashTime < frame.fadeInTime) then
 				alpha = flashTime/frame.fadeInTime;
@@ -2584,15 +2584,15 @@ function UIFrameFlash_OnUpdate(self, elapsed)
 			else
 				alpha = 0;
 			end
-			
+
 			frame:SetAlpha(alpha);
 			frame:Show();
 		end
-		
+
 		-- Loop in reverse so that removing frames is safe
 		index = index - 1;
 	end
-	
+
 	if ( #FLASHFRAMES == 0 ) then
 		self:SetScript("OnUpdate", nil);
 	end
@@ -2651,8 +2651,8 @@ function ButtonPulse_OnUpdate(elapsed)
 			button.pulseOn = 0;
 			tDeleteItem(PULSEBUTTONS, button);
 		end
-		
-	end 
+
+	end
 end
 
 function ButtonPulse_StopPulse(button)
@@ -2991,7 +2991,7 @@ function GetBindingText(name, prefix, returnAbbr)
 		if ( tempName == "CAPSLOCK" ) then
 			gsub(tempName, "CAPSLOCK", "Caps");
 		end
-		
+
 		-- replace for all languages
 		-- for the "push-to-talk" binding
 		modKeys = gsub(modKeys, "LSHIFT", LSHIFT_KEY_TEXT);
@@ -3000,7 +3000,7 @@ function GetBindingText(name, prefix, returnAbbr)
 		modKeys = gsub(modKeys, "RCTRL", RCTRL_KEY_TEXT);
 		modKeys = gsub(modKeys, "LALT", LALT_KEY_TEXT);
 		modKeys = gsub(modKeys, "RALT", RALT_KEY_TEXT);
-		
+
 		-- use the SHIFT code if they decide to localize the CTRL further. The token is CTRL_KEY_TEXT
 		if ( GetLocale() == "deDE") then
 			modKeys = gsub(modKeys, "CTRL", "STRG");
@@ -3014,7 +3014,7 @@ function GetBindingText(name, prefix, returnAbbr)
 	if ( returnAbbr ) then
 		if ( count > 1 ) then
 			return "·";
-		else 
+		else
 			modKeys = gsub(modKeys, "CTRL", "c");
 			modKeys = gsub(modKeys, "SHIFT", "s");
 			modKeys = gsub(modKeys, "ALT", "a");
@@ -3301,7 +3301,7 @@ function RefreshDebuffs(frame, unit, numDebuffs, suffix, checkCVar)
 	local unitStatus, statusColor;
 	local debuffTotal = 0;
 	local name, rank, icon, count, debuffType, duration, expirationTime, caster;
-	local isEnemy = UnitCanAttack("player", unit);	
+	local isEnemy = UnitCanAttack("player", unit);
 	for i=1, numDebuffs do
 		if ( unit == "party"..i ) then
 			unitStatus = _G[frameName.."Status"];
@@ -3400,7 +3400,7 @@ function AnimatedShine_Start(shine, r, g, b)
 		_G[shineName.."Shine3"]:SetVertexColor(r, g, b);
 		_G[shineName.."Shine4"]:SetVertexColor(r, g, b);
 	end
-	
+
 end
 
 function AnimatedShine_Stop(shine)
@@ -3447,7 +3447,7 @@ function AnimatedShine_OnUpdate(elapsed)
 			shine2:SetPoint("CENTER", parent, "TOPRIGHT", 0, -(value.timer-speed*3)/speed*distance);
 			shine3:SetPoint("CENTER", parent, "TOPLEFT", (value.timer-speed*3)/speed*distance, 0);
 			shine4:SetPoint("CENTER", parent, "BOTTOMRIGHT", -(value.timer-speed*3)/speed*distance, 0);
-		end		
+		end
 	end
 end
 
@@ -3466,9 +3466,9 @@ local AUTOCAST_SHINES = {};
 
 function AutoCastShine_OnLoad(self)
 	self.sparkles = {};
-	
+
 	local name = self:GetName();
-	
+
 	for i = 1, 16 do
 		tinsert(self.sparkles, _G[name .. i]);
 	end
@@ -3478,13 +3478,13 @@ function AutoCastShine_AutoCastStart(button, r, g, b)
 	if ( AUTOCAST_SHINES[button] ) then
 		return;
 	end
-	
+
 	AUTOCAST_SHINES[button] = true;
-	
+
 	if ( not r ) then
 		r, g, b = AUTOCAST_SHINE_R, AUTOCAST_SHINE_G, AUTOCAST_SHINE_B;
 	end
-	
+
 	for _, sparkle in next, button.sparkles do
 		sparkle:Show();
 		sparkle:SetVertexColor(r, g, b);
@@ -3493,31 +3493,31 @@ end
 
 function AutoCastShine_AutoCastStop(button)
 	AUTOCAST_SHINES[button] = nil;
-	
+
 	for _, sparkle in next, button.sparkles do
 		sparkle:Hide();
 	end
 end
 
-function AutoCastShine_OnUpdate(self, elapsed)	
+function AutoCastShine_OnUpdate(self, elapsed)
 	for i in next, AUTOCAST_SHINE_TIMERS do
 		AUTOCAST_SHINE_TIMERS[i] = AUTOCAST_SHINE_TIMERS[i] + elapsed;
 		if ( AUTOCAST_SHINE_TIMERS[i] > AUTOCAST_SHINE_SPEEDS[i]*4 ) then
 			AUTOCAST_SHINE_TIMERS[i] = 0;
 		end
 	end
-	
+
 	for button in next, AUTOCAST_SHINES do
 		self = button;
 		local parent, distance = self, self:GetWidth();
-		
+
 		-- This is local to this function to save a lookup. If you need to use it elsewhere, might wanna make it global and use a local reference.
-		local AUTOCAST_SHINE_SPACING = 6;	
-			
+		local AUTOCAST_SHINE_SPACING = 6;
+
 		for i = 1, 4 do
 			local timer = AUTOCAST_SHINE_TIMERS[i];
 			local speed = AUTOCAST_SHINE_SPEEDS[i];
-			
+
 			if ( timer <= speed ) then
 				local basePosition = timer/speed*distance;
 				self.sparkles[0+i]:SetPoint("CENTER", parent, "TOPLEFT", basePosition, 0);
@@ -3529,13 +3529,13 @@ function AutoCastShine_OnUpdate(self, elapsed)
 				self.sparkles[0+i]:SetPoint("CENTER", parent, "TOPRIGHT", 0, -basePosition);
 				self.sparkles[4+i]:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, basePosition);
 				self.sparkles[8+i]:SetPoint("CENTER", parent, "BOTTOMRIGHT", -basePosition, 0);
-				self.sparkles[12+i]:SetPoint("CENTER", parent, "TOPLEFT", basePosition, 0);	
+				self.sparkles[12+i]:SetPoint("CENTER", parent, "TOPLEFT", basePosition, 0);
 			elseif ( timer <= speed*3 ) then
 				local basePosition = (timer-speed*2)/speed*distance;
 				self.sparkles[0+i]:SetPoint("CENTER", parent, "BOTTOMRIGHT", -basePosition, 0);
 				self.sparkles[4+i]:SetPoint("CENTER", parent, "TOPLEFT", basePosition, 0);
 				self.sparkles[8+i]:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, basePosition);
-				self.sparkles[12+i]:SetPoint("CENTER", parent, "TOPRIGHT", 0, -basePosition);	
+				self.sparkles[12+i]:SetPoint("CENTER", parent, "TOPRIGHT", 0, -basePosition);
 			else
 				local basePosition = (timer-speed*3)/speed*distance;
 				self.sparkles[0+i]:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, basePosition);
@@ -3543,7 +3543,7 @@ function AutoCastShine_OnUpdate(self, elapsed)
 				self.sparkles[8+i]:SetPoint("CENTER", parent, "TOPLEFT", basePosition, 0);
 				self.sparkles[12+i]:SetPoint("CENTER", parent, "BOTTOMRIGHT", -basePosition, 0);
 			end
-		end	
+		end
 	end
 end
 
@@ -3571,7 +3571,7 @@ function GetLFGMode()
 	local proposalExists, typeID, id, name, texture, role, hasResponded, totalEncounters, completedEncounters, numMembers = GetLFGProposal();
 	local inParty, joined, queued, noPartialClear, achievements, lfgComment, slotCount = GetLFGInfoServer();
 	local roleCheckInProgress, slots, members = GetLFGRoleUpdate();
-	
+
 	if ( proposalExists and not hasResponded ) then
 		return "proposal", "unaccepted";
 	elseif ( proposalExists ) then
@@ -3593,10 +3593,10 @@ end
 function BetterDate(formatString, timeVal)
 	local dateTable = date("*t", timeVal);
 	local amString = (dateTable.hour >= 12) and TIMEMANAGER_PM or TIMEMANAGER_AM;
-	
+
 	--First, we'll replace %p with the appropriate AM or PM.
 	formatString = gsub(formatString, "^%%p", amString)	--Replaces %p at the beginning of the string with the am/pm token
 	formatString = gsub(formatString, "([^%%])%%p", "%1"..amString); -- Replaces %p anywhere else in the string, but doesn't replace %%p (since the first % escapes the second)
-	
+
 	return date(formatString, timeVal);
 end

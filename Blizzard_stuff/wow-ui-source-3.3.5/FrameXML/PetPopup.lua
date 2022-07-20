@@ -1,5 +1,5 @@
 
-function PetPopup_Confirm() 
+function PetPopup_Confirm()
 	StaticPopup_Show("PETRENAMECONFIRM");
 end
 

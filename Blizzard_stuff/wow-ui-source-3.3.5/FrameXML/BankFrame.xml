@@ -17,7 +17,7 @@
 					</Anchors>
 				</Texture>
 			</Layer>
-		</Layers>	
+		</Layers>
 		<Frames>
 			<Cooldown name="$parentCooldown" inherits="CooldownFrameTemplate"/>
 		</Frames>
@@ -61,7 +61,7 @@
 		<Scripts>
 			<OnLoad>
 				BankFrameBagButton_OnLoad(self);
-			</OnLoad>				
+			</OnLoad>
 			<OnEnter>
 				BankFrameItemButton_OnEnter(self, motion);
 			</OnEnter>

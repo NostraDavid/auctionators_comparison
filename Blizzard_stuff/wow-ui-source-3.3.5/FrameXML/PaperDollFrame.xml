@@ -84,8 +84,8 @@
 				PaperDollFrameItemFlyoutButton_OnClick(self, button, down);
 			</OnClick>
 		</Scripts>
-	</Button>	
-	<Button name="PlayerTitleButtonTemplate" virtual="true">			
+	</Button>
+	<Button name="PlayerTitleButtonTemplate" virtual="true">
 		<Size x="240" y="16"/>
 		<Anchors>
 			<Anchor point="RIGHT">
@@ -101,23 +101,23 @@
 							<Offset x="8" y="0"/>
 						</Anchor>
 					</Anchors>
-				</Texture>			
+				</Texture>
 			</Layer>
 		</Layers>
 		<Scripts>
-			<OnClick>	
+			<OnClick>
 				PlayerTitleButton_OnClick(self);
 			</OnClick>
-		</Scripts>		
+		</Scripts>
 		<ButtonText name="$parentTitleText" inherits="GameFontHighlightSmallLeft" justifyH="LEFT" parentKey="text">
 					<Anchors>
 			<Anchor point="LEFT" relativeTo="$parentCheck" relativePoint="RIGHT">
 				<Offset x="3" y="0"/>
 			</Anchor>
 					</Anchors>
-		</ButtonText>		
-		<HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD"/>	
-	</Button>		
+		</ButtonText>
+		<HighlightTexture file="Interface\FriendsFrame\UI-FriendsFrame-HighlightBar" alphaMode="ADD"/>
+	</Button>
 	<CheckButton name="GearSetButtonTemplate" inherits="PopupButtonTemplate" virtual="true">
 		<Scripts>
 			<OnLoad>
@@ -139,7 +139,7 @@
 			</OnDragStart>
 		</Scripts>
 	</CheckButton>
-	
+
 	<CheckButton name="GearSetPopupButtonTemplate" inherits="SimplePopupButtonTemplate" virtual="true">
 		<Scripts>
 			<OnLoad>
@@ -165,8 +165,8 @@
 		</NormalTexture>
 		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
 		<CheckedTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
-	</CheckButton>	
-	
+	</CheckButton>
+
     <Frame name="StatFrameTemplate" virtual="true">
         <Size>
             <AbsDimension x="104" y="13"/>
@@ -378,7 +378,7 @@
 						</Anchors>
 						<Scripts>
 							<OnClick>
-								PlayerTitlePickerFrame_Toggle();								
+								PlayerTitlePickerFrame_Toggle();
 							</OnClick>
 						</Scripts>
 						<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
@@ -407,7 +407,7 @@
 						</HighlightTexture>
 					</Button>
 				</Frames>
-			</Frame>	
+			</Frame>
 			<Frame name="PlayerTitlePickerFrame" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="PlayerTitleFrame" relativePoint="BOTTOMLEFT">
@@ -415,7 +415,7 @@
 							<AbsDimension x="8" y="20"/>
 						</Offset>
 					</Anchor>
-				</Anchors>				
+				</Anchors>
 				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
 					<BackgroundInsets>
 						<AbsInset left="11" right="12" top="12" bottom="11"/>
@@ -426,7 +426,7 @@
 					<EdgeSize>
 						<AbsValue val="32"/>
 					</EdgeSize>
-				</Backdrop>				
+				</Backdrop>
 				<Frames>
 					<ScrollFrame name="PlayerTitlePickerScrollFrame" inherits="HybridScrollFrameTemplate">
 						<Size>
@@ -456,7 +456,7 @@
 						</Scripts>
 					</ScrollFrame>
 				</Frames>
-			</Frame>			
+			</Frame>
 			<PlayerModel name="CharacterModelFrame">
                 <Size>
                     <AbsDimension x="233" y="215"/>
@@ -1187,7 +1187,7 @@
 				<HighlightTexture file="Interface\Buttons\UI-MicroButton-Hilight" alphaMode="ADD">
 					<TexCoords left="0" right="1" top="0.390625" bottom="0.96875"/>
 				</HighlightTexture>
-			</Button>				
+			</Button>
 		</Frames>
         <Scripts>
             <OnLoad function="PaperDollFrame_OnLoad"/>
@@ -1227,7 +1227,7 @@
 								</Anchor>
 							</Anchors>
 						</Texture>
-					</Layer>					
+					</Layer>
 				</Layers>
 				<Scripts>
 					<OnLoad>
@@ -1246,7 +1246,7 @@
 			<OnEvent function="PaperDollFrameItemFlyout_OnEvent"/>
 		</Scripts>
 	</Frame>
-	
+
 	<Frame name="GearManagerDialog" enableMouse="true" parent="PaperDollFrame" inherits="UIPanelDialogTemplate" hidden="true" frameStrata="MEDIUM" toplevel="true">
 		<Size x="261" y="155"/>
 		<Anchors>
@@ -1256,7 +1256,7 @@
 		</Anchors>
 		<Frames>
 			<Frame name="SetContainer">
-			
+
 			</Frame>
 			<Button name="$parentDeleteSet" text="DELETE" inherits="UIPanelButtonTemplate">
 				<Size x="78" y="22"/>
@@ -1332,7 +1332,7 @@
 								</Anchor>
 							</Anchors>
 						</Texture>
-					</Layer>	
+					</Layer>
 					<Layer level="ARTWORK">
 						<FontString inherits="GameFontHighlightSmall" text="GEARSETS_POPUP_TEXT">
 							<Anchors>
@@ -1347,7 +1347,7 @@
 									<Offset x="24" y="-69"/>
 								</Anchor>
 							</Anchors>
-						</FontString>					
+						</FontString>
 					</Layer>
 				</Layers>
 				<Frames>
@@ -1389,7 +1389,7 @@
 								FauxScrollFrame_OnVerticalScroll(self, offset, GEARSET_ICON_ROW_HEIGHT, GearManagerDialogPopup_Update);
 							</OnVerticalScroll>
 						</Scripts>
-					</ScrollFrame>				
+					</ScrollFrame>
 					<EditBox name="$parentEditBox" letters="16" historyLines="0" autoFocus="true">
 						<Size x="182" y="20"/>
 						<Anchors>
@@ -1432,7 +1432,7 @@
 								else
 									GearManagerDialogPopup.name = nil;
 								end
-								
+
 								GearManagerDialogPopupOkay_Update();
 							</OnTextChanged>
 							<OnEscapePressed function="GearManagerDialogPopupCancel_OnClick"/>
@@ -1443,7 +1443,7 @@
 							</OnEnterPressed>
 						</Scripts>
 						<FontString inherits="ChatFontNormal"/>
-					</EditBox>	
+					</EditBox>
 					<Button name="$parentCancel" inherits="UIPanelButtonTemplate" text="CANCEL">
 						<Size x="78" y="22"/>
 						<Anchors>
@@ -1457,7 +1457,7 @@
 								PlaySound("gsTitleOptionOK");
 							</OnClick>
 						</Scripts>
-					</Button>					
+					</Button>
 					<Button name="$parentOkay" inherits="UIPanelButtonTemplate" text="OKAY">
 						<Size x="78" y="22"/>
 						<Anchors>
@@ -1477,7 +1477,7 @@
 					<OnLoad function="GearManagerDialogPopup_OnLoad"/>
 					<OnShow function="GearManagerDialogPopup_OnShow"/>
 					<OnHide function="GearManagerDialogPopup_OnHide"/>
-				</Scripts>				
+				</Scripts>
 			</Frame>
 		</Frames>
 		<Scripts>

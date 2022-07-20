@@ -545,7 +545,7 @@
 			<OnHide>
 				KeyBindingFrameOutputText:SetText("");
 				PlaySound("gsTitleOptionExit");
-				ShowUIPanel(GameMenuFrame); 
+				ShowUIPanel(GameMenuFrame);
 				UpdateMicroButtons();
 			</OnHide>
 		</Scripts>

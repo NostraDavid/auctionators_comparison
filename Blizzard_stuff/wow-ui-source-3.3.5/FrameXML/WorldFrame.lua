@@ -17,10 +17,10 @@ end
 function ToggleMapFramerate()
 	if ( FramerateText:IsShown() and WORLDMAP_SETTINGS.size ~= WORLDMAP_WINDOWED_SIZE ) then
 		MapFramerateLabel:Show();
-		MapFramerateText:Show();	
+		MapFramerateText:Show();
 	else
 		MapFramerateLabel:Hide();
-		MapFramerateText:Hide();	
+		MapFramerateText:Hide();
 	end
 end
 
@@ -115,5 +115,3 @@ function ActionStatus_OnUpdate(self, elapsed)
 	end
 	self:Hide();
 end
-
-

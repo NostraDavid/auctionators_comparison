@@ -253,7 +253,7 @@ function BattlefieldMinimap_OnUpdate(self, elapsed)
 	else
 		BattlefieldMinimap.updateTimer = BattlefieldMinimap.updateTimer - elapsed;
 	end
-	
+
 	--Position player
 	UpdateWorldMapArrowFrames();
 	local playerX, playerY = GetPlayerMapPosition("player");
@@ -269,7 +269,7 @@ function BattlefieldMinimap_OnUpdate(self, elapsed)
 		PositionMiniWorldMapArrowFrame("CENTER", "BattlefieldMinimap", "TOPLEFT", playerX, playerY);
 		ShowMiniWorldMapArrowFrame(1);
 	end
-	
+
 	-- If resizing the frame then scale everything accordingly
 	if ( BattlefieldMinimap.resizing ) then
 		local sizeUnit = BattlefieldMinimap:GetWidth()/4;
@@ -415,7 +415,7 @@ function BattlefieldMinimap_OnUpdate(self, elapsed)
 			for i=index+1, totalVehicles do
 				BG_VEHICLES[i]:Hide();
 			end
-		end	
+		end
 	end
 
 	-- Fadein tab if mouse is over
@@ -431,7 +431,7 @@ function BattlefieldMinimap_OnUpdate(self, elapsed)
 				BattlefieldMinimap.oldy = yPos;
 			end
 			if ( BattlefieldMinimap.hoverTime > BATTLEFIELD_TAB_SHOW_DELAY ) then
-				-- If the battlefieldtab's alpha is less than the current default, then fade it in 
+				-- If the battlefieldtab's alpha is less than the current default, then fade it in
 				if ( not BattlefieldMinimap.hasBeenFaded and (BattlefieldMinimap.oldAlpha and BattlefieldMinimap.oldAlpha < DEFAULT_BATTLEFIELD_TAB_ALPHA) ) then
 					UIFrameFadeIn(BattlefieldMinimapTab, BATTLEFIELD_TAB_FADE_TIME, BattlefieldMinimap.oldAlpha, DEFAULT_BATTLEFIELD_TAB_ALPHA);
 					-- Set the fact that the chatFrame has been faded so we don't try to fade it again
@@ -552,12 +552,12 @@ function BattlefieldMinimapUnit_OnEnter(self, motion)
 	else
 		GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
 	end
-	
+
 	-- See which POI's are in the same region and include their names in the tooltip
 	local unitButton;
 	local newLineString = "";
 	local tooltipText = "";
-	
+
 	-- Check party
 	for i=1, MAX_PARTY_MEMBERS do
 		unitButton = _G["BattlefieldMinimapParty"..i];
@@ -579,7 +579,7 @@ function BattlefieldMinimapUnit_OnEnter(self, motion)
 				if ( PlayerIsPVPInactive(unitButton.name) ) then
 					tooltipText = tooltipText..newLineString..format(PLAYER_IS_PVP_AFK, unitButton.name);
 				else
-					tooltipText = tooltipText..newLineString..unitButton.name;		
+					tooltipText = tooltipText..newLineString..unitButton.name;
 				end
 			else
 				if ( PlayerIsPVPInactive(unitButton.unit) ) then

@@ -172,7 +172,7 @@ function TalentFrame_Update(TalentFrame)
 				_G[buttonName.."Rank"]:SetText(displayRank);
 				SetTalentButtonLocation(button, tier, column);
 				TalentFrame.TALENT_BRANCH_ARRAY[tier][column].id = button:GetID();
-			
+
 				-- If player has no talent points or this is the inactive talent group then show only talents with points in them
 				if ( (unspentPoints <= 0 or not isActiveTalentGroup) and displayRank == 0 ) then
 					forceDesaturated = 1;
@@ -221,7 +221,7 @@ function TalentFrame_Update(TalentFrame)
 			else
 				button:Hide();
 			end
-		else	
+		else
 			button:Hide();
 		end
 	end
@@ -239,11 +239,11 @@ function TalentFrame_Update(TalentFrame)
 	for i=1, MAX_NUM_TALENT_TIERS do
 		for j=1, NUM_TALENT_COLUMNS do
 			node = TalentFrame.TALENT_BRANCH_ARRAY[i][j];
-			
+
 			-- Setup offsets
 			xOffset = ((j - 1) * 63) + INITIAL_TALENT_OFFSET_X + 2;
 			yOffset = -((i - 1) * 63) - INITIAL_TALENT_OFFSET_Y - 2;
-		
+
 			if ( node.id ) then
 				-- Has talent
 				if ( node.up ~= 0 ) then
@@ -261,13 +261,13 @@ function TalentFrame_Update(TalentFrame)
 				end
 				if ( node.right ~= 0 ) then
 					-- See if any connecting branches are gray and if so color them gray
-					tempNode = TalentFrame.TALENT_BRANCH_ARRAY[i][j+1];	
+					tempNode = TalentFrame.TALENT_BRANCH_ARRAY[i][j+1];
 					if ( tempNode.left ~= 0 and tempNode.down < 0 ) then
 						TalentFrame_SetBranchTexture(i, j-1, TALENT_BRANCH_TEXTURECOORDS["right"][tempNode.down], xOffset + TALENT_BUTTON_SIZE, yOffset, TalentFrame);
 					else
 						TalentFrame_SetBranchTexture(i, j, TALENT_BRANCH_TEXTURECOORDS["right"][node.right], xOffset + TALENT_BUTTON_SIZE + 1, yOffset, TalentFrame);
 					end
-					
+
 				end
 				-- Draw arrows
 				if ( node.rightArrow ~= 0 ) then
@@ -392,7 +392,7 @@ function TalentFrame_DrawLines(buttonTier, buttonColumn, tier, column, requireme
 	else
 		requirementsMet = -1;
 	end
-	
+
 	-- Check to see if are in the same column
 	if ( buttonColumn == column ) then
 		-- Check for blocking talents
@@ -406,7 +406,7 @@ function TalentFrame_DrawLines(buttonTier, buttonColumn, tier, column, requireme
 				end
 			end
 		end
-		
+
 		-- Draw the lines
 		for i=tier, buttonTier - 1 do
 			TalentFrame.TALENT_BRANCH_ARRAY[i][buttonColumn].down = requirementsMet;
@@ -414,7 +414,7 @@ function TalentFrame_DrawLines(buttonTier, buttonColumn, tier, column, requireme
 				TalentFrame.TALENT_BRANCH_ARRAY[i + 1][buttonColumn].up = requirementsMet;
 			end
 		end
-		
+
 		-- Set the arrow
 		TalentFrame.TALENT_BRANCH_ARRAY[buttonTier][buttonColumn].topArrow = requirementsMet;
 		return;
@@ -423,7 +423,7 @@ function TalentFrame_DrawLines(buttonTier, buttonColumn, tier, column, requireme
 	if ( buttonTier == tier ) then
 		local left = min(buttonColumn, column);
 		local right = max(buttonColumn, column);
-		
+
 		-- See if the distance is greater than one space
 		if ( (right - left) > 1 ) then
 			-- Check for blocking talents
@@ -470,7 +470,7 @@ function TalentFrame_DrawLines(buttonTier, buttonColumn, tier, column, requireme
 	if ( not blocked ) then
 		TalentFrame.TALENT_BRANCH_ARRAY[tier][buttonColumn].down = requirementsMet;
 		TalentFrame.TALENT_BRANCH_ARRAY[buttonTier][buttonColumn].up = requirementsMet;
-		
+
 		for i=tier, buttonTier - 1 do
 			TalentFrame.TALENT_BRANCH_ARRAY[i][buttonColumn].down = requirementsMet;
 			TalentFrame.TALENT_BRANCH_ARRAY[i + 1][buttonColumn].up = requirementsMet;
@@ -622,4 +622,3 @@ function TalentFrame_UpdateSpecInfoCache(cache, inspect, pet, talentGroup)
 		end
 	end
 end
-

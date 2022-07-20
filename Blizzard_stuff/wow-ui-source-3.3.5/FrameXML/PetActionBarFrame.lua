@@ -34,7 +34,7 @@ end
 
 function PetActionBar_OnEvent (self, event, ...)
 	local arg1 = ...;
-	
+
 	if ( event == "PET_BAR_UPDATE" or (event == "UNIT_PET" and arg1 == "player") ) then
 		PetActionBar_Update(self);
 		if ( PetHasActionBar() and UnitIsVisible("pet") ) then
@@ -360,7 +360,7 @@ function PetActionButton_OnUpdate (self, elapsed)
 				flashTexture:Show();
 			end
 		end
-		
+
 		self.flashtime = flashtime;
 	end
 end

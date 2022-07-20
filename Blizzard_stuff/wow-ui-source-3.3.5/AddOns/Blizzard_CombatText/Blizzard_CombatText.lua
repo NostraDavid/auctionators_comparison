@@ -95,7 +95,7 @@ function CombatText_OnEvent(self, event, ...)
 		CombatText_ClearAnimationList();
 		return;
 	end
-	
+
 	local arg1, data, arg3 = ...;
 
 	-- Set up the messageType
@@ -131,7 +131,7 @@ function CombatText_OnEvent(self, event, ...)
 				CombatText.lowHealth = nil;
 			end
 		end
-		
+
 		-- Didn't meet any of the criteria so just return
 		if ( not messageType ) then
 			return;
@@ -148,7 +148,7 @@ function CombatText_OnEvent(self, event, ...)
 				CombatText.lowMana = nil;
 			end
 		end
-		
+
 		-- Didn't meet any of the criteria so just return
 		if ( not messageType ) then
 			return;
@@ -200,7 +200,7 @@ function CombatText_OnEvent(self, event, ...)
 
 	local isStaggered = info.isStaggered;
 	if ( messageType == "" ) then
-	
+
 	elseif ( messageType == "DAMAGE_CRIT" or messageType == "SPELL_DAMAGE_CRIT" ) then
 		displayType = "crit";
 		message = "-"..data;
@@ -310,7 +310,7 @@ function CombatText_OnEvent(self, event, ...)
 			local runeType = GetRuneType(arg1);
 			message = COMBAT_TEXT_RUNE[runeType];
 			-- Alex Brazie had me use these values. Feel free to correct them
-			if( runeType == 1 ) then 
+			if( runeType == 1 ) then
 				info.r = .75;
 				info.g = 0;
 				info.b = 0;
@@ -326,7 +326,7 @@ function CombatText_OnEvent(self, event, ...)
 		else
 			message = nil;
 		end
-	else 
+	else
 		message = _G["COMBAT_TEXT_"..messageType];
 		if ( not message ) then
 			message = _G[messageType];
@@ -336,7 +336,7 @@ function CombatText_OnEvent(self, event, ...)
 	-- Add the message
 	if ( message ) then
 		CombatText_AddMessage(message, COMBAT_TEXT_SCROLL_FUNCTION, info.r, info.g, info.b, displayType, isStaggered);
-	end	
+	end
 end
 
 function CombatText_OnUpdate(self, elapsed)
@@ -383,7 +383,7 @@ function CombatText_AddMessage(message, scrollFunction, r, g, b, displayType, is
 	if ( noStringsAvailable ) then
 		return;
 	end
-	
+
 	string:SetText(message);
 	string:SetTextColor(r, g, b);
 	string.scrollTime = 0;
@@ -392,7 +392,7 @@ function CombatText_AddMessage(message, scrollFunction, r, g, b, displayType, is
 	else
 		string.scrollFunction = scrollFunction;
 	end
-	
+
 	-- See which direction the message should flow
 	local yDir;
 	local lowestMessage;
@@ -492,7 +492,7 @@ function CombatText_GetAvailableString()
 		string = _G["CombatText"..i];
 		if ( not string:IsShown() ) then
 			return string;
-		end 
+		end
 	end
 	return CombatText_GetOldestString(), 1;
 end
@@ -573,8 +573,8 @@ function CombatText_UpdateDisplayedMessages()
 			endX = 0,
 			endY = 609 * COMBAT_TEXT_Y_SCALE
 		};
-		
-	elseif ( COMBAT_TEXT_FLOAT_MODE == "2" ) then	
+
+	elseif ( COMBAT_TEXT_FLOAT_MODE == "2" ) then
 		COMBAT_TEXT_SCROLL_FUNCTION = CombatText_StandardScroll;
 		COMBAT_TEXT_LOCATIONS = {
 			startX = 0,

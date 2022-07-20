@@ -302,7 +302,7 @@
 			<EdgeSize>
 				<AbsValue val="32"/>
 			</EdgeSize>
-		</Backdrop> 
+		</Backdrop>
 		<Scripts>
 			<OnLoad>
 				self:RegisterEvent("VARIABLES_LOADED");

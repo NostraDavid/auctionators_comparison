@@ -52,29 +52,29 @@ function Minimap_SetTooltip( pvpType, factionName )
 		local zoneName = GetZoneText();
 		local subzoneName = GetSubZoneText();
 		if ( subzoneName == zoneName ) then
-			subzoneName = "";	
+			subzoneName = "";
 		end
 		GameTooltip:AddLine( zoneName, 1.0, 1.0, 1.0 );
 		if ( pvpType == "sanctuary" ) then
-			GameTooltip:AddLine( subzoneName, 0.41, 0.8, 0.94 );	
+			GameTooltip:AddLine( subzoneName, 0.41, 0.8, 0.94 );
 			GameTooltip:AddLine(SANCTUARY_TERRITORY, 0.41, 0.8, 0.94);
 		elseif ( pvpType == "arena" ) then
-			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );	
+			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );
 			GameTooltip:AddLine(FREE_FOR_ALL_TERRITORY, 1.0, 0.1, 0.1);
 		elseif ( pvpType == "friendly" ) then
-			GameTooltip:AddLine( subzoneName, 0.1, 1.0, 0.1 );	
+			GameTooltip:AddLine( subzoneName, 0.1, 1.0, 0.1 );
 			GameTooltip:AddLine(format(FACTION_CONTROLLED_TERRITORY, factionName), 0.1, 1.0, 0.1);
 		elseif ( pvpType == "hostile" ) then
-			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );	
+			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );
 			GameTooltip:AddLine(format(FACTION_CONTROLLED_TERRITORY, factionName), 1.0, 0.1, 0.1);
 		elseif ( pvpType == "contested" ) then
-			GameTooltip:AddLine( subzoneName, 1.0, 0.7, 0.0 );	
+			GameTooltip:AddLine( subzoneName, 1.0, 0.7, 0.0 );
 			GameTooltip:AddLine(CONTESTED_TERRITORY, 1.0, 0.7, 0.0);
 		elseif ( pvpType == "combat" ) then
-			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );	
+			GameTooltip:AddLine( subzoneName, 1.0, 0.1, 0.1 );
 			GameTooltip:AddLine(COMBAT_ZONE, 1.0, 0.1, 0.1);
 		else
-			GameTooltip:AddLine( subzoneName, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b );	
+			GameTooltip:AddLine( subzoneName, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b );
 		end
 		GameTooltip:Show();
 	end
@@ -106,7 +106,7 @@ function MinimapPing_OnUpdate(self, elapsed)
 		end
 		local percentage = timer - floor(timer)
 		MinimapPingSpinner:SetRotation(percentage * math.pi/2);
-		-- We want about 7 expansions per ping to match the old animation. 
+		-- We want about 7 expansions per ping to match the old animation.
 		percentage = mod(timer, MINIMAPPING_TIMER/7);
 		MinimapPingExpander:SetHeight(MINIMAP_EXPANDER_MAXSIZE * (1 - percentage));
 		MinimapPingExpander:SetWidth(MINIMAP_EXPANDER_MAXSIZE * (1 - percentage));
@@ -129,7 +129,7 @@ end
 function Minimap_SetPing(x, y, playSound)
 	x = x * Minimap:GetWidth();
 	y = y * Minimap:GetHeight();
-	
+
 	if ( sqrt(x * x + y * y) < (Minimap:GetWidth() / 2) ) then
 		MinimapPing:SetPoint("CENTER", "Minimap", "CENTER", x, y);
 		MinimapPing:SetAlpha(1);
@@ -235,7 +235,7 @@ end
 
 function MiniMapLFGFrameDropDown_Update()
 	local info = UIDropDownMenu_CreateInfo();
-	
+
 	local mode, submode = GetLFGMode();
 
 	--This one can appear in addition to others, so we won't just check the mode.
@@ -254,12 +254,12 @@ function MiniMapLFGFrameDropDown_Update()
 			UIDropDownMenu_AddButton(info);
 		end
 	end
-	
+
 	if ( mode == "proposal" and submode == "unaccepted" ) then
 		info.text = ENTER_DUNGEON;
 		info.func = AcceptProposal;
 		UIDropDownMenu_AddButton(info);
-		
+
 		info.text = LEAVE_QUEUE;
 		info.func = RejectProposal;
 		UIDropDownMenu_AddButton(info);
@@ -386,13 +386,13 @@ end
 function MinimapMailFrameUpdate()
 	local sender1,sender2,sender3 = GetLatestThreeSenders();
 	local toolText;
-	
+
 	if( sender1 or sender2 or sender3 ) then
 		toolText = HAVE_MAIL_FROM;
 	else
 		toolText = HAVE_MAIL;
 	end
-	
+
 	if( sender1 ) then
 		toolText = toolText.."\n"..sender1;
 	end
@@ -451,7 +451,7 @@ function MiniMapTrackingDropDown_Initialize()
 			anyActive = active;
 		end
 	end
-	
+
 	if ( anyActive ) then
 		checked = nil;
 	else
@@ -479,12 +479,12 @@ end
 function MiniMapTrackingShineFadeOut()
 	UIFrameFadeOut(MiniMapTrackingButtonShine, 0.5);
 end
-						
+
 local selectedRaidDifficulty;
 local allowedRaidDifficulty;
 function MiniMapInstanceDifficulty_OnEvent(self)
 	local _, instanceType, difficulty, _, maxPlayers, playerDifficulty, isDynamicInstance = GetInstanceInfo();
-	if ( ( instanceType == "party" or instanceType == "raid" ) and not ( difficulty == 1 and maxPlayers == 5 ) ) then		
+	if ( ( instanceType == "party" or instanceType == "raid" ) and not ( difficulty == 1 and maxPlayers == 5 ) ) then
 		local isHeroic = false;
 		if ( instanceType == "party" and difficulty == 2 ) then
 			isHeroic = true;

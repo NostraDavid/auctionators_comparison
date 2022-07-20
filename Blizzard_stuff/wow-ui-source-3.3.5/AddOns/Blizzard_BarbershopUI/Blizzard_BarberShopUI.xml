@@ -3,13 +3,13 @@
 	<Frame name="BarberShopSelectorTemplate" virtual="true">
 		<Size>
 			<AbsDimension x="175" y="32"/>
-		</Size>								
+		</Size>
 		<Layers>
 			<Layer level="BACKGROUND">
 				<FontString name="$parentCategory" inherits="GameFontNormal" text="Hair Style">
 					<Size>
 						<AbsDimension x="90" y="14"/>
-					</Size>								
+					</Size>
 				</FontString>
 			</Layer>
 		</Layers>

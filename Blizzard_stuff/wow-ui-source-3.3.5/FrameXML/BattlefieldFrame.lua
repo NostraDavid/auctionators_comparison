@@ -29,7 +29,7 @@ function BattlefieldFrame_OnLoad (self)
 	self:RegisterEvent("BATTLEFIELD_MGR_EJECT_PENDING");
 	self:RegisterEvent("BATTLEFIELD_MGR_EJECTED");
 	self:RegisterEvent("BATTLEFIELD_MGR_ENTERED");
-		
+
 	BattlefieldFrame.timerDelay = 0;
 end
 
@@ -40,7 +40,7 @@ function BattlefieldFrame_OnEvent (self, event, ...)
 	elseif ( event == "BATTLEFIELDS_SHOW" ) then
 		if ( not IsBattlefieldArena() ) then
 			ShowUIPanel(BattlefieldFrame);
-			
+
 			-- Default to first available
 			SetSelectedBattlefield(0);
 
@@ -120,7 +120,7 @@ function BattlefieldFrame_OnEvent (self, event, ...)
 		BattlefieldFrame_UpdateStatus(false);
 		BattlefieldFrame_Update();
 	end
-	
+
 	if ( event == "PARTY_LEADER_CHANGED" ) then
 		BattlefieldFrame_Update();
 	end
@@ -139,7 +139,7 @@ function BattlefieldTimerFrame_OnUpdate(self, elapsed)
 				if( expiration < lowestExpiration or lowestExpiration == 0 ) then
 					lowestExpiration = expiration;
 				end
-	
+
 				keepUpdating = true;
 			end
 		end
@@ -151,14 +151,14 @@ function BattlefieldTimerFrame_OnUpdate(self, elapsed)
 			BattlefieldIconText:Hide();
 		end
 	end
-	
+
 	if ( not keepUpdating ) then
 		BattlefieldTimerFrame:SetScript("OnUpdate", nil);
 		return;
 	end
-	
+
 	local frame = BattlefieldFrame
-	
+
 	BATTLEFIELD_SHUTDOWN_TIMER = BATTLEFIELD_SHUTDOWN_TIMER - elapsed;
 	-- Set the time for the score frame
 	WorldStateScoreFrameTimer:SetFormattedText(SecondsToTimeAbbrev(BATTLEFIELD_SHUTDOWN_TIMER));
@@ -213,7 +213,7 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 	MiniMapBattlefieldFrame.tooltip = nil;
 	MiniMapBattlefieldFrame.waitTime = {};
 	MiniMapBattlefieldFrame.status = nil;
-	
+
 	-- Copy current queues into previous queues
 	if ( not tooltipOnly ) then
 		PREVIOUS_BATTLEFIELD_QUEUES = {};
@@ -232,7 +232,7 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 	else
 		MiniMapBattlefieldFrame.inWorldPVPArea = false;
 	end
-	
+
 	for i=1, MAX_BATTLEFIELD_QUEUES do
 		status, mapName, instanceID, levelRangeMin, levelRangeMax, teamSize, registeredMatch = GetBattlefieldStatus(i);
 		if ( mapName ) then
@@ -261,14 +261,14 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 				timeInQueue = GetBattlefieldTimeWaited(i)/1000;
 				if ( waitTime == 0 ) then
 					waitTime = QUEUE_TIME_UNAVAILABLE;
-				elseif ( waitTime < 60000 ) then 
+				elseif ( waitTime < 60000 ) then
 					waitTime = LESS_THAN_ONE_MINUTE;
 				else
 					waitTime = SecondsToTime(waitTime/1000, 1);
 				end
 				MiniMapBattlefieldFrame.waitTime[i] = waitTime;
 				tooltip = format(BATTLEFIELD_IN_QUEUE, mapName, waitTime, SecondsToTime(timeInQueue));
-				
+
 				if ( not tooltipOnly ) then
 					if ( not IsAlreadyInQueue(mapName) ) then
 						UIFrameFadeIn(MiniMapBattlefieldFrame, BATTLEFIELD_FRAME_FADE_TIME);
@@ -296,7 +296,7 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 			elseif ( status == "active" ) then
 				-- In the battleground
 				if ( teamSize ~= 0 ) then
-					tooltip = mapName;			
+					tooltip = mapName;
 				else
 					tooltip = format(BATTLEFIELD_IN_BATTLEFIELD, mapName);
 				end
@@ -319,7 +319,7 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 			end
 		end
 	end
-	
+
 	for i=1, MAX_WORLD_PVP_QUEUES do
 		status, mapName, queueID = GetWorldPVPQueueStatus(i);
 		if ( status ~= "none" ) then
@@ -331,7 +331,7 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 			elseif ( status == "confirm" ) then
 				tooltip = format(BATTLEFIELD_QUEUE_CONFIRM_SIMPLE, mapName);
 			end
-			
+
 			if ( MiniMapBattlefieldFrame.tooltip ) then
 				MiniMapBattlefieldFrame.tooltip = MiniMapBattlefieldFrame.tooltip.."\n\n"..tooltip;
 			else
@@ -339,14 +339,14 @@ function BattlefieldFrame_UpdateStatus(tooltipOnly, mapIndex)
 			end
 		end
 	end
-	
+
 	-- See if should add right click message
 	if ( MiniMapBattlefieldFrame.tooltip and showRightClickText ) then
 		MiniMapBattlefieldFrame.tooltip = MiniMapBattlefieldFrame.tooltip.."\n"..RIGHT_CLICK_MESSAGE;
 	elseif ( MiniMapBattlefieldFrame_isArena() ) then
 		MiniMapBattlefieldFrame.tooltip = MiniMapBattlefieldFrame.tooltip;
 	end
-	
+
 	if ( not tooltipOnly ) then
 		MiniMapBattlefieldFrame_isArena();
 		if ( numberQueues == 0 and (not CanHearthAndResurrectFromArea()) ) then
@@ -385,7 +385,7 @@ function BattlefieldFrame_Update()
 	local instanceID;
 	local mapName, mapDescription, maxGroup = GetBattlefieldInfo();
 	local factionTexture = "Interface\\PVPFrame\\PVP-Currency-"..UnitFactionGroup("player");
-	
+
 	if ( not mapName ) then
 		return;
 	end
@@ -396,7 +396,7 @@ function BattlefieldFrame_Update()
 	if ( maxGroup and maxGroup == 5 ) then
 		BattlefieldFrameGroupJoinButton:SetText(JOIN_AS_PARTY);
 	else
-		BattlefieldFrameGroupJoinButton:SetText(JOIN_AS_GROUP);		
+		BattlefieldFrameGroupJoinButton:SetText(JOIN_AS_GROUP);
 	end
 	-- Setup instance buttons
 	-- add one to battlefields because of the fake "first available" button
@@ -422,7 +422,7 @@ function BattlefieldFrame_Update()
 			button.tooltip = NEWBIE_TOOLTIP_ENTER_BATTLEGROUND;
 			button:Show();
 		end
-		
+
 		-- Set queued status
 		button.status:Hide();
 		local queueStatus, queueMapName, queueInstanceID;
@@ -449,7 +449,7 @@ function BattlefieldFrame_Update()
 				end
 			end
 		end
-		
+
 		-- Set selected instance
 		if ( zoneIndex == 1 and GetSelectedBattlefield() == 0 ) then
 			button:LockHighlight();
@@ -459,7 +459,7 @@ function BattlefieldFrame_Update()
 			button:UnlockHighlight();
 		end
 	end
-	
+
 	local mapName, mapDescription, maxGroup, canEnter, isHoliday, isRandom = GetBattlefieldInfo();
 
 	if ( isRandom or isHoliday ) then
@@ -471,7 +471,7 @@ function BattlefieldFrame_Update()
 			BattlefieldFrameInfoScrollFrameChildFrameDescription:SetText(mapDescription);
 			BattlefieldFrameInfoScrollFrame:SetVerticalScroll(0);
 		end
-		
+
 		BattlefieldFrameInfoScrollFrameChildFrameRewardsInfo:Hide();
 		BattlefieldFrameInfoScrollFrameChildFrameDescription:Show();
 	end
@@ -502,9 +502,9 @@ end
 
 function PVPQueue_UpdateRandomInfo(base, infoFunc)
 	local BGname, canEnter, isHoliday, isRandom = infoFunc();
-	
+
 	local hasWin, lossHonor, winHonor, winArena, lossArena;
-	
+
 	if ( isRandom ) then
 		hasWin, winHonor, winArena, lossHonor, lossArena = GetRandomBGHonorCurrencyBonuses();
 		base.title:SetText(RANDOM_BATTLEGROUND);
@@ -514,7 +514,7 @@ function PVPQueue_UpdateRandomInfo(base, infoFunc)
 		base.description:SetText(BATTLEGROUND_HOLIDAY_EXPLANATION);
 		hasWin, winHonor, winArena, lossHonor, lossArena = GetHolidayBGHonorCurrencyBonuses();
 	end
-	
+
 	if (winHonor ~= 0) then
 		base.winReward.honorSymbol:Show();
 		base.winReward.honorAmount:Show();
@@ -523,7 +523,7 @@ function PVPQueue_UpdateRandomInfo(base, infoFunc)
 		base.winReward.honorSymbol:Hide();
 		base.winReward.honorAmount:Hide();
 	end
-	
+
 	if (winArena ~= 0) then
 		base.winReward.arenaSymbol:Show();
 		base.winReward.arenaAmount:Show();
@@ -532,7 +532,7 @@ function PVPQueue_UpdateRandomInfo(base, infoFunc)
 		base.winReward.arenaSymbol:Hide();
 		base.winReward.arenaAmount:Hide();
 	end
-	
+
 	if (lossHonor ~= 0) then
 		base.lossReward.honorSymbol:Show();
 		base.lossReward.honorAmount:Show();
@@ -541,7 +541,7 @@ function PVPQueue_UpdateRandomInfo(base, infoFunc)
 		base.lossReward.honorSymbol:Hide();
 		base.lossReward.honorAmount:Hide();
 	end
-	
+
 	if (lossArena ~= 0) then
 		base.lossReward.arenaSymbol:Show();
 		base.lossReward.arenaAmount:Show();
@@ -550,7 +550,7 @@ function PVPQueue_UpdateRandomInfo(base, infoFunc)
 		base.lossReward.arenaSymbol:Hide();
 		base.lossReward.arenaAmount:Hide();
 	end
-		
+
 	local englishFaction = UnitFactionGroup("player");
 	base.winReward.honorSymbol:SetTexture("Interface\\PVPFrame\\PVP-Currency-"..englishFaction);
 	base.lossReward.honorSymbol:SetTexture("Interface\\PVPFrame\\PVP-Currency-"..englishFaction);
@@ -579,7 +579,7 @@ function BattlefieldFrameJoinButton_OnClick(self)
 	else
 		JoinBattlefield(GetSelectedBattlefield());
 	end
-	
+
 	HideUIPanel(BattlefieldFrame);
 end
 
@@ -592,9 +592,9 @@ function MiniMapBattlefieldDropDown_Initialize()
 	local status, mapName, instanceID, queueID, levelRangeMin, levelRangeMax, teamSize, registeredMatch;
 	local numQueued = 0;
 	local numShown = 0;
-	
+
 	local shownHearthAndRes;
-	
+
 	for i=1, MAX_BATTLEFIELD_QUEUES do
 		status, mapName, instanceID, levelRangeMin, levelRangeMax, teamSize, registeredMatch = GetBattlefieldStatus(i);
 
@@ -625,18 +625,18 @@ function MiniMapBattlefieldDropDown_Initialize()
 			end
 			info.isTitle = 1;
 			info.notCheckable = 1;
-			UIDropDownMenu_AddButton(info);			
+			UIDropDownMenu_AddButton(info);
 
 			if ( CanHearthAndResurrectFromArea() and not shownHearthAndRes and GetRealZoneText() == mapName ) then
 				info = UIDropDownMenu_CreateInfo();
-				info.text = format(LEAVE_ZONE, GetRealZoneText());			
-				
+				info.text = format(LEAVE_ZONE, GetRealZoneText());
+
 				info.func = HearthAndResurrectFromArea;
 				info.notCheckable = 1;
 				UIDropDownMenu_AddButton(info);
 				shownHearthAndRes = true;
 			end
-			
+
 			if ( status == "queued" ) then
 
 				info = UIDropDownMenu_CreateInfo();
@@ -665,7 +665,7 @@ function MiniMapBattlefieldDropDown_Initialize()
 					UIDropDownMenu_AddButton(info);
 				end
 
-			end			
+			end
 
 		elseif ( status == "active" ) then
 
@@ -683,7 +683,7 @@ function MiniMapBattlefieldDropDown_Initialize()
 			if ( IsActiveBattlefieldArena() ) then
 				info.text = LEAVE_ARENA;
 			else
-				info.text = LEAVE_BATTLEGROUND;				
+				info.text = LEAVE_BATTLEGROUND;
 			end
 			info.func = function (self, ...) LeaveBattlefield(...) end;
 			info.notCheckable = 1;
@@ -691,7 +691,7 @@ function MiniMapBattlefieldDropDown_Initialize()
 
 		end
 	end
-	
+
 	for i=1, MAX_WORLD_PVP_QUEUES do
 		status, mapName, queueID = GetWorldPVPQueueStatus(i);
 
@@ -705,38 +705,38 @@ function MiniMapBattlefieldDropDown_Initialize()
 				UIDropDownMenu_AddButton(info);
 			end
 		end
-		
+
 		if ( status == "queued" or status == "confirm" ) then
 			numQueued = numQueued + 1;
 			-- Add a spacer if there were dropdown items before this
-			
+
 			info = UIDropDownMenu_CreateInfo();
 			info.text = mapName;
 			info.isTitle = 1;
 			info.notCheckable = 1;
-			UIDropDownMenu_AddButton(info);			
-			
+			UIDropDownMenu_AddButton(info);
+
 			if ( CanHearthAndResurrectFromArea() and not shownHearthAndRes and GetRealZoneText() == mapName ) then
 				info = UIDropDownMenu_CreateInfo();
-				info.text = format(LEAVE_ZONE, GetRealZoneText());			
-				
+				info.text = format(LEAVE_ZONE, GetRealZoneText());
+
 				info.func = HearthAndResurrectFromArea;
 				info.notCheckable = 1;
 				UIDropDownMenu_AddButton(info);
 				shownHearthAndRes = true;
 			end
-			
+
 			if ( status == "queued" ) then
-			
+
 				info = UIDropDownMenu_CreateInfo();
 				info.text = LEAVE_QUEUE;
 				info.func = function (self, ...) BattlefieldMgrExitRequest(...) end;
 				info.arg1 = queueID;
 				info.notCheckable = 1;
 				UIDropDownMenu_AddButton(info);
-				
+
 			elseif ( status == "confirm" ) then
-			
+
 				info = UIDropDownMenu_CreateInfo();
 				info.text = ENTER_BATTLE;
 				info.func = function (self, ...) BattlefieldMgrEntryInviteResponse(...) end;
@@ -744,7 +744,7 @@ function MiniMapBattlefieldDropDown_Initialize()
 				info.arg2 = 1;
 				info.notCheckable = 1;
 				UIDropDownMenu_AddButton(info);
-				
+
 				info = UIDropDownMenu_CreateInfo();
 				info.text = LEAVE_QUEUE;
 				info.func = function (self, ...) BattlefieldMgrEntryInviteResponse(...) end;
@@ -754,7 +754,7 @@ function MiniMapBattlefieldDropDown_Initialize()
 			end
 		end
 	end
-	
+
 	if ( CanHearthAndResurrectFromArea() and not shownHearthAndRes ) then
 		numShown = numShown + 1;
 		info = UIDropDownMenu_CreateInfo();
@@ -764,8 +764,8 @@ function MiniMapBattlefieldDropDown_Initialize()
 		UIDropDownMenu_AddButton(info);
 
 		info = UIDropDownMenu_CreateInfo();
-		info.text = format(LEAVE_ZONE, GetRealZoneText());			
-		
+		info.text = format(LEAVE_ZONE, GetRealZoneText());
+
 		info.func = HearthAndResurrectFromArea;
 		info.notCheckable = 1;
 		UIDropDownMenu_AddButton(info);

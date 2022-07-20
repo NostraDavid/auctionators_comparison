@@ -43,7 +43,7 @@ function TaxiFrame_OnEvent(self, event, ...)
 				button:SetID(i);
 			end
 		end
-		
+
 		-- Draw nodes
 		local taxiNodePositions = {};
 		local numValidFlightNodes = 0;
@@ -84,12 +84,12 @@ function TaxiFrame_OnEvent(self, event, ...)
 				button:Hide();
 			end
 		end
-	
+
 		-- Hide remaining nodes
 		for index = num_nodes+1, NUM_TAXI_BUTTONS, 1 do
 			local button = _G["TaxiButton"..index];
 			button:Hide();
-		end 
+		end
 
 		if ( num_nodes > NUM_TAXI_BUTTONS ) then
 			NUM_TAXI_BUTTONS = num_nodes
@@ -108,18 +108,18 @@ function TaxiFrame_OnEvent(self, event, ...)
 	end
 end
 
-function TaxiNodeOnButtonEnter(button) 
+function TaxiNodeOnButtonEnter(button)
 	local index = button:GetID();
 	GameTooltip:SetOwner(button, "ANCHOR_RIGHT");
 	GameTooltip:AddLine(TaxiNodeName(index), "", 1.0, 1.0, 1.0);
-	
+
 	-- Setup variables
 	local numRoutes = GetNumRoutes(index);
 	local line;
 	local sX, sY, dX, dY;
 	local w = TaxiRouteMap:GetWidth();
 	local h = TaxiRouteMap:GetHeight();
-	
+
 	local type = TaxiNodeGetType(index);
 	if ( type == "REACHABLE" ) then
 		SetTooltipMoney(GameTooltip, TaxiNodeCost(button:GetID()));
@@ -237,7 +237,7 @@ function DrawRouteLine(T, C, sx, sy, ex, ey, w, relPoint)
       Bwid = ((l * c) - (w * s)) * TAXIROUTE_LINEFACTOR_2;
       Bhgt = ((w * c) - (l * s)) * TAXIROUTE_LINEFACTOR_2;
       BLx, BLy, BRy = (w / l) * sc, s * s, (l / w) * sc;
-      BRx, TLx, TLy, TRx = 1 - BLy, BLy, 1 - BRy, 1 - BLx; 
+      BRx, TLx, TLy, TRx = 1 - BLy, BLy, 1 - BRy, 1 - BLx;
       TRy = BRx;
    else
       Bwid = ((l * c) + (w * s)) * TAXIROUTE_LINEFACTOR_2;

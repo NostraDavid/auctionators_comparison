@@ -31,7 +31,7 @@
 				</Layer>
 			</Layers>
 			<Scripts>
-				<OnLoad>	
+				<OnLoad>
 					RaiseFrameLevel(self);
 				</OnLoad>
 			</Scripts>
@@ -80,7 +80,7 @@
 		</OnLeave>
     </Scripts>
   </Button>
-	
+
 	<!--If you change anything about RuneFrame (specifically anchors), make sure to change the relevant information in UnitFrame_SetUnit -->
   <Frame name="RuneFrame" parent="UIParent" frameStrata="LOW" toplevel="true" hidden="false">
     <Size>

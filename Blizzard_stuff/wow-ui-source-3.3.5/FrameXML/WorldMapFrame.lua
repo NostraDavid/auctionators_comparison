@@ -89,12 +89,12 @@ function WorldMapFrame_OnLoad(self)
 	--[[ Hide the world behind the map when we're in widescreen mode
 	local width = GetScreenWidth();
 	local height = GetScreenHeight();
-	
+
 	if ( width / height < 4 / 3 ) then
 		width = width * 1.25;
 		height = height * 1.25;
 	end
-	
+
 	BlackoutWorld:SetWidth( width );
 	BlackoutWorld:SetHeight( height );
 	]]
@@ -113,7 +113,7 @@ function WorldMapFrame_OnLoad(self)
 	local _, fontHeight = refFrame.objectives:GetFont();
 	refFrame.lineSpacing = refFrame.objectives:GetSpacing();
 	refFrame.lineHeight = fontHeight + refFrame.lineSpacing;
-	
+
 	WorldMapFrame_ResetFrameLevels();
 	WorldMapDetailFrame:SetScale(WORLDMAP_QUESTLIST_SIZE);
 	WorldMapButton:SetScale(WORLDMAP_QUESTLIST_SIZE);
@@ -135,14 +135,14 @@ function WorldMapFrame_OnShow(self)
 		WorldMap_LoadTextures();
 		if ( not WatchFrame.showObjectives and WORLDMAP_SETTINGS.size ~= WORLDMAP_FULLMAP_SIZE ) then
 			WorldMapFrame_SetFullMapView();
-		end		
+		end
 	end
-	
+
 	UpdateMicroButtons();
 	SetMapToCurrentZone();
 	PlaySound("igQuestLogOpen");
 	CloseDropDownMenus();
-	WorldMapFrame_PingPlayerPosition();	
+	WorldMapFrame_PingPlayerPosition();
 	WorldMapFrame_UpdateUnits("WorldMapRaid", "WorldMapParty");
 end
 
@@ -152,7 +152,7 @@ function WorldMapFrame_OnHide(self)
 		OpacityFrame.saveOpacityFunc = nil;
 		OpacityFrame:Hide();
 	end
-	
+
 	UpdateMicroButtons();
 	CloseDropDownMenus();
 	PlaySound("igQuestLogClose");
@@ -262,7 +262,7 @@ function WorldMapFrame_Update()
 	for i=1, NUM_WORLDMAP_DETAIL_TILES do
 		texName = "Interface\\WorldMap\\"..mapFileName.."\\"..completeMapFileName..i;
 		_G["WorldMapDetailTile"..i]:SetTexture(texName);
-	end		
+	end
 	--WorldMapHighlight:Hide();
 
 	-- Enable/Disable zoom out button
@@ -396,7 +396,7 @@ function WorldMapFrame_Update()
 		WorldMapDetailFrame.zoneMap[i]:Hide();
 	end
 	NUM_WORLDMAP_DEBUG_ZONEMAP = numDebugZoneMapTextures;
-	
+
 	-- Setup any debug objects
 	local baseLevel = WorldMapButton:GetFrameLevel() + 1;
 	local numDebugObjects = GetNumMapDebugObjects();
@@ -496,19 +496,19 @@ end
 function WorldMap_GetPOITextureCoords(index)
 	local worldMapPixelsPerIcon = 18;
 	local worldMapIconDimension = 16;
-	
+
 	local offsetPixelsPerSide = (worldMapPixelsPerIcon - worldMapIconDimension)/2;
 	local normalizedOffsetPerSide = offsetPixelsPerSide * 1/WORLDMAP_POI_TEXTURE_WIDTH;
-	local xCoord1, xCoord2, yCoord1, yCoord2; 
+	local xCoord1, xCoord2, yCoord1, yCoord2;
 	local coordIncrement = worldMapPixelsPerIcon / WORLDMAP_POI_TEXTURE_WIDTH;
 	local xOffset = mod(index, NUM_WORLDMAP_POI_COLUMNS);
 	local yOffset = floor(index / NUM_WORLDMAP_POI_COLUMNS);
-	
+
 	xCoord1 = xOffset * coordIncrement + normalizedOffsetPerSide;
 	xCoord2 = xCoord1 + coordIncrement - normalizedOffsetPerSide;
 	yCoord1 = yOffset * coordIncrement + normalizedOffsetPerSide;
 	yCoord2 = yCoord1 + coordIncrement - normalizedOffsetPerSide;
-	
+
 	return xCoord1, xCoord2, yCoord1, yCoord2;
 end
 
@@ -584,9 +584,9 @@ end
 function WorldMapLevelDropDown_Initialize()
 	local info = UIDropDownMenu_CreateInfo();
 	local level = GetCurrentMapDungeonLevel();
-	
+
 	local mapname = strupper(GetMapInfo() or "");
-	
+
 	local usesTerrainMap = DungeonUsesTerrainMap();
 
 	for i=1, GetNumDungeonMapLevels() do
@@ -749,7 +749,7 @@ function WorldMapButton_OnUpdate(self, elapsed)
 	local height = self:GetHeight();
 	local adjustedY = (centerY + (height/2) - y ) / height;
 	local adjustedX = (x - (centerX - (width/2))) / width;
-	
+
 	local name, fileName, texPercentageX, texPercentageY, textureX, textureY, scrollChildX, scrollChildY
 	if ( self:IsMouseOver() ) then
 		name, fileName, texPercentageX, texPercentageY, textureX, textureY, scrollChildX, scrollChildY = UpdateMapHighlight( adjustedX, adjustedY );
@@ -773,7 +773,7 @@ function WorldMapButton_OnUpdate(self, elapsed)
 			WorldMapHighlight:Show();
 			--WorldMapFrameAreaLabel:SetPoint("TOP", "WorldMapHighlight", "TOP", 0, 0);
 		end
-		
+
 	else
 		WorldMapHighlight:Hide();
 	end
@@ -899,7 +899,7 @@ function WorldMapButton_OnUpdate(self, elapsed)
 	else
 		corpseX = corpseX * WorldMapDetailFrame:GetWidth();
 		corpseY = -corpseY * WorldMapDetailFrame:GetHeight();
-		
+
 		WorldMapCorpse:SetPoint("CENTER", "WorldMapDetailFrame", "TOPLEFT", corpseX, corpseY);
 		WorldMapCorpse:Show();
 	end
@@ -911,11 +911,11 @@ function WorldMapButton_OnUpdate(self, elapsed)
 	else
 		deathReleaseX = deathReleaseX * WorldMapDetailFrame:GetWidth();
 		deathReleaseY = -deathReleaseY * WorldMapDetailFrame:GetHeight();
-		
+
 		WorldMapDeathRelease:SetPoint("CENTER", "WorldMapDetailFrame", "TOPLEFT", deathReleaseX, deathReleaseY);
 		WorldMapDeathRelease:Show();
 	end
-	
+
 	-- position vehicles
 	local numVehicles;
 	if ( GetCurrentMapContinent() == WORLDMAP_WORLD_ID or (GetCurrentMapContinent() ~= -1 and GetCurrentMapZone() == 0) ) then
@@ -948,13 +948,13 @@ function WorldMapButton_OnUpdate(self, elapsed)
 		else
 			MAP_VEHICLES[i]:Hide();
 		end
-		
+
 	end
 	if (index < totalVehicles) then
 		for i=index+1, totalVehicles do
 			MAP_VEHICLES[i]:Hide();
 		end
-	end	
+	end
 end
 
 function WorldMapFrame_PingPlayerPosition()
@@ -980,78 +980,78 @@ function WorldMap_GetVehicleTexture(vehicleType, isPossessed)
 end
 
 local WORLDMAP_TEXTURES_TO_LOAD = {
-	{	
-		name="WorldMapFrameTexture1", 
+	{
+		name="WorldMapFrameTexture1",
 		file="Interface\\WorldMap\\UI-WorldMap-Top1",
 	},
-	{	
-		name="WorldMapFrameTexture2", 
+	{
+		name="WorldMapFrameTexture2",
 		file="Interface\\WorldMap\\UI-WorldMap-Top2",
 	},
-	{	
-		name="WorldMapFrameTexture3", 
+	{
+		name="WorldMapFrameTexture3",
 		file="Interface\\WorldMap\\UI-WorldMap-Top3",
 	},
-	{	
-		name="WorldMapFrameTexture4", 
+	{
+		name="WorldMapFrameTexture4",
 		file="Interface\\WorldMap\\UI-WorldMap-Top4",
 	},
-	{	
-		name="WorldMapFrameTexture5", 
+	{
+		name="WorldMapFrameTexture5",
 		file="Interface\\WorldMap\\UI-WorldMap-Middle1",
 	},
-	{	
-		name="WorldMapFrameTexture6", 
+	{
+		name="WorldMapFrameTexture6",
 		file="Interface\\WorldMap\\UI-WorldMap-Middle2",
 	},
-	{	
-		name="WorldMapFrameTexture7", 
+	{
+		name="WorldMapFrameTexture7",
 		file="Interface\\WorldMap\\UI-WorldMap-Middle3",
 	},
-	{	
-		name="WorldMapFrameTexture8", 
+	{
+		name="WorldMapFrameTexture8",
 		file="Interface\\WorldMap\\UI-WorldMap-Middle4",
 	},
-	{	
-		name="WorldMapFrameTexture9", 
+	{
+		name="WorldMapFrameTexture9",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom1",
 	},
-	{	
-		name="WorldMapFrameTexture10", 
+	{
+		name="WorldMapFrameTexture10",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom2",
 	},
-	{	
-		name="WorldMapFrameTexture11", 
+	{
+		name="WorldMapFrameTexture11",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom3",
 	},
-	{	
-		name="WorldMapFrameTexture12", 
+	{
+		name="WorldMapFrameTexture12",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom4",
 	},
-	{	
-		name="WorldMapFrameTexture13", 
+	{
+		name="WorldMapFrameTexture13",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom1-full",
 	},
-	{	
-		name="WorldMapFrameTexture14", 
+	{
+		name="WorldMapFrameTexture14",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom3-full",
 	},
-	{	
-		name="WorldMapFrameTexture15", 
+	{
+		name="WorldMapFrameTexture15",
 		file="Interface\\WorldMap\\UI-WorldMap-Bottom4-full",
 	},
-	{	
-		name="WorldMapFrameTexture16", 
+	{
+		name="WorldMapFrameTexture16",
 		file="Interface\\WorldMap\\UI-WorldMap-Top3-full",
 	},
-	{	
-		name="WorldMapFrameTexture17", 
+	{
+		name="WorldMapFrameTexture17",
 		file="Interface\\WorldMap\\UI-WorldMap-Top4-full",
 	},
-	{	
-		name="WorldMapFrameTexture18", 
+	{
+		name="WorldMapFrameTexture18",
 		file="Interface\\WorldMap\\UI-WorldMap-Top3-full",	-- vertex color is set to 0 in WorldMapFrame_OnLoad
-	},	
+	},
 }
 
 function WorldMap_LoadTextures()
@@ -1124,7 +1124,7 @@ function WorldMapUnit_OnEnter(self, motion)
 				if ( PlayerIsPVPInactive(unitButton.name) ) then
 					tooltipText = tooltipText..newLineString..format(PLAYER_IS_PVP_AFK, unitButton.name);
 				else
-					tooltipText = tooltipText..newLineString..unitButton.name;		
+					tooltipText = tooltipText..newLineString..unitButton.name;
 				end
 			else
 				if ( PlayerIsPVPInactive(unitButton.unit) ) then
@@ -1248,7 +1248,7 @@ function WorldMapUnitDropDown_Initialize()
 			info.text = UnitName( BAD_BOY_UNITS[i] );
 			UIDropDownMenu_AddButton(info);
 		end
-		
+
 		if ( BAD_BOY_COUNT > 1 ) then
 			info = UIDropDownMenu_CreateInfo();
 			info.func = WorldMapUnitDropDown_ReportAll_OnClick;
@@ -1282,7 +1282,7 @@ function WorldMapFrame_ToggleWindowSize()
 	else
 		dungeonLevel = GetCurrentMapDungeonLevel();
 	end
-	-- close the frame first so the UI panel system can do its thing	
+	-- close the frame first so the UI panel system can do its thing
 	ToggleFrame(WorldMapFrame);
 	-- apply magic
 	if ( WORLDMAP_SETTINGS.size == WORLDMAP_WINDOWED_SIZE ) then
@@ -1320,7 +1320,7 @@ function WorldMap_ToggleSizeUp()
 	WorldMapFrame:EnableKeyboard(true);
 	-- adjust map frames
 	WorldMapPositioningGuide:ClearAllPoints();
-	WorldMapPositioningGuide:SetPoint("CENTER");		
+	WorldMapPositioningGuide:SetPoint("CENTER");
 	WorldMapDetailFrame:SetScale(WORLDMAP_QUESTLIST_SIZE);
 	WorldMapDetailFrame:SetPoint("TOPLEFT", WorldMapPositioningGuide, "TOP", -726, -99);
 	WorldMapButton:SetScale(WORLDMAP_QUESTLIST_SIZE);
@@ -1335,25 +1335,25 @@ function WorldMap_ToggleSizeUp()
 	WorldMapContinentDropDown:Show();
 	WorldMapQuestScrollFrame:Show();
 	WorldMapQuestDetailScrollFrame:Show();
-	WorldMapQuestRewardScrollFrame:Show();		
+	WorldMapQuestRewardScrollFrame:Show();
 	WorldMapFrameSizeDownButton:Show();
 	-- hide small window elements
 	WorldMapTitleButton:Hide();
 	WorldMapFrameMiniBorderLeft:Hide();
-	WorldMapFrameMiniBorderRight:Hide();		
+	WorldMapFrameMiniBorderRight:Hide();
 	WorldMapFrameSizeUpButton:Hide();
 	ToggleMapFramerate();
 	-- floor dropdown
 	WorldMapLevelDropDown:SetPoint("TOPRIGHT", WorldMapPositioningGuide, "TOPRIGHT", -50, -35);
 	WorldMapLevelDropDown.header:Show();
-	-- tiny adjustments	
+	-- tiny adjustments
 	WorldMapFrameCloseButton:SetPoint("TOPRIGHT", WorldMapPositioningGuide, 4, 4);
 	WorldMapFrameSizeDownButton:SetPoint("TOPRIGHT", WorldMapPositioningGuide, -16, 4);
 	WorldMapTrackQuest:SetPoint("BOTTOMLEFT", WorldMapPositioningGuide, "BOTTOMLEFT", 16, 4);
 	WorldMapFrameTitle:ClearAllPoints();
 	WorldMapFrameTitle:SetPoint("CENTER", 0, 372);
 	WorldMapTooltip:SetFrameStrata("TOOLTIP");
-	
+
 	WorldMapFrame_SetOpacity(0);
 	WorldMapFrame_SetPOIMaxBounds();
 	WorldMapQuestShowObjectives_AdjustPosition();
@@ -1368,7 +1368,7 @@ function WorldMap_ToggleSizeDown()
 	WorldMapFrame:EnableKeyboard(false);
 	-- adjust map frames
 	WorldMapPositioningGuide:ClearAllPoints();
-	WorldMapPositioningGuide:SetAllPoints();		
+	WorldMapPositioningGuide:SetAllPoints();
 	WorldMapDetailFrame:SetScale(WORLDMAP_WINDOWED_SIZE);
 	WorldMapButton:SetScale(WORLDMAP_WINDOWED_SIZE);
 	WorldMapFrameAreaFrame:SetScale(WORLDMAP_WINDOWED_SIZE);
@@ -1384,13 +1384,13 @@ function WorldMap_ToggleSizeDown()
 	WorldMapLevelDownButton:Hide();
 	WorldMapQuestScrollFrame:Hide();
 	WorldMapQuestDetailScrollFrame:Hide();
-	WorldMapQuestRewardScrollFrame:Hide();		
+	WorldMapQuestRewardScrollFrame:Hide();
 	WorldMapFrameSizeDownButton:Hide();
-	ToggleMapFramerate();	
+	ToggleMapFramerate();
 	-- show small window elements
 	WorldMapTitleButton:Show();
 	WorldMapFrameMiniBorderLeft:Show();
-	WorldMapFrameMiniBorderRight:Show();		
+	WorldMapFrameMiniBorderRight:Show();
 	WorldMapFrameSizeUpButton:Show();
 	-- floor dropdown
 	WorldMapLevelDropDown:SetPoint("TOPRIGHT", WorldMapPositioningGuide, "TOPRIGHT", -441, -35);
@@ -1405,7 +1405,7 @@ function WorldMap_ToggleSizeDown()
 	WorldMapTooltip:SetFrameStrata("TOOLTIP");
 	-- managed or user-placed?
 	WorldMapFrame_SetMiniMode();
-	
+
 	WorldMapFrame_SetOpacity(WORLDMAP_SETTINGS.opacity);
 	WorldMapFrame_SetPOIMaxBounds();
 	WorldMapQuestShowObjectives_AdjustPosition();
@@ -1424,11 +1424,11 @@ end
 function WorldMapQuestShowObjectives_Toggle()
 	if ( WorldMapQuestShowObjectives:GetChecked() ) then
 		WatchFrame.showObjectives = true;
-		QuestLogFrameShowMapButton:Show();		
+		QuestLogFrameShowMapButton:Show();
 	else
 		WatchFrame.showObjectives = nil;
 		WatchFrame_Update();
-		QuestLogFrameShowMapButton:Hide();	
+		QuestLogFrameShowMapButton:Hide();
 	end
 end
 
@@ -1456,14 +1456,14 @@ function WorldMapFrame_DisplayQuests(selectQuestId)
 			WorldMapFrame_SetQuestMapView();
 		end
 		WorldMapBlobFrame:Show();
-		WorldMapPOIFrame:Show();		
-		WorldMapTrackQuest:Show();		
+		WorldMapPOIFrame:Show();
+		WorldMapTrackQuest:Show();
 	else
 		if ( WORLDMAP_SETTINGS.size == WORLDMAP_QUESTLIST_SIZE ) then
 			WorldMapFrame_SetFullMapView();
 		end
 		WorldMapBlobFrame:Hide();
-		WorldMapPOIFrame:Hide();		
+		WorldMapPOIFrame:Hide();
 		WorldMapTrackQuest:Hide();
 	end
 end
@@ -1487,7 +1487,7 @@ function WorldMapFrame_SetQuestMapView()
 	WORLDMAP_SETTINGS.size = WORLDMAP_QUESTLIST_SIZE;
 	WorldMapDetailFrame:SetScale(WORLDMAP_QUESTLIST_SIZE);
 	WorldMapButton:SetScale(WORLDMAP_QUESTLIST_SIZE);
-	WorldMapFrameAreaFrame:SetScale(WORLDMAP_QUESTLIST_SIZE);			
+	WorldMapFrameAreaFrame:SetScale(WORLDMAP_QUESTLIST_SIZE);
 	WorldMapDetailFrame:SetPoint("TOPLEFT", WorldMapPositioningGuide, "TOP", -726, -99);
 	WorldMapQuestDetailScrollFrame:Show();
 	WorldMapQuestRewardScrollFrame:Show();
@@ -1501,7 +1501,7 @@ function WorldMapFrame_SetFullMapView()
 	WORLDMAP_SETTINGS.size = WORLDMAP_FULLMAP_SIZE;
 	WorldMapDetailFrame:SetScale(WORLDMAP_FULLMAP_SIZE);
 	WorldMapButton:SetScale(WORLDMAP_FULLMAP_SIZE);
-	WorldMapFrameAreaFrame:SetScale(WORLDMAP_FULLMAP_SIZE);			
+	WorldMapFrameAreaFrame:SetScale(WORLDMAP_FULLMAP_SIZE);
 	WorldMapDetailFrame:SetPoint("TOPLEFT", WorldMapPositioningGuide, "TOP", -502, -69);
 	WorldMapQuestDetailScrollFrame:Hide();
 	WorldMapQuestRewardScrollFrame:Hide();
@@ -1531,10 +1531,10 @@ function WorldMapFrame_UpdateQuests()
 	local questCount = 0;
 	local numObjectives;
 	local playerMoney = GetMoney();
-	
+
 	local numPOINumeric = 0;
 	local numPOICompleteSwap = 0;
-	
+
 	numEntries = QuestMapUpdateAllQuests();
 	WorldMapFrame_ClearQuestPOIs();
 	QuestPOIUpdateIcons();
@@ -1603,7 +1603,7 @@ function WorldMapFrame_UpdateQuests()
 				if ( requiredMoney > playerMoney ) then
 					questText = questText.."- "..GetMoneyString(playerMoney).." / "..GetMoneyString(requiredMoney);
 					dashText = dashText..QUEST_DASH;
-				end				
+				end
 				questFrame.objectives:SetText(questText);
 				questFrame.dashes:SetText(dashText);
 			end
@@ -1624,21 +1624,21 @@ function WorldMapFrame_UpdateQuests()
 		questFrame = _G["WorldMapQuestFrame"..i];
 		if ( not questFrame ) then
 			break;
-		end		
+		end
 		questFrame:Hide();
 		WorldMapBlobFrame:DrawQuestBlob(questFrame.questId, false);
 		questFrame.questId = 0;
 	end
 	QuestPOI_HideButtons("WorldMapPOIFrame", QUEST_POI_NUMERIC, numPOINumeric + 1);
 	QuestPOI_HideButtons("WorldMapPOIFrame", QUEST_POI_COMPLETE_SWAP, numPOICompleteSwap + 1);
-	
+
 	return questCount;
 end
 
 function WorldMapFrame_SelectQuestFrame(questFrame)
 	local poiIcon;
 	local color;
-	-- clear current selection	
+	-- clear current selection
 	if ( WORLDMAP_SETTINGS.selectedQuest ) then
 		local currentSelection = WORLDMAP_SETTINGS.selectedQuest;
 		poiIcon = currentSelection.poiIcon;
@@ -1681,7 +1681,7 @@ function WorldMapFrame_SelectQuestFrame(questFrame)
 	else
 		-- need to select the appropriate poi in the objectives tracker
 		QuestPOI_SelectButtonByQuestId("WatchFrameLines", questFrame.questId, true);
-	end	
+	end
 	-- track quest checkbark
 	WorldMapTrackQuest:SetChecked(IsQuestWatched(questFrame.questLogIndex));
 	-- quest blob
@@ -1745,7 +1745,7 @@ function WorldMapFrame_GetQuestFrame(index, isComplete)
 		frame = CreateFrame("Frame", "WorldMapQuestFrame"..index, WorldMapQuestScrollChildFrame, "WorldMapQuestFrameTemplate");
 		frame.index = index;
 	end
-	
+
 	local poiButton;
 	if ( isComplete ) then
 		numCompletedQuests = numCompletedQuests + 1;
@@ -1779,7 +1779,7 @@ function WorldMapQuestFrame_OnEnter(self)
 		local color = GetQuestDifficultyColor(self.level);
 		self.title:SetTextColor(1, 1, 1);
 		WorldMapQuestHighlightBar:SetVertexColor(color.r, color.g, color.b);
-	end	
+	end
 	WorldMapQuestHighlightedFrame:Show();
 	if ( not self.completed ) then
 		WorldMapBlobFrame:DrawQuestBlob(self.questId, true);
@@ -1795,7 +1795,7 @@ function WorldMapQuestFrame_OnLeave(self)
 	if ( MAP_QUEST_DIFFICULTY == "1" ) then
 		local color = GetQuestDifficultyColor(self.level);
 		self.title:SetTextColor(color.r, color.g, color.b);
-	end		
+	end
 	WorldMapQuestHighlightedFrame:Hide();
 	if ( not self.completed ) then
 		WorldMapBlobFrame:DrawQuestBlob(self.questId, false);
@@ -1805,7 +1805,7 @@ end
 function WorldMapQuestFrame_OnMouseDown(self)
 	self.title:SetPoint("TOPLEFT", 35, -9);
 	self.ownPOI:SetButtonState("PUSHED");
-	QuestPOIButton_OnMouseDown(self.ownPOI);	
+	QuestPOIButton_OnMouseDown(self.ownPOI);
 end
 
 function WorldMapQuestFrame_OnMouseUp(self)
@@ -1820,10 +1820,10 @@ function WorldMapQuestFrame_OnMouseUp(self)
 		end
 		if ( IsShiftKeyDown() ) then
 			local isChecked = not WorldMapTrackQuest:GetChecked();
-			WorldMapTrackQuest:SetChecked(isChecked);		
+			WorldMapTrackQuest:SetChecked(isChecked);
 			WorldMapTrackQuest_Toggle(isChecked);
-			WorldMapQuestFrame_UpdateMouseOver();			
-		end		
+			WorldMapQuestFrame_UpdateMouseOver();
+		end
 	end
 end
 
@@ -1849,14 +1849,14 @@ function WorldMapQuestPOI_OnClick(self)
 	end
 	if ( IsShiftKeyDown() ) then
 		local isChecked = not WorldMapTrackQuest:GetChecked();
-		WorldMapTrackQuest:SetChecked(isChecked);		
+		WorldMapTrackQuest:SetChecked(isChecked);
 		WorldMapTrackQuest_Toggle(isChecked);
 	end
 end
 
 function WorldMapQuestPOI_OnEnter(self)
 	WorldMapPOIFrame.allowBlobTooltip = false;
-	WorldMapQuestPOI_SetTooltip(self, self.quest.questLogIndex);	
+	WorldMapQuestPOI_SetTooltip(self, self.quest.questLogIndex);
 end
 
 function WorldMapQuestPOI_OnLeave(self)
@@ -1902,9 +1902,9 @@ function WorldMapQuestPOI_SetTooltip(poiButton, questLogIndex, numObjectives)
 				if ( text and not finished ) then
 					WorldMapTooltip:AddLine("- "..WorldMapFrame_ReverseQuestObjective(text), 1, 1, 1, 1);
 				end
-			end		
+			end
 		end
-	end	
+	end
 	WorldMapTooltip:Show();
 end
 
@@ -1963,7 +1963,7 @@ end
 
 function WorldMap_OpenToQuest(questID, frameToShowOnClose)
 	WorldMapFrame.blockWorldMapUpdate = true;
-	ShowUIPanel(WorldMapFrame);	
+	ShowUIPanel(WorldMapFrame);
 	local mapID, floorNumber = GetQuestWorldMapAreaID(questID);
 	if ( mapID ~= 0 ) then
 		SetMapByID(mapID);
@@ -1972,7 +1972,7 @@ function WorldMap_OpenToQuest(questID, frameToShowOnClose)
 		end
 	end
 	WorldMapFrame.blockWorldMapUpdate = nil;
-	WorldMapFrame_UpdateMap(questID);	
+	WorldMapFrame_UpdateMap(questID);
 end
 
 function WorldMapFrame_SetMapName()
@@ -1996,7 +1996,7 @@ function WorldMapFrame_ToggleAdvanced()
 	WORLDMAP_SETTINGS.advanced = GetCVarBool("advancedWorldMap");
 	WorldMapScreenAnchor:StartMoving();
 	WorldMapScreenAnchor:SetPoint("TOPLEFT", 10, -118);
-	WorldMapScreenAnchor:StopMovingOrSizing();	
+	WorldMapScreenAnchor:StopMovingOrSizing();
 	if ( WORLDMAP_SETTINGS.size == WORLDMAP_WINDOWED_SIZE ) then
 		WorldMapFrame_SetMiniMode();
 	end
@@ -2013,9 +2013,9 @@ function WorldMapFrame_SetMiniMode()
 			WorldMapFrame:SetAttribute("UIPanelLayout-allowOtherPanels", true);
 		end
 		WorldMapFrame:SetMovable("true");
-		WorldMapFrame:SetWidth(593);		
+		WorldMapFrame:SetWidth(593);
 		WorldMapFrame:SetPoint("TOPLEFT", WorldMapScreenAnchor, 0, 0);
-		WorldMapFrameMiniBorderLeft:SetPoint("TOPLEFT", 0, 0);		
+		WorldMapFrameMiniBorderLeft:SetPoint("TOPLEFT", 0, 0);
 		WorldMapDetailFrame:SetPoint("TOPLEFT", 19, -42);
 	else
 		if ( not WorldMapFrame:GetAttribute("UIPanelLayout-defined") ) then
@@ -2027,10 +2027,10 @@ function WorldMapFrame_SetMiniMode()
 		end
 		WorldMapFrame:SetMovable("false");
 		WorldMapFrame:SetWidth(623);	-- extra width so it tiles nicely
-		WorldMapFrameMiniBorderLeft:SetPoint("TOPLEFT", 10, -14);		
+		WorldMapFrameMiniBorderLeft:SetPoint("TOPLEFT", 10, -14);
 		WorldMapDetailFrame:SetPoint("TOPLEFT", 37, -66);
 	end
-	WorldMapFrame:SetHeight(437);	
+	WorldMapFrame:SetHeight(437);
 end
 
 function WorldMapTitleButton_OnLoad(self)
@@ -2048,7 +2048,7 @@ function WorldMapTitleButton_OnClick(self, button)
 		OpacityFrame.saveOpacityFunc = nil;
 		OpacityFrame:Hide();
 	end
-	
+
 	-- If Rightclick bring up the options menu
 	if ( button == "RightButton" ) then
 		ToggleDropDownMenu(1, nil, WorldMapTitleDropDown, "cursor", 0, 0);
@@ -2066,7 +2066,7 @@ function WorldMapTitleButton_OnDragStart()
 		end
 		WorldMapScreenAnchor:ClearAllPoints();
 		WorldMapFrame:ClearAllPoints();
-		WorldMapFrame:StartMoving();	
+		WorldMapFrame:StartMoving();
 	end
 end
 
@@ -2076,7 +2076,7 @@ function WorldMapTitleButton_OnDragStop()
 		WorldMapBlobFrame_CalculateHitTranslations();
 		if ( WORLDMAP_SETTINGS.selectedQuest and not WORLDMAP_SETTINGS.selectedQuest.completed ) then
 			WorldMapBlobFrame:DrawQuestBlob(WORLDMAP_SETTINGS.selectedQuestId, true);
-		end		
+		end
 		-- move the anchor
 		WorldMapScreenAnchor:StartMoving();
 		WorldMapScreenAnchor:SetPoint("TOPLEFT", WorldMapFrame);
@@ -2095,12 +2095,12 @@ function WorldMapTitleDropDown_Initialize()
 		info.checked = WORLDMAP_SETTINGS.locked;
 		UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	end
-	
+
 	-- Opacity
 	info.text = CHANGE_OPACITY;
 	info.func = WorldMapTitleDropDown_ToggleOpacity;
 	info.checked = nil;
-	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);	
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 end
 
 function WorldMapTitleDropDown_ToggleLock()
@@ -2121,7 +2121,7 @@ function WorldMapTitleDropDown_ToggleOpacity()
 	OpacityFrame.opacityFunc = WorldMapFrame_ChangeOpacity;
 	OpacityFrame.saveOpacityFunc = WorldMapFrame_SaveOpacity;
 	OpacityFrame:Show();
-	OpacityFrameSlider:SetValue(WORLDMAP_SETTINGS.opacity);	
+	OpacityFrameSlider:SetValue(WORLDMAP_SETTINGS.opacity);
 end
 
 function WorldMapFrame_ChangeOpacity()
@@ -2162,11 +2162,11 @@ function WorldMapTrackQuest_Toggle(isChecked)
 		if ( LOCAL_MAP_QUESTS["zone"] == GetCurrentMapZone() ) then
 			LOCAL_MAP_QUESTS[WORLDMAP_SETTINGS.selectedQuestId] = true;
 		end
-		AddQuestWatch(questIndex);	
+		AddQuestWatch(questIndex);
 	else
 		LOCAL_MAP_QUESTS[WORLDMAP_SETTINGS.selectedQuestId] = nil;
 		RemoveQuestWatch(questIndex);
 	end
 	WatchFrame_Update();
-	WorldMapFrame_DisplayQuests(WORLDMAP_SETTINGS.selectedQuestId);	
+	WorldMapFrame_DisplayQuests(WORLDMAP_SETTINGS.selectedQuestId);
 end

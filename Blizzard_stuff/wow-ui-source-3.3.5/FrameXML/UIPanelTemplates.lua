@@ -37,7 +37,7 @@ end
 
 function PanelTemplates_TabResize(tab, padding, absoluteSize, maxWidth, absoluteTextSize)
 	local tabName = tab:GetName();
-	
+
 	local buttonMiddle = _G[tabName.."Middle"];
 	local buttonMiddleDisabled = _G[tabName.."MiddleDisabled"];
 	local sideWidths = 2 * _G[tabName.."Left"]:GetWidth();
@@ -79,14 +79,14 @@ function PanelTemplates_TabResize(tab, padding, absoluteSize, maxWidth, absolute
 		end
 		tabWidth = width + sideWidths;
 	end
-	
+
 	if ( buttonMiddle ) then
 		buttonMiddle:SetWidth(width);
 	end
 	if ( buttonMiddleDisabled ) then
 		buttonMiddleDisabled:SetWidth(width);
 	end
-	
+
 	tab:SetWidth(tabWidth);
 	local highlightTexture = _G[tabName.."HighlightTexture"];
 	if ( highlightTexture ) then
@@ -134,7 +134,7 @@ function PanelTemplates_SelectTab(tab)
 	_G[name.."LeftDisabled"]:Show();
 	_G[name.."MiddleDisabled"]:Show();
 	_G[name.."RightDisabled"]:Show();
-	
+
 	if ( GameTooltip:IsOwned(tab) ) then
 		GameTooltip:Hide();
 	end
@@ -194,10 +194,10 @@ function FauxScrollFrame_Update(frame, numItems, numToDisplay, valueStep, button
 		else
 			scrollChildFrame:Hide();
 		end
-		scrollBar:SetMinMaxValues(0, scrollFrameHeight); 
+		scrollBar:SetMinMaxValues(0, scrollFrameHeight);
 		scrollBar:SetValueStep(valueStep);
 		scrollChildFrame:SetHeight(scrollChildHeight);
-		
+
 		-- Arrow button handling
 		if ( scrollBar:GetValue() == 0 ) then
 			scrollUpButton:Disable();
@@ -209,7 +209,7 @@ function FauxScrollFrame_Update(frame, numItems, numToDisplay, valueStep, button
 		else
 			scrollDownButton:Enable();
 		end
-		
+
 		-- Shrink because scrollbar is shown
 		if ( highlightFrame ) then
 			highlightFrame:SetWidth(smallHighlightWidth);
@@ -259,7 +259,7 @@ function ScrollFrame_OnLoad(self)
 	scrollbar:SetMinMaxValues(0, 0);
 	scrollbar:SetValue(0);
 	self.offset = 0;
-	
+
 	if ( self.scrollBarHideable ) then
 		_G[self:GetName().."ScrollBar"]:Hide();
 		_G[scrollbar:GetName().."ScrollDownButton"]:Hide();
@@ -305,7 +305,7 @@ function ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
 		_G[scrollbar:GetName().."ThumbTexture"]:Show();
 		if ( self.haveTrack ) then
 			_G[self:GetName().."Track"]:Show();
-		end		
+		end
 		-- The 0.005 is to account for precision errors
 		if ( yrange - value > 0.005 ) then
 			_G[scrollbar:GetName().."ScrollDownButton"]:Enable();
@@ -313,7 +313,7 @@ function ScrollFrame_OnScrollRangeChanged(self, xrange, yrange)
 			_G[scrollbar:GetName().."ScrollDownButton"]:Disable();
 		end
 	end
-	
+
 	-- Hide/show scrollframe borders
 	local top = _G[self:GetName().."Top"];
 	local bottom = _G[self:GetName().."Bottom"];
@@ -363,12 +363,12 @@ local height, range, scroll, size, cursorOffset;
 		scroll = scrollFrame:GetVerticalScroll();
 		size = height + range;
 		cursorOffset = -self.cursorOffset;
-		
+
 		if ( math.floor(height) <= 0 or math.floor(range) <= 0 ) then
 			--Frame has no area, nothing to calculate.
 			return;
 		end
-		
+
 		while ( cursorOffset < scroll ) do
 			scroll = (scroll - (height / 2));
 			if ( scroll < 0 ) then
@@ -384,7 +384,7 @@ local height, range, scroll, size, cursorOffset;
 			end
 			scrollFrame:SetVerticalScroll(scroll);
 		end
-		
+
 		self.handleCursorChange = false;
 	end
 end
@@ -436,12 +436,12 @@ function UIFrameCache:New (frameType, baseName, parent, template)
 	if ( self ~= UIFrameCache ) then
 		error("Attempt to run factory method on class member");
 	end
-	
+
 	local frameCache = {};
 
 	setmetatable(frameCache, self);
 	self.__index = self;
-	
+
 	frameCache.frameType = frameType;
 	frameCache.baseName = baseName;
 	frameCache.parent = parent;
@@ -451,7 +451,7 @@ function UIFrameCache:New (frameType, baseName, parent, template)
 	frameCache.numFrames = 0;
 
 	tinsert(caches, frameCache);
-	
+
 	return frameCache;
 end
 
@@ -462,7 +462,7 @@ function UIFrameCache:GetFrame ()
 		tinsert(self.usedFrames, frame);
 		return frame;
 	end
-	
+
 	frame = CreateFrame(self.frameType, self.baseName .. self.numFrames + 1, self.parent, self.template);
 	frame.frameCache = self;
 	self.numFrames = self.numFrames + 1;
@@ -476,14 +476,14 @@ function UIFrameCache:ReleaseFrame (frame)
 			return;
 		end
 	end
-	
+
 	for k, v in next, self.usedFrames do
 		if ( v == frame ) then
 			tinsert(self.frames, frame);
 			tremove(self.usedFrames, k);
 			break;
 		end
-	end	
+	end
 end
 
 -- positionFunc = Callback to determine the visible buttons.
@@ -505,7 +505,7 @@ function DynamicScrollFrame_CreateButtons(self, buttonTemplate, minButtonHeight,
 	local buttonName = self:GetName().."Button";
 	local buttons = { };
 	local numButtons;
-	
+
 	local button = CreateFrame("BUTTON", buttonName.."1", scrollChild, buttonTemplate);
 	button:SetPoint("TOPLEFT", 0, 0);
 	tinsert(buttons, button);
